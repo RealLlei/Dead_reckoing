@@ -1,0 +1,53 @@
+syntax = "proto2";
+
+package TL.hdmap;
+
+import "proto/common/header.proto";
+import "proto/common/types.proto";
+import "proto/map/map_id.proto";
+
+message JunctionPassable {
+  // 通行状态, 直接用红绿黄灯状态表示
+  enum JunctionPassableType {
+    JUNCTION_GREEN  = 1;
+    JUNCTION_RED    = 2;
+    JUNCTION_YELLOW = 3;
+  }
+  
+  // 通行方向
+  enum JunctionDirectionType {
+    JUNCTION_LEFT_U_TURN  = 1;
+    JUNCTION_LEFT_TURN    = 2;
+    JUNCTION_FORWARD      = 3;
+    JUNCTION_RIGHT_TURN   = 4;
+  }
+  
+  message RoadPassableInfo {
+    //　方向
+    optional JunctionDirectionType direction    = 1;
+    //　红绿灯状态
+    optional JunctionPassableType passable_type = 2;
+    // NCP是否可用
+    optional bool ncp_tlr                       = 3;
+    // 倒计时
+    optional float ncp_count_down               = 4;
+    optional TL.common.Point3D position      = 5; // 灯在车体坐标系坐标
+    optional float distance                     = 6; // 灯与车的距离
+  }
+  
+  message DirectionPassableInfo {
+    optional JunctionDirectionType direction    = 1;
+    optional JunctionPassableType passable_type = 2;
+    optional float ncp_count_down               = 3; // 倒计时
+    optional TL.common.Point3D position      = 4; // 灯在车体坐标系坐标
+    optional float distance                     = 5; // 灯与车的距离
+  }
+  
+  optional TL.common.Header header           = 1;
+
+  // 道路可通行性
+  repeated RoadPassableInfo road_passable_infos = 2;
+  
+  // 主车道可通行性
+  repeated DirectionPassableInfo direction_passable_infos = 3;
+}

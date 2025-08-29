@@ -1,0 +1,91 @@
+syntax = "proto2";
+package TL.perception.datacollection;
+import "apollo_proto/drivers/header.proto";
+
+message Matrix3f {
+    repeated float array = 1; // 3 * 3    
+}
+
+message Point3f {
+  optional float x = 1;
+  optional float y = 2;
+  optional float z = 3;
+}
+
+message Matrix3d {
+    repeated double array = 1; // 3 * 3    
+}
+
+message Point2D {
+    optional double x = 1;
+    optional double y = 2;
+}
+
+message Point3D {
+    optional double x = 1;
+    optional double y = 2;
+    optional double z = 3;
+}
+
+message Rect2D {
+    optional Point2D topleft = 1;
+    optional Point2D size = 2;
+}
+
+message Rect3D {
+    optional Point3D center = 1;
+    optional Point3D center_std_dev = 2;
+    optional Point3D size_lwh = 3;
+    optional Point3D size_std_dev = 4;
+    optional double orientation  = 5;
+    optional double orientation_std_dev = 6;
+    repeated Point3D corners = 7;
+}
+
+message Quaternion {
+    optional float x = 1;
+    optional float y = 2;
+    optional float z = 3;
+    optional float w = 4;
+}
+
+message Pose {
+    optional Point3D position = 1;
+    optional Quaternion quaternion = 2;
+    optional Point3f euler_angle = 3;
+    optional Point3f rotation_vrf = 4;
+    optional float heading = 5;
+}
+
+message PoseWithCovariance {
+    optional Pose pose_wgs = 1;
+    optional Pose pose_local = 2;
+    optional Pose pose_gcj02 = 3;
+    optional Pose pose_utm01 = 4;
+    optional Pose pose_utm02 = 5;
+    optional int32 utm_zone_id01 = 6;
+    optional int32 utm_zone_id02 = 7;
+    repeated float std = 8;  // size is 6 * 6
+}
+
+message Twist {
+    optional Point3f linear_vrf = 1;
+    optional Point3f angular_raw_vrf = 2;
+    optional Point3f angular_vrf = 3;
+}
+
+message TwistWithCovariance {
+    optional Twist twist_vrf = 1;
+    repeated float std = 2; //actual size is 6 * 6
+}
+
+message Accel {
+    optional Point3f linear_raw_vrf = 1;
+    optional Point3f linear_vrf = 2;
+    optional Point3f angular_vrf = 3;
+}
+
+message AccelWithCovariance {
+    optional Accel linear_vrf = 1;
+    repeated float std = 2; // actual size is 6 * 6
+}

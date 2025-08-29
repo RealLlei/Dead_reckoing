@@ -1,0 +1,12 @@
+syntax = "proto2";
+package TL.control;
+
+import "proto/common/header.proto";
+
+
+
+message AdasSomeipFromMCU {
+  optional TL.common.Header header = 1;
+  repeated uint32 adas_someip = 2;
+
+}

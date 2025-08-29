@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+package hzpacket.dotmessage;
+
+message TriggerMessage{
+	optional int32 triggerid = 1;
+	optional int64 timestamp = 2;
+	optional string description = 3;
+};

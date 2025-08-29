@@ -1,0 +1,454 @@
+/******************************************************************************
+ * Copyright 2018 The Apollo Authors. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *****************************************************************************/
+
+#include "common/file/file.h"
+
+#include <dirent.h>
+#include <fcntl.h>
+#include <glob.h>
+#include <libgen.h>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <bitset>
+#include <cerrno>
+#include <cstddef>
+#include <fstream>
+#include <functional>
+#include <memory>
+#include <string>
+#include <vector>
+#include "common/util/span.hpp"
+
+namespace TL {
+namespace common {
+
+// using std::istreambuf_iterator;
+using std::string;
+using std::vector;
+
+bool SetProtoToASCIIFile(const google::protobuf::Message& message,
+                         int file_descriptor) {
+  using google::protobuf::TextFormat;
+  using google::protobuf::io::FileOutputStream;
+  using google::protobuf::io::ZeroCopyOutputStream;
+  if (file_descriptor < 0) {
+    AERROR << "Invalid file descriptor.";
+    return false;
+  }
+  auto output = std::make_unique<FileOutputStream>(file_descriptor);
+  bool success = TextFormat::Print(message, output.get());
+  close(file_descriptor);
+  return success;
+}
+
+bool SetProtoToASCIIFile(const google::protobuf::Message& message,
+                         const std::string& file_name) {
+  EnsureDirectory(file_name.substr(0, file_name.find_last_of("\\/")));
+
+  // int fd =
+  //     open(file_name.c_str(), O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);  // NOLINT
+  // if (fd < 0) {
+  //   AERROR << "Unable to open file " << file_name << " to write.";
+  //   return false;
+  // }
+  std::ofstream ofs(file_name);
+  ofs << message.DebugString() << std::endl;
+  ofs.flush();
+  ofs.close();
+  return true;
+}
+
+bool GetProtoFromASCIIFile(const std::string& file_name,
+                           google::protobuf::Message* message) {
+  using google::protobuf::TextFormat;
+  using google::protobuf::io::FileInputStream;
+  using google::protobuf::io::ZeroCopyInputStream;
+  int file_descriptor = open(file_name.c_str(), O_RDONLY);  // NOLINT
+  if (file_descriptor < 0) {
+    AERROR << "Failed to open file " << file_name << " in text mode.";
+    // Failed to open;
+    return false;
+  }
+
+  auto input = std::make_unique<FileInputStream>(file_descriptor);
+  bool success = TextFormat::Parse(input.get(), message);
+  if (!success) {
+    AERROR << "Failed to parse file " << file_name << " as text proto.";
+  }
+  close(file_descriptor);
+  return success;
+}
+
+bool SetProtoToBinaryFile(const google::protobuf::Message& message,
+                          const std::string& file_name) {
+  std::fstream output(file_name,
+                      std::ios::out | std::ios::trunc | std::ios::binary);
+  return message.SerializeToOstream(&output);
+}
+
+bool GetProtoFromBinaryFile(const std::string& file_name,
+                            google::protobuf::Message* message) {
+  std::fstream input(file_name, std::ios::in | std::ios::binary);
+  if (!input.good()) {
+    AERROR << "Failed to open file " << file_name << " in binary mode.";
+    return false;
+  }
+  if (!message->ParseFromIstream(&input)) {
+    AERROR << "Failed to parse file " << file_name << " as binary proto.";
+    return false;
+  }
+  return true;
+}
+
+bool GetProtoFromFile(const std::string& file_name,
+                      google::protobuf::Message* message) {
+  // Try the binary parser first if it's much likely a binary proto.
+  static const std::string kBinExt = ".bin";
+  if (std::equal(kBinExt.rbegin(), kBinExt.rend(), file_name.rbegin())) {
+    return GetProtoFromBinaryFile(file_name, message) ||
+           GetProtoFromASCIIFile(file_name, message);
+  }
+
+  return GetProtoFromASCIIFile(file_name, message) ||
+         GetProtoFromBinaryFile(file_name, message);
+}
+
+bool GetContent(const std::string& file_name, std::string* content) {
+  std::ifstream fin(file_name);
+  if (!fin) {
+    return false;
+  }
+
+  std::stringstream str_stream;
+  str_stream << fin.rdbuf();
+  *content = str_stream.str();
+  return true;
+}
+
+std::string GetAbsolutePath(const std::string& prefix,
+                            const std::string& relative_path) {
+  if (relative_path.empty()) {
+    return prefix;
+  }
+  // If prefix is empty or relative_path is already absolute.
+  if (prefix.empty() || relative_path.front() == '/') {
+    return relative_path;
+  }
+
+  if (prefix.back() == '/') {
+    return prefix + relative_path;
+  }
+  return prefix + "/" + relative_path;
+}
+
+bool PathExists(const std::string& path) {
+  struct stat info {};
+
+  return stat(path.c_str(), &info) == 0;
+}
+
+bool DirectoryExists(const std::string& directory_path) {
+  struct stat info {};
+
+  std::bitset<32> bit_st_mode(info.st_mode);
+  bit_st_mode &= S_IFDIR;
+  return stat(directory_path.c_str(), &info) == 0 && bit_st_mode.any();
+}
+
+std::vector<std::string> Glob(const std::string& pattern) {
+  glob_t globs = {};
+  std::vector<std::string> results;
+  if (glob(pattern.c_str(), GLOB_TILDE, nullptr, &globs) == 0) {  // NOLINT
+    boost::span<char*> sp_c(globs.gl_pathv, globs.gl_pathc);
+    for (size_t i = 0; i < globs.gl_pathc; ++i) {
+      results.emplace_back(sp_c[i]);
+    }
+  }
+  globfree(&globs);
+  return results;
+}
+
+bool CopyFile(const std::string& from, const std::string& to) {
+  std::ifstream src(from, std::ios::binary);
+  if (!src) {
+    AWARN << "Source path could not be normally opened: " << from;
+    std::string command = "cp -r " + from + " " + to;
+    ADEBUG << command;
+    const int ret = std::system(command.c_str());  // NOLINT
+    if (ret == 0) {
+      ADEBUG << "Copy success, command returns " << ret;
+      return true;
+    }
+    ADEBUG << "Copy error, command returns " << ret;
+    return false;
+  }
+
+  std::ofstream dst(to, std::ios::binary);
+  if (!dst) {
+    AERROR << "Target path is not writable: " << to;
+    return false;
+  }
+
+  dst << src.rdbuf();
+  return true;
+}
+
+bool CopyDir(const std::string& from, const std::string& to) {  // NOLINT
+  DIR* directory = opendir(from.c_str());
+  if (directory == nullptr) {
+    AERROR << "Cannot open directory " << from;
+    return false;
+  }
+
+  bool ret = true;
+  if (EnsureDirectory(to)) {
+    struct dirent* entry = nullptr;
+    while ((entry = readdir(directory)) != nullptr) {  // NOLINT
+      // skip directory_path/. and directory_path/..
+      boost::span<char> tmp_str(entry->d_name);
+      std::string cur_dir_str(tmp_str.data());
+      if (cur_dir_str == "." || cur_dir_str == "..") {
+        continue;
+      }
+      // if ()
+      std::string sub_path_from = from + "/";
+      sub_path_from += cur_dir_str;
+      std::string sub_path_to = to + "/";
+      sub_path_to += cur_dir_str;
+      if (entry->d_type == DT_DIR) {
+        ret &= CopyDir(sub_path_from, sub_path_to);
+      } else {
+        ret &= CopyFile(sub_path_from, sub_path_to);
+      }
+    }
+  } else {
+    AERROR << "Cannot create target directory " << to;
+    ret = false;
+  }
+  closedir(directory);
+  return ret;
+}
+
+bool Copy(const std::string& from, const std::string& to) {
+  return DirectoryExists(from) ? CopyDir(from, to) : CopyFile(from, to);
+}
+
+bool EnsureDirectory(const std::string& directory_path) {
+  std::string path = directory_path;
+  for (size_t i = 1; i < directory_path.size(); ++i) {
+    if (directory_path[i] == '/') {
+      // Whenever a '/' is encountered, create a temporary view from
+      // the start of the path to the character right before this.
+      path[i] = 0;
+
+      if (mkdir(path.c_str(), S_IRWXU) != 0) {  // NOLINT
+        if (errno != EEXIST) {
+          return false;
+        }
+      }
+
+      // Revert the temporary view back to the original.
+      path[i] = '/';
+    }
+  }
+
+  // Make the final (full) directory.
+  if (mkdir(path.c_str(), S_IRWXU) != 0) {  // NOLINT
+    if (errno != EEXIST) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+bool RemoveAllFiles(const std::string& directory_path) {
+  DIR* directory = opendir(directory_path.c_str());
+  if (directory == nullptr) {
+    AERROR << "Cannot open directory " << directory_path;
+    return false;
+  }
+
+  struct dirent* file = nullptr;
+  while ((file = readdir(directory)) != nullptr) {  // NOLINT
+    // skip directory_path/. and directory_path/..
+    boost::span<char> tmp_str(file->d_name);
+    std::string cur_dir_str(tmp_str.data());
+    if (cur_dir_str == "." || cur_dir_str == "..") {
+      continue;
+    }
+    // build the path for each file in the folder
+    std::string file_path = directory_path + "/";
+    file_path += cur_dir_str;
+    if (unlink(file_path.c_str()) < 0) {
+      AERROR << "Fail to remove file " << file_path << ": "
+             << strerror(errno);  // NOLINT
+      closedir(directory);
+      return false;
+    }
+  }
+  closedir(directory);
+  return true;
+}
+
+std::vector<std::string> ListSubPaths(const std::string& directory_path,
+                                      const unsigned char d_type) {
+  std::vector<std::string> result;
+  DIR* directory = opendir(directory_path.c_str());
+  if (directory == nullptr) {
+    AERROR << "Cannot open directory " << directory_path;
+    return result;
+  }
+
+  struct dirent* entry = nullptr;
+  while ((entry = readdir(directory)) != nullptr) {  // NOLINT
+    // Skip "." and "..".
+    boost::span<char> tmp_str(entry->d_name);
+    std::string cur_dir_str(tmp_str.data());
+    if (entry->d_type == d_type && cur_dir_str != "." && cur_dir_str != "..") {
+      result.emplace_back(cur_dir_str);
+    }
+  }
+  closedir(directory);
+  return result;
+}
+
+std::string GetFileName(const std::string& path, const bool remove_extension) {
+  std::string::size_type start = path.rfind('/');
+  if (start == std::string::npos) {
+    start = 0;
+  } else {
+    // Move to the next char after '/'.
+    ++start;
+  }
+
+  std::string::size_type end = std::string::npos;
+  if (remove_extension) {
+    end = path.rfind('.');
+    // The last '.' is found before last '/', ignore.
+    if (end != std::string::npos && end < start) {
+      end = std::string::npos;
+    }
+  }
+  const auto len = (end != std::string::npos) ? end - start : end;
+  return path.substr(start, len);
+}
+
+std::string GetCurrentPath() {
+  std::string cur_dir{};
+  const auto* get_cur_dir = get_current_dir_name();
+  if (get_cur_dir != nullptr) {
+    cur_dir = get_cur_dir;
+  }
+  return cur_dir;
+}
+
+bool GetType(const string& filename, FileType* type) {
+  struct stat stat_buf {};
+
+  if (lstat(filename.c_str(), &stat_buf) != 0) {
+    return false;
+  }
+  if (S_ISDIR(stat_buf.st_mode) != 0) {  // NOLINT
+    *type = TYPE_DIR;
+  } else if (S_ISREG(stat_buf.st_mode) != 0) {  // NOLINT
+    *type = TYPE_FILE;
+  } else {
+    AWARN << "failed to get type: " << filename;
+    return false;
+  }
+  return true;
+}
+
+bool DeleteFile(const string& filename) {  // NOLINT
+  if (!PathExists(filename)) {
+    return true;
+  }
+  FileType type = TYPE_FILE;
+  if (!GetType(filename, &type)) {
+    return false;
+  }
+  if (type == TYPE_FILE) {
+    if (remove(filename.c_str()) != 0) {
+      AERROR << "failed to remove file: " << filename;
+      return false;
+    }
+    return true;
+  }
+  DIR* dir = opendir(filename.c_str());
+  if (dir == nullptr) {
+    AWARN << "failed to opendir: " << filename;
+    return false;
+  }
+  dirent* dir_info = nullptr;
+  while ((dir_info = readdir(dir)) != nullptr) {  // NOLINT
+    boost::span<char> tmp_str(dir_info->d_name);
+    std::string cur_dir_str(tmp_str.data());
+    if (cur_dir_str == "." || cur_dir_str == "..") {
+      continue;
+    }
+    string temp_file = filename + "/";
+    temp_file += cur_dir_str;
+    FileType temp_type = TYPE_FILE;
+    if (!GetType(temp_file, &temp_type)) {
+      AWARN << "failed to get file type: " << temp_file;
+      closedir(dir);
+      return false;
+    }
+    if (type == TYPE_DIR) {
+      DeleteFile(temp_file);
+    }
+    remove(temp_file.c_str());  // NOLINT
+  }
+  closedir(dir);
+  remove(filename.c_str());  // NOLINT
+  return true;
+}
+
+bool CreateDir(const string& dir) {
+  int ret = mkdir(dir.c_str(), S_IRWXU | S_IRWXG | S_IRWXO);  // NOLINT
+  if (ret != 0) {
+    AWARN << "failed to create dir. [dir: " << dir
+          << "] [err: " << strerror(errno) << "]";  // NOLINT
+    return false;
+  }
+  return true;
+}
+
+void SetProcessStartFromRelativePath() {
+  std::vector<char> buffer{};
+  buffer.resize(1024);
+  // getcwd(buffer, sizeof(buffer));
+  // LOG(ERROR) << buffer;
+  // 获取执行文件所在路径
+  readlink("/proc/self/exe", buffer.data(), 1024);  // NOLINT
+  // LOG(ERROR) << buffer;
+  // 获取执行文件所在目录路径
+  std::string path = dirname(buffer.data());  // NOLINT
+  // LOG(ERROR) << path;
+  // 获取相对路径
+  path += "/../../../";
+  // LOG(ERROR) << path;
+  // 将执行程序的路径调整为相对路径
+  chdir(path.c_str());
+  // getcwd(buffer, sizeof(buffer));
+  // LOG(ERROR) << buffer;
+}
+
+}  // namespace common
+}  // namespace TL

@@ -1,0 +1,64 @@
+syntax = "proto2";
+
+package TL.navigation_hdmap;
+
+import "proto/common/header.proto";
+import "proto/common/pnc_point.proto";
+import "proto/localization/localization.proto";
+import "proto/map/map.proto";
+import "proto/perception/perception_obstacle.proto";
+import "proto/routing/routing.proto";
+import "proto/map/map_arrow.proto";
+
+message NavigationPath {
+  optional TL.common.Path path = 1;
+  // highest = 0 which can directly reach destination; change lane indicator
+  optional uint32 path_priority = 2;
+}
+
+message NavigationInfo {
+  optional TL.common.Header header = 1;
+  repeated NavigationPath navigation_path = 2;
+}
+
+message CrossRoadsInfo {
+  optional uint32 ego_lane_index = 1;
+  repeated TL.hdmap.ArrowData.Type turn_type = 2;
+}
+
+// The map message in transmission format.
+message MapMsg {
+  optional TL.common.Header header = 1;
+
+  // Coordination: FLU
+  // x: Forward
+  // y: Left
+  // z: Up
+  optional TL.hdmap.Map hdmap = 2;
+
+  // key: type string; the lane id in Map
+  // value: Navigation path; the reference line of the lane
+  map<string, NavigationPath> navigation_path = 3;
+
+  // lane marker info from perception
+  optional TL.perception.LaneMarkers lane_marker = 4;
+
+  // localization
+  optional TL.localization.Localization localization = 5;
+
+  // routing 
+  optional TL.routing.RoutingResponse routing = 6;
+
+  enum MapType {
+    INVALID = 1;
+    PERCEP_MAP = 2;
+    FUSION_NNP_MAP = 3;
+    FUSION_NCP_MAP = 4;
+  }
+  optional MapType map_type = 7;
+  optional uint32 fault_level = 8;
+  optional bool is_valid = 9;
+  optional float map_confidence = 10 [default = 1.0];
+  optional uint32 percepmap_state = 11;
+  optional CrossRoadsInfo cross_roads_info = 12;
+}

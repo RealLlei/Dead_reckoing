@@ -1,0 +1,116 @@
+syntax = "proto2";
+package TL.hmi;
+import "proto/common/header.proto";
+
+
+message PointCoord3d {
+    required uint32 lgt = 1;
+    required uint32 lat = 2;
+    required float elevn = 3;
+}
+
+message NavStsInfo {
+    required uint32 nav_sts = 1;
+    required uint32 route_upd_sts = 2;
+    required uint32 nav_planning_rout_offs = 3;
+    required float nav_rem_dst = 4;
+    required uint32 nav_flt_sts = 5;
+    optional uint32 padding_u8_1 = 6;
+    optional uint32 padding_u16_1 = 7;
+}
+
+message PosnCoordInfo {
+    required  PointCoord3d point_coord_3d = 1;
+    required uint32 link_id = 2;
+    required uint32 link_offs = 3;
+    required uint32 link_dir = 4;
+    required uint32 padding_u8_1 = 5;
+    required uint32 padding_u16_1 = 6;
+}
+
+message NavCrsLaneInfo {
+    required uint32 lane_type_info = 1;
+    required uint32  ext_lane_info = 2;
+    required uint32  crs_lane_id = 3;
+    required uint32  lane_max_lim_spd= 4;
+    required uint32  padding_u8_1 = 5;
+    required uint32  padding_u8_2 = 6;
+}
+
+message TarDst {
+    required uint32 tar_local_dst = 1;
+}
+
+message SteerInfo {
+    required uint32 steer_local_info = 1;
+}
+
+message TarChartcInfo {
+    required uint32 steer_info_num = 1;
+    repeated TarDst tar_dst = 2;
+    repeated SteerInfo steer_info = 3;
+}
+
+message NextNavCrossInfo {
+    required bool next_nav_actn_vld = 1;
+    required uint32 nav_plan_next_cross_dst = 2;
+    required uint32 nav_plan_next_cross_steer_info = 3;
+}
+
+message TrfcLiInfo {
+    required PointCoord3d trfc_li_posn = 1;
+    required bool trfc_li_vid = 2;
+    required uint32 trfc_li_num = 3;
+    required uint32 is_nav_trfc_li = 4;
+    required uint32 trfc_li_type = 5;
+    required uint32 trfc_li_st = 6;
+    required uint32 trfc_li_cnt_dwn = 7;
+}
+message TrfcJamInfo {
+    required uint32 trfc_jam_road = 1;
+    required uint32  nav_planning_trfc_jam_road_id = 2;
+    required uint32  nav_plannig_trfc_jam_lane_id = 3;
+    required uint32  nav_planning_trfc_jam_dst = 4;
+    required uint32  trfc_jam_lvl = 5;
+    required uint32  trfc_jam_len = 6;
+    required bool is_closest_nav_trfc_jam_posn = 7;
+    required uint32 trfc_jam_pass_ti = 8;
+}
+
+message NAVdataProperties {
+    optional NavStsInfo nav_sts_info = 1;
+    optional PosnCoordInfo posn_coord_info = 2;
+    optional NavCrsLaneInfo nav_crs_lane_info = 3;
+    optional TarChartcInfo  tar_chartc_info = 4;
+    optional NextNavCrossInfo next_nav_cross_info = 5;
+    repeated TrfcLiInfo trfc_li_info = 6;
+    repeated TrfcJamInfo trfc_jam_info = 7;
+}
+
+message SDRoadDataProperties {
+    required uint32 road_id = 1;
+    required uint32 road_kind = 2;
+    required uint32 road_type = 3;
+    required string link_name = 4;
+    required uint32 road_len = 5;
+    required uint32 road_name_len = 6;
+    required uint32 road_point_num = 7;
+    repeated uint32 road_lgt = 8;
+    repeated uint32 road_lat = 9;
+    required uint32 nav_dst = 10;
+    required uint32 max_limv = 11;
+    required bool is_under_pass = 12;
+    required bool is_over_pass = 13;
+    required uint32 fct_lvl = 14;
+    required uint32 trfc_dir = 15;
+    required uint32 lane_num = 16;
+    repeated NavCrsLaneInfo lane_info = 17;
+    optional uint32 padding_u8_1 = 18;
+    optional uint32 padding_u16_1 = 19;
+}
+
+message NAVDataService {
+    optional TL.common.Header header = 1;
+    optional NAVdataProperties nav_data = 2;
+    repeated SDRoadDataProperties sd_road_array = 3;
+}

@@ -1,0 +1,72 @@
+syntax = "proto2";
+
+package apollo.functionmanager;
+
+message RatioByDriverMode {
+  optional bool enable_driver_mode = 1 [default = false];
+  optional double default_ratio = 3 [default = 1.0];
+  optional double basic_ratio = 5 [default = 1.0];
+  optional double normal_ratio = 7 [default = 1.0];
+  optional double radical_ratio = 9 [default = 1.0];
+}
+
+message RatioByBadWeather {
+  optional bool enable = 1 [default = false];
+  optional double default_ratio = 3 [default = 1.0];
+  optional double low_ratio = 5 [default = 0.9];
+  optional double high_ratio = 7 [default = 0.8];
+}
+message SpeedConvertorConfig {
+  repeated double speed = 1;
+  repeated double offset = 2;
+}
+
+message SpeedAdaptConfig {
+  optional uint32 max_speed = 1 [default = 120];
+  optional uint32 min_speed = 2 [default = 30];
+  optional uint32 speed_display_for_ramp_dec = 3 [default = 80];
+  optional uint32 start_display_speed_for_ramp_dec = 4 [default = 90];
+  optional RatioByBadWeather speed_ratio_by_bad_weather = 5;
+  optional RatioByDriverMode speed_ratio_by_driver_mode = 6;
+  optional double preview_distance = 7 [default = 30.0];
+  optional bool enable_preview = 8 [default = true];
+  optional double tunnel_lane_preview_distance = 9 [default = 550.0];
+  optional double tunnel_far_away_distance = 10 [default = 500.0];
+  optional bool enable_tunnel_debug = 11 [default = false];
+  optional double city_outermost_lane_speed_limit_ratio = 12 [default = 0.7];
+  optional uint32 city_outermost_lane_need_limit_min_speed = 13 [default = 50];
+  optional uint32 camera_distance_adapt_distance = 14 [default = 200];
+  optional double display_to_real_offset = 15 [default = 0.0];
+  optional SpeedConvertorConfig hd_map_speed_convertor_config = 16 ;
+  optional SpeedConvertorConfig perception_speed_convertor_config = 17;
+  optional double speed_convertor_ratio = 18 [default = 1.05];
+}
+
+message ObsFollowTimeConfig {
+  optional double default_time = 1 [default = 1.5];
+  optional double default_min_dis = 2 [default = 8.0];
+  optional double level_1_time = 3 [default = 1.0];
+  optional double level_1_min_dis = 4 [default = 8.0];
+  optional double level_2_time = 5 [default = 1.25];
+  optional double level_2_min_dis = 6 [default = 8.0];
+  optional double level_3_time = 7 [default = 1.5];
+  optional double level_3_min_dis = 8 [default = 8.0];
+  optional double level_4_time = 9 [default = 1.75];
+  optional double level_4_min_dis = 10 [default = 8.0];
+  optional double level_5_time = 11 [default = 2.0];
+  optional double level_5_min_dis = 12 [default = 8.0]; 
+  optional RatioByDriverMode follow_ratio_by_driver_mode = 13;
+}
+
+message CurvatureVelocityConfig {
+  optional double passive_over_speed_ratio = 1 [default = 1.5];
+  optional double active_over_speed_ratio = 3 [default = 0.8];
+  repeated double curvature_r = 5;
+  repeated double centripetal_acceleration = 7;
+}
+
+message HmiConfig {
+  optional ObsFollowTimeConfig obs_follow_time_conf = 1;
+  optional CurvatureVelocityConfig curvature_velocity_conf = 3;
+  optional SpeedAdaptConfig speed_adapt_conf = 5;
+}

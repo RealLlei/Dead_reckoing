@@ -1,0 +1,20 @@
+module_config {
+    module_library : "lib/libeuropa_dead_reckoning_component.so"
+    components {
+        class_name : "DeadReckoningComponent"
+        config {
+            name: "dead_reckoning"
+            config_file_path:  "conf/dead_reckoning/dead_reckoning_conf.pb.txt"
+            flag_file_path:  "conf/dead_reckoning/dead_reckoning.conf"
+        readers: [
+            {
+                channel: "/apollo/canbus/chassis"
+                qos_profile: {
+                    depth : 15
+                }
+                pending_queue_size: 50
+            }
+        ]
+        }
+    }
+}

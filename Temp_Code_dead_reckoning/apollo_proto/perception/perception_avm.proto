@@ -1,0 +1,46 @@
+syntax = "proto2";
+
+package apollo.perception;
+
+import "apollo_proto/common/geometry.proto";
+
+message ParkPoints{
+   optional apollo.common.Point3D  point=1;
+   enum Position{
+       TOP_LEFT=0;
+       TOP_RIGHT=1;
+       BOTTOM_LEFT=2;
+       BOTTOM_RIGHT=3;
+       STOP_LEFT=4;
+       STOP_RIGHT=5;
+    };
+
+    enum Quality{
+       LOW=0;
+       HIGH=1;
+    };
+    optional Position  point_position=2;
+    optional Quality   point_quality=3;
+}
+message AVMParkingSlot {
+  enum SlotType{
+      NONE = 0;
+      VERTICAL = 1;
+      LATERAL = 2;
+      OBLIQUE = 3;
+  };
+  
+  optional SlotType type=1;
+  // @brief vehicle coordinate system
+  repeated ParkPoints pts_vehicle_coord=2;
+
+  // @brief is private parking slot  TODO
+  optional bool is_private_ps = 3;
+  
+  // @brief track id
+  optional int32 track_id = 4;
+  // @brief boundary TODO
+  optional apollo.common.Point3D boundary1=5;
+  optional apollo.common.Point3D boundary2=6;
+
+}

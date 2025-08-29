@@ -1,0 +1,332 @@
+syntax = "proto2";
+
+package TL.planning;
+
+import "proto/common/types.proto";
+import "proto/routing/routing.proto";
+import "proto/fsm/function_manager.proto";
+import "proto/hmi/avp.proto";
+import "proto/hmi/nnp.proto";
+import "proto/fsm/nnp_fct.proto";
+import "proto/planning/decider_debug.proto";
+import "proto/common/vehicle_signal.proto";
+
+/*
+  This file defines the data types that represents the internal state of the
+  planning module.
+  It will not be refreshed in each planning cycle.
+*/
+
+message BareIntersectionStatus {
+  optional string current_pnc_junction_overlap_id = 1;
+  optional string done_pnc_junction_overlap_id = 2;
+  optional uint32 clear_counter = 3;
+}
+
+message ChangeLaneSafetySwapInfo{
+  optional string gap_front_obstacle_id = 1;
+  optional string gap_rear_obstacle_id = 2;
+  optional TL.common.Point3D lane_change_start_position = 3;
+  optional TL.common.Point3D lane_change_end_position = 4;
+  optional TL.common.Point3D lane_change_ref_speed_position = 5;
+  optional double ref_speed = 6;
+  optional double time = 7;
+}
+
+message ChangeLaneStatus {
+  enum Status {
+    IN_CHANGE_LANE = 1;        // during change lane state
+    CHANGE_LANE_FAILED = 2;    // change lane failed
+    CHANGE_LANE_FINISHED = 3;  // change lane finished
+  }
+ 
+  optional Status status = 1 [default = CHANGE_LANE_FINISHED];
+  // the id of the route segment that the vehicle is driving on
+  optional string path_id = 2;
+  // the time stamp when the state started.
+  optional double timestamp = 3;
+  // the starting position only after which lane-change can happen.
+  optional bool exist_lane_change_start_position = 4 [default = false];
+  optional TL.common.Point3D lane_change_start_position = 5;
+  // the last time stamp when the lane-change planning succeed.
+  optional double last_succeed_timestamp = 6;
+  // if the current path and speed planning on the lane-change
+  // reference-line succeed.
+  optional bool is_current_opt_succeed = 7 [default = false];
+  // denotes if the surrounding area is clear for ego vehicle to
+  // change lane at this moment.
+  optional bool is_clear_to_change_lane = 8 [default = false];
+  // to send hmi change lane status
+  optional TL.functionmanager.HmiChangeLaneStatus hmi_change_lane_status = 9 [default = HMI_CHANGE_LANE_FINISHED];
+  //  to send hmi change lane reason
+  optional TL.functionmanager.HmiChangeLaneReason change_lane_reason = 10 [default = HMI_NONE];
+  // change lane type
+  optional TL.routing.ChangeLaneType change_lane_type = 11 [default = FORWARD];
+  // cancel lane change reason
+  optional TL.functionmanager.CancelLaneChangeReason hmi_cancel_change_lane_reason = 12 [default = NONE_CANCEL_LANE_CHANGE];
+  // is lane change on solid lane?
+  optional bool is_lane_change_on_solid_lane = 13 [default = false];
+  // Does the target lane have camera lane marker?
+  optional bool target_lane_has_lane_marker = 14 [default = true];
+  // lane change risk obstacle
+  optional TL.functionmanager.HmiLaneChangeRiskObstacle hmi_lane_change_risk_obstacles = 15;
+  // is_auto_lane_change_mode
+  optional bool is_auto_lane_change_mode = 16;
+  // failed lane change reason
+  optional string failed_lane_change_reason = 17;
+  // lane change safety swap info [decider to planning]
+  optional ChangeLaneSafetySwapInfo change_lane_safety_swap_info = 18;
+  // forbid cancel turn switch lane change
+  optional bool forbid_cancel_turn_switch_lane_change = 19;
+  // lane change sidepass obstacle
+  optional TL.functionmanager.HmiLaneChangeSidepassObstacle is_lane_change_sidepass_obstacle = 20;
+  // lane change gap info
+  optional string gap_debug_info = 21;
+  optional TL.functionmanager.HmiIsRejectCancelLaneChange is_reject_cancel_lane_change = 22;
+  optional TL.common.VehicleSignal.TurnSignal turn_signal = 23 [default = TURN_NONE];
+}
+
+message CreepDeciderStatus {
+  optional uint32 creep_clear_counter = 1;
+}
+
+message StopTime {
+  optional string obstacle_id = 1;
+  // the timestamp when start stopping for the crosswalk
+  optional double stop_timestamp_sec = 2;
+}
+
+message CrosswalkStatus {
+  optional string crosswalk_id = 1;
+  // the timestamp when start stopping for the crosswalk
+  repeated StopTime stop_time = 2;
+  repeated string finished_crosswalk = 3;
+  optional string already_built_wall_crosswalk = 4;
+  repeated string obs_risk_count = 5;
+}
+
+message DestinationStatus {
+  optional bool has_passed_destination = 1 [default = false];
+}
+
+message EmergencyStopStatus {
+  optional TL.common.PointENU stop_fence_point = 1;
+}
+
+message OpenSpaceStatus {
+  enum Replan {
+    NONE = 0;
+    NO_VALID_PATH = 1;
+    TARGET_UPDATE = 2;
+    BLOCK_BY_STATIC_OBSTACLE = 4;
+    BLOCK_BY_USS = 8;
+    FREEZE_NEAR_END = 16;
+    TRACK_ABNORMAL = 32;
+    YAW_TRACK_ABNORMAL = 64;
+    ENTER_SPECIAL_DOMAIN = 128;
+    DYNAMIC_REPLAN = 256;
+    TRACE_REPLAN = 512;
+    END_ANGLE_UNREACHABLE = 1024;
+    TARGET_UPDATE_SLIGHTLY = 2048;
+    REPLAN_FOR_SPEED_WARN = 4096;
+  }
+  repeated string partitioned_paths_index_history = 1 [deprecated = true];
+  optional bool position_init = 2 [deprecated = true];
+  optional uint32 replan = 3 [default = 0];
+  optional double current_part_path_length = 4 [default = 0];
+  optional bool is_reach_precise_target = 5 [default = true];
+}
+
+message ParkAndGoStatus {
+  optional TL.common.PointENU adc_init_position = 1;
+  optional double adc_init_heading = 2;
+  optional bool in_check_stage = 3;
+  optional TL.common.PointENU adc_adjust_end_pose = 4;
+}
+
+message PathDeciderStatus {
+  enum LaneBorrowDirection {
+    LEFT_BORROW = 1;   // borrow left neighbor lane
+    RIGHT_BORROW = 2;  // borrow right neighbor lane
+  }
+  optional int32 front_static_obstacle_cycle_counter = 1 [default = 0];
+  optional int32 able_to_use_self_lane_counter = 2 [default = 0];
+  optional bool is_in_path_lane_borrow_scenario = 3 [default = false];
+  optional string front_static_obstacle_id = 4 [default = ""];
+  repeated LaneBorrowDirection decided_side_pass_direction = 5;
+}
+
+message PullOverStatus {
+  enum PullOverType {
+    PULL_OVER = 1;            // pull-over upon destination arrival
+    EMERGENCY_PULL_OVER = 2;  // emergency pull-over
+  }
+  optional PullOverType pull_over_type = 1;
+  optional bool plan_pull_over_path = 2 [default = false];
+  optional TL.common.PointENU position = 3;
+  optional double theta = 4;
+  optional double length_front = 5;
+  optional double length_back = 6;
+  optional double width_left = 7;
+  optional double width_right = 8;
+}
+
+message ReroutingStatus {
+  optional double last_rerouting_time = 1;
+  optional bool need_rerouting = 2 [default = false];
+  optional TL.routing.RoutingRequest routing_request = 3;
+  repeated string reroute_status_information = 6;
+}
+
+message SpeedDeciderStatus {
+  repeated StopTime pedestrian_stop_time = 1;
+}
+
+message ScenarioStatus {
+  enum ScenarioType {
+    NNP_LANE_FOLLOW = 0;  // NNP default scenario
+    NCP_LANE_FOLLOW = 1;  // NCP default scenario
+
+    // intersection involved
+    BARE_INTERSECTION_UNPROTECTED = 2;
+    STOP_SIGN_PROTECTED = 3;
+    STOP_SIGN_UNPROTECTED = 4;
+    TRAFFIC_LIGHT_PROTECTED = 5;
+    TRAFFIC_LIGHT_UNPROTECTED_LEFT_TURN = 6;
+    TRAFFIC_LIGHT_UNPROTECTED_RIGHT_TURN = 7;
+    YIELD_SIGN = 8;
+
+    PULL_OVER = 9;
+    VALET_PARKING = 10;
+
+    EMERGENCY_PULL_OVER = 11;
+    EMERGENCY_STOP = 12;
+
+    // misc
+    NARROW_STREET_U_TURN = 13;
+    PARK_AND_GO = 14;
+  }
+
+  // StageType is a superset of stages from all scenarios.
+  // It is created to keep different scenarios have uniform config interface
+  enum StageType {
+    NO_STAGE = 0;
+
+    NNP_LANE_FOLLOW_DEFAULT_STAGE = 100;
+    NCP_LANE_FOLLOW_DEFAULT_STAGE = 101;
+
+    // bare_intersection_unprotected scenario
+    BARE_INTERSECTION_UNPROTECTED_APPROACH = 200;
+    BARE_INTERSECTION_UNPROTECTED_INTERSECTION_CRUISE = 201;
+
+    // stop_sign_unprotected scenario
+    STOP_SIGN_UNPROTECTED_PRE_STOP = 300;
+    STOP_SIGN_UNPROTECTED_STOP = 301;
+    STOP_SIGN_UNPROTECTED_CREEP = 302;
+    STOP_SIGN_UNPROTECTED_INTERSECTION_CRUISE = 303;
+
+    // traffic_light_protected scenario
+    TRAFFIC_LIGHT_PROTECTED_APPROACH = 400;
+    TRAFFIC_LIGHT_PROTECTED_INTERSECTION_CRUISE = 401;
+
+    // traffic_light_unprotected_left_turn scenario
+    TRAFFIC_LIGHT_UNPROTECTED_LEFT_TURN_APPROACH = 410;
+    TRAFFIC_LIGHT_UNPROTECTED_LEFT_TURN_CREEP = 411;
+    TRAFFIC_LIGHT_UNPROTECTED_LEFT_TURN_INTERSECTION_CRUISE = 412;
+
+    // traffic_light_unprotected_right_turn scenario
+    TRAFFIC_LIGHT_UNPROTECTED_RIGHT_TURN_STOP = 420;
+    TRAFFIC_LIGHT_UNPROTECTED_RIGHT_TURN_CREEP = 421;
+    TRAFFIC_LIGHT_UNPROTECTED_RIGHT_TURN_INTERSECTION_CRUISE = 422;
+
+    // pull_over scenario
+    PULL_OVER_APPROACH = 500;
+    PULL_OVER_RETRY_APPROACH_PARKING = 501;
+    PULL_OVER_RETRY_PARKING = 502;
+
+    // emergency_pull_over scenario
+    EMERGENCY_PULL_OVER_SLOW_DOWN = 600;
+    EMERGENCY_PULL_OVER_APPROACH = 601;
+    EMERGENCY_PULL_OVER_STANDBY = 602;
+
+    // emergency_pull_over scenario
+    EMERGENCY_STOP_APPROACH = 610;
+    EMERGENCY_STOP_STANDBY = 611;
+
+    // valet_parking_scenario
+    VALET_PARKING_CRUISE = 700;
+    VALET_PARKING_PARKING = 701;
+
+    // park_and_go scenario
+    PARK_AND_GO_CHECK = 800;
+    PARK_AND_GO_CRUISE = 801;
+    PARK_AND_GO_ADJUST = 802;
+    PARK_AND_GO_PRE_CRUISE = 803;
+
+    // yield_sign scenario
+    YIELD_SIGN_APPROACH = 900;
+    YIELD_SIGN_CREEP = 901;
+  };
+  optional ScenarioType scenario_type = 1;
+  optional StageType stage_type = 2;
+}
+
+message StopSignStatus {
+  optional string current_stop_sign_overlap_id = 1;
+  optional string done_stop_sign_overlap_id = 2;
+  repeated string wait_for_obstacle_id = 3;
+}
+
+message TrafficLightStatus {
+  repeated string current_traffic_light_overlap_id = 1;
+  repeated string done_traffic_light_overlap_id = 2;
+}
+
+message YieldSignStatus {
+  repeated string current_yield_sign_overlap_id = 1;
+  repeated string done_yield_sign_overlap_id = 2;
+  repeated string wait_for_obstacle_id = 3;
+}
+
+message AVPStatus {
+  enum ParkingType {
+    NOSTATE = 0;
+    PARKING_IN = 1;
+    PARKING_OUT_LEFT = 2;
+    PARKING_OUT_RIGHT = 3;
+    PARKING_OUT_FRONT = 4;
+    PARKING_OUT_BACK = 5;    
+    PARKING_OUT_NNS = 6;
+    DIRECT_FORWARD = 7;
+    DIRECT_BACKWARD = 8;
+    NNS_ADJUST = 9;
+    TEST_CONTROL_MODE = 100;
+  }
+  optional ParkingType parking_type = 1 [default = NOSTATE];  
+}
+
+
+// note: please keep this one as minimal as possible. do NOT pollute it.
+message PlanningStatus {
+  optional BareIntersectionStatus bare_intersection = 1;
+  optional ChangeLaneStatus change_lane = 2;
+  optional CreepDeciderStatus creep_decider = 3;
+  optional CrosswalkStatus crosswalk = 4;
+  optional DestinationStatus destination = 5;
+  optional EmergencyStopStatus emergency_stop = 6;
+  optional OpenSpaceStatus open_space = 7;
+  optional ParkAndGoStatus park_and_go = 8;
+  optional PathDeciderStatus path_decider = 9;
+  optional PullOverStatus pull_over = 10;
+  optional ReroutingStatus rerouting = 11;
+  optional ScenarioStatus scenario = 12;
+  optional SpeedDeciderStatus speed_decider = 13;
+  optional StopSignStatus stop_sign = 14;
+  optional TrafficLightStatus traffic_light = 15;
+  optional YieldSignStatus yield_sign = 16;
+  optional AVPStatus avp_status = 17;
+  optional TL.functionmanager.FunctionManagerOut function_manager_out = 18;
+  optional TL.hmi.AvpToHmi avp_to_hmi = 19;
+  optional TL.hmi.NNPHmiOutput nnp_to_hmi = 20;
+  optional DeciderDebug decider_debug = 21;
+}

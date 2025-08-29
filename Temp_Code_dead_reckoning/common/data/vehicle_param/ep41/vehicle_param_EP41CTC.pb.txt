@@ -1,0 +1,220 @@
+vehicle_param {
+  brand: NETA_EP40
+  vehicle_id {
+      other_unique_id: "ep41_ctc"
+  }
+  front_edge_to_center: 3.893
+  back_edge_to_center: 1.047
+  left_edge_to_center: 0.987
+  right_edge_to_center: 0.987
+
+  length: 4.94
+  width: 1.974
+  height: 1.449
+  min_turn_radius: 4.7990
+  max_acceleration: 2.5
+  max_deceleration: -4.95
+  max_steer_angle: 8.7266
+  max_steer_torque: 3.0
+  max_steer_angle_rate: 8.55211
+  max_steer_angle_offset_compensate: 10.0
+  steer_ratio: 15.14
+  wheel_base: 2.96
+  wheel_rolling_radius: 0.341
+  max_abs_speed_when_stopped: 0.2
+  brake_deadzone: 0
+  throttle_deadzone: 0
+  steer_deadzone: 0.0
+  steer_offset: 0.0
+  heading_offset: 0.0
+  eye_heading_offset: 0.00
+  localization_offset: 0.0
+  steer_2_torque_right: 1.0
+  steer_2_torque_left: 1.0
+
+  # steer ratio segment
+  steer_ratio_segment {
+    steer_segment: 60.0
+    steer_segment: 120.0
+    steer_segment: 160.0
+    steer_segment: 220.0
+    steer_segment: 280.0
+    steer_segment: 320.0
+    steer_segment: 360.0
+    steer_segment: 420.0
+    steer_segment: 460.0
+    steer_segment: 500.0
+
+    steer_ratio_segment: 15.660072036
+    steer_ratio_segment: 15.710096355
+    steer_ratio_segment: 15.630037024
+    steer_ratio_segment: 15.459969221
+    steer_ratio_segment: 15.319968485
+    steer_ratio_segment: 15.189993592
+    steer_ratio_segment: 15.0000
+    steer_ratio_segment: 14.679976512
+    steer_ratio_segment: 14.43997991
+    steer_ratio_segment: 14.139991573
+  }
+
+  # steer wheel speed segment
+  steer_wheel_speed_segment {
+    # v: 20km/h  steer_limit: 481.0
+    # v: 30km/h  steer_limit: 300.0
+    # v: 40km/h  steer_limit: 150.0
+    # v: 50km/h  steer_limit: 60.0
+    # v: 60km/h  steer_limit: 30.0
+    # v: 80km/h  steer_limit: 20.0
+    # v: 100km/h steer_limit: 13.0
+
+    vehicle_speed_segment: 0.0
+    vehicle_speed_segment: 0.1
+    vehicle_speed_segment: 0.2
+    vehicle_speed_segment: 0.3
+    vehicle_speed_segment: 0.4
+    vehicle_speed_segment: 0.5
+    vehicle_speed_segment: 0.6
+    vehicle_speed_segment: 1.2
+    vehicle_speed_segment: 1.5
+    vehicle_speed_segment: 5.55556
+    vehicle_speed_segment: 8.33333
+    vehicle_speed_segment: 11.1111
+    vehicle_speed_segment: 13.8889
+    vehicle_speed_segment: 16.6667
+    vehicle_speed_segment: 22.2222
+    vehicle_speed_segment: 27.7778
+    vehicle_speed_segment: 30.5556
+
+    steering_wheel_speed_limit_segment: 460.0
+    steering_wheel_speed_limit_segment: 400.0
+    steering_wheel_speed_limit_segment: 350.0
+    steering_wheel_speed_limit_segment: 320.0
+    steering_wheel_speed_limit_segment: 320.0
+    steering_wheel_speed_limit_segment: 300.0
+    steering_wheel_speed_limit_segment: 280.0
+    steering_wheel_speed_limit_segment: 280.0
+    steering_wheel_speed_limit_segment: 260.0
+    steering_wheel_speed_limit_segment: 200.0
+    steering_wheel_speed_limit_segment: 150.0
+    steering_wheel_speed_limit_segment: 120.0
+    steering_wheel_speed_limit_segment: 60.0
+    steering_wheel_speed_limit_segment: 30.0
+    steering_wheel_speed_limit_segment: 12.0
+    steering_wheel_speed_limit_segment: 8.0
+    steering_wheel_speed_limit_segment: 7.0
+  }
+
+  steering_latency_param
+  {
+      dead_time: 0.1
+      rise_time: 0.17
+      peak_time: 0.0
+      settling_time: 0.0
+  }
+
+  throttle_latency_param
+  {
+      dead_time: 0.03
+      rise_time: 0.0
+      peak_time: 0.0
+      settling_time: 0.0
+  }
+
+  brake_latency_param
+  {
+      dead_time: 0.0
+      rise_time: 0.0
+      peak_time: 0.0
+      settling_time: 0.0
+  }
+
+  ultrasonic_position {
+    ultrasonic_s1 {
+      point {
+        x: 3.4576
+        y: -0.987
+      }
+      seta: -84.2
+    }
+    ultrasonic_s2 {
+      point {
+        x: 3.625
+        y: -0.802
+      }
+      seta: -34
+    }
+    ultrasonic_s3 {
+      point {
+        x: 3.8366
+        y: -0.3298
+      }
+      seta: -8.0
+    }
+    ultrasonic_s4 {
+      point {
+        x: 3.8366
+        y: 0.3298
+      }
+      seta: 8.0
+    }
+    ultrasonic_s5 {
+      point {
+        x: 3.625
+        y: 0.802
+      }
+      seta: 34
+    }
+    ultrasonic_s6 {
+      point {
+        x: 3.4576
+        y: 0.987
+      }
+      seta: 84.2
+    }
+    ultrasonic_s7 {
+      point {
+        x: -0.61
+        y: 0.987
+      }
+      seta: 85
+    }
+    ultrasonic_s8 {
+      point {
+        x: -1.036
+        y: 0.76
+      }
+      seta: 39
+    }
+    ultrasonic_s9 {
+      point {
+        x: -1.036
+        y: 0.29
+      }
+      seta: 6.9
+    }
+    ultrasonic_s10 {
+      point {
+        x: -1.036
+        y: -0.29
+      }
+      seta: -6.9
+    }
+    ultrasonic_s11 {
+      point {
+        x: -1.036
+        y: -0.76
+      }
+      seta: -39
+    }
+    ultrasonic_s12 {
+      point {
+        x: -0.61
+        y: -0.987
+      }
+      seta: -85
+    }
+  }
+
+  mirror_to_center: 2.107
+  mirror_radius: 0.15
+}

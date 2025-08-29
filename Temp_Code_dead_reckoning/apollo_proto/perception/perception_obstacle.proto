@@ -1,0 +1,516 @@
+syntax = "proto2";
+
+package apollo.perception;
+
+import "apollo_proto/common/error_code.proto";
+import "apollo_proto/common/geometry.proto";
+import "apollo_proto/common/header.proto";
+import "apollo_proto/common/pnc_point.proto";
+import "apollo_proto/map/map_lane.proto";
+import "apollo_proto/perception/perception_freespace.proto";
+import "apollo_proto/drivers/point_cloud.proto";
+
+message BBox2D {
+  optional double xmin = 1;  // in pixels.
+  optional double ymin = 2;  // in pixels.
+  optional double xmax = 3;  // in pixels.
+  optional double ymax = 4;  // in pixels.
+}
+
+message LightStatus {
+  optional double brake_visible = 1;
+  optional double brake_switch_on = 2;
+  optional double left_turn_visible = 3;
+  optional double left_turn_switch_on = 4;
+  optional double right_turn_visible = 5;
+  optional double right_turn_switch_on = 6;
+}
+
+message V2XInformation {
+  enum V2XType {
+    NONE = 0;
+    ZOMBIES_CAR = 1;
+    BLIND_ZONE = 2;
+  };
+  repeated V2XType v2x_type = 1;
+}
+
+message SensorMeasurement {
+  optional string sensor_id = 1;
+  optional int32 id = 2;
+
+  optional apollo.common.Point3D position = 3;
+  optional double theta = 4;
+  optional double length = 5;
+  optional double width = 6;
+  optional double height = 7;
+
+  optional apollo.common.Point3D velocity = 8;
+
+  optional PerceptionObstacle.Type type = 9;
+  optional PerceptionObstacle.SubType sub_type = 10;
+  optional double timestamp = 11;
+  optional BBox2D box = 12;  // only for camera measurements
+}
+
+message Trajectory {
+  optional double probability = 1;  // probability of this trajectory
+  repeated apollo.common.TrajectoryPoint trajectory_point = 2;
+}
+
+message DebugMessage {
+  // can have multiple trajectories per obstacle
+  repeated Trajectory trajectory = 1;
+}
+
+message DetectSensor {
+  optional bool from_camera_front_long_range = 1 [default = false];
+  optional bool from_camera_front_wide_angle = 2 [default = false];
+  optional bool from_camera_right_forward_looking = 3 [default = false];
+  optional bool from_camera_right_backward_looking = 4 [default = false];
+  optional bool from_camera_left_forward_looking = 5 [default = false];
+  optional bool from_camera_left_backward_looking = 6 [default = false];
+  optional bool from_camera_rear = 7 [default = false];
+  optional bool from_radar_front = 8 [default = false];
+  optional bool from_radar_front_right = 9 [default = false];
+  optional bool from_radar_front_left = 10 [default = false];
+  optional bool from_radar_rear_right = 11 [default = false];
+  optional bool from_radar_rear_left = 12 [default = false];
+  optional bool from_lidar_front_right = 13 [default = false];
+  optional bool from_lidar_front_left = 14 [default = false];
+  optional bool from_camera_fisheye_front = 15 [default = false];
+  optional bool from_camera_fisheye_rear = 16 [default = false];
+  optional bool from_camera_fisheye_left = 17 [default = false];
+  optional bool from_camera_fisheye_right = 18 [default = false];
+  optional bool from_USS_FOL = 19 [default = false];
+  optional bool from_USS_FCL = 20 [default = false];
+  optional bool from_USS_FCR = 21 [default = false];
+  optional bool from_USS_FOR = 22 [default = false];
+  optional bool from_USS_ROL = 23 [default = false];
+  optional bool from_USS_RCL = 24 [default = false];
+  optional bool from_USS_RCR = 25 [default = false];
+  optional bool from_USS_ROR = 26 [default = false];
+  optional bool from_USS_FSL = 27 [default = false];
+  optional bool from_USS_RSL = 28 [default = false];
+  optional bool from_USS_FSR = 29 [default = false];
+  optional bool from_USS_RSR = 30 [default = false];
+  optional bool from_USS_FUSION = 31 [default = false];
+}
+
+message AttributePointCloud {
+  optional apollo.perception.PointCloud point_clound = 1;
+  repeated double pts_timestamp = 2;
+  repeated double pts_height = 3;
+  repeated int32 pts_beam_id = 4;
+  repeated int32 pts_block = 5;
+  repeated uint32 pts_label = 6;
+}
+
+message LidarObjectSupplement {
+  // @brief orientation estimateed indicator
+  optional bool is_orientation_ready = 4;
+  // @brief valid only for on_use = true
+  optional bool on_use = 5;
+  // @brief cloud of the object in lidar coordinates
+  optional AttributePointCloud cloud = 6;
+  // @brief cloud of the object in world coordinates
+  optional AttributePointCloud cloud_world = 7;
+  // @brief background indicator
+  optional bool is_background = 8;
+  // @brief false positive indicator
+  optional bool is_fp = 9;
+  // @brief false positive probability
+  optional double fp_prob = 10;
+  // @brief whether this object is in roi
+  optional bool is_in_roi = 11;
+  // @brief number of cloud points in roi
+  optional int32 num_points_in_roi = 12;
+  // @brief object height above ground
+  optional double height_above_ground = 13;
+
+  message RawProbs {
+    repeated double values = 1;
+  }
+  // @brief raw probability of each classification method
+  repeated RawProbs raw_probs = 14;
+  repeated string raw_classification_methods = 15;
+}
+
+message PerceptionObstacle {
+  optional int32 id = 1;  // obstacle ID.
+
+  // obstacle position in the world coordinate system.
+  optional apollo.common.Point3D position = 2;
+
+  optional double theta = 3;  // heading in the world coordinate system.
+  optional apollo.common.Point3D velocity = 4;  // obstacle velocity.
+
+  // Size of obstacle bounding box.
+  optional double length = 5;  // obstacle length.
+  optional double width = 6;   // obstacle width.
+  optional double height = 7;  // obstacle height.
+
+  repeated apollo.common.Point3D polygon_point = 8;  // obstacle corner points.
+
+  // duration of an obstacle since detection in s.
+  optional double tracking_time = 9;
+
+  enum Type {
+    UNKNOWN = 0;
+    UNKNOWN_UNMOVABLE = 1;
+    UNKNOWN_MOVABLE = 2;
+    PEDESTRIAN = 3;
+    BICYCLE = 4;
+    VEHICLE = 5;
+    TRUCK = 6;
+    BUS = 7;
+    MOTORCYCLE = 8;
+    TRICYCLE = 9;
+    CONE = 10;
+    BAN = 11;
+    STOPBAR = 12;
+    SPEEDHUMP = 13;
+    WHEEL_STOP = 14;
+    BARRIER = 16;
+    RIDER = 21;
+    C_PILLAR = 22;
+    R_PILLAR = 23;
+    O_PARK_LOCK = 24;
+    C_PARK_LOCK = 25;
+    D_ARROW = 26;
+    L_ARROW = 27;
+    R_ARROW = 28;
+    A_ARROW = 29;
+    ZEBRA = 30;
+    STOP_LINE = 31;
+    BARRIER_GAT = 32;
+    USS_OBS = 33;
+    CYCLIST = 34;
+    STATIC_OBSTACLE = 35;
+    TRANSPORT_ELEMENT = 36;
+  };
+  optional Type type = 10;         // obstacle type
+  optional double timestamp = 11;  // GPS time in seconds.
+
+  // Just for offline debugging, will not fill this field on board.
+  // Format: [x0, y0, z0, x1, y1, z1...]
+  repeated double point_cloud = 12 [packed = true];
+
+  optional double type_confidence = 13;
+  enum ConfidenceType {
+    CONFIDENCE_UNKNOWN = 0;
+    CONFIDENCE_CNN = 1;
+    CONFIDENCE_RADAR = 2;
+  };
+  optional ConfidenceType confidence_type = 14 [deprecated = true];
+  // trajectory of object.
+  repeated apollo.common.Point3D drops = 15 [deprecated = true];
+
+  // The following fields are new added in Apollo 4.0
+  optional apollo.common.Point3D acceleration = 16;  // obstacle acceleration
+
+  // a stable obstacle point in the world coordinate system
+  // position defined above is the obstacle bounding box ground center
+  optional apollo.common.Point3D anchor_point = 17;
+  optional BBox2D bbox2d = 18;
+
+  enum SubType {
+    ST_UNKNOWN = 0;
+    ST_UNKNOWN_MOVABLE = 1;
+    ST_UNKNOWN_UNMOVABLE = 2;
+    ST_CAR = 3;
+    ST_VAN = 4;
+    ST_TRUCK = 5;
+    ST_BUS = 6;
+    ST_CYCLIST = 7;
+    ST_MOTORCYCLIST = 8;
+    ST_TRICYCLIST = 9;
+    ST_PEDESTRIAN = 10;
+    ST_TRAFFICCONE = 11;
+  };
+  enum  MotionType {
+    MT_UNKNOWN = 0;
+    MT_MOVING_EGODIRECTION_DRIVING = 1;
+    MT_MOVING_EGODIRECTION_STOPPED = 2;
+    MT_MOVING_EGODIRECTION_REVERSING = 3;
+    MT_MOVING_ONCOMING = 4;
+    MT_MOVING_CROSSING = 5;
+    MT_STATIONARY = 6;
+  };
+  enum MaintenanceType{
+    NEW_CREATED = 1;
+    COASTED = 2;
+    MERGE = 3;
+    TRACKED = 4;
+  };
+  optional SubType sub_type = 19;  // obstacle sub_type
+
+  repeated SensorMeasurement measurements = 20;  // sensor measurements
+
+  // orthogonal distance between obstacle lowest point and ground plane
+  optional double height_above_ground = 21 [default = nan];
+
+  // position covariance which is a row-majored 3x3 matrix
+  repeated double position_covariance = 22 [packed = true];
+  // velocity covariance which is a row-majored 3x3 matrix
+  repeated double velocity_covariance = 23 [packed = true];
+  // acceleration covariance which is a row-majored 3x3 matrix
+  repeated double acceleration_covariance = 24 [packed = true];
+
+  // lights of vehicles
+  optional LightStatus light_status = 25;
+
+  // Debug Message
+  optional DebugMessage msg = 26;
+
+  enum Source {
+    HOST_VEHICLE = 0;
+    V2X = 1;
+  };
+
+  optional Source source = 27 [default = HOST_VEHICLE];
+  optional V2XInformation v2x_info = 28;
+  optional MotionType motion_type = 29;
+  optional MaintenanceType maintenance_type = 30;
+  optional double orientation = 31;
+  optional double  orientation_st_dev = 32;
+  optional double existence_probability = 33;
+  optional double creation_time = 35;
+
+  // obstacle position in the forward-left-up coordinate system.
+  optional apollo.common.Point3D position_flu = 36;
+
+  optional double theta_flu = 37;  // heading in the forward-left-up coordinate system.
+  optional apollo.common.Point3D velocity_flu = 38;  //  forward-left-up obstacle velocity.
+  optional apollo.common.Point3D acceleration_flu = 39;  // forward-left-up obstacle acceleration
+
+  optional DetectSensor current_detect_sensor = 40;
+  optional DetectSensor history_detect_sensor = 41;
+  optional MotionType history_motion_type = 42;
+
+  enum SideType {
+    FRONT = 0;
+    REAR = 1;
+    RIGHTSIDE = 2;
+    LEFTSIDE = 3;
+  }
+  optional SideType car_near_side = 43;
+
+  optional int32 track_id = 44;
+
+  // @brief probability for each type, required
+  repeated double type_probs = 45;  // 针对不同类型，模型预测的原始概率
+  // @brief probability for each sub-type, optional
+  repeated double sub_type_probs = 46;  // 针对不同类型，模型预测的原始概率
+
+  enum TrackState {
+    TRKST_UNKNOWN = 0;
+    TRKST_NEW_CREATED = 1;
+    TRKST_COASTED = 2;
+    TRKST_MERGED = 3;
+    TRKST_TRACKED = 4;
+  }
+  optional TrackState track_state = 47;
+
+  optional int32 track_age = 48;  // 轨迹匹配到的帧数
+  optional int32 lost_age = 49;  // 轨迹丢失的帧数
+
+  // center of obstacle bounding box.
+  optional apollo.common.Point3D center = 51;
+  optional apollo.common.Point3D center_std_dev = 52;
+
+  // @brief covariance matrix of the center uncertainty
+  // which is a row-majored 3x3 matri
+  repeated apollo.common.Point3D center_uncertainty = 53;
+
+  // apollo.common.Point3D size = 54;
+  optional apollo.common.Point3D size_std_dev = 55;
+
+  // @brief theta variance, required, [-pai,pai]
+  optional apollo.common.Point3D theta_std_dev = 56;
+
+  message Feature {
+    repeated uint32 shape = 1;
+    repeated double value = 2;
+  }
+  optional Feature feature = 57;  // 每个检测框的特征分布
+
+  // @brief if the velocity estimation is converged, true by default
+  optional bool velocity_converged = 58 [default = true];
+
+  // @brief velocity confidence, required
+  optional double velocity_confidence = 59;
+
+  // @brief scene parsing types
+  enum ParsingType {
+    PASTYP_UNKNOWN = 0;
+    PASTYP_ROAD = 1;
+    PASTYP_SIDEWALK = 2;
+    PASTYP_VEGETATION = 3;
+    PASTYP_TERRAIN = 4;
+    PASTYP_FENCE = 5;
+    PASTYP_CURB = 6;
+    PASTYP_NOISE = 7;
+    PASTYP_MAX_PARSE_TYPE = 8;
+  }
+  optional ParsingType parse_type = 60;
+  repeated double parse_type_probs = 61;
+
+  // @brief timestamp of latest measurement, required
+  optional double latest_tracked_time = 62;
+
+  optional bool is_back_ground = 63;  // 是否是背景物体
+
+  optional int32 drop_num = 64;
+
+  // @brief truncation and occlusion information
+  optional bool is_truncation = 65;
+  optional double truncated_prob = 66;
+  optional bool is_occlusion = 67;
+  optional double occluded_prob = 68;
+  // @brief obstacle status
+  optional bool is_onroad = 69;
+  optional double onroad_prob = 70;
+  optional bool is_sprinkler = 71;
+  optional double sprinkler_prob = 72;
+
+  enum SourceSensor {
+    SS_CAMERA = 0;
+    SS_LIDAR = 1;
+    SS_FISHEYE = 2;
+    SS_USS = 3;
+    SS_FRONT_RADAR = 4;
+    SS_EDGE_RADAR = 5;
+  }
+  message TrackObjectAssignedCost {
+    optional uint32 track_id = 1;
+    optional uint32 deteciotn_id = 2;
+    repeated double cost = 3;
+    optional SourceSensor source_sensor = 4;
+  }
+  // 检测目标与航迹的关联信息，用于调试；
+  // repeated double cost该字段可以记录多种类型的cost; cost[0]为最终的cost，后面顺序自定义。
+  repeated TrackObjectAssignedCost track_object_assigned_cost = 73;
+
+  optional LidarObjectSupplement lidar_supplement = 74;
+}
+message AdfLane{
+  enum AdfLaneType {
+    SOLID_LINE              = 0;
+    DASH_LINE               = 1;
+    SHORT_DASH_LINE         = 2;
+    SOLID_DOUBLE_LINE       = 3;
+    DASH_DOUBLE_LINE        = 4;
+    LEFT_SOLID_RIGHT_DASH   = 5;
+    LEFT_DASH_RIGHT_SOLID   = 6;
+    BARRIER                 = 7;
+    CURB                    = 8;
+    YUGUSHIXIAN             = 9;
+    YUGUXUXIAN              = 10;
+    OTHER                   = 11;
+  };
+
+  enum AdfLaneColor {
+    WHITE                   = 0;
+    YELLOW                  = 1;
+    ORANGE                  = 2;
+    BLUE                    = 3;
+    GEREEN                  = 4;
+    GRAY                    = 5;
+    LEFT_WHITE_RIGHT_YELLOW = 6;
+    LEFT_YELLOW_RIGHT_WHITE = 7;
+    YELLOW_GRAY_FUSION      = 8;
+    OTHER_COLOR             = 9;
+  };
+}
+
+
+message LaneMarker {
+
+  optional apollo.hdmap.LaneBoundaryType.Type lane_type = 1;
+  optional double quality = 2;  // range = [0,1]; 1 = the best quality
+  optional int32 model_degree = 3;
+
+  // equation X = c3 * Z^3 + c2 * Z^2 + c1 * Z + c0
+  optional double c0_position = 4;
+  optional double c1_heading_angle = 5;
+  optional double c2_curvature = 6;
+  optional double c3_curvature_derivative = 7;
+  optional double view_range = 8;
+  optional double longitude_start = 9;
+  optional double longitude_end = 10;
+  optional int32 line_seq = 11;
+  optional double dev_c0_position = 12;
+  optional double dev_c1_heading_angle = 13;
+  optional double dev_c2_curvature = 14;
+  optional double dev_c3_curvature_derivative = 15;
+  optional AdfLane.AdfLaneType adf_type = 16;
+  optional AdfLane.AdfLaneColor adf_color = 17;
+  repeated apollo.common.Point3D points_vehicle_coord = 18;
+}
+
+message LaneMarkers {
+  optional apollo.common.Header header = 1;
+  optional LaneMarker front_left_lane_marker = 2;
+  optional LaneMarker front_right_lane_marker = 3;
+  repeated LaneMarker front_next_left_lane_marker = 4;
+  repeated LaneMarker front_next_right_lane_marker = 5;
+  optional LaneMarker front_left_road_edge = 6;
+  optional LaneMarker front_right_road_edge = 7;
+  optional LaneMarker rear_left_lane_marker = 8;
+  optional LaneMarker rear_right_lane_marker = 9;
+  repeated LaneMarker rear_next_left_lane_marker = 10;
+  repeated LaneMarker rear_next_right_lane_marker = 11;
+  optional LaneMarker rear_left_road_edge = 12;
+  optional LaneMarker rear_right_road_edge = 13;
+  optional bool is_lanechange_to_left = 14;
+  optional bool is_lanechange_to_right = 15;
+  optional uint32 lane_count = 16;
+}
+
+
+message CIPVInfo {
+  optional int32 cipv_id = 1;
+  repeated int32 potential_cipv_id = 2;
+}
+
+message SensorStatus {
+  enum LidarStatus {
+    LIDST_UNKNOW = 0;
+    LIDST_ONLY_LEFR_LIDAR_NORMAL = 1;
+    LIDST_ONLY_RIGHT_LIDAR_NORMAL = 2;
+    LIDST_All_NORMAL = 3;
+    LIDST_ALL_ABNORMAL = 4;
+  }
+  enum CameraStatus {
+    CamST_UNKNOW = 0;
+    CamST_ABNORMAL = 1;
+    CamST_NORMAL = 2;
+  }
+  optional LidarStatus lidar_status = 3;
+  optional CameraStatus camera_statue = 4;
+}
+
+enum CoordinateState {
+  COORDST_VEHICLE = 0;  // 车体坐标系
+  COORDST_WORLD = 1;  // 世界坐标系、绝对坐标系
+  COORDST_IMU = 2;  //
+  COORDST_CAMERA = 3;  // 图像坐标系
+  COORDST_LIDAR = 4;  // lidar坐标系
+  COORDST_RADAR = 6;  // radar坐标系
+  COORDST_USS = 7;  // uss坐标系
+}
+
+message PerceptionObstacles {
+  repeated PerceptionObstacle perception_obstacle = 1;  // An array of obstacles，处理后的最终结果
+  optional apollo.common.Header header = 2;             // Header
+  optional apollo.common.ErrorCode error_code = 3 [default = OK];
+  optional LaneMarkers lane_marker = 4;
+  optional CIPVInfo cipv_info = 5;  // Closest In Path Vehicle (CIPV)
+  repeated apollo.perception.FreeSpaceOutArray free_space_info= 6;
+  optional SensorStatus sensor_status = 7;
+  repeated PerceptionObstacle detected_obstacle = 8;  // An array of obstacles, 检测的中间结果
+  optional CoordinateState coord_state = 9;
+  optional apollo.common.Affine3D frame_to_world_pose = 10;  // 当前帧坐标系转换到世界坐标系的pose
+  optional apollo.common.Affine3D frame_to_vehicle_pose = 11;  // 当前帧坐标系转换到车体坐标系的pose
+}

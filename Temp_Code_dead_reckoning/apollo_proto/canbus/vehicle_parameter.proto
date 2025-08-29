@@ -1,0 +1,13 @@
+syntax = "proto2";
+
+package apollo.canbus;
+
+import "apollo_proto/canbus/chassis.proto";
+import "apollo_proto/common/vehicle_config.proto";
+
+message VehicleParameter {
+  optional apollo.common.VehicleBrand brand = 1;
+  optional double max_engine_pedal = 2;
+  optional int32 max_enable_fail_attempt = 3;
+  optional Chassis.DrivingMode driving_mode = 4;
+}

@@ -1,0 +1,66 @@
+syntax = "proto2";
+package apollo.hmi;
+
+message LocForSDMapSimulate {
+  optional LocGpgsv gsv = 1; // 星历
+  optional LocGnss gnss = 2; // 未偏移经纬度
+  optional LocGyro gyr = 3; // 陀螺仪
+  optional LocAcce3d acc = 4; // 加速度计
+  optional LocPulse pluse = 5; // 原始车速
+}
+
+message LocGpgsv {
+  optional uint64 ticktime = 1;  //与各传感器数据同维度的时间戳
+  optional int32 type = 2; // 0：GPS；1：北斗；2：glonass
+  optional int32 num = 3;// 可视卫星总数
+  repeated int32 prn = 4; //卫星编号
+  repeated int32 elevation = 5;//仰角(00～90度)
+  repeated int32 azimuth = 6;// 航向角(0..359°)
+  repeated int32 snr = 7;//信噪比
+}
+
+message LocGnss {
+  optional int32 sourType = 1; //信号来源: 0 GPS定位 1 网络定位(包括室内定位和基站定位)
+  optional int32 status = 2; //GPS定位状态位。'A'：有效定位；'V'：无效定位
+  optional int32 isNS = 3; //纬度半球。'N'或'S'
+  optional int32 isEW = 4; //经度半球。'E'或'W'
+  repeated double stPtS = 5; //未加密的经纬度。WGS84，单位：度。这里只能是WGS84
+  optional float speed = 6; //	速度。单位：公里/小时
+  optional float course = 7; // 航向。单位：度。范围：[0-360)，北零顺时针，0 => 北, 90 => 东, 180 => 南, 270 => 西
+  optional float alt = 8; // 海拔高度。单位：米
+  optional int32 num = 9; // 	卫星个数
+  optional float hdop = 10; //	GPS的DOP值
+  optional float vdop = 11;// VDOP，无法输入时传-1.0
+  optional float pdop = 12; //PDOP，无法输入时传-1.0
+  optional int32 year = 13; //	四位数年份
+  optional int32 month = 14; // 月份，数值范围：1-12
+  optional int32 day = 15;// 日，数值范围：1-31
+  optional int32 hour = 16; // 	时，数值范围：0-23
+  optional int32 minute = 17;// 	分，数值范围：0-59
+  optional int32 second = 18; // 秒，数值范围：0-59，润秒时为60
+  optional float accuracy = 19; // 精度半径。米
+  optional uint64 tickTime = 20; // 时间戳，(输入系统滴答数(相对系统启动时间)，某些系统取不到系统滴答数时取1970年01月01日00时00分00秒以来的时间戳)单位：毫秒
+}
+
+message LocGyro {;
+  optional float valueZ = 1; // 上，单位：度/秒
+  optional float valueX = 2; // 右，单位：度/秒
+  optional float valueY = 3; // 前，单位：度/秒
+  optional float temperature = 4; // 	温度。单位：摄氏度。陀螺仪芯片上的温度传感器的读值
+  optional int32 interval = 5; // 	前后两个信号的间隔时间，单位：毫秒
+  optional uint64 tickTime = 6; // 时间戳，(输入系统滴答数(相对系统启动时间)，某些系统取不到系统滴答数时取1970年01月01日00时00分00秒以来的时间戳)单位：毫秒
+}
+
+message LocAcce3d{
+  optional float acceZ = 1; // 上，单位：g(9.8米/秒^2)
+  optional float acceX = 2; // 右，单位：g(9.8米/秒^2)
+  optional float acceY = 3; // 	前，单位：g(9.8米/秒^2)
+  optional int32 interval = 4; // 	前后两个信号的间隔时间，单位：毫秒
+  optional uint64 tickTime = 5; // 时间戳，(输入系统滴答数(相对系统启动时间)，某些系统取不到系统滴答数时取1970年01月01日00时00分00秒以来的时间戳)单位：毫秒
+}
+
+message LocPulse {
+  optional float value = 1; //	脉冲速度，单位：千米/小时
+  optional int32 interval = 2; // 	前后两个信号的间隔时间，单位：毫秒
+  optional uint64 tickTime = 3; // 时间戳，(输入系统滴答数(相对系统启动时间)，某些系统取不到系统滴答数时取1970年01月01日00时00分00秒以来的时间戳)单位：毫秒
+}

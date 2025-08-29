@@ -1,0 +1,282 @@
+syntax = "proto2";
+
+package TL.mapping;
+
+import "proto/common/header.proto";
+import "proto/common/types.proto";
+import "proto/map/map.proto";
+import "proto/map/map_arrow.proto";
+
+message LocalMap {
+    optional TL.common.Header header       = 1;           //头信息
+    optional double init_timestamp            = 2;           //坐标系初始化时间辍
+    repeated LaneLine lane_lines              = 3;           //车道边线
+    repeated RoadEdge road_edges              = 4;           //路沿
+    repeated StopLine stop_lines              = 5;           //停止线
+    repeated CrossWalk cross_walks            = 6;           //斑马线
+    repeated Arrow arrows                     = 7;           //路面箭头
+    repeated Lane lanes                       = 8;           //车道
+    repeated FreeSpaceOutput freespace_out    = 9;           //freespace output
+    repeated Occ  occs                        = 10;          //occ目标输出    
+    repeated RoadTopology occ_topologys       = 11;          //OCC豁口拓扑信息
+}
+
+
+//occupancy
+message FreeSpaceOutput{
+    enum FreeSpaceCls{
+        UNKNOWN = 0;         // 未知
+        GROUND = 1;          // 路面
+        FENCE = 2;           // 栅栏、护栏、硬隔离等
+        ROADSIDE = 3;        // 路沿 (未做)
+        NATURE = 4;          // 绿植
+        ROADOBSTACLE = 5;    // 路面上的凸起物，不规则障碍物
+        SIDEWALK = 6;        // 人行道
+        VEHICLE = 7;         // 车辆
+        PEDESTRIAN = 8;      // 行人
+        CYCLIST = 9;         // 骑行人
+        TRAFFICBARRIER = 10; // 障碍物、锥桶、水马、石墩等
+        FREE = 11;           // Free
+        UNFREE=12;           // unFree
+    };
+    optional FreeSpaceCls cls                         = 1;
+    optional float        area                        = 2;
+    message Instance{
+       repeated TL.common.Point3D boundary_points  = 1; //边缘点
+   }
+   repeated Instance instances                        = 3; //边缘点集
+
+}
+
+//车道信息
+message Lane {
+    optional int32 lane_id                    = 1;           //车道编号
+    optional double width                     = 2;           //车道宽度
+    optional TurnType turn_type               = 3;           //车道转弯类型
+    optional LaneLine left_line               = 4;           //左侧车道线
+    optional LaneLine right_line              = 5;           //右侧车道线
+    optional CenterLine center_line           = 6;           //中心车道线
+    optional int32 left_lane_id               = 7;           //左侧车道id
+    optional int32 right_lane_id              = 8;           //右侧车道id
+}
+
+
+//路沿信息
+message RoadEdge {
+    optional int32 track_id                   = 1;           //路沿编号
+    optional RoadEdgeType type                = 2;           //路沿线型
+    optional LanePositionType lanepos         = 3;           //路沿相对ego位置
+    repeated TL.common.Point3D points      = 4;           //路沿边线点坐标
+    optional LaneCubicSpline  lane_param      = 5;           //路沿线参数
+    optional float            confidence      = 6;           //置信度
+    optional LaneUseType      use_type        = 7;           //路沿生成来源
+    optional int32  tracked_age               = 8;           //路沿被观测到的帧数
+    optional double  latest_tracked_time      = 9;           //路沿最近被观测到的时间
+    optional int32  lost_age                  = 10;          //路沿连续丢失的帧数
+    optional SendOutType  send_out_type       = 11;          //路沿输出目标下游        
+    optional LaneStabilityError stability_error = 12;        //路沿连续3帧计算offset、heading误差
+    repeated int32 deleted_track_ids            = 13;        //相近位置已删除路沿id的历史列表
+    repeated int32 merged_track_ids             = 14;        //相近位置已merge路沿id的历史列表
+}
+
+message TopologyInfo {
+  repeated uint32 occ_id = 1;
+  repeated TL.common.Point2D guide_points = 2;
+}
+
+message RoadTopology {
+  optional TopologyInfo exit = 1;
+  optional TopologyInfo entrance = 2;
+  optional TopologyInfo connection = 3;
+  optional double depth = 4;
+  optional double quality = 5;
+  optional int32 topo_id = 6;
+}
+
+//路沿信息
+message Occ {
+    enum ClassType{
+       UNKOWN_CLASS = 0;
+       CONE_POLE = 1;
+       FREESPACE = 2;
+       CURBSTONE = 3;
+       OBSTACLE = 4;
+       OTHER_CLASS = 9;
+       ROAD_DELOITER = 10;
+       VEHICLE=11;
+       PEDESTRAIN = 12;
+       WALL = 13;
+       WATER_BARRIER = 14;
+    };
+    optional int32 track_id                   = 1;           //OCC跟踪线编号
+    optional ClassType type                = 2;              //OCC线型
+    optional LanePositionType lanepos         = 3;           //OCC相对ego位置
+    repeated TL.common.Point3D points      = 4;           //OCC边线点坐标
+    optional LaneCubicSpline  lane_param      = 5;           //OCC线参数
+    optional float            confidence      = 6;           //置信度
+    optional LaneUseType      use_type        = 7;           //Occ生成来源
+    optional int32  tracked_age               = 8;           //Occ被观测到的帧数
+    optional double  latest_tracked_time      = 9;           //Occ最近被观测到的时间
+    optional int32  lost_age                  = 10;          //Occ连续丢失的帧数
+    optional SendOutType  send_out_type       = 11;          //Occ输出目标下游        
+    optional LaneStabilityError stability_error = 12;        //Occ连续3帧计算offset、heading误差
+    optional int32 detect_id                   = 13;         //OCC检测线编号
+}
+
+
+//车道线信息
+message LaneLine {
+    optional int32 track_id                   = 1;           //车道线踪编号
+    optional LaneType lanetype                = 2;           //车道线线型
+    optional LanePositionType lanepos         = 3;           //车道线相对ego位置
+    repeated TL.common.Point3D points      = 4;           //车道线边线点坐标
+    optional LaneCubicSpline  lane_param      = 5;           //车道线参数
+    optional float            confidence      = 6;           //置信度
+    optional LaneUseType      use_type        = 7;           //车道线生成来源
+    optional Color color                      = 8;           //车道线颜色
+    optional int32  tracked_age               = 9;           //车道线被观测到的帧数
+    optional double  latest_tracked_time      = 10;          //车道线最近被观测到的时间
+    optional int32  lost_age                  = 11;          //车道线连续丢失的帧数
+    optional SendOutType  send_out_type       = 12;          //车道线输出目标下游 
+    optional LaneStabilityError stability_error = 13;        //车道线连续3帧计算offset、heading误差
+    repeated int32 deleted_track_ids            = 14;        //相近位置已删除车道线id的历史列表
+    repeated int32 merged_track_ids             = 15;         //相近位置已merge车道线id的历史列表
+}
+
+message LaneStabilityError {
+    enum CalculateStatus {
+        SUCCESS                                  = 1; // 连续3帧误差计算成功标志
+        FAILED_FIT                               = 2; // 车道线拟合失败标志
+        FAILED_ERROR_VALUE                       = 3; // 值计算错误
+        FAILED_INSUFFICIENT_DATA                 = 4; // 数据少于3帧不做计算
+        FAILED_OTHER                             = 5; // 其他计算失败原因
+    };
+    optional CalculateStatus calculate_status            = 1;           //车道线误差计算标志成功/失败等
+    optional double offset_mae                           = 2;           //车道线连续3帧offset MAE
+    optional double offset_var                           = 3;           //车道线连续3帧offset variance
+    optional double heading_mae                          = 4;           //车道线连续3帧heading MAE
+    optional double heading_var                          = 5;           //车道线连续3帧heading variance
+} 
+
+//中心线信息
+message CenterLine {
+    repeated TL.common.Point3D points      = 1;           //车道中心线点坐标
+    optional LaneCubicSpline  lane_param      = 2;           //车道线参数
+}
+
+enum TurnType {
+    UNKNOWN_TURN_TYPE                         = 0;           //未知转弯类型
+    FORWARD                                   = 1;           //直行
+    LEFT_TURN                                 = 2;           //左转
+    RIGHT_TURN                                = 3;           //右转
+    U_TURN                                    = 4;           //u形转弯
+    FORWARD_LEFT_TURN                         = 5;           //直行或左转
+    FORWARD_RIGHT_TURN                        = 6;           //直行或右转
+    FORWARD_U_TURN                            = 7;           //直行或u形转弯
+    FORWARD_LEFT_RIGHT_TURN                   = 8;           //直行或左转或右转
+    LEFT_U_TURN                               = 9;           //左转或u形转弯
+}
+
+//线类型
+enum LaneType {
+    LaneType_UNKNOWN                          = 0;           //未知
+    LaneType_SOLID                            = 1;           //单实线
+    LaneType_DASHED                           = 2;           //单虚线
+    LaneType_SHORT_DASHED                     = 3;           //短虚线
+    LaneType_DOUBLE_SOLID                     = 4;           //双实线
+    LaneType_DOUBLE_DASHED                    = 5;           //双虚线
+    LaneType_LEFT_SOLID_RIGHT_DASHED          = 6;           //左实右虚
+    LaneType_RIGHT_SOLID_LEFT_DASHED          = 7;           //右实左虚
+    LaneType_SHADED_AREA                      = 8;           //导流线
+    LaneType_LANE_VIRTUAL_MARKING             = 9;           //车道虚拟线
+    LaneType_INTERSECTION_VIRTUAL_MARKING     = 10;          //路口虚拟线
+    LaneType_CURB_VIRTUAL_MARKING             = 11;          //路边缘虚拟线
+    LaneType_UNCLOSED_ROAD                    = 12;          //非封闭路段线
+    LaneType_ROAD_VIRTUAL                     = 13;          //道路虚拟线
+    LaneType_LANE_CHANG_VIRTUAL               = 14;          //变道虚拟线
+    LaneType_FISHBONE_SOLID                   = 15;          //鱼骨实线
+    LaneType_FISHBONE_DASHED                  = 16;          //鱼骨虚线
+    LaneType_OTHER                            = 99;          //其他
+}
+
+
+enum RoadEdgeType{
+    RoadEdgeType_ROAD_EDGE = 0;        // 马路路沿
+    RoadEdgeType_GROUND_EDGE = 1;      // 地面路沿
+    RoadEdgeType_CONE_EDGE = 2;        // 锥桶路沿
+    RoadEdgeType_WATERHORSE_EDGE = 3;  // 水马路沿
+    RoadEdgeType_FENCE_EDGE = 4;       // 围栏路沿
+    RoadEdgeType_UNKNOWN = 5;
+}
+
+enum Color{
+    UNKNOWN                                   = 0;
+    WHITE                                     = 1;
+    YELLOW                                    = 2;
+    GREEN                                     = 3;
+    RED                                       = 4;
+    BLACK                                     = 5;
+}
+
+enum LanePositionType {
+    LanePositionType_BOLLARD_LEFT             = -5;
+    LanePositionType_FOURTH_LEFT              = -4;
+    LanePositionType_THIRD_LEFT               = -3;
+    LanePositionType_ADJACENT_LEFT            = -2;          //ego左边第二个
+    LanePositionType_EGO_LEFT                 = -1;          //ego左边
+    LanePositionType_EGO_RIGHT                = 1;           //ego右边
+    LanePositionType_ADJACENT_RIGHT           = 2;           //ego又边第二个
+    LanePositionType_THIRD_RIGHT              = 3;
+    LanePositionType_FOURTH_RIGHT             = 4;
+    LanePositionType_BOLLARD_RIGHT            = 5;
+    LanePositionType_OTHER                    = 99;
+}
+
+enum LaneUseType {
+    REAL                                     = 1;
+    VIRTUAL                                  = 2;
+}
+
+
+enum SendOutType {
+    COMMON                                  = 0;
+    NOT_SR                                  = 1;
+}
+
+message LaneCubicSpline {
+    repeated TL.common.Point3D control_point_set = 1;    //控制点
+    repeated LaneCubicCurve cubic_curve_set         = 2;    //分段三次曲线
+}
+
+message LaneCubicCurve {
+    optional float start_point_x              = 1;
+    optional float end_point_x                = 2;
+    optional float c0                         = 3;
+    optional float c1                         = 4;
+    optional float c2                         = 5;
+    optional float c3                         = 6;
+}
+
+//停止线
+message StopLine {
+    optional int32 track_id                    = 1;         //ID
+    optional TL.common.Point3D  left_point  = 2;         //停止线左端3D点
+    optional TL.common.Point3D  right_point = 3;         //停止线右端3D点
+    optional SendOutType  send_out_type        = 4;         //停止线输出目标下游
+}
+
+//斑马线
+message CrossWalk {
+    optional int32 track_id                   = 1;           //ID
+    optional TL.common.Polygon points      = 2;           //斑马线几何信息
+    optional SendOutType  send_out_type       = 3;           //斑马线输出目标下游
+}
+
+//路面箭头
+message Arrow {
+    optional int32 track_id                   = 1;           //ID
+    optional double heading                   = 2;           //路面箭头heading
+    optional TL.common.Polygon points      = 3;           //路面箭头几何信息
+    optional TL.hdmap.ArrowData.Type arrow_type = 4;      //路面箭头类型
+    optional SendOutType  send_out_type       = 5;           //路面输出目标下游
+}

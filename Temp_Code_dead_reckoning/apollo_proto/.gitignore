@@ -1,0 +1,75 @@
+cache
+.cache/
+build
+release
+Debug
+Release
+debug
+dreamview/debug
+*.pyc
+*genrule.log
+WORKSPACE
+# temporary files
+*.swp
+*.swo
+.DS_Store
+# generated files
+generated_data_warehouse.conf
+dreamview/frontend/proto_bundle
+key
+#map
+*_map.txt
+
+
+# Eclipse IDE files
+.project
+.cproject
+.settings
+.classpath
+
+# IntelliJ files
+.idea
+
+# Vscode files
+.vscode
+
+# atom.io files
+*.gch
+
+# Logs.
+*.stdout
+*.stderr
+nohup.out
+*.bak
+*.csv.result
+
+# Editor configs
+.ycm_extra_conf.py
+
+# third_party
+
+# Data
+# data
+
+# Doxygen
+docs/doxygen
+
+# python proto
+py_proto
+cyber/python/cyber/proto/
+
+*.pb.cc
+*.pb.h
+__init__.py
+*.pb2.py
+log
+node_modules
+cmake-build-debug
+/tools/log_analyze_tool/temp_store.csv
+/tools/log_analyze_tool/cyber_log_exampl_convert.log.txt
+/tools/log_analyze_tool/cyber_log.txt
+/sim_dummy_obs
+/libtorch*
+/build_debug/
+/build_release/
+amap_all

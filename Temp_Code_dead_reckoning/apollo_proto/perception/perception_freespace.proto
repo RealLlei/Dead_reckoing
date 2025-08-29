@@ -1,0 +1,65 @@
+syntax = "proto2";
+
+package apollo.perception;
+
+import "apollo_proto/common/geometry.proto";
+import "apollo_proto/common/header.proto";
+
+message FreeSpaceOut{
+   enum ClassType{
+       UNKOWN_CLASS = 0;
+       CONE_POLE = 1;
+       FREESPACE = 2;
+       CURBSTONE = 3;
+       OBSTACLE = 4;
+       OTHER_CLASS = 9;
+       ROAD_DELOITER = 10;
+       VEHICLE=11;
+       PEDESTRAIN = 12;
+       WALL = 13;
+       WATER_BARRIER = 14;
+    };
+
+    enum HeightType{
+      UNKOWN_HEIGHT = 0;
+      OBSTACLE_HEIGHT = 1;
+      OVERDRIVABLE = 2;
+      UNDERDRIVABLE = 3;
+      OTHER_HEIGHT = 4;
+    };
+
+    enum SensorType{
+      CAMERA = 0;
+      RADAR = 1;
+      LIDAR = 2;
+      HDMAP = 3;
+      LIDAR_CAM_FUSION = 4;
+      USS = 5;
+      USS_CAM_FUSSION = 6;
+      CAMERA_FRONT = 7;
+      CAMERA_REAR = 8;
+      CAMERA_LEFT = 9;
+      CAMERA_RIGHT = 10;
+      USS_LIDAR_FUSION = 11;
+      USS_LIDAR_CAM_FUSION = 12;
+    };
+
+    optional uint32 freespace_seq = 1;
+    optional ClassType cls = 2;
+    optional HeightType height_type = 3;
+    optional SensorType sensor_type = 4;
+    repeated apollo.common.Point2D freespace_point = 5;
+    optional double time_creation = 6;
+    repeated apollo.common.Point2D freespace_keypoint= 7;
+    optional bool isLinkObjFusion = 8;
+    optional uint32 obstacleId = 9;
+}
+message FreeSpaceOutArray{
+     optional int32 count = 1;
+     optional uint32 locSeq = 2;
+     repeated FreeSpaceOut freespace_out=3;
+     optional bool is_valid = 4 [default = false];
+     optional apollo.common.Header header=5;
+     repeated FreeSpaceOut freespace_out_vrf=6;
+}
+

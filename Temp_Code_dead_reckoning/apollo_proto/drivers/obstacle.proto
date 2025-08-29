@@ -1,0 +1,41 @@
+syntax = "proto2";
+package TL.perception.datacollection;
+
+import "apollo_proto/drivers/types.proto";
+
+enum Coordinate {
+    FRAME = 1;
+    IMAGE = 2;
+    CAMERA = 3;
+    VEHICLE = 4;
+    ABSOLUTE  = 5;
+}
+
+message DetectionOut3D {
+    optional int32 object_id = 1;
+    optional int32 cls = 2;
+    optional int32 moving_state = 3;
+    optional int32 track_state = 4;
+    optional int32 types = 5;
+    optional float confidence = 6;
+    optional float existence_probability = 7;
+    optional Coordinate coordinate = 8;
+    optional Rect3D rect = 9;
+    optional Point3D velocity = 10;
+    optional Matrix3f velocity_uncertainty = 11;
+    optional Point3D acceleration = 12;
+    optional Matrix3f acceleration_uncertainty = 13;
+    repeated Point3D contour_points = 14;
+    optional double time_creation = 15;
+    optional bool is_background = 16;
+}
+
+message DetectionOut3DArray {
+    optional double time_stamp = 1;
+    optional int32 count = 2;
+    repeated DetectionOut3D detection_out3d = 3;
+    optional bool is_valid = 4;
+    optional string frame_id = 5;
+    optional int32 seq = 6;
+}
+

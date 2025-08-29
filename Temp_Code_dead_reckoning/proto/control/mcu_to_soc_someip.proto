@@ -1,0 +1,13 @@
+syntax = "proto2";
+package TL.control;
+
+import "proto/common/header.proto";
+
+
+
+message McuToSocSomeipRaw {
+
+  optional TL.common.Header header = 1;
+  repeated uint32 mcu_to_soc_someip_raw = 2;
+
+}

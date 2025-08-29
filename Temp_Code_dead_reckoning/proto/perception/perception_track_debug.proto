@@ -1,0 +1,99 @@
+syntax = "proto2";
+
+package TL.perception;
+import "proto/common/types.proto";
+import "proto/common/header.proto";
+import "proto/perception/perception_obstacle.proto";
+
+message AssociateMeasurement {
+  optional uint32 measurement_id = 1;
+  optional string sensor_id = 2;
+  optional double measurement_timestamp=3;
+}
+
+message OccInfo {
+  repeated uint32 roi_in_out_statistics = 1;
+  repeated uint32 state_statistics = 2;
+  repeated uint32 type_statistics = 3;
+  optional bool is_occ_detected_static = 4;
+}
+
+message Assignment {
+  optional uint32 track_id = 1;
+  repeated AssociateMeasurement associate_measurement= 2;
+  optional OccInfo occ_info = 3;
+}
+
+message Updateframe {
+  optional string sensor_id = 1;
+  optional double measurement_timestamp = 2;
+  repeated uint32 measurement_id = 3;
+}
+
+message TrackInfo {
+  optional uint32 track_id = 1;
+  optional TL.common.Point3D position = 2;
+  optional double theta = 3;
+  optional double length = 4;
+  optional double width = 5;
+  optional double height = 6;
+
+  optional TL.common.Point3D velocity = 7;
+
+  optional PerceptionObstacle.Type type = 8;
+  optional PerceptionObstacle.SubType sub_type = 9;
+  repeated AssociateMeasurement associate_measurement = 10;
+  optional bool is_valid = 11;
+}
+
+message TrackSet {
+  optional uint32 track_id = 1;
+  repeated TrackInfo hypo_track_info = 2;
+}
+
+message TrackTable {
+  repeated TrackSet hypo_track_set = 1;
+}
+
+message HypoSet {
+  repeated uint32 hypo_id = 1;
+  optional double log_score = 2;
+}
+
+message HypoTable {
+  repeated HypoSet hypo_set = 1;
+  optional uint32 best_hypo_id = 2;
+}
+
+message MergeId {
+  optional uint32 merge_id = 1;   // best hypo id
+  optional uint32 merge_hypo = 2;
+  optional uint32 merge_hypo_track_id = 3;
+
+}
+
+message TOMHTInfo {
+  optional TrackTable track_table = 1;
+  repeated HypoTable hypo_table = 2; // function of first second ...
+  repeated MergeId merge_info = 3;
+}
+
+message GateKeeperInfo {
+  repeated TrackInfo occ_unable_to_publish = 1;
+  repeated TrackInfo convergence_unable_to_publish = 2;
+}
+
+message PerceptionObstacleBest {
+  optional uint32 track_id = 1;
+  repeated AssociateMeasurement associate_measurement = 2;
+}
+
+message TrackerDebugData {
+  optional TL.common.Header header = 1;
+  optional double track_timestamp=2;
+  repeated Assignment assignment = 3;
+  repeated Updateframe update_frame = 4;
+  optional TOMHTInfo tomht_info = 5;
+  optional GateKeeperInfo gate_keeper_id = 6;
+  repeated PerceptionObstacleBest track = 7;
+}

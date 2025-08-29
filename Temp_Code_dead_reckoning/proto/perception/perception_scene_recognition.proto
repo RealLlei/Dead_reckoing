@@ -1,0 +1,69 @@
+syntax = "proto2";
+
+package TL.perception;
+
+import "proto/common/types.proto";
+import "proto/common/header.proto";
+
+message SceneRecOut {
+  enum CameraType {
+    FRONT_120 = 1;
+    FRONT_30 = 2;
+    RIGHT_REAR = 3;
+    LEFT_REAR = 4;
+    REAR = 5;
+    LEFT_FRONT = 6;
+    RIGHT_FRONT = 7;
+    FISHEYE_FRONT = 8;
+    FISHEYE_REAR = 9;
+    FISHEYE_LEFT = 10;
+    FISHEYE_RIGHT = 11;
+  }
+  enum ClassType {
+    BLOCK = 0;
+    BLUR = 1;
+    DIRTY = 2;
+    FOGGY = 3;
+    HYDROPS = 4;
+    INDOOR = 5;
+    INTENSELIGHT = 6;
+    NIGHT = 7;
+    OTHER = 8;
+    RAINY = 9;
+    SNOWS = 10;
+    SNOWY = 11;
+    CLOUDY = 12;
+    FROST = 13;
+    MIST = 14;
+  }
+  optional CameraType camera_type = 1;
+  optional ClassType class_type = 2;
+  optional double type_probs = 3;  // 针对不同类型，模型预测的原始概率
+}
+message SingleSceneStateOut {
+  optional SceneRecOut.CameraType camera_type = 1;
+  repeated SceneRecOut.ClassType cls_type = 2;
+}
+
+message AllSceneStateOut {
+  optional bool foggy = 1;
+  optional bool hydrops = 2;
+  optional bool indoor = 3;
+  optional bool night = 4;
+  optional bool other = 5;
+  optional bool rainy = 6;
+  optional bool snows = 7;
+  optional bool snowy = 8;
+  optional bool cloudy = 9;
+  optional bool frost = 10;
+  optional bool mist = 11;
+}
+
+message SceneRecOutArray {
+  optional TL.common.Header header = 1;
+  repeated SceneRecOut scene_rec_out = 2;
+
+  // 场景识别二次后处理结果
+  repeated SingleSceneStateOut single_scene_state_out = 3;
+  optional AllSceneStateOut all_scene_state_out = 4;
+}

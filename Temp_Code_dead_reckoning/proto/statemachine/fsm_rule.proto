@@ -1,0 +1,77 @@
+syntax = "proto2";
+package TL.fsm_rule;
+
+message StateId {
+    required string name = 1;                   // state name, top level and sub level can be same
+    optional uint32 level = 2;                  // state level, 0 is topest, 1 is sub, 2 is subsub ...
+}
+
+message FsmState {
+    required StateId id = 1;                    // state id
+    repeated FsmState sub_states = 2;           // sub state
+    repeated FsmAction enter_actions = 3;       // what(s) to do when enter this state
+    repeated FsmAction exit_actions = 4;        // what(s) to do when exit this state
+    optional StateRect state_rect = 5;          // for draw in explorer
+}
+
+message FsmAction {
+    required string name = 1;                   // Action name
+    repeated string params = 2;                 // Action parameters
+}
+
+message FsmTransit {
+    required StateId from = 1;                  // transit from which state
+    required StateId to = 2;                    // transit to which state
+    optional FsmCondition condition = 3;        // transit condition
+    repeated FsmAction actions = 4;             // what(s) to do when perform this transit
+    optional TransitEndPos start_pos = 5;       // transit arrow start position
+    optional TransitEndPos end_pos = 6;         // transit arrow end position
+    repeated Point key_points = 7;              // transit arrow go through this points
+    optional uint32 index = 8;                  // index from 1 ~ n, if not configured, will in ascend order
+}
+
+message Condition {
+    required string name = 1;                   // condition name
+    repeated string params = 2;                 // condition parameters
+    optional string op = 3;                     // operator, can only chose one from [ lt | gt | eq | ne | le | ge | iv ]
+    optional string value = 4;                  // to be this can condition satisfy
+}
+
+message FsmCondition {
+    optional bool is_and = 1[default = false];  // true - and, false - or
+    repeated Condition conditions = 2;          // all conditions for this compound condition
+    repeated FsmCondition fsm_conditions = 3;   // all sub compound conditions for this compound condition
+}
+
+message SendInstances {
+    required string data_name = 1;                              // data_name must be one of yaml sendInstances
+    optional bool periodic_send = 2[default = false];           // each process will sending this data
+}
+
+// 状态机规则配置
+message FsmRule {
+    optional string name = 1;                                   // rule name
+    repeated FsmState states = 2;                               // all state declared
+    repeated FsmTransit transits = 3;                           // all transit declared
+    required StateId init_state = 4;                            // init state, should be in Sub level
+    optional uint32 max_transit_count = 5[default = 5];         // once process, max transit time, default is 5
+    repeated SendInstances send_instances = 6;                  // once process, send some topic
+}
+
+// 绘图使用到的量
+message Point {
+    optional int32 x = 1;                                       // pos.x
+    optional int32 y = 2;                                       // pos.y
+}
+
+message TransitEndPos {
+    optional string side = 1;                                   // right/left/top/bottom
+    optional float pos  = 2;                                    // -0.999 ~ 8.999
+}
+
+message StateRect {
+    optional Point center = 1;                                  // center point position
+    optional int32 w = 2;                                       // rect wide
+    optional int32 h = 3;                                       // rect height
+    optional string c = 4;                                      // rect fill colour
+}

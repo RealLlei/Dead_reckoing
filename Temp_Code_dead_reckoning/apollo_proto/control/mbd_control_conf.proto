@@ -1,0 +1,348 @@
+syntax = "proto2";
+package apollo.control;
+
+import "apollo_proto/control/control_cmd.proto";
+
+message MaxRate_SteerCtrl_Table{
+  repeated  float BP1 = 1;
+  repeated  float Table = 2;
+}
+
+message AkerMan_SteerCtrl_Table{
+  repeated  float BP1 = 1;
+  repeated  float Table = 2;
+}
+
+message  DynGain_RateCtrl_Table{
+  repeated  float BP1 = 1;
+  repeated  float Table = 2;
+}
+
+message MaxSteer_SteerCtrl_Table{
+  repeated  float BP1 = 1;
+  repeated  float Table = 2;
+}
+
+message ThrottleGain_ThrustCtrl_Table{
+  repeated  float BP1 = 1;
+  repeated  float Table = 2;
+}
+
+
+message BrkDynGain_ThrustCtrl_Table{
+  repeated  float BP1 = 1;
+  repeated  float Table = 2;
+}
+
+message DynGain_PosCtrl_Table{
+  repeated  float BP1 = 1;
+  repeated  float Table = 2;
+}
+
+
+message DynGain_VelCtrl_Table{
+  repeated  float BP1 = 1;
+  repeated  float Table = 2;
+}
+
+message ThrDynGain_ThrustCtrl_Table{
+  repeated  float BP1 = 1;
+  repeated  float Table = 2;
+}
+
+message BrakeGain_ThrustCtrl_Table{
+  repeated  float BP1 = 1;
+  repeated  float Table = 2;
+}
+
+message BrakeSlope_ThrustCtrl_Table{
+  repeated  float BP1 = 1;
+  repeated  float Table = 2;
+}
+
+message DynGain_YawCtrl_Table{
+  repeated  float BP1 = 1;
+  repeated  float Table = 2;
+}
+
+message DynGain_OffsetCtrl_Table{
+  repeated  float BP1 = 1;
+  repeated  float Table = 2;
+}
+
+message OutLimit_PosCtrl_Table{
+  repeated  float BP1 = 1;
+  repeated  float Table = 2;
+}
+
+message KrDyn_RateCtrl_Table{
+  repeated  float BP1 = 1;
+  repeated  float Table = 2;
+}
+
+message Vel2Toqure_SteerCtrl_Table{
+  repeated  float BP1 = 1;
+  repeated  float Table = 2;
+}
+
+message SteerRatio_RateCtrl_Table{
+  repeated float BP1 = 1;
+  repeated float Table = 2;
+}
+
+message LatiCtrl_YawCtrl_Err_Max_Table{
+  repeated float BP1 = 1;
+  repeated float Table = 2;
+}
+
+message TimeS_LonPre_Table{
+  repeated float BP1 = 1;
+  repeated float Table = 2;
+}
+
+message Latpre_TimeS_Table{
+  repeated float BP1 = 1;
+  repeated float Table = 2;
+}
+
+message Vel_CurvGain_Table{
+  repeated float BP1 = 1;
+  repeated float Table = 2;
+}
+
+message Dimen_1_Table{
+  repeated float Table = 1;
+}
+
+message Vehicle_Param_TL{
+  optional  float nnp_max_acceleration = 1;
+  optional  float nnp_max_deceleration = 2;
+  optional  float avp_max_acceleration = 3;
+  optional  float avp_max_deceleration = 4;
+}
+
+message MbdControlConf {
+ optional float coef_friction = 1; 
+ optional float coef_velocity_square = 2;
+ optional float cal_ctrldec_gearn_ax_value = 3;
+ optional float cal_ctrldec_gearp_min_steerngle = 4;
+ optional float cal_ctrldec_gearswitch_min_vel = 5;
+ optional float cal_latictrl_integral_clean_min_vel = 6;
+ optional float cal_latictrl_offsetctrl_i = 7;
+ optional float cal_latictrl_offsetCtrl_i_intitialvalue = 8;
+ optional float cal_latictrl_offsetctrl_i_limit_ratio = 9;
+ optional float cal_latictrl_Offsetctrl_out_max = 10;
+ optional float cal_latictrl_offsetctrl_outputlimit = 11;
+ optional float cal_latictrl_offsetctrl_p = 12;
+ optional float cal_latictrl_offset_base_min_vel = 13;
+ optional float cal_latictrl_offset_tors_comp_kv = 14;
+ optional float cal_latictrl_offset_tors_comp_lr = 15;
+ optional float cal_latictrl_offset_tors_comp_min_vel = 16;
+ optional float cal_latictrl_ratectrl_errmax = 17;
+ optional float cal_latictrl_ratectrl_front_filter_fp = 18;
+ optional float cal_latictrl_ratectrl_i = 19;
+ optional float cal_latictrl_ratectrl_i_initialvalue = 20;
+ optional float cal_latictrl_ratectrl_i_limit_ratio = 21;
+ optional float cal_latictrl_ratectrl_kenimatic_kr = 22;
+ optional float cal_latictrl_ratectrl_kenimatic_translate_l = 23;
+ optional float cal_latictrl_ratectrl_kenimatic_translate_r = 24;
+ optional float cal_latictrl_ratectrl_kenimatic_vel_min =25;
+ optional float cal_latictrl_ratectrl_kenimatic_wheel_base =26;
+ optional float cal_latictrl_ratectrl_lead_mid_fp = 27;
+ optional float cal_latictrl_ratectrl_lead_mid_Fz = 28;
+ optional float cal_latictrl_ratectrl_max_acc_limit = 29;
+ optional float cal_latictrl_ratectrl_out_max = 30;
+ optional float cal_latictrl_ratectrl_outputlimit = 31;
+ optional float cal_latictrl_ratectrl_p = 32;
+ optional float cal_latiCtrl_steerctrl_lowpass_fp = 33;
+ optional float cal_latictrl_yawctrl_curvff_filter_fp = 34;
+ optional float cal_latictrl_yawctrl_err_max = 35;
+ optional float cal_latictrl_yawctrl_i = 36;
+ optional float cal_latictrl_yawctrl_i_intitialValue = 37;
+ optional float cal_latictrl_yawCtrl_i_limit_ratio = 38;
+ optional float cal_latictrl_yawctrl_lead_mid_fp = 39;
+ optional float cal_latictrl_yawctrl_lead_mid_fz = 40;
+ optional float cal_latictrl_yawctrl_out_max = 41;
+ optional float cal_latictrl_yawctrl_outputlimit = 42;
+ optional float cal_latictrl_yawctrl_p = 43;
+ optional float cal_longictrl_pitch_err_install =44;
+ optional float cal_longictrl_pitch_filter_fc = 45;
+ optional float cal_longictrl_posctrl_err_fp =46;
+ optional float cal_longictrl_posctrl_i = 47;
+ optional float cal_longictrl_posctrl_clear_thred = 48;
+ optional float cal_longictrl_posctrl_initialvalue = 49;
+ optional float cal_longictrl_posctrl_limit_ratio = 50;
+ optional float cal_longictrl_posctrl_max_err = 51;
+ optional float cal_longictrl_posctrl_outlimit = 52;
+ optional float cal_longictrl_posctrl_p = 53;
+ optional float cal_longictrl_thrustctrl_accfdbk_fp = 54;
+ optional float cal_longictrl_thrustctrl_brakemax_base = 55;
+ optional float cal_longictrl_thrustctrl_brakeout_limit = 56;
+ optional float cal_longictrl_thrustctrl_brk_err_max = 57;
+ optional float cal_longictrl_thrustctrl_brk_front_filter_fp =58;
+ optional float cal_longictrl_thrustctrl_brk_i = 59;
+ optional float cal_longictrl_thrustctrl_brk_i_clear_thred = 60;
+ optional float cal_longictrl_thrustctrl_brk_i_init = 61;
+ optional float cal_longictrl_thrustctrl_brk_i_limit_ratio = 62;
+ optional float cal_longictrl_thrustctrl_brk_p = 63;
+ optional float cal_longictrl_thrustctrl_brk_pi_maxout = 64;
+ optional float cal_longictrl_thrustctrl_brk_slopeup = 65;
+ optional float cal_longictrl_thrustctrl_thr_err_max = 66;
+ optional float cal_longictrl_thrustctrl_thr_front_filter_fp = 67;
+ optional float cal_longictrl_thrustctrl_thr_i = 68;
+ optional float cal_longictrl_thrustctrl_thr_i_clear_thred =69;
+ optional float cal_longictrl_thrustctrl_thr_i_init = 70;
+ optional float cal_longictrl_thrustctrl_thr_i_limit_ratio = 71;
+ optional float cal_longictrl_thrustctrl_thr_p = 72;
+ optional float cal_longictrl_thrustctrl_thr_pi_maxout = 73;
+ optional float cal_longictrl_thrustctrl_thr_slopedown = 74;
+ optional float cal_longictrl_thrustctrl_thr_slopeup = 75;
+ optional float cal_longictrl_thrustctrl_throtmax_base =76;
+ optional float cal_longictrl_thrustctrl_throttleout_limit = 77;
+ optional float cal_longictrl_velctrl_accff_fp = 78;
+ optional float cal_longictrl_velctrl_accff_fz = 79;
+ optional float cal_longictrl_velctrl_diff_fp = 80;
+ optional float cal_longictrl_velctrl_err_max = 81;
+ optional float cal_longictrl_velctrl_i = 82;
+ optional float cal_longictrl_velctrl_i_clear_thred = 83;
+ optional float cal_longictrl_velctrl_i_initialvalue = 84;
+ optional float cal_longictrl_velctrl_i_limit_ratio = 85;
+ optional float cal_longictrl_velctrl_lead_fp = 86;
+ optional float cal_longictrl_velctrl_lead_fz = 87;
+ optional float cal_longictrl_velctrl_outfilter_fp = 88;
+ optional float cal_longictrl_velctrl_p = 89;
+ optional float cal_longictrl_velctrl_pi_outlimit = 90;
+ optional float latpre_times = 91; 
+ optional TimeS_LonPre_Table lonpre_times_table = 92;  
+ optional float max_damper_acc = 93;  
+ optional float max_lati_pos_offset = 94;
+ optional float max_long_vel_val = 95;
+ optional float max_pitch_comp_acc = 96;
+ optional float max_steer_angle = 97; 
+ optional float max_time_err = 98;  
+ optional float min_long_vel_val = 99;  
+ optional uint32 gear_r = 100; 
+ optional uint32 cal_ctrldec_estop_type =  101;
+ optional uint32 cal_longictrl_pitch_comp_en = 102;
+ optional uint32 cal_longictrl_velctrl_accdampen = 103;
+ optional uint32 trajcalc_disable = 104; 
+ optional uint32 trajcalc_enable = 105; 
+
+ optional float apiacccmd_const = 106; 
+ optional float apiacccmd_sin_a = 107; 
+optional float apiacccmd_sin_b = 108;  
+optional float apiacccmd_sin_phi = 109; 
+optional float apiacccmd_sin_w = 110;  
+optional float apianalogcmd_const = 111;
+optional float apianalogcmd_sin_a = 112;
+optional float apianalogcmd_sin_b = 113 ;
+optional float apianalogcmd_sin_phi = 114 ;
+optional float apianalogcmd_sin_w = 115;
+optional float apisteercmd_const = 116;
+optional float apisteercmd_sin_a = 117; 
+optional float apisteercmd_sin_b = 118; 
+optional float apisteercmd_sin_phi = 119;
+optional float apisteercmd_sin_w = 120;
+optional float apivelff_const = 121; 
+optional float apivelff_sin_a = 122;
+optional float apivelff_sin_b = 123;
+optional float apivelff_sin_phi = 124;  
+optional float apivelff_sin_w = 125; 
+optional bool apiacccmd_switch = 126; 
+optional bool apisteercmd_switch = 127;
+optional bool apivelff_switch = 128; 
+optional bool test_mode = 129;
+optional uint32 apianalogcmd_switch = 130;
+optional uint32  lonctrl_testmode = 131;
+optional uint32  latctrl_testmode = 132;  
+
+optional float cal_longictrl_posctrl_i_clear_thred = 133;
+optional float cal_longictrl_posctrl_i_initialvalue = 134;
+
+optional DynGain_RateCtrl_Table torsrate_dyn_gain_table = 135;
+optional MaxSteer_SteerCtrl_Table steer_max_output_table = 136;
+optional Dimen_1_Table throttlegain_table = 137;
+optional BrkDynGain_ThrustCtrl_Table thrctrlbrkdyngain_table = 138;
+optional DynGain_PosCtrl_Table posctrldyngain_table = 139;
+optional DynGain_VelCtrl_Table velctrldyngain_table = 140; 
+optional ThrDynGain_ThrustCtrl_Table thrctrlthrotdyngain_table = 141;
+optional Dimen_1_Table brakegain_table = 142;
+optional Dimen_1_Table brakeslope_table = 143;
+optional DynGain_YawCtrl_Table yawctrl_dyngain_table = 144;
+optional DynGain_OffsetCtrl_Table offsetctrl_dyngain_table = 145;
+optional Dimen_1_Table posctrlout_limit_table = 146;
+optional KrDyn_RateCtrl_Table cal_latictrl_ratectrl_kenimatic_krdyn_table = 147;
+optional MaxRate_SteerCtrl_Table steer_rate_max_table = 148;
+optional AkerMan_SteerCtrl_Table steer_akerman_table = 149;
+
+optional Vel2Toqure_SteerCtrl_Table steer_vel2torque_table = 150;
+optional apollo.control.CtrlReqMode ctrl_req_mode = 151;
+optional SteerRatio_RateCtrl_Table steer_ratio_ratectrl_table = 152;
+optional LatiCtrl_YawCtrl_Err_Max_Table latictrl_yawctrl_err_max_table = 153;
+optional Latpre_TimeS_Table trajcalc_latpre_times_table = 233;
+optional Vel_CurvGain_Table trajcalc_vel_curvgain_table = 234;
+
+optional double cal_latictrl_steer_offset_deg = 154[default = 0.0];
+optional double cal_latictrl_steer_offset_max_deg = 155[default = 5.0];
+
+optional uint32 cal_latiCtrl_steerctrl_switch_1dtable_or_2dtable = 156[default = 1];
+optional uint32 cal_latiCtrl_steerctrl_switch_forward_or_both = 157[default = 1];
+optional uint32 cal_latiCtrl_steerCtrl_switch_realSteer_or_cmdsteer = 158[default =1];
+optional uint32 trajcalc_vel_curvgain_switch = 235[default = 1];
+optional uint32 trajcalc_latpre_times_switch = 236[default = 1];
+
+optional KrDyn_RateCtrl_Table  steerctrl_p_table = 159;
+optional KrDyn_RateCtrl_Table  steerctrl_i_table = 160;
+
+optional Dimen_1_Table cal_latictrl_offsetctrl_pid_p_table = 200;
+optional Dimen_1_Table cal_latictrl_offsetctrl_pid_i_table = 201;
+optional Dimen_1_Table cal_latictrl_offsetctrl_pid_d_table = 202;
+
+optional Dimen_1_Table cal_latictrl_yawctrl_pid_p_table = 203;
+optional Dimen_1_Table cal_latictrl_yawctrl_pid_d_table = 204;
+
+optional Dimen_1_Table cal_latictrl_ratectrl_pid_p_table = 205;
+optional Dimen_1_Table cal_latictrl_ratectrl_pid_i_table = 206;
+
+optional Dimen_1_Table cal_longictrl_posectrl_pid_p_table = 207;
+optional Dimen_1_Table cal_longictrl_posectrl_pid_i_table = 208;
+optional Dimen_1_Table cal_longictrl_posectrl_pid_d_table = 209;
+
+optional Dimen_1_Table cal_longictrl_velctrl_pid_p_table = 210;
+optional Dimen_1_Table cal_longictrl_velctrl_pid_i_table = 211;
+optional Dimen_1_Table cal_longictrl_velctrl_pid_d_table = 212;
+
+optional Dimen_1_Table cal_longictrl_thrustbrk_brk_pid_p_table = 213;
+optional Dimen_1_Table cal_longictrl_thrustbrk_brk_pid_i_table = 214;
+optional Dimen_1_Table cal_longictrl_thrustbrk_brk_pid_d_table = 215;
+
+optional Dimen_1_Table cal_longictrl_thrustctrl_thr_pid_p_table = 216;
+optional Dimen_1_Table cal_longictrl_thrustctrl_thr_pid_i_table = 217;
+optional Dimen_1_Table cal_longictrl_thrustctrl_thr_pid_d_table = 218;
+
+optional Dimen_1_Table cal_latictrl_offsetctrl_errmax_table = 219;
+optional double cal_latiCtrl_offsetctrl_i_max = 220;
+optional Dimen_1_Table cal_latictrl_rateCtrl_errmax_table = 221;
+optional double cal_latiCtrl_rateCtrl_i_max = 222;
+optional Dimen_1_Table cal_latictrl_yawCtrl_errmax_table = 223;
+optional double cal_latiCtrl_yawctrl_i_max = 224;
+
+optional double cal_longictrl_posctrl_i_max = 225;
+optional Dimen_1_Table cal_longictrl_posctrl_max_err_table = 226;
+
+optional Dimen_1_Table cal_longictrl_velctrl_err_max_table = 227;
+optional double cal_longictrl_velctrl_i_max = 228;
+optional Dimen_1_Table cal_longictrl_thrustCtrl_brk_err_max_table = 229;
+
+optional double cal_longiCtrl_thrustctrl_brk_i_max  = 230;
+optional Dimen_1_Table  cal_longiCtrl_thrustctrl_thr_err_max_table = 231;
+optional double cal_longiCtrl_thrustctrl_thr_i_max = 232;
+optional double posedata_headertime_err = 237;
+optional uint32 vehicle_standstill = 238;
+optional uint32 brake_pedal_applied = 239;
+optional bool use_without_utm_info_localization = 240;
+optional uint32 sysmode_driving_mode = 241;
+optional uint32 sysmode_request_mode = 242;
+optional bool latictrl_steer_limit_switch = 243;
+optional Vehicle_Param_TL vehicle_param_TL = 244;
+}

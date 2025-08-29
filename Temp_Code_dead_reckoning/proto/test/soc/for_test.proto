@@ -1,0 +1,21 @@
+syntax = "proto2";
+import "proto/common/header.proto";
+package adf.lite.dbg;
+
+message WorkflowResult {
+    optional TL.common.Header header = 1;
+    optional int64 val1 = 2;
+    optional int64 val2 = 3;
+    optional int64 val3 = 4;
+    optional int64 val4 = 5;
+}
+
+message TestMessage {
+    optional TL.common.Header header = 1;
+    optional string message = 2;
+}
+
+message TestMessageIdl {
+    optional double publish_stamp = 1;
+    optional string message = 2;
+}

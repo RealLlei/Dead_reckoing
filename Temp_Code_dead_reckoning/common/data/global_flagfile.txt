@@ -1,0 +1,124 @@
+# 1. Flags in this file should be defined in common/configs/config_gflags.h
+# 2. To use it, add the following line into your command line arguments or
+#    already-in-use flagfile:
+#        --flagfile=modules/common/data/global_flagfile.txt
+# 3. To override the flag values, you must set it after this file, as all Flags
+#    are evaluated strictly in order.
+
+# vehicle parameter
+--vehicle_config_path=conf/vehicle_param/ep40/vehicle_param.pb.txt
+--vehicle_config_path_EP41_CTC=conf/vehicle_param/ep41/vehicle_param_EP41CTC.pb.txt
+
+--map_dir=data/map/demo
+#--map_dir=data/map/Highway101GLE
+#--map_dir=data/map/all_jinghu
+--use_sim_time=false
+
+--log_dir=data/log
+
+--use_hdmap_mode
+--is_nnp_mode
+--global_enable_nnp=true
+--enable_odd_area_internal_to_perception=true
+--enable_hdmap_nnp_mode=true
+--enable_hdmap_ncp_mode=true
+--enable_laneline_mode=true
+--enable_cruise_mode=true
+--enable_mapfusion_mode=true
+--enable_viz
+--noenable_dreamview_to_planning_zmq
+--noenable_dreamview_send_fct
+--enable_recv_local_zmq=false
+--enable_control_zmq
+--noenable_struct_pb_debug
+--enable_hdmap_avp_state_sim=false
+--enable_history_trace_state_sim=false
+--use_carla_read_map_simulation=false
+--enable_parking_state_sim=false
+--enable_ignore_slot_status=false
+--enable_park_with_one_slot=false
+--enable_planning_trigger=false
+--show_cam_data=false
+--export_secret=false
+--zmq_replay_data=false
+--enable_update_size_check=false
+--offline_record_dir=~/cyber_data/
+--fisheye_param_path=os-36-2023.4.4
+--static_file_dir=frontend/dist
+--server_ports=8080
+
+#for ehp
+--use_ehp
+--use_ehp_odd_to_stop=false
+--ehp_monitor=0
+--enable_ehp_routing=false
+--using_record_ehp_data=false
+--ehp_log_root_dir=/opt/usr/hd_map/ehp_log
+
+#--map_dir=data/map/amap_jinghu
+#--map_dir=data/map/amap_beijing
+#--map_dir=data/map/amap_odd
+#--map_dir=data/map/amap_change_utm
+--map_dir=data/map/amap_hukun
+--map_dir=data/map/demo
+
+--v=2
+
+# for simulation or record replay
+--is_record_replay=false
+--is_mcap_replay=false
+--enable_trajectory_stitcher=true
+#--map_dir=data/map/record_replay
+--enable_planning_self_simulator=false
+--enable_planning_injector_obs=false
+--enable_sim_control_publish_prediction
+--enable_sim_dummy_obs=false
+--only_enable_sim_adc_side_dummy_obs=false
+--enable_from_file_response=true
+--enable_random_response=false
+--skip_static_box_simulation=false
+--skip_freespace_simulation=false
+
+# local
+--zmq_publisher_ip=tcp://192.168.3.110
+#--zmq_publisher_ip=tcp://127.0.0.1
+
+--zmq_publisher_dreamview_ip=tcp://192.168.33.6
+# 1230 mdc
+#--zmq_publisher_ip=tcp://10.4.53.79
+#--zmq_publisher_ip=tcp://10.4.51.140
+#--zmq_publisher_ip=tcp://10.4.51.188
+#--zmq_publisher_ip=tcp://10.4.40.222
+
+--test_avp_hdmap_data_file=data/map/avp_map/test_2/hpp.bin
+--is_baidu_log2world_sim=false
+--use_config_cruise_speed=false
+--use_config_change_nnp_or_avp=true
+--global_enable_warning_mem=false
+--input_data_time_out_period_num=4
+
+--nolocalization_data_independent
+--nodecode_loc_jpeg_front
+--map_layer_enable=true
+
+--enable_warning_fault_process
+--avp_map_path_file=/mnt/simulation/records/map/
+--use_lapa_read_map_simulation=false
+--hdmap_avp_path_extend_buffer=3
+--hdmap_avp_boundary_klimit=1
+--cruise_map_speed_limit=5.55
+
+#amap simulator
+--use_amap_simulation=false
+--local_simulation_when_add_layer=false
+--map_extract_by_file=true
+
+--forbid_lane_change_in_eye_mode=false
+--forbid_efficiency_lane_change_in_eye_mode
+--use_dv_traffic_light=false
+--use_dv_routing=true
+#--local_utm_zone_id=51
+
+#map fusion
+--map_service_mode=0
+--map_data_to_hmi=false

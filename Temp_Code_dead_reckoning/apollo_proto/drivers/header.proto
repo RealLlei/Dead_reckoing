@@ -1,0 +1,10 @@
+syntax = "proto2";
+
+package TL.perception.datacollection;
+
+message Header {
+    optional int32 seq = 1;
+    optional string frame_id = 2;
+    optional double timestamp = 3;
+    optional double gnss_stamp = 4;
+}

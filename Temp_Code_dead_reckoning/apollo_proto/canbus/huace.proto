@@ -1,0 +1,167 @@
+syntax = "proto2";
+
+package apollo.canbus;
+
+message Time_320 {
+// Report Message
+  // [s] [0|2147483.647]
+  optional double gpstime = 1;
+  // [w] [0|65535]
+  optional int32 gpsweek = 2;
+}
+
+message Ang_rate_raw_imu_321 {
+// Report Message
+  // [deg/s] [-500|500]
+  optional double angraterawz = 1;
+  // [deg/s] [-500|500]
+  optional double angraterawy = 2;
+  // [deg/s] [-500|500]
+  optional double angraterawx = 3;
+}
+
+message Accel_imu_raw_322 {
+// Report Message
+  // [g] [-50|50]
+  optional double accelrawz = 1;
+  // [g] [-50|50]
+  optional double accelrawy = 2;
+  // [g] [-50|50]
+  optional double accelrawx = 3;
+}
+
+message Insstatus_323 {
+// Report Message
+  // [] [0|255]
+  optional int32 gpsnumsats2 = 1;
+  // [] [0|255]
+  optional int32 gpsnumsats = 2;
+  // [] [0|655.35]
+  optional double gpsage = 3;
+  // [] [0|255]
+  optional int32 gpsnumsats2used = 4;
+  // [] [0|9]
+  optional int32 system_state = 5;
+  // [] [0|9]
+  optional int32 satellite_status = 6;
+  // [] [0|255]
+  optional int32 gpsnumsatsused = 7;
+}
+
+message Latitudelongitude_324 {
+// Report Message
+  // [deg] [-214.7483648|214.7483648]
+  optional double poslon = 1;
+  // [deg] [-214.7483648|214.7483648]
+  optional double poslat = 2;
+}
+
+message Altitude_325 {
+// Report Message
+  // [m] [-2147483.648|2147483.648]
+  optional double posalt = 1;
+}
+
+message Possigma_326 {
+// Report Message
+  // [m] [0|100]
+  optional double posusigma = 1;
+  // [m] [0|100]
+  optional double posnsigma = 2;
+  // [m] [0|100]
+  optional double posesigma = 3;
+}
+
+message Velocitylevel_327 {
+// Report Message
+  // [m/s] [-327.68|327.67]
+  optional double vel = 1;
+  // [m/s] [-327.68|327.67]
+  optional double velu = 2;
+  // [m/s] [-327.68|327.67]
+  optional double veln = 3;
+  // [m/s] [-327.68|327.67]
+  optional double vele = 4;
+}
+
+message Velocitylevelsigma_328 {
+// Report Message
+  // [m/s] [0|65.535]
+  optional double velsigma = 1;
+  // [m/s] [0|65.535]
+  optional double velusigma = 2;
+  // [m/s] [0|65.535]
+  optional double velnsigma = 3;
+  // [m/s] [0|65.535]
+  optional double velesigma = 4;
+}
+
+message Accel_vehicle_329 {
+// Report Message
+  // [g] [-8|8]
+  optional double accelz = 1;
+  // [g] [-8|8]
+  optional double accely = 2;
+  // [g] [-8|8]
+  optional double accelx = 3;
+}
+
+message Headingpitchroll_32a {
+// Report Message
+  // [deg] [-180|180]
+  optional double angleroll = 1;
+  // [deg] [-90|90]
+  optional double anglepitch = 2;
+  // [deg] [0|360]
+  optional double angleheading = 3;
+}
+
+message Headingpitchrollsigma_32b {
+// Report Message
+  // [deg] [0|100]
+  optional double anglerollsigma = 1;
+  // [deg] [0|100]
+  optional double anglepitchsigma = 2;
+  // [deg] [0|100]
+  optional double angleheadingsigma = 3;
+}
+
+message Angratevehicle_32c {
+// Report Message
+  // [deg/s] [-500|500]
+  optional double angratez = 1;
+  // [deg/s] [-500|500]
+  optional double angratey = 2;
+  // [deg/s] [-500|500]
+  optional double angratex = 3;
+}
+
+message Longitude_32d {
+// Report Message
+  // [deg] [-180|180]
+  optional double poslon2 = 1;
+}
+
+message Latitude_32e {
+// Report Message
+  // [deg] [-90|90]
+  optional double poslat2 = 1;
+}
+
+message Huace {
+  optional Time_320 time_320 = 1; // report message
+  optional Ang_rate_raw_imu_321 ang_rate_raw_imu_321 = 2; // report message
+  optional Accel_imu_raw_322 accel_imu_raw_322 = 3; // report message
+  optional Insstatus_323 insstatus_323 = 4; // report message
+  optional Latitudelongitude_324 latitudelongitude_324 = 5; // report message
+  optional Altitude_325 altitude_325 = 6; // report message
+  optional Possigma_326 possigma_326 = 7; // report message
+  optional Velocitylevel_327 velocitylevel_327 = 8; // report message
+  optional Velocitylevelsigma_328 velocitylevelsigma_328 = 9; // report message
+  optional Accel_vehicle_329 accel_vehicle_329 = 10; // report message
+  optional Headingpitchroll_32a headingpitchroll_32a = 11; // report message
+  optional Headingpitchrollsigma_32b headingpitchrollsigma_32b = 12; // report message
+  optional Angratevehicle_32c angratevehicle_32c = 13; // report message
+  optional Longitude_32d longitude_32d = 14; // report message
+  optional Latitude_32e latitude_32e = 15; // report message
+}

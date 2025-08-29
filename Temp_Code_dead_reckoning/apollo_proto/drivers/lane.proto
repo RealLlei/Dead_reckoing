@@ -1,0 +1,92 @@
+syntax = "proto2";
+
+package TL.perception.datacollection;
+
+import "apollo_proto/drivers/types.proto";
+import "apollo_proto/drivers/header.proto";
+
+message LaneParam {
+    optional float a = 1;
+    optional float b = 2;
+    optional float c = 3;
+    optional float d = 4;
+    optional float dev_a = 5;
+    optional float dev_b = 6;
+    optional float dev_c = 7;
+    optional float dev_d = 8;
+}
+
+message LanelineFit {
+    optional float x_start_vrf = 1;
+    optional float x_end_vrf = 2;
+    optional LaneParam coefficients = 3;
+}
+
+message LaneDetectionOut {
+
+    enum LaneClassType {
+        SOLID_LINE              = 11;
+        DASH_LINE               = 1;
+        SHORT_DASH_LINE         = 2;
+        SOLID_DOUBLE_LINE       = 3;
+        DASH_DOUBLE_LINE        = 4;
+        LEFT_SOLID_RIGHT_DASH   = 5;
+        LEFT_DASH_RIGHT_SOLID   = 6;
+        BARRIER                 = 7;
+        CURB                    = 8;
+        YUGUXIAN                = 9;
+        OTHER                   = 10;
+    }
+
+    enum LaneColorType {
+        WHITE                   = 10;
+        YELLOW                  = 1;
+        ORANGE                  = 2;
+        BLUE                    = 3;
+        GEREEN                  = 4;
+        GRAY                    = 5;
+        LEFT_WHITE_RIGHT_YELLOW = 6;
+        LEFT_YELLOW_RIGHT_WHITE = 7;
+        YELLOW_GRAY_FUSION      = 8;
+        OTHERS                  = 9;
+    }
+
+    // optional int32 laneline_seq = 1;
+    // optional float geometry_confidence = 2;
+    // optional LaneClassType cls = 3;
+    // optional float type_confidence = 4;
+    // optional LaneColorType color_type = 5;
+    // optional float color_confidence = 6;
+    // optional float laneline_width = 7;
+    // repeated Point3D keypoint_vrf = 8;
+    // optional LanelineFit lane_fit = 9;
+    // optional double time_creation = 10;
+
+    optional int32 laneline_seq = 1;
+    optional float geometry_confidence = 2;
+    optional LaneClassType cls = 3;
+    optional float type_confidence = 4;
+    optional LaneColorType color_type = 5;
+    optional float color_confidence = 6;
+    optional float laneline_width = 7;
+    repeated Point2D point_image_coord = 8;
+    repeated Point3D keypoint_vrf = 9;
+    optional LanelineFit lane_fit = 10;
+    optional LanelineFit image_lane_fit = 11;
+    optional double time_creation = 12;
+}
+
+message LaneDetectionOuts {
+    repeated LaneDetectionOut lane_detection_outs = 1;    
+}
+
+message LaneDetectionOutArray {
+    optional Header header = 1;
+    optional int32 count = 2;
+    optional int32 loc_seq = 3;
+    repeated LaneDetectionOuts lane_detection_front_out = 4;
+    repeated LaneDetectionOuts lane_detection_rear_out = 5;
+    optional bool is_lane_change_to_left = 6;
+    optional bool is_lane_change_to_right = 7;
+    optional bool is_valid = 8;
+}

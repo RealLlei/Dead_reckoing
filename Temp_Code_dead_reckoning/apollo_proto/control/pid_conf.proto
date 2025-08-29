@@ -1,0 +1,24 @@
+syntax = "proto2";
+
+package apollo.control;
+
+message PidConf {
+  optional bool integrator_enable = 1;
+  optional double integrator_saturation_level = 2;
+  optional double kp = 3;
+  optional double ki = 4;
+  optional double kd = 5;
+  optional double kaw = 6 [default = 0.0];
+  optional double output_saturation_level = 7;
+  optional double kff = 8; //feedforward
+  repeated double speed_segment = 9;
+  repeated double kp_speed_segment = 10;
+  repeated double ki_speed_segment = 11;
+  repeated double kd_speed_segment = 12;
+  repeated double kff_speed_segment = 13;
+  repeated double steer_segment = 14;
+  repeated double kp_steer_segment = 15;
+  repeated double ki_steer_segment = 16;
+  repeated double kd_steer_segment = 17;
+  repeated double kff_steer_segment = 18;
+}

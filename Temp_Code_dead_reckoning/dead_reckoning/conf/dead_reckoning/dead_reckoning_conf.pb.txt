@@ -1,0 +1,7 @@
+use_imu: true
+wheel_radius: 0.35
+neta_forward_coef: 19.9
+neta_backward_coef: 20.62
+rear_wheel_rot_arm: 1.6
+gain_yaw_count: 0.0
+gain_omg_z_count: 0.0

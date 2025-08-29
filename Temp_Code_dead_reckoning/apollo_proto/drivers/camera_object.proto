@@ -1,0 +1,56 @@
+syntax = "proto2";
+
+package TL.perception.datacollection;
+
+import "apollo_proto/drivers/header.proto";
+import "apollo_proto/drivers/types.proto";
+
+message CameraOut3D {
+  optional uint32 object_id = 1;               // 障碍物id
+  optional uint32 type = 2;                    // 障碍物类别 uint8
+  optional uint32 sub_type = 3;                  // 障碍物类别 uint8
+  optional uint32 det_cam_sensor = 4;
+  optional float confidence = 5;           // 障碍物类别置信度
+
+  optional Rect3D rect = 6;          // 障碍物边框
+
+  optional Point3D velocity = 7;           // 障碍物相对主车速度
+  optional Matrix3f velocity_uncertainty = 8;
+  optional float tsr_value = 9;
+  optional uint32 mov_state = 10;  // uint8
+  optional uint32 brake_light_st = 11;  // uint8
+  optional uint32 turn_light_st = 12;  // uint8
+  optional uint32 anchor_pt_info = 13;  // uint8
+  repeated float associated_conf = 14;
+  repeated Rect3D detection_key_com_box = 15;
+  repeated uint32 detection_key_com_id = 16;  // uint8
+
+  optional Point3D acceleration = 17;           // 障碍物相对主车加速度，单位ｍ/s2
+  optional Matrix3f acceleration_uncertainty = 18;
+  optional double time_creation = 19;       // 障碍物被识别的时间戳
+  optional uint32 is_onroad = 20;  // uint8
+  optional float on_road_prob = 21;
+  optional uint32 is_occluded = 22;  // uint8
+  optional float occluded_prob = 23;
+  optional uint32 is_truncated = 24;  // uint8
+  optional float truncated_prob = 25;
+  optional uint32 is_sprinkler = 26;  // uint8
+  optional float sprinkler_prob = 27;
+}
+
+message CameraOut2D {
+  optional uint32 object_id = 1;               // 障碍物id
+  optional uint32 type = 2;                    // uint8
+  optional int32 value = 3;                    //
+  optional Rect2D rect = 4;          // 障碍物边框
+  repeated Rect2D detection_key_com_rect = 5;
+}
+
+
+message DetectionOutArrayCamera {
+  optional Header header = 1;
+  optional uint32 sensor_status = 2;  // uint8
+  repeated CameraOut3D detection_out3d = 3;
+  repeated CameraOut2D detection_out2d = 4;
+  optional bool is_valid = 5;
+}

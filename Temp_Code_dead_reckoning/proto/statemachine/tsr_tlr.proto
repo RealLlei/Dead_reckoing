@@ -1,0 +1,36 @@
+syntax = "proto2";
+package TL.TsrTlr;
+
+import "proto/common/header.proto";
+
+message  SpeedLimitForbidden {
+    optional TL.common.Header header = 1;
+    optional uint32 speed_limit = 2;        // selected speed limit from perception
+    optional double distance = 3;           // selected speed limit far from vehicle
+    optional uint32 forbidden_sign = 4;     // selected forbidden sign from perception
+}
+
+message SpeedLimitFusion {
+    optional TL.common.Header header = 1;
+    optional uint32 electric_eye = 2;       // electric eye speed limit from chassis
+    optional uint32 sd_road = 3;            // road sd speed limit from chassis
+    optional double hd_roadsection_max = 4; // hd roadsection max speed limit from /localization/fusionmap
+    optional uint32 perception_sign = 5;    // speed limit perception from speed sign /perception/fsd/environment/tsr_ihbc_msg 
+    optional uint32 fusioned = 6;           // speed limit fusioned, unit km/h
+    optional uint32 fusioned_for_can = 7;   // speed limit fusioned mapping to 1 ~ 0xf sending to mcu
+}
+
+message TrafficLightInfo {
+    optional TL.common.Header header = 1;
+    optional uint32 turn_left = 2;          // traffic light colour for turn left
+    optional uint32 left_seconds = 3;       // traffic light change colour remains seconds
+    optional uint32 turn_right = 4;         // traffic light colour for turn right
+    optional uint32 right_seconds = 5;      // traffic light change colour remains seconds
+    optional uint32 go_straight = 6;        // traffic light colour for go straight
+    optional uint32 straight_seconds = 7;   // traffic light change colour remains seconds
+    optional uint32 turn_around = 8;        // traffic light colour for turn arroud
+    optional uint32 around_seconds = 9;     // traffic light change colour remains seconds
+    optional uint32 distance = 10;          // distance from vehicle to light in driving direction
+    optional uint32 height = 11;            // height from vehicle to light
+    optional uint32 reserve = 12;           // reserved field
+}

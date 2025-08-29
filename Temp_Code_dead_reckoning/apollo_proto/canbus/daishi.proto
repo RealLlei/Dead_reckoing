@@ -1,0 +1,232 @@
+syntax = "proto2";
+
+package apollo.canbus;
+
+message Imu_timestamp_400 {
+// Report Message
+  // [] [0|99]
+  optional int32 imuyear = 1;
+  // [] [1|12]
+  optional int32 imumonth = 2;
+  // [] [1|31]
+  optional int32 imuday = 3;
+  // [hr] [0|23]
+  optional int32 imuhour = 4;
+  // [min] [0|59]
+  optional int32 imuminute = 5;
+  // [s] [0|59]
+  optional int32 imusecond = 6;
+  // [ms] [0|999]
+  optional int32 imumillisecond = 7;
+}
+
+message Imu_accelraw_401 {
+// Report Message
+  // [m/s/s] [-524.288|524.287]
+  optional double accelrawz = 1;
+  // [m/s/s] [-524.288|524.287]
+  optional double accelrawy = 2;
+  // [m/s/s] [-524.288|524.287]
+  optional double accelrawx = 3;
+}
+
+message Imu_angrateraw_402 {
+// Report Message
+  // [deg/s] [-524.288|524.287]
+  optional double angraterawz = 1;
+  // [deg/s] [-524.288|524.287]
+  optional double angraterawy = 2;
+  // [deg/s] [-524.288|524.287]
+  optional double angraterawx = 3;
+}
+
+message Gnss_timestamp_501 {
+// Report Message
+  // [] [0|99]
+  optional int32 gnssyear = 1;
+  // [] [1|12]
+  optional int32 gnssmonth = 2;
+  // [] [1|31]
+  optional int32 gnssday = 3;
+  // [hr] [0|23]
+  optional int32 gnsshour = 4;
+  // [min] [0|59]
+  optional int32 gnssminute = 5;
+  // [s] [0|59]
+  optional int32 gnsssecond = 6;
+  // [ms] [0|999]
+  optional int32 gnssmillisecond = 7;
+}
+
+message Gnss_latlon_502 {
+// Report Message
+  // [deg] [-90|90]
+  optional double gnsslat = 1;
+  // [deg] [-180|180]
+  optional double gnsslon = 2;
+}
+
+message Gnss_altstatus_503 {
+// Report Message
+  // [m] [-8388.608|8388.607]
+  optional double gnssellipsoid = 1;
+  // [] [0|15]
+  optional int32 gnssquality = 2;
+  // [] [0|255]
+  optional int32 satsnum = 3;
+  // [m] [-83886.08|83886.07]
+  optional double gnssalt = 4;
+}
+
+message Gnss_vel_504 {
+// Report Message
+  // [m/s] [-327.68|327.67]
+  optional double gnssvelnorth = 1;
+  // [m/s] [0|655.35]
+  optional double gnssvelhori = 2;
+  // [m/s] [-327.68|327.67]
+  optional double gnssveleast = 3;
+  // [m/s] [-327.68|327.67]
+  optional double gnssveldown = 4;
+}
+
+message Gnss_hdg_cog_505 {
+// Report Message
+  // [deg] [0|360]
+  optional double gnssheadingerr = 1;
+  // [deg] [0|360]
+  optional double gnssheading = 2;
+  // [deg] [0|360]
+  optional double gnsscogerr = 3;
+  // [deg] [0|360]
+  optional double gnsscog = 4;
+}
+
+message Gnss_poserror_506 {
+// Report Message
+  // [m/s] [0|65.535]
+  optional double gnssvertvelerr = 1;
+  // [m] [0|65.535]
+  optional double gnssvertposerr = 2;
+  // [m/s] [0|65.535]
+  optional double gnsshorivelerr = 3;
+  // [m] [0|65.535]
+  optional double gnsshoriposerr = 4;
+}
+
+message Ins_latlon_602 {
+// Report Message
+  // [deg] [-90|90]
+  optional double poslat = 1;
+  // [deg] [-180|180]
+  optional double poslon = 2;
+}
+
+message Ins_altstatus_603 {
+// Report Message
+  // [m] [-8388.608|8388.607]
+  optional double posellipsoid = 1;
+  // [] [0|15]
+  optional int32 posquality = 2;
+  // [m] [-83886.08|83886.07]
+  optional double posalt = 3;
+}
+
+message Ins_vel_604 {
+// Report Message
+  // [m/s] [-327.68|327.67]
+  optional double velnorth = 1;
+  // [m/s] [-327.68|327.67]
+  optional double veleast = 2;
+  // [m/s] [-327.68|327.67]
+  optional double veldown = 3;
+  // [m/s] [0|655.35]
+  optional double groundvel2d = 4;
+}
+
+message Ins_accelvehicle_605 {
+// Report Message
+  // [m/s/s] [-524.288|524.287]
+  optional double accelvehiclex = 1;
+  // [m/s/s] [-524.288|524.287]
+  optional double accelvehicley = 2;
+  // [m/s/s] [-524.288|524.287]
+  optional double accelvehiclez = 3;
+}
+
+message Ins_angratevehicle_606 {
+// Report Message
+  // [deg/s] [-524.288|524.287]
+  optional double angratevehiclex = 1;
+  // [deg/s] [-524.288|524.287]
+  optional double angratevehicley = 2;
+  // [deg/s] [-524.288|524.287]
+  optional double angratevehiclez = 3;
+}
+
+message Ins_attitude_607 {
+// Report Message
+  // [deg] [0|360]
+  optional double angleheading = 1;
+  // [deg] [-90|90]
+  optional double anglepitch = 2;
+  // [deg] [-180|180]
+  optional double angleroll = 3;
+}
+
+message Ins_poserror_608 {
+// Report Message
+  // [m/s] [0|65.535]
+  optional double vertvelerr = 1;
+  // [m/s] [0|65.535]
+  optional double horivelerr = 2;
+  // [m] [0|65.535]
+  optional double vertposerr = 3;
+  // [m] [0|65.535]
+  optional double horiposerr = 4;
+}
+
+message Ins_hdg_cog_609 {
+// Report Message
+  // [deg] [0|360]
+  optional double cogerr = 1;
+  // [deg] [0|360]
+  optional double headingerr = 2;
+  // [deg] [0|360]
+  optional double cog = 3;
+  // [deg] [0|360]
+  optional double heading = 4;
+}
+
+message Lrnmon_6b1 {
+// Report Message
+  // [m/s] [0|655.35]
+  optional double vehiclewheelspeed = 1;
+  // [] [0|255]
+  optional int32 vehiclegearpos = 2;
+  // [%] [0|100]
+  optional int32 dualanthdglrnprg = 3;
+  // [] [0|1]
+  optional bool staticflag = 4;
+}
+
+message Daishi {
+  optional Imu_timestamp_400 imu_timestamp_400 = 1; // report message
+  optional Imu_accelraw_401 imu_accelraw_401 = 2; // report message
+  optional Imu_angrateraw_402 imu_angrateraw_402 = 3; // report message
+  optional Gnss_timestamp_501 gnss_timestamp_501 = 4; // report message
+  optional Gnss_latlon_502 gnss_latlon_502 = 5; // report message
+  optional Gnss_altstatus_503 gnss_altstatus_503 = 6; // report message
+  optional Gnss_vel_504 gnss_vel_504 = 7; // report message
+  optional Gnss_hdg_cog_505 gnss_hdg_cog_505 = 8; // report message
+  optional Gnss_poserror_506 gnss_poserror_506 = 9; // report message
+  optional Ins_latlon_602 ins_latlon_602 = 10; // report message
+  optional Ins_altstatus_603 ins_altstatus_603 = 11; // report message
+  optional Ins_vel_604 ins_vel_604 = 12; // report message
+  optional Ins_accelvehicle_605 ins_accelvehicle_605 = 13; // report message
+  optional Ins_angratevehicle_606 ins_angratevehicle_606 = 14; // report message
+  optional Ins_attitude_607 ins_attitude_607 = 15; // report message
+  optional Ins_poserror_608 ins_poserror_608 = 16; // report message
+  optional Ins_hdg_cog_609 ins_hdg_cog_609 = 17; // report message
+  optional Lrnmon_6b1 lrnmon_6b1 = 18; // report message
+}

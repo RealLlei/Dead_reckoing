@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+package apollo.control;
+
+message LQRMatrixKMAP {
+  repeated MatrixK matrix_k = 1;
+}
+
+message MatrixK {
+  optional double speed = 1;
+  repeated double element = 2;
+}

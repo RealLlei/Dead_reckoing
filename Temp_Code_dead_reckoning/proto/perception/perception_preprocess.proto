@@ -1,0 +1,9 @@
+syntax = "proto2";
+
+package TL.perception;
+
+import "proto/common/header.proto";
+
+message PerceptionPreprocess {
+  optional TL.common.Header header = 2;
+}

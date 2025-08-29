@@ -1,0 +1,26 @@
+syntax = "proto2";
+
+package TL.perception.datacollection;
+import "apollo_proto/drivers/header.proto";
+import "apollo_proto/drivers/types.proto";
+
+enum CoordType {
+    ENU_COORD = 0;
+    SLAM_COORD = 1;
+}
+
+message Location {
+    optional Header header = 1;
+
+    optional bool is_valid = 2 [default = false];
+    optional uint32 gps_week = 3;
+    optional double gps_sec = 4;
+    optional uint32 received_ehp_counter = 5;
+    optional CoordType coord_type = 6 [default = ENU_COORD];
+    optional Point3f mounting_error = 7;
+    optional PoseWithCovariance pose = 8;
+    optional TwistWithCovariance velocity = 9;
+    optional AccelWithCovariance acceleration = 10;
+    optional uint32 rtk_status = 11;
+    optional uint32 location_state = 12;
+}

@@ -1,0 +1,84 @@
+/******************************************************************************
+ * Copyright 2017 The Apollo Authors. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *****************************************************************************/
+
+syntax = "proto2";
+
+package apollo.localization;
+
+import "apollo_proto/common/geometry.proto";
+
+message Pose {
+  // Position of the vehicle reference point (VRP) in the map reference frame.
+  // The VRP is the center of rear axle.
+  optional apollo.common.PointENU position = 1;
+
+  // A quaternion that represents the rotation from the IMU coordinate
+  // (Right/Forward/Up) to the
+  // world coordinate (East/North/Up).
+  optional apollo.common.Quaternion orientation = 2;
+
+  // Linear velocity of the VRP in the map reference frame.
+  // East/north/up in meters per second.
+  optional apollo.common.Point3D linear_velocity = 3;
+
+  // Linear acceleration of the VRP in the map reference frame.
+  // East/north/up in meters per square second.
+  optional apollo.common.Point3D linear_acceleration = 4;
+
+  // Angular velocity of the vehicle in the map reference frame.
+  // Around east/north/up axes in radians per second.
+  optional apollo.common.Point3D angular_velocity = 5;
+
+  // Heading
+  // The heading is zero when the car is facing East and positive when facing
+  // North.
+  optional double heading = 6;
+
+    
+  // Linear velocity of the VRP in the vehicle reference frame.
+  // X/Y/Z in meters per second.
+  optional apollo.common.Point3D linear_velocity_vrf = 7;
+
+  // Linear acceleration of the VRP in the vehicle reference frame.
+  // Right/forward/up in meters per square second.
+  optional apollo.common.Point3D linear_acceleration_vrf = 8;
+
+  // Angular velocity of the VRP in the vehicle reference frame.
+  // Around right/forward/up axes in radians per second.
+  optional apollo.common.Point3D angular_velocity_vrf = 9;
+
+  // Roll/pitch/yaw that represents a rotation with intrinsic sequence z-x-y.
+  // in world coordinate (East/North/Up)
+  // The roll, in (-pi/2, pi/2), corresponds to a rotation around the y-axis.
+  // The pitch, in [-pi, pi), corresponds to a rotation around the x-axis.
+  // The yaw, in [-pi, pi), corresponds to a rotation around the z-axis.
+  // The direction of rotation follows the right-hand rule.
+  optional apollo.common.Point3D euler_angles = 10;
+
+  // Position of the vehicle in wgs84 coordinate system
+  optional apollo.common.PointENU wgs = 11;
+  // Position of the vehicle in gcj02 coordinate system
+  optional apollo.common.PointENU gcj02 = 12;
+  optional apollo.common.PointENU pos_utm_01 = 13;
+  optional apollo.common.PointENU pos_utm_02 = 14;
+  optional uint32 utm_zone_01 = 15;
+  optional uint32 utm_zone_02 = 16;
+  optional uint32 using_utm_zone = 17;
+  // 经纬度gcs坐标系下正北与utm坐标系下正北存在夹角，heading_gcs表达在gcs坐标系下的heading
+  optional double heading_gcs = 30;
+  // raw linear acceleration from imu
+  optional apollo.common.Point3D linear_acceleration_raw_vrf = 32;
+}

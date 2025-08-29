@@ -1,0 +1,44 @@
+syntax = "proto2";
+
+package TL.perception.datacollection;
+
+import "apollo_proto/drivers/header.proto";
+import "apollo_proto/drivers/types.proto";
+
+message RadarModeDataInfo {
+  optional float x = 1;
+  optional float y = 2;
+  optional float z = 3;
+  optional Point3f rms = 4;
+  optional Point3f quality = 5;
+}
+
+message RadarTrackData {
+  optional uint32 id = 1;
+  optional RadarModeDataInfo position = 2;
+  optional RadarModeDataInfo velocity = 3;
+  optional RadarModeDataInfo acceleration = 4;
+  optional float rcs = 5;
+  optional float snr = 6;
+  optional float exist_probability = 7;
+  // uint8
+  optional uint32 mov_property = 8;
+  // uint8
+  optional uint32 track_type = 9;
+  // uint8
+  optional uint32 obj_obstacle_prob = 10;
+  // uint8
+  optional uint32 measState = 11;
+  optional Point3f size_lwh = 12;
+  optional float orient_agl = 13;
+}
+
+message RadarTrackArrayFrame {
+  optional Header header = 1;
+  // uint8
+  optional uint32 sensor_id = 2;
+  // uint8
+  optional uint32 radar_state = 3;
+  repeated RadarTrackData track_list = 4;
+  optional bool is_valid = 5;
+}

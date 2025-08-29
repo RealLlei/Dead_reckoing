@@ -1,0 +1,12 @@
+syntax = "proto2";
+
+package TL.soc;
+
+import "proto/common/header.proto";
+
+import "proto/common/types.proto";
+
+message DVR {
+    optional TL.common.Header header = 25;
+    optional uint32 dvr_ready = 1;
+}

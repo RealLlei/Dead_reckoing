@@ -1,0 +1,19 @@
+syntax = "proto2";
+
+package apollo.perception;
+
+message Point2D {
+  required double x = 1;
+  required double y = 2;
+}
+
+message Size2D {
+  required double w = 1;
+  required double h = 2;
+}
+
+message Rect2D {
+  required Point2D top_left = 1;
+  required Size2D size = 2;
+ 
+}

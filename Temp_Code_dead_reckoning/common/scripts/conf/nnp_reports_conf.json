@@ -1,0 +1,14 @@
+{
+    "metrics_conf_file_name": "metrics_conf.json",
+    "metrics": [
+        "NnpAccelerateLateral",
+        "NnpAccelerateLongitudinal",
+        "NnpJerkLateral",
+        "NnpJerkLongitudinal",
+        "VehicleEndRoadAngle",
+        "KappaCurvature",
+        "DkappaCurvature",
+        "FollowDistanceDetection",
+        "AbnormalSwitchingToVisualMode"
+    ]
+}

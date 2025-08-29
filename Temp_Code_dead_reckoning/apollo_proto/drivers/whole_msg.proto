@@ -1,0 +1,75 @@
+syntax = "proto2";
+
+package TL.perception.datacollection;
+
+import "apollo_proto/drivers/obstacle.proto";
+import "apollo_proto/drivers/radar.proto";
+import "apollo_proto/drivers/sensor_image.proto";
+import "apollo_proto/drivers/sensor_lidar.proto";
+import "apollo_proto/drivers/obj_signal.proto";
+import "apollo_proto/drivers/lane.proto";
+import "apollo_proto/drivers/freespace.proto";
+import "apollo_proto/drivers/multi_sensor_fusion.proto";
+import "apollo_proto/drivers/location.proto";
+import "apollo_proto/drivers/camera_object.proto";
+
+enum MsgType {
+  CAMERA_OBSTACLE = 1;
+  CAMERA_LANE = 2; 
+  CAMERA_FREESPACE = 26;
+
+  LOCATION = 3;
+  LIDAR_OBSTACLE = 4;
+  LIDAR_LANE = 5;
+  LIDAR_FREESPACE = 6;
+
+  FUSION_OBSTACLE = 7;
+  FUSION_LANE = 8;
+  FUSION_FREESPACE = 28;
+  UNKNOWN_STAGE = 10;
+
+  LIDAR_RAW_DATA = 11;
+  CAMERA_COMPRESSED_FRONT = 12;
+  CAMERA_COMPRESSED_FISH_FRONT = 13;
+  CAMERA_COMPRESSED_LEFT_FRONT = 14;
+  CAMERA_COMPRESSED_RIGHT_FRONT = 15;
+  CAMERA_COMPRESSED_LEFT_REAR = 16;
+  CAMERA_COMPRESSED_RIGHT_REAR = 17;
+  CAMERA_COMPRESSED_REAR = 18;
+
+  CAMERA_YUV_FRONT = 19;
+  CAMERA_YUV_FISH_FRONT = 20;
+  CAMERA_YUV_LEFT_FRONT = 21;
+  CAMERA_YUV_RIGHT_FRONT = 22;
+  CAMERA_YUV_LEFT_REAR = 23;
+  CAMERA_YUV_RIGHT_REAR = 24;
+  CAMERA_YUV_REAR = 25;
+
+  CAMERA_SIGNAL = 27;
+
+  RADAR_OBSTACLE_FRONT = 30;
+  RADAR_OBSTACLE_FRONT_LEFT = 31;
+  RADAR_OBSTACLE_FRONT_RIGHT = 32;
+  RADAR_OBSTACLE_REAR_LEFT = 33;
+  RADAR_OBSTACLE_REAR_RIGHT = 34;
+}
+
+message MdcMsg {
+    optional MsgType msg_type = 1;
+
+    optional FusionOutArray fusion_obstacle = 2;
+    optional DetectionOutArrayCamera camera_obstacle = 3;
+    optional DetectionOut3DArray lidar_obstacle = 4;
+
+    optional FreeSpaceOutArray freespace = 5;
+
+    optional LaneDetectionOutArray lane = 8;
+
+    optional ObjSignalArray road_mark = 11;
+
+    optional RadarTrackArrayFrame radar_frame = 12;
+    optional LidarFrame lidar_frame = 13;
+    optional Image yuv_frame = 14;
+    optional CompressedImage h265_frame = 15;
+    optional Location locate_frame = 16;
+}

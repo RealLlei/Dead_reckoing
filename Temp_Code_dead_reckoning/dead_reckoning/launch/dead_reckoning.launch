@@ -1,0 +1,8 @@
+<cyber>
+    <module>
+        <name>dead_reckoning</name>
+        <dag_conf>dead_reckoning.dag</dag_conf>
+        <process_name>dead_reckoning</process_name>
+        <sched_name>control_sched</sched_name>
+    </module>
+</cyber>

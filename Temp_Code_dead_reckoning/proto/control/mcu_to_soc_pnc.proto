@@ -1,0 +1,614 @@
+syntax = "proto2";
+package TL.control;
+
+import "proto/common/header.proto";
+
+message TJA_condition {
+  optional bool TJA_is_VehStaCond_bl = 1;
+  optional bool TJA_is_VehSpdCond_bl = 2;
+  optional bool TJA_is_StrTorqTkovCond_bl = 3;
+  optional bool TJA_is_ACCActv_bl = 4;
+  optional bool TJA_is_InhibitFlf_bl = 5;
+  optional bool TJA_is_OvrrdCond_bl = 6;
+  optional bool TJA_is_LgtStsCond_bl = 7;
+  optional bool TJA_is_SteerOffset_Acceptable_bl = 8;
+  optional bool TJA_is_ActiveFlf_bl = 9;
+  optional bool TJA_is_TargetVehFlf_bl = 10;
+  optional bool TJA_is_suspend2active_bl = 11;
+  optional bool TJA_is_DrvrCnfrm_bl = 12;
+  optional bool TJA_is_CTRL_OUT_LatActErr_bl = 13;
+  optional bool TJA_is_HMI_HdOffExt_bl = 14;
+  optional bool TJA_is_EgoVehSpdActiveEnbl_bl = 15;
+  optional bool TJA_is_Fault_bl =16;
+}
+
+message ACC_condition{
+ optional bool  ACC_is_CODPFoloTgtExist_bl = 1;
+ optional bool  ACC_is_ACCReqEnbl_bl = 2;
+ optional bool  ACC_is_ACCSwOnSw_bl = 3;
+ optional bool  ACC_is_ACCSwCanclSw_bl = 4;
+ optional bool  ACC_is_ACCReqDsbl_bl = 5;
+ optional bool  ACC_is_NNPCancelACC_bl = 6;
+ optional bool  ACC_is_VehSpdActiveEnbl_bl = 7;
+ optional bool  ACC_is_ReversibleFlt_bl = 8;
+}
+
+
+message Can_MSG_0x8E{
+  optional   uint32 ADCS2_ADAS_EPSAngleReqSt = 1;
+  optional   uint32 ADCS2_EPS_LDPState = 2;
+  optional   uint32 ADCS2_NNP_SystemFaultStatus = 3;
+  optional   uint32 ADCS_Pilot_SystemFaultStatus = 4;
+  optional   uint32 ADCS2_ADAS_EPSLateralCtrlType = 5;
+  optional   uint32 ADCS2_ADSDriving_mode = 6;
+  optional   float ADCS2_ADAS_EPSAngleReq = 7;
+  optional   uint32 ADCS2_ALCDirection = 8;
+  optional   uint32 ADCS2_EPS_ELKState = 9;
+  optional   uint32 ADCS2_longitudCtrlType =10 ;
+  optional   uint32 ADCS2_LongitudCtrlDecToStopReq =11 ;
+  optional   uint32 ADCS2_LongitudCtrlDriveOff =12 ;
+  optional   uint32 ADCS2_LongitudCtrlAccelCtrlReq =13 ;
+  optional   float ADCS2_LongitudCtrlTargetAccel =14 ;
+}
+
+message Can_MSG_0x8F{
+  optional    uint32 ADCS11_PA_GearReq = 1;
+  optional    uint32 ADCS11_PA_GearPosReqVail = 2;
+  optional    uint32 ADCS11_PA_prefillReq = 3;
+  optional    uint32 ADCS11_PA_GearPosReq = 4;
+  optional    uint32 ADCS11_PA_BrakemodeReq = 5;
+  optional    uint32 ADCS11_PA_EpbReq = 6;
+  optional    float ADCS11_PA_StopDistance = 7;
+  optional    float ADCS11_PA_EPSAngleReq = 8;
+  optional    uint32 ADCS11_PA_IDBControlReqV =9 ;
+  optional    float ADCS11_PA_TarDecel =10 ;
+  optional    uint32 ADCS11_PA_EPSAngleReqSt =11 ;
+  optional    uint32 ADCS11_PA_EPSAngleReqV =12 ;
+  optional    float ADCS11_PA_PAMaxSpd =13 ;
+  optional    uint32 ADCS11_PA_IDBControlReq =14 ;
+  optional    uint32 ADCS11_PA_TorqReq =15 ;
+  optional    uint32 ADCS11_PA_TorqReqValidity =16 ;
+  optional    uint32 ADCS11_PA_TarDecelreq =17 ;
+  optional    uint32 ADCS11_PA_ParkingFnMd =18 ;
+  optional    uint32 ADCS11_PA_StopReq =19 ;
+  optional    uint32 ADCS11_PA_StopDistanceValid =20 ;
+  optional    float ADCS11_PA_TorqReqValue =21 ;
+  optional    uint32 ADCS11_PA_IDB_TorqReqValidity =22 ;
+  optional    float ADCS11_PA_IDB_TorqReqValue =23 ;
+}
+
+message Can_MSG_0x136{
+  optional  uint32 ADCS12_DCLCAudioplay = 1;
+  optional  uint32 ADCS12_PilotAudioPlay = 2;
+  optional  uint32 ADCS12_HandOffAudioplay = 3;
+  optional  uint32 ADCS12_NNPCancelAudioPlay = 4;
+  optional  uint32 ADCS12_MRMAudioPlay = 5;
+  optional  uint32 ADCS12_NNP_ResumeAudioplay = 6;
+  optional  uint32 ADCS12_Lcsndrequest = 7;
+  optional  uint32 ADCS12_Lcsndrconfirm = 8;
+  optional  uint32 ADCS12_DriveOffBroadcast = 9;
+  optional  uint32 ADCS12_EyeOffBroadcast = 10;
+  optional  uint32 ADCS12_longitudDisableInfo = 11;
+  optional  uint32 ADCS12_SpeedAdaptComfirm = 12;
+  optional  uint32 ADCS12_PayModeConfirm = 13;
+  optional  uint32 ADCS12_longitudCtrlSysInfo = 14;
+  optional  uint32 ADCS12_ADAS_DriveOffinhibition = 15;
+  optional  uint32 ADCS12_P2N_State_Reminder = 16;
+  optional  uint32 ADCS12_NNP_State_Reminder = 17;
+  optional  uint32 ADCS12_NNP_LightRemind = 18;
+  optional  uint32 ADCS12_LaneChangePendingAlert =19;
+  optional  uint32 ADCS12_NPilotSysInfo =20;
+  optional  uint32 ADCS12_LCAudioPlay =21;
+  optional  uint32 ADCS12_NNP_Scenarios_AudioPlay =22;
+  optional  uint32 ADCS12_NNP_RINO   =23;
+}
+
+message Can_MSG_0x193{
+   optional  uint32 ADCS8_LDWState = 1;
+   optional  uint32 ADCS8_LDWWarnState = 2;
+   optional  uint32 ADCS8_LDWMode = 3;
+   optional  uint32 ADCS8_ELKMode = 4;
+   optional  uint32 ADCS8_LDPELKWarnState = 5;
+   optional  uint32 ADCS8_lateralCtrHandsEyesOffWarning = 6;
+   optional  uint32 ADCS8_MissingExitAlert = 7;
+   optional  uint32 ADCS8_LKSSetspeed = 8;
+   optional  uint32 ADCS8_ACCState = 9;
+   optional  uint32 ADCS8_lateralCtrtakeover = 10;
+   optional  uint32 ADCS8_LateralCtrHandOffReleasewarning = 11;
+   optional  uint32 ADCS8_LDPMode = 12;
+   optional  uint32 ADCS8_LDPELKtakeoverWarningstate = 13;
+   optional  uint32 ADCS8_longitudCtrlSetSpeed = 14;
+   optional  uint32 ADCS8_NNP_Scenarios = 15;
+   optional  uint32 ADCS8_longitudCtrlTakeOverReq = 16;
+   optional  uint32 ADCS8_longitudCtrlSetDistance = 17;
+   optional  uint32 ADCS8_longitudCtrlTargetValidity = 18;
+   optional  uint32 ADCS8_ACCSystemFaultStatus = 19;
+   optional  uint32 ADCS8_HornReq = 20;
+   optional  uint32 ADCS8_DoorUnlock = 21;
+   optional  uint32 ADCS8_ACCOnOffState =22 ;
+   optional  uint32 ADCS8_NNP_SOAAudioplay=23 ;
+   optional  uint32 ADCS8_TSR_SLFStatefeedback=24 ;
+   optional  uint32 ADCS8_VoiceNotifFrequency_mode=25 ;
+   optional  uint32 ADCS8_NPilot_SystemFaultStatus=26 ;
+   optional  uint32 ADCS8_NPilot_SysState=27 ;
+   optional  uint32 ADCS8_NNP_AutoOnOffSet=28 ;
+   optional  uint32 ADCS8_NNP_SystemFaultStatus=29 ;
+   optional  uint32 ADCS8_NNPSysState=30 ;
+   optional  uint32 ADCS8_Lanechangeinfor=31 ;
+   optional  uint32 ADCS8_DCLCSysState = 32;
+   optional  uint32 ADCS8_LaneChangeSystemFaultStatus = 33;
+   optional  uint32 ADCS8_LaneChangeWarning = 34;
+   optional  uint32 ADCS8_ADAS_DriveOffPossilbe = 35;
+   optional  uint32 ADCS8_DriveOffinhibitionObjType = 36;
+   optional  uint32 ADCS8_VoiceMode = 37;
+   optional  uint32 ADCS8_ALC_mode = 38;
+   optional  uint32 ADCS8_NNP_State = 39;
+   optional  uint32 ADCS8_Lanechangedirection = 40;
+   optional  uint32 ADCS8_ADSDriving_mode = 41;
+   optional  uint32 ADCS8_NNP_MRM_status = 42;
+}
+
+message CanOutput{
+  optional  Can_MSG_0x8E Adptr_Out_Msg_0x8E = 1;
+  optional  Can_MSG_0x8F Adptr_Out_Msg_0x8F =2 ;
+  optional  Can_MSG_0x136 Adptr_Out_Msg_0x136 =3 ;
+  optional  Can_MSG_0x193 Adptr_Out_Msg_0x193 =4 ;
+}
+
+message CtrlFlag{
+  optional bool posecalc_inputdata_valid_bl = 1;
+  optional bool posecalc_posedata_timecheck_bl = 2;
+  optional bool posecalc_enable_bl = 3;
+  optional bool trajCalc_trajdata_replaning_flag_bl = 4;
+  optional bool trajcalc_trajdata_estop_bl = 5;
+  optional bool trajcalc_trajdata_pointtime_check_bl = 6;
+  optional bool trajcalc_trajdata_timecheck_bl = 7;
+  optional bool trajcalc_enable_bl = 8;
+  optional bool ctrldec_req_auto_bl = 9;
+  optional bool ctrldec_is_gear_change_req_bl = 10;
+  optional bool ctrldec_is_stop_steer_ctrl_bl = 11;
+  optional bool ctrldec_is_vehicle_standstill_bl = 12;
+  optional bool ctrldec_is_steer_set_ok_bl = 13;
+  optional bool ctrldec_lat_resetflag_bl = 14;
+  optional bool ctrldec_lon_resetflag_bl = 15;
+  optional bool ctrldec_lon_sys_gear_ena_bl = 16;
+  optional bool ctrldec_lon_sys_brk_emerg_bl = 17;
+  optional bool latctrl_resetflag_bl = 18;
+  optional bool latictrl_fdbk_rvsflag_bl = 19;
+  optional bool lonctrl_resetflag_bl = 20;
+  optional bool lonctrl_sys_gearena_bl = 21;
+  optional bool lonctrl_sys_brkemerg_bl = 22;
+  optional bool ctrlout_gear_enable_bl = 23;
+  optional bool ctrlout_emerg_enable_bl = 24;
+  optional uint32 calibration_counter_u16 = 25;
+  optional bool sharking_lat_pos_err_bl = 26;
+  optional bool sharking_yawrate_bl = 27;
+  optional bool sharking_steer_bl = 28;
+  optional bool sharking_yawrate_limit_bl = 29;
+  optional bool lat_track_pos_err_bl = 30;
+  optional bool lat_track_angle_err_bl = 31;
+  optional bool lat_act_steer_err_bl = 32;
+  optional bool lat_act_steer_rate_err_bl = 33;
+  optional bool lon_follow_pos_err_bl = 34;
+  optional bool lon_follow_vel_err_bl = 35;
+  optional bool lon_act_acceleration_err_bl = 36;
+  optional bool lon_act_deceleration_err_bl = 37;
+  optional bool pos_traj_loc_plan_err_bl = 38;
+  optional bool pos_traj_loc_chassis_vel_err_bl = 39;
+  optional bool steer_bias_err_bl = 40;
+
+}
+message ControlPose {
+  optional float posecalc_posedata_timegap_sg = 1;
+  optional float posedata_world_pos_x_sg = 2;
+  optional float posedata_world_pos_y_sg = 3;
+  optional float posedata_vrf_vel_x_sg = 4;
+  optional float posedata_vrf_vel_y_sg = 5;
+  optional float posedata_vrf_acc_x_sg = 6;
+  optional float posedata_vrf_acc_y_sg = 7;
+  optional float posedata_world_heading_sg = 8;
+  optional float posedata_vrf_yawrate_sg = 9;
+  optional float posecalc_world_pos_x_sg = 10;
+  optional float posecalc_world_pos_y_sg = 11;
+  optional float posecalc_vrf_vel_x_sg = 12;
+  optional float posecalc_vrf_vel_y_sg = 13;
+  optional float posecalc_vrf_acc_x_sg = 14;
+  optional float posecalc_vrf_acc_y_sg = 15;
+  optional float posecalc_world_vel_x_sg = 16;
+  optional float posecalc_world_vel_y_sg = 17;
+  optional float posecalc_world_acc_x_sg = 18;
+  optional float posecalc_world_acc_y_sg = 19;
+  optional float posecalc_world_heading_sg = 20;
+  optional float posecalc_world_pitch_sg = 21;
+}
+
+message TrajCalc {
+  optional float trajcalc_lon_linear_ratio_sg = 1;
+  optional float trajcalc_lon_poserrcmd_sg = 2;
+  optional float trajcalc_lon_headingcmd_sg = 3;
+  optional float trajcalc_lon_velcmd_sg = 4;
+  optional float trajcalc_lon_acc_cmd_sg = 5;
+  optional float trajcalc_lon_curvcmd_sg = 6;
+  optional float trajcalc_lonpre_linear_ratio_sg = 7;
+  optional float trajcalc_lonpre_poserrcmd_sg = 8;
+  optional float trajcalc_lonpre_headingcmd_sg = 9;
+  optional float trajcalc_lonpre_velcmd_sg = 10;
+  optional float trajcalc_lonpre_acc_cmd_sg = 11;
+  optional float trajcalc_lonpre_curvrmd_sg = 12;
+  optional float trajcalc_posedata_posex_sg = 13;
+  optional float trajcalc_posedata_posey_sg = 14;
+  optional float trajcalc_lat_linear_ratio_sg = 15;
+  optional float trajcalc_lat_match_pointx_sg = 16;
+  optional float trajcalc_lat_match_pointy_sg = 17;
+  optional float trajcalc_lat_poserrcmd_sg = 18;
+  optional float trajcalc_lat_headingcmd_sg = 19;
+  optional float trajcalc_lat_velcmd_sg = 20;
+  optional float trajcalc_lat_acc_cmd_sg = 21;
+  optional float trajcalc_lat_curvcmd_sg = 22;
+  optional float trajcalc_posedata_preposex_sg = 23;
+  optional float trajcalc_posedata_preposey_sg = 24;
+  optional float trajcalc_latpre_linear_ratio_sg = 25;
+  optional float trajcalc_latpre_match_pointx_sg = 26;
+  optional float trajcalc_latpre_match_pointy_sg = 27;
+  optional float trajcalc_latpre_poserrcmd_sg = 28;
+  optional float trajcalc_latpre_headingcmd_sg = 29;
+  optional float trajcalc_latpre_velcmd_sg = 30;
+  optional float trajcalc_latpre_acc_cmd_sg = 31;
+  optional float trajcalc_latpre_curvcmd_sg = 32;
+
+  optional double trajcalc_lon_match_pointx_sg	=	50	;
+  optional double trajcalc_lon_match_pointy_sg	=	51	;
+  optional double traj_reference_x_sg	=	52	;
+  optional double traj_reference_y_sg	=	53	;
+  optional uint32 trajcalc_lon_startpoint_index_u8=54;
+  optional uint32 trajcalc_lonpre_startpoint_index_u8=55;
+  optional uint32  trajcalc_lat_startpoint_index_u8=56;
+}
+
+message CtrlDec{
+  optional float ctrldec_lat_sys_poserr_sg = 1;
+  optional float ctrldec_lat_sys_yawff_sg = 2;
+  optional float ctrldec_lat_sys_velff_sg = 3;
+  optional float ctrldec_lat_sys_curvff_sg = 4;
+  optional float ctrldec_lat_api_poscmd_sg = 5;
+  optional float ctrldec_lat_api_yawcmd_sg = 6;
+  optional float ctrldec_lat_api_curvcmd_sg = 7;
+  optional float ctrldec_lat_api_steercmd_sg = 8;
+  optional float ctrldec_lon_sys_poserr_sg = 9;
+  optional float ctrldec_lon_sys_velff_sg = 10;
+  optional float ctrldec_lon_sys_accff_sg = 11;
+  optional float ctrldec_lon_api_poscmd_sg = 12;
+  optional float ctrldec_lon_api_velff_sg = 13;
+  optional float ctrldec_lon_api_acc_cmd_sg = 14;
+  optional float ctrldec_lon_api_thrcmd_sg = 15;
+  optional float ctrldec_lon_api_brkcmd_sg = 16;
+  optional uint32 ctrldec_sysmode_u8 = 17;
+  optional uint32 ctrldec_lat_sysmodecmd_u8 = 18;
+  optional uint32 ctrldec_lon_sysmodecmd_u8 = 19;
+  optional uint32  ctrldec_lon_sys_gearcmd_u8 =20;
+}
+message CtrlLat{
+  optional	float	latctrl_sys_poserr_sg	=	1	;
+  optional	float	latctrl_sys_yawff_sg	=	2	;
+  optional	float	latctrl_sys_velff_sg	=	3	;
+  optional	float	latctrl_sys_curvff_sg	=	4	;
+  optional	float	latctrl_api_poscmd_sg	=	5	;
+  optional	float	latctrl_api_yawcmd_sg	=	6	;
+  optional	float	latctrl_api_curvcmd_sg	=	7	;
+  optional	float	latctrl_api_steercmd_sg	=	8	;
+  optional	float	latictrl_fdbk_vxb_sg	=	9	;
+  optional	float	latictrl_fdbk_heading_sg	=	10	;
+  optional	float	latictrl_fdbk_yawrate_sg	=	11	;
+  optional	float	latictrl_fdbk_steer_sg	=	12	;
+  optional	float	latictrl_offset_pi_torscmd_sg	=	13	;
+  optional	float	latictrl_offset_torsrateffcmd_sg	=	14	;
+  optional	float	latictrl_offset_output_yawcmd_sg	=	15	;
+  optional	float	latictrl_tors_pure_yawerr_sg	=	16	;
+  optional	float	latictrl_tors_yawerr_sg	=	17	;
+  optional	float	latictrl_tors_pi_torsrate_sg	=	18	;
+  optional	float	latictrl_tors_pi_leadfilter_torsrate_sg	=	19	;
+  optional	float	latictrl_tors_torsrateff_sg	=	20	;
+  optional	float	latictrl_tors_output_yawratecmd_sg	=	21	;
+  optional	float	latictrl_rate_yawratecmd_lmt_sg	=	22	;
+  optional	float	latictrl_rate_filter_yawratecmd_lmt_sg	=	23	;
+  optional	float	latictrl_rate_pi_steer_sg	=	24	;
+  optional	float	latictrl_rate_pi_filter_steer_sg	=	25	;
+  optional	float	latictrl_rate_steerff_sg	=	26	;
+  optional	float	latictrl_rate_output_front_steercmd_sg	=	27	;
+  optional	float	latictrl_rate_output_front_steercmd_offset_sg	=	28	;
+  optional	float	latictrl_rate_output_sw_steercmd_sg	=	29	;
+  optional	float	latictrl_steer_steercmd_filter_sg	=	30	;
+  optional	float	latictrl_steer_max_steerrate_value_sg	=	31	;
+  optional	float	latictrl_steer_steercmd_lmt_filter_sg	=	32	;
+  optional	float	latictrl_steer_output_steercmd_sg	=	33	;
+  optional uint32 latctrl_modecmd_u8 =34;
+  optional uint32 latictrl_fdbk_gear_u8 = 35;
+}
+message CtrlLon{
+  optional	float	lonctrl_sys_poserr_sg	=	1	;
+  optional	float	lonctrl_sys_velff_sg	=	2	;
+  optional	float	lonctrl_sys_accff_sg	=	3	;
+  optional	float	lonctrl_api_poscmd_sg	=	4	;
+  optional	float	lonctrl_api_velcmd_sg	=	5	;
+  optional	float	lonctrl_api_acccmd_sg	=	6	;
+  optional	float	lonctrl_api_thrcmd_sg	=	7	;
+  optional	float	lonctrl_api_brkcmd_sg	=	8	;
+  optional	float	lonctrl_fdbk_vx_sg	=	9	;
+  optional	float	lonctrl_fdbk_ax_sg	=	10	;
+  optional	float	lonctrl_fdbk_pitch_sg	=	11	;
+  optional	float	lonctrl_fdbk_gear_sg	=	12	;
+  optional	float	lonctrl_fdbk_reverse_sg	=	13	;
+  optional	float	lonctrl_pos_poserr_filter_sg	=	14	;
+  optional	float	lonctrl_pos_pi_velcmd_sg	=	15	;
+  optional	float	lonctrl_pos_output_velcmd_sg	=	16	;
+  optional	float	lonctrl_vel_vel_err_sg	=	17	;
+  optional	float	lonctrl_vel_pi_acc_cmd_sg	=	18	;
+  optional	float	lonctrl_vel_pi_acccmd_filter_sg	=	19	;
+  optional	float	lonctrl_vel_accpitch_sg	=	20	;
+  optional	float	lonctrl_vel_accdamper_sg	=	21	;
+  optional	float	lonctrl_vel_accff_filter_sg	=	22	;
+  optional	float	lonctrl_vel_output_accCmd_sg	=	23	;
+  optional	float	lonctrl_vel_output_accCmd_filter_sg	=	24	;
+  optional	float	lonctrl_thrust_thr_accerr_sg	=	25	;
+  optional	float	lonctrl_thrust_brk_accerr_sg	=	26	;
+  optional	float	lonctrl_thrust_fdbk_ax_filter_sg	=	27	;
+  optional	float	lonctrl_thrust_thr_acc_cmd_filter_sg	=	28	;
+  optional	float	lonctrl_thrust_brk_acc_cmd_filter_sg	=	29	;
+  optional	float	lonctrl_thrust_pi_thr_acc_cmd_sg	=	30	;
+  optional	float	lonctrl_thrust_pi_brk_acc_cmd_sg	=	31	;
+  optional	float	lonctrl_thrust_acc_cmd_filter_lmt_sg	=	32	;
+  optional	float	lonctrl_thrust_acctothr_gain_sg	=	33	;
+  optional	float	lonctrl_thrust_throut_throcmd_sg	=	34	;
+  optional	float	lonctrl_thrust_acctobrk_gain_sg	=	35	;
+  optional	float	lonctrl_thrust_brkout_brkcmd_sg	=	36	;
+  optional	float	lonctrl_accel_eso_cmd_sg	=	37	;
+  optional	float	lonctrl_deccel_eso_cmd_sg	=	38	;
+  optional	float	lonctrl_slope_estimate_sg	=	39	;
+  optional	float	lonctrl_mass_estimate_sg	=	40	;
+  optional uint32 lonctrl_modecmd_u8 =41;
+  optional uint32 lonctrl_sys_gearcmd_u8 = 42;
+
+
+}
+message CtrlCmd{
+
+  optional	float	ctrlout_brake_cmd_sg	=	1	;
+  optional	float	ctrlout_throttle_cmd_sg	=	2	;
+  optional	float	ctrlout_acc_cmd_sg	=	3	;
+  optional	float	ctrlout_steer_cmd_sg	=	4	;
+  optional	float	ctrlout_steer_torque_cmd_sg	=	5	;
+
+}
+message CtrlEst{
+  optional	float	steeroffset_to_closeloop_sg	=	1	;
+  optional	float	yawrate_bias_to_closeloop_sg	=	2	;
+  optional	float	heading_bias_to_closeloop_sg	=	3	;
+  optional	float	ax_bias_to_closeloop_sg	=	4	;
+  optional	float	ay_bias_to_closeloop_sg	=	5	;
+  optional	float	united_est_yawrate_sg	=	6	;
+  optional	float	united_est_beta_sg	=	7	;
+  optional	float	united_est_vy_sg	=	8	;
+  optional	float	united_est_lat_vx_sg	=	9	;
+  optional	float	united_est_jerk_sg	=	10	;
+  optional	float	united_est_ax_sg	=	11	;
+  optional	float	united_est_lon_vx_sg	=	12	;
+  optional	float	united_est_mass_sg	=	13	;
+  optional	float	united_est_slope_sg	=	14	;
+  optional float united_est_pitch_sg = 15;
+  optional float united_est_roll_sg = 16;
+  optional float united_est_yaw_sg = 17;
+  optional float united_est_kappa_sg = 18;
+  optional float estol_steeroffset_r0_sg = 19;
+  optional float estol_steeroffset_r1_sg = 20;
+  optional float estol_steeroffset_r2_sg = 21;
+  optional float estol_steeroffset_r3_sg = 22;
+  optional float estol_steeroffset_r4_sg = 23;
+  optional float estol_steeroffset_r5_sg = 24;
+  optional float estol_steeroffset_r6_sg = 25;
+  optional float estol_steeroffset_r7_sg = 26;
+  optional float estol_steeroffset_r8_sg = 27;
+  optional float estol_steeroffset_r9_sg = 28;
+  optional float estol_original_steeroffset_sg = 29;
+  optional float estol_steerspd_sg = 30;
+  optional float estol_reserve_r0_sg	=	31;
+  optional float estol_reserve_r1_sg	=	32;
+  optional float estol_reserve_r2_sg	=	33;
+  optional float estol_reserve_r3_sg	=	34;
+  optional float estol_reserve_r4_sg	=	35;
+  optional float estol_reserve_r5_sg	=	36;
+  optional uint32 Est_bend_flag_u8 =37;
+  optional uint32 Est_standstill_flag_u8 = 38;
+  optional uint32 Est_straight_flag_u8 = 39;
+  optional uint32 Est_straight_spd_flag_u8 = 40;
+  optional uint32 Est_straight_yawrate_flag_u8 = 41;
+  optional uint32 Est_straight_steer_flag_u8 = 42;
+  optional uint32 Est_straight_latposerr_flag_u8 = 43;
+  optional uint32 Est_straight_curvcmd_flag_u8 = 44;
+  optional uint32 Est_straight_ayfdbk_flag_u8 = 45;
+  optional uint32 steeroffset_eps_learning_flag_u8 = 46;
+
+
+}
+message CtrlDiag{
+  optional uint32  ctrl_err_u8 = 1;
+
+  optional	float	diag_reserve_r0_sg	=	2	;
+  optional	float	diag_reserve_r1_sg	=	3	;
+  optional	float	diag_reserve_r2_sg	=	4	;
+  optional	float	diag_reserve_r3_sg	=	5	;
+  optional	float	diag_reserve_r4_sg	=	6	;
+  optional	float	diag_reserve_r5_sg	=	7	;
+
+
+}
+
+message CanInputFromMcu {
+  //
+  optional uint32 Est_bend_flag_u8 = 3;
+  optional uint32 Est_standstill_flag_u8 = 4;
+  optional uint32 Est_straight_flag_u8 = 5;
+  optional uint32 Est_straight_spd_flag_u8 = 6;
+  optional uint32 Est_straight_condition_Est_straight_yawrate_flag_u8 = 7;
+  optional uint32 Est_straight_condition_Est_straight_steerfdbk_flag_u8 = 8;
+  optional uint32 Est_straight_condition_Est_straight_poserr_flag_u8 = 9;
+  optional uint32 Est_straight_condition_Est_straight_curv_flag_u8 = 10;
+  optional uint32 Est_straight_condition_Est_straight_ay_flag_u8 = 11;
+  optional uint32 Est_VehState = 12;
+  //
+  optional uint32 condition_type_u16 = 13;
+  optional uint32 calibration_counter_u16 = 14;
+  optional uint32 estol_common_flag_u16 = 15;
+  optional uint32 lon_dtc_u16 = 16;
+  optional uint32 sensor_dtc_u16 = 17;
+  //
+  optional float closeloop_steeroffset_sg = 18;
+  optional float closeloop_yawratebias_sg = 19;
+  optional float closeloop_heading_bias_sg = 20;
+  optional float Est_Original_SteerOffset_sg = 23;
+
+  // can_input
+  // eps
+  optional uint32 EPS2_ADAS_CtrlAbortFeedback = 48;
+  optional float EPS1_SteeringAngle = 49;
+  optional float EPS1_SteerAngleSpd = 50;
+  optional uint32 EPS1_SteerAngleSpdValid = 51;
+  optional uint32 EPS1_SteeringAngleValid = 52;
+  optional float EPS1_TorsionBarTorque = 53;
+  optional uint32 EPS1_TorsionBarTorqueValid = 54;
+  optional uint32 EPS2_ADAS_Available = 55;
+  optional float EPS2_MotCntrl = 56;
+  optional uint32 EPS2_PA_Available = 57;
+  optional uint32 EPS2_PA_Active = 58;
+  optional uint32 EPS2_MotCntrlValid = 59;
+  optional uint32 EPS2_PA_CtrlAbortFeedback = 60;
+  optional uint32 EPS1_HSTWCalibrated = 61;
+
+  // cdcs
+  optional uint32 CDCS18_CameraSpeedLimit = 62;
+  optional uint32 CDCS18_RoadSpeedLimit = 63;
+  optional uint32 CDCS18_DisplaySpeedLimit = 64;
+  optional uint32 CDCS18_LaneNavigation = 65;
+  optional uint32 CDCS20_TrafficJamType = 66;
+  optional uint32 CDCS20_DistanceToTrafficJam = 67;
+  optional uint32 CDCS18_CameraDistance = 68;
+  optional uint32 CDCS20_TrafficJamPassingTime = 69;
+  optional uint32 CDCS20_TrafficJamLength = 70;
+  optional uint32 CDCS11_TgtSpdCtgSet = 71;
+  optional uint32 CDCS11_TgtSpdDrftSet = 72;
+  optional uint32 CDCS21_LCASteerWhlVibrat_OnOffSet = 73;
+  optional uint32 CDCS11_DrvOffAlertSwitch = 74;
+// for metric collect
+optional uint32 IDB7_ABSFail = 75;
+optional uint32 IDB7_ABSActive = 76;
+optional uint32 IDB7_TCSFail = 77;
+optional uint32 IDB7_TCSActive = 78;
+optional uint32 IDB7_ESCFail = 79;
+optional uint32 IDB7_ESCActive = 80;
+optional float IDB3_VehicleSpd = 81;
+optional uint32 IDB3_VehicleSpdValid = 82;
+optional float IDB3_MasterCylPressure = 83;
+optional uint32 IDB3_MasterCylPressureInvalid = 84;
+optional uint32 IDB6_EPBAvailable = 85;
+optional uint32 IDB6_EPBStatus = 86;
+optional uint32 IDB1_BrakePedalApplied = 87;
+optional uint32 IDB1_BrakePedalAppliedV = 88;
+optional uint32 IDB7_HDCEnabled = 89;
+optional uint32 IDB7_ESCDisable = 90;
+optional uint32 IDB7_HDCAtive = 91;
+optional uint32 IDB7_DynParkBrkByIDBActive = 92;
+optional uint32 IDB7_TCSDisable = 93;
+optional uint32 IDB7_ARPACTIVE = 94;
+optional uint32 IDB7_EBD_Fail = 95;
+optional uint32 IDB7_ARPFailure = 96;
+optional uint32 IDB4_FLWhlDir = 97;
+optional float IDB4_FLWhlVelocity = 98;
+optional uint32 IDB4_FLWhlVelocityValid = 99;
+optional uint32 IDB4_FRWhlDir = 100;
+optional float IDB4_FRWhlVelocity = 101;
+optional uint32 IDB4_FRWhlVelocityValid = 102;
+optional uint32 IDB4_RLWhlDir = 103;
+optional float IDB4_RLWhlVelocity = 104;
+optional uint32 IDB4_RLWhlVelocityValid = 105;
+optional uint32 IDB4_RRWhlDir = 106;
+optional float IDB4_RRWhlVelocity = 107;
+optional uint32 IDB4_RRWhlVelocityValid = 108;
+optional uint32 IDB5_BrakeDiscTempSts = 109;
+optional uint32 IDB5_VehicleStanstill = 110;
+optional uint32 IDB5_ACC_ReqLim = 111;
+optional uint32 IDB5_ABAactive = 112;
+optional uint32 IDB5_ACC_Enable = 113;
+optional float IDB5_ACC_ReferenceAccel = 114;
+optional uint32 IDB5_DriverOverride = 115;
+optional uint32 IDB9_PA_CtrlAbortFeedback = 116;
+optional uint32 IDB9_PA_ParkingBrkMdSeln = 117;
+optional uint32 IDB9_PA_ParkingFnMd = 118;
+optional uint32 IDB9_PA_ParkingAvailable = 119;
+optional uint32 IDB9_PA_ApaCtrlSts = 120;
+optional uint32 IDB9_PAStandStill = 121;
+optional uint32 IDB9_PASts = 122;
+
+//
+optional uint32 ACU1_Driver_Buckle = 123;
+optional uint32 ACU1_CrashStatus = 124;
+optional float ACU2_LatAccSensorValue = 125;
+optional uint32 ACU2_LatAccSensorValueV = 126;
+optional float ACU2_LongAccSensorValue = 127;
+optional uint32 ACU2_LongAccSensorValueV = 128;
+optional float ACU2_VehicleDynYawRate = 129;
+optional uint32 ACU2_VehicleDynYawRateV = 130;
+
+//
+optional float VCU5_AccelPosition = 131;
+optional uint32 VCU5_ActGear = 132;
+optional uint32 VCU5_ActGearValid = 133;
+optional uint32 VCU5_AccelPositionValid = 134;
+optional uint32 VCU5_READYLightSts = 135;
+optional uint32 VCU5_DriverOvertakeMode = 136;
+optional uint32 VCU5_EmuEngineSts = 137;
+//
+
+optional uint32 BDCS3_BackDoorAjar = 138;
+optional uint32 BDCS1_FrontLampSt = 139;
+optional uint32 BDCS1_HazardLampSt = 140;
+optional uint32 BDCS1_HazardSwSt = 141;
+optional uint32 BDCS1_HighBeamSW = 142;
+optional uint32 BDCS1_HighBeamSt = 143;
+optional uint32 BDCS1_LeftTurnLightSt = 144;
+optional uint32 BDCS1_LowBeamSt = 145;
+optional uint32 BDCS1_RightTurnLightSt = 146;
+optional uint32 BDCS1_TurnLightSW = 147;
+optional uint32 BDCS1_PowerMode = 148;
+optional uint32 BDCS1_TrunkLockSts = 149;
+optional uint32 BDCS1_HoodAjarSts = 150;
+optional uint32 BDCS4_FLTyre_PressureWarn = 151;
+optional uint32 BDCS4_FRTyre_PressureWarn = 152;
+optional uint32 BDCS4_RLTyre_PressureWarn = 153;
+optional uint32 BDCS4_RRTyre_PressureWarn = 154;
+optional uint32 BDCS6_FrontWiperParkPos = 155;
+optional uint32 BDCS6_FrontWiperSts = 156;
+
+  optional uint32 CDCS20_NNP_NextNaviActionType = 157;
+  optional double CDCS20_NNP_NextNaviActionDistance = 158;
+  optional uint32 CDCS20_NaviStatus = 159;
+}
+
+
+message McuToSocPnc {
+  optional TL.common.Header header = 1;
+  // control
+  optional ControlPose ControlPose = 3;
+  optional TrajCalc TrajCalc=4;
+  optional CtrlDec  CtrlDec =5;
+  optional CtrlLat CtrlLat 	=	6	;
+  optional CtrlLon CtrlLon 	=	7	;
+  optional CtrlCmd CtrlCmd	=	8	;
+  optional CtrlEst CtrlEst = 9;
+  optional CtrlDiag CtrlDiag	=	10	;
+  optional CtrlFlag CtrlFlag = 11;
+  // can input
+  optional CanInputFromMcu can_input_from_mcu = 48;
+  optional CanOutput  can_output = 49;
+  // fct
+  optional TJA_condition TJA_condition_u16 = 50;
+  optional ACC_condition ACC_condition_u16 = 51;
+}

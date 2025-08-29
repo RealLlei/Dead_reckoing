@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package apollo.layer;
+
+message LayerPoint{
+    required double longitude = 1;
+    required double latitude = 2;
+}
+
+message LayerStartEndPoint{
+    required LayerPoint start_point = 1;
+    required LayerPoint end_point = 2;
+    optional string info = 3;
+}
+
+message LayerPoints{
+    repeated LayerStartEndPoint layer_start_end_points = 1;
+}

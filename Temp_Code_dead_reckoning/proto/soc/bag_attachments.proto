@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package TL.soc;
+
+import "proto/common/header.proto";
+
+message BagAttachment
+{
+  required string name = 1;
+  required string content = 2;
+}
+
+message BagAttachments
+{
+  optional TL.common.Header header = 1;   
+  repeated BagAttachment attachments = 2;
+}

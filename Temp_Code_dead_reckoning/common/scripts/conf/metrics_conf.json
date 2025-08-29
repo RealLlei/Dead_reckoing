@@ -1,0 +1,77 @@
+{
+  "version": "0.1",
+  "last_update": "2022/11/28",
+  "criterias": [
+    {
+      "name": "ParkCruiseBackwardSpeed",
+      "expect_min_speed": -1.25 
+    },
+    {
+        "name": "ParkCruiseForwardSpeed",
+        "expect_max_speed": 2.64
+    },
+    {
+        "name": "ParkBackwardSpeed",
+        "expect_min_speed": -1.25
+    },
+    {
+        "name": "ParkForwardSpeed",
+        "expect_max_speed": 1.25
+    },
+    {
+        "name": "ParkOutFinalAttitude",
+        "attitude_max_error_degree": 15
+    },
+    {
+        "name": "NnpAccelerateLateral",
+        "expect_Ax": [-1.5,1.5]  
+    },
+    {
+        "name": "NnpAccelerateLongitudinal",
+        "expect_Ay": [-3,3]  
+    },
+    {
+        "name": "NnpJerkLateral",
+        "expect_Jx": [-1.5,1.5]  
+    },
+    {
+        "name": "NnpJerkLongitudinal",
+        "expect_Jy": [-4,4]  
+    },
+    {
+        "name":"FollowDistanceDetection",
+        "large_constant_distance": 5.5,
+        "small_constant_distance":4.5,
+        "value":1.5,
+        "time_interval":0.2
+    },
+    {
+        "name":"DkappaCurvature",
+        "dkappa_due_expected": 0.05
+    },
+    {
+      "name":"KappaCurvature",
+      "kappa_due_expected": 0.21
+    },
+    {
+      "name":"VehicleEndRoadAngle",
+      "expect_Angle": 3
+    },
+    {
+      "name":"AbnormalSwitchingToVisualMode",
+      "perception_type": 1
+    },
+    {
+      "name":"ExemptionRulesForSpeedLimits",
+      "over_speed": 5
+    },
+    {
+      "name":"ReferenceCentricity",
+      "expect_small_vaule":0.12,
+      "expect_big_vaule":1.9,
+      "lane_width":4
+    }
+  ]
+}
+
+

@@ -1,0 +1,23 @@
+syntax = "proto2";
+
+package apollo.perception;
+
+import "apollo_proto/common/header.proto";
+import "apollo_proto/perception/rect2D.proto";
+import "apollo_proto/perception/rect3D.proto";
+
+message Obj {
+  required uint32 obj_id = 1;
+  required uint32 type = 2;
+  required double confidence = 3;
+  required double existConfidence = 4;
+  required Rect3D rect3d = 5;
+  required Rect2D rect2d = 6;
+  required Point3D velocity = 7;
+}
+
+message ObjFrame {
+  required apollo.common.Header header = 1;  // header
+  repeated Obj objs = 2; 
+}
+

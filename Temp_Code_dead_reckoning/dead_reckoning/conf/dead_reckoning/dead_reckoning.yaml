@@ -1,0 +1,52 @@
+%YAML:1.0
+
+recvInstances:
+    - name: chassis
+      type: chassis_proxy
+      id: 1
+
+    
+sendInstances:
+    - name: localization
+      type: location_skeleton
+      id: 1
+
+fm:
+    commTimeout:
+        faultId: 8400
+        objId: 7
+
+# resourceLimit:
+#     group: hz_state_machine
+#     cpu: 150
+#     memory: 200
+
+log:
+    name: dr_location
+    description: dr_location
+    file: /opt/usr/log/hz_log
+    mode: 0
+    level: 4
+
+# schedule:
+#     policy: RR
+#     priority: 99
+#     cpuAffinity: [1, 2 ,3]
+
+# # trigger二选一即可
+# trigger:
+#     type: EVENT
+#     mainSources: 
+#         - name: from_avm
+#           timeout: 5000
+#     auxSources: 
+#         - name: from_router
+#           multiFrame: 1
+
+# trigger二选一即可
+trigger:
+    - name: main_dr_location
+      type: PERIOD
+      period: 10
+      auxSources:
+          - name: chassis

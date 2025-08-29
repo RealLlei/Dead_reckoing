@@ -1,0 +1,76 @@
+syntax = "proto2";
+
+package TL.perception.datacollection;
+
+import "apollo_proto/drivers/radar.proto";
+import "apollo_proto/drivers/header.proto";
+import "apollo_proto/drivers/types.proto";
+
+enum MaintenanceType {
+  NEW_CREATED = 1;
+  Coasted = 2;
+  Merge = 3;
+  Tracked = 4;
+}
+
+enum MotionType {
+  UNKNOWN = 0;
+  MOVING_EGODIRECTION_DRIVING = 1;
+  MOVING_EGODIRECTION_STOPPED = 2;
+  MOVING_EGODIRECTION_REVERSING = 3;
+  MOVING_ONCOMING = 4;
+  MOVING_CROSSING = 5;
+  STATIONARY = 6;
+}
+
+enum SideType {
+  FRONT = 0;
+  REAR = 1;
+  RIGHTSIDE = 2;
+  LEFTSIDE = 3;
+}
+
+message Point3d {
+  optional double x = 1;
+  optional double y = 2;
+  optional double z = 3;
+}
+
+message Rect3f {
+  optional Point3f center = 1;                               // 边框中心点
+  optional Point3d center_std_dev = 2;             // 边框中心点标准差
+  optional Point3f size_lwh = 3;                                 // 边框大小
+  optional Point3d size_std_dev = 4;               // 边框大小标准差
+  optional double orientation = 5;                           // 车辆坐标系下，航向角-单位弧度
+  optional double orientation_std_dev = 6;                 // 边框航向角的标准差
+  repeated Point3f corners = 7; // 边框顶点
+}
+
+message FusionOut {
+  optional uint32 object_id= 1;                    // 障碍物id
+  optional uint32 type = 2;                         // 障碍物类别 uint8
+  optional uint32 detect_sensor_current = 3;
+  optional uint32 detect_sensor_history = 4;
+  optional MaintenanceType maintenance_status = 5;
+  optional float type_confidence = 6;                // 障碍物类别置信度
+  optional float existence_probability = 7;      // 障碍物存在的概率
+  optional Rect3f rect_info = 8;               // 障碍物边框（自车坐标系）
+  optional Point3f velocity_abs = 9;                // 障碍物在当前坐标系下的速度
+  optional Point3f acceleration_abs = 10;             // 障碍物在世界坐标系下的速度
+  optional double time_creation = 11;            // 障碍物被识别的时间戳
+  optional double last_updated_time = 12;            // 障碍物最近更新时间，单位s
+  repeated uint32 sensor_id = 13; //
+  optional MotionType motion_pattern = 14;
+  optional MotionType motion_pattern_history = 15;
+  optional uint32 brake_light_st = 16;  // uint8
+  optional uint32 turn_light_st = 17;  // uint8
+  optional SideType near_side = 18;
+}
+
+message FusionOutArray {
+  optional Header header = 1;
+  optional uint32 obj_amount = 2;
+  optional uint32 loc_seq = 3;
+  repeated FusionOut fusion_out = 4;
+  optional bool is_valid = 5;
+}

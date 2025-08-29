@@ -1,0 +1,45 @@
+syntax = "proto2";
+package TL.perception.datacollection;
+
+import "apollo_proto/drivers/types.proto";
+import "apollo_proto/drivers/header.proto";
+
+enum SpaceClassType {
+    SpaceClassType_UNKNOWN          = 1;
+    SpaceClassType_CONE_POLE        = 2;
+    SpaceClassType_FREESPACE        = 3;
+    SpaceClassType_CURBSTONE        = 4;
+    SpaceClassType_OBSTACLE         = 5;
+    SpaceClassType_OTHER            = 6;
+}
+enum SpaceHeightType {
+    SpaceHeightType_UNKNOWN         = 1;
+    SpaceHeightType_OBSTACLE        = 2;
+    SpaceHeightType_OVERDRIVABLE    = 3;
+    SpaceHeightType_UNDERDRIVABLE   = 4;
+    SpaceHeightType_OTHER           = 5;
+}
+enum SpaceSensorType {
+    SpaceSensorType_CAMERA          = 1;
+    SpaceSensorType_RADAR           = 2;
+    SpaceSensorType_LIDAR           = 3;
+    SpaceSensorType_HDMAP           = 4;
+    SpaceSensorType_LIDAR_CAM_FUSION = 5;
+}
+
+message FreeSpaceOut {
+    optional int32 freespace_seq = 1;
+    optional SpaceClassType cls = 2;
+    optional SpaceHeightType height_type = 3;
+    optional SpaceSensorType sensor_type = 4;
+    repeated Point3D free_space_point_vrf = 5;
+    optional double time_creation = 6;
+}
+
+message FreeSpaceOutArray {
+    optional Header header = 1;
+    optional int32 count = 2;
+    optional int32 loc_seq = 3;
+    repeated FreeSpaceOut free_space_out = 4;
+    optional bool is_valid = 5;
+}

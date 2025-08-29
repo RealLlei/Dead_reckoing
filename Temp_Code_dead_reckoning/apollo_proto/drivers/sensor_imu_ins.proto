@@ -1,0 +1,66 @@
+syntax = "proto2";
+
+package apollo.drivers.imuIns;
+
+import "apollo_proto/common/header.proto";
+import "apollo_proto/common/geometry.proto";
+
+message ImuPose {
+   optional apollo.common.Point3D imu_position = 1;
+   optional apollo.common.Point3D euler_angle = 2;
+}
+message ImuInfo {
+    optional apollo.common.Point3D angular_velocity = 1;
+    optional apollo.common.Point3D linear_acceleration = 2;
+    optional uint32 imu_status = 3;
+    optional double temperature = 4;
+    optional float imuyaw = 5;
+    optional apollo.common.Point3D imuVB_angular_velocity = 6;
+    optional apollo.common.Point3D imuVB_linear_acceleration = 7;
+    optional apollo.common.Point3D gyro_offset = 8;
+    optional apollo.common.Point3D accel_offset = 9;
+    optional apollo.common.Point3D ins2antoffset = 10;
+    optional ImuPose imu2bodyosffet = 11;
+}
+
+message InsInfo {
+  optional double latitude = 1;
+  optional double longitude = 2;
+  optional double elevation = 3;   // altitude
+  optional apollo.common.Point3D utm_position = 4;
+  optional int32 utm_zone_number = 5;
+  optional uint32 utm_zone_char = 6;
+  optional apollo.common.Point3D attitude = 7;
+  optional apollo.common.Point3D linear_velocity = 8;
+  optional apollo.common.Point3D sd_position = 9;
+  optional apollo.common.Point3D sd_attitude = 10;
+  optional apollo.common.Point3D sd_velocity = 11;
+  optional uint32 sys_status = 12;
+  optional uint32 gps_status = 13;
+  optional uint32 warn_info = 14;
+  optional apollo.common.Point3D augular_velocity = 15;
+  optional apollo.common.Point3D linear_acceleration = 16;
+  optional float heading  = 17;
+  optional apollo.common.Point3D mounting_error = 18;
+  optional uint32 sensor_used  = 19;
+  optional float wheel_velocity  = 20;
+  optional float odo_sf  = 21;
+}
+
+message OffsetInfo {
+   optional apollo.common.Point3D gyo_bias = 1;
+   optional apollo.common.Point3D gyo_sf = 2;
+   optional apollo.common.Point3D acc_bias = 3;
+   optional apollo.common.Point3D acc_sf = 4;
+}
+
+message ImuIns {
+    optional apollo.common.Header header = 1;
+    optional double gnss_stamp_sec = 2;
+    optional bool is_valid = 3;
+    optional uint32 gps_week = 4;
+    optional double gps_sec = 5;
+    optional ImuInfo imu_info = 6;
+    optional InsInfo ins_info = 7;
+    optional OffsetInfo offset_info = 8;
+}

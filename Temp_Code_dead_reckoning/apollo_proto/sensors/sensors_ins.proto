@@ -1,0 +1,28 @@
+syntax = "proto2";
+
+package apollo.sensor;
+
+import "apollo_proto/common/header.proto";
+import "apollo_proto/common/geometry.proto";
+
+// Responsed to MDC message type Adsfi::HafInsInfo
+message Ins {
+  optional apollo.common.Header header = 1;
+  optional bool is_valid = 2;
+  optional uint32 gps_week = 3;
+  optional double gps_sec = 4;
+  optional double latitude = 5;
+  optional double longitude = 6;
+  optional double elevation = 7;
+  optional apollo.common.Point3D utm_position = 8;
+  optional int32 utm_zone_number = 9;
+  optional uint32 utm_zone_char = 10;
+  optional apollo.common.Point3D attitude = 11;
+  optional apollo.common.Point3D linear_velocity = 12;
+  optional apollo.common.Point3D sd_position = 13;
+  optional apollo.common.Point3D sd_attitude = 14;
+  optional apollo.common.Point3D sd_velocity = 15;
+  optional uint32 sys_status = 16;
+  optional uint32 gps_status = 17;
+  optional uint32 warn_info = 18;
+}

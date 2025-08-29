@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package TL.soc;
+
+import "proto/common/header.proto";
+
+message RawPointCloud {
+  optional TL.common.Header header = 1;          // publish_stamp 和 SensorStamp.lidar_stamp 都是 尾帧数据时间 frame->data_tail.timestamp 
+  optional string ecu_serial_number = 2;            // 当前默认 hesai-AT128P
+  optional bytes  data = 3;                         // 一帧 120° 数据
+  optional uint32 location_data_header_length = 4;  // 一帧 120° 数据头的长度
+  optional bytes  location_data_header = 5;         // 一帧 120° 数据头的location信息
+  optional uint32 location_data_tail_length = 6;    // 一帧 120° 数据尾的长度
+  optional bytes  location_data_tail = 7;           // 一帧 120° 数据尾的location信息
+  optional uint32 version = 8 [default = 0];        // 运动补偿结构的版本
+  optional string location_proto_name = 9 [default = "TL.dead_reckoning.DeadReckoning"];    // 运动补偿结构的proto名称
+  optional string block_area_data = 10;             // 点云故障数据
+}

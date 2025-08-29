@@ -1,0 +1,1217 @@
+syntax = "proto2";
+
+package apollo.canbus;
+
+message Ehb_fr01_1c6_1c6 {
+// Report Message
+  enum BrakepedalappliedvType {
+    BRAKEPEDALAPPLIEDV_INVALID = 0;
+    BRAKEPEDALAPPLIEDV_VALID = 1;
+  }
+  enum BrakepedalappliedType {
+    BRAKEPEDALAPPLIED_FALSE = 0;
+    BRAKEPEDALAPPLIED_TURE = 1;
+  }
+  // 制动踏板踩下信号有效性 [] [0|1]
+  optional BrakepedalappliedvType brakepedalappliedv = 1;
+  // 制动踏板踩下信号 [] [0|1]
+  optional BrakepedalappliedType brakepedalapplied = 2;
+  // message counter  [] [0|15]
+  optional int32 ehb_fr01_msgcounter = 3;
+  // byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6)  [] [0|255]
+  optional int32 ehb_fr01_checksum = 4;
+}
+
+message Ehb_fr02_1c8_1c8 {
+// Report Message
+  //   [] [0|15]
+  optional int32 ehb_fr02_msgcounter = 1;
+  // byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6)  [] [0|255]
+  optional int32 ehb_fr02_checksum = 2;
+}
+
+message Eps_fr03_1e1_1e1 {
+// Report Message
+  enum Eps_steeringanglespdvalidType {
+    EPS_STEERINGANGLESPDVALID_INVALID = 0;
+    EPS_STEERINGANGLESPDVALID_VALID = 1;
+  }
+  enum Eps_steeringanglevalidType {
+    EPS_STEERINGANGLEVALID_INVALID = 0;
+    EPS_STEERINGANGLEVALID_VALID = 1;
+  }
+  enum Eps_calibratedstatusType {
+    EPS_CALIBRATEDSTATUS_SENSOR_NOT_CALIBRATED = 0;
+    EPS_CALIBRATEDSTATUS_SENSOR_CALIBRATED = 1;
+  }
+  // 角速度是否有效  [] [0|1]
+  optional Eps_steeringanglespdvalidType eps_steeringanglespdvalid = 1;
+  // 角度信号是否有效  [] [0|1]
+  optional Eps_steeringanglevalidType eps_steeringanglevalid = 2;
+  // 角度是否标零  [] [0|1]
+  optional Eps_calibratedstatusType eps_calibratedstatus = 3;
+  // 角速度  [dgree/s] [0|1020]
+  optional double eps_steeringanglespd = 4;
+  // 角度  [dgree] [-720|720]
+  optional double eps_steeringangle = 5;
+  // 用于checksum  [] [0|15]
+  optional int32 eps_fr03_msgcounter = 6;
+  // 验证信号有效性 byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6)  [] [0|255]
+  optional int32 eps_fr03_checksum = 7;
+}
+
+message Esc_fr02_1e5_1e5 {
+// Report Message
+  enum FrwhlspdvalidType {
+    FRWHLSPDVALID_INVALID = 0;
+    FRWHLSPDVALID_VALID = 1;
+  }
+  enum FlwhlspdvalidType {
+    FLWHLSPDVALID_INVALID = 0;
+    FLWHLSPDVALID_VALID = 1;
+  }
+  //   [] [0|32767]
+  optional double flwhlpulcnt = 1;
+  //   [] [0|32767]
+  optional double frwhlpulcnt = 2;
+  //   [] [0|1]
+  optional FrwhlspdvalidType frwhlspdvalid = 3;
+  //   [] [0|1]
+  optional FlwhlspdvalidType flwhlspdvalid = 4;
+  //   [] [0|15]
+  optional int32 esc_fr02_msgcounter = 5;
+  // byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6)  [] [0|255]
+  optional int32 esc_fr02_checksum = 6;
+}
+
+message Esc_fr03_205_205 {
+// Report Message
+  enum RrwhlspdvalidType {
+    RRWHLSPDVALID_INVALID = 0;
+    RRWHLSPDVALID_VALID = 1;
+  }
+  enum RlwhlspdvalidType {
+    RLWHLSPDVALID_INVALID = 0;
+    RLWHLSPDVALID_VALID = 1;
+  }
+  //   [] [0|32767]
+  optional double rlwhlpulcnt = 1;
+  //   [] [0|32767]
+  optional double rrwhlpulcnt = 2;
+  //   [] [0|1]
+  optional RrwhlspdvalidType rrwhlspdvalid = 3;
+  //   [] [0|1]
+  optional RlwhlspdvalidType rlwhlspdvalid = 4;
+  //   [] [0|15]
+  optional int32 esc_fr03_msgcounter = 5;
+  // byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6)  [] [0|255]
+  optional int32 esc_fr03_checksum = 6;
+}
+
+message Egsm_fr01_213_213 {
+// Report Message
+  enum Egsm_gearboxpositionreqType {
+    EGSM_GEARBOXPOSITIONREQ_NO_REQUEST = 0;
+    EGSM_GEARBOXPOSITIONREQ_P = 1;
+    EGSM_GEARBOXPOSITIONREQ_R = 2;
+    EGSM_GEARBOXPOSITIONREQ_N = 3;
+    EGSM_GEARBOXPOSITIONREQ_D = 4;
+    EGSM_GEARBOXPOSITIONREQ_RESERVED = 5;
+    EGSM_GEARBOXPOSITIONREQ_GEAR_HOLD = 6;
+    EGSM_GEARBOXPOSITIONREQ_RESERVED1 = 7;
+  }
+  enum Egsm_gearboxpositionreqinvType {
+    EGSM_GEARBOXPOSITIONREQINV_RESERVED1 = 0;
+    EGSM_GEARBOXPOSITIONREQINV_GEAR_HOLD = 1;
+    EGSM_GEARBOXPOSITIONREQINV_RESERVED = 2;
+    EGSM_GEARBOXPOSITIONREQINV_D = 3;
+    EGSM_GEARBOXPOSITIONREQINV_N = 4;
+    EGSM_GEARBOXPOSITIONREQINV_R = 5;
+    EGSM_GEARBOXPOSITIONREQINV_P = 6;
+    EGSM_GEARBOXPOSITIONREQINV_NO_REQUEST = 7;
+  }
+  enum Egsm_gearboxpositionreqvalidityType {
+    EGSM_GEARBOXPOSITIONREQVALIDITY_INVALID = 0;
+    EGSM_GEARBOXPOSITIONREQVALIDITY_VALID = 1;
+  }
+  // 档位请求信号  [] [0|7]
+  optional Egsm_gearboxpositionreqType egsm_gearboxpositionreq = 1;
+  // 档位请求信号取反  [] [0|7]
+  optional Egsm_gearboxpositionreqinvType egsm_gearboxpositionreqinv = 2;
+  // 档位请求信号有效性  [] [0|1]
+  optional Egsm_gearboxpositionreqvalidityType egsm_gearboxpositionreqvalidity = 3;
+}
+
+message Vcu_fr05_223_223 {
+// Report Message
+  enum Vcu5_gearboxpositiondisplayType {
+    VCU5_GEARBOXPOSITIONDISPLAY_UNKNOWN = 0;
+    VCU5_GEARBOXPOSITIONDISPLAY_FLASH_N = 5;
+    VCU5_GEARBOXPOSITIONDISPLAY_FLASH_N_BUZZ = 6;
+    VCU5_GEARBOXPOSITIONDISPLAY_S = 8;
+    VCU5_GEARBOXPOSITIONDISPLAY_FLASH_P = 10;
+    VCU5_GEARBOXPOSITIONDISPLAY_DRIVE = 11;
+    VCU5_GEARBOXPOSITIONDISPLAY_NEUTRAL = 12;
+    VCU5_GEARBOXPOSITIONDISPLAY_REVERSE = 13;
+    VCU5_GEARBOXPOSITIONDISPLAY_PARK = 14;
+    VCU5_GEARBOXPOSITIONDISPLAY_INVALID = 15;
+  }
+  // 档位显示  [] [0|15]
+  optional Vcu5_gearboxpositiondisplayType vcu5_gearboxpositiondisplay = 1;
+}
+
+message Acu_fr01_233_233 {
+// Report Message
+  enum Acu_drvseatbeltrstType {
+    ACU_DRVSEATBELTRST_BUCKLE = 0;
+    ACU_DRVSEATBELTRST_FAULT = 1;
+    ACU_DRVSEATBELTRST_UNBUCKLE = 2;
+  }
+  // 驾驶员安全带状态  [] [0|3]
+  optional Acu_drvseatbeltrstType acu_drvseatbeltrst = 1;
+  // 消息计数器  [] [0|15]
+  optional int32 acu_sts_alivecounter = 2;
+  // 消息校验和 byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6)  [] [0|255]
+  optional int32 acu_sts_checksum = 3;
+}
+
+message Ihu_fr03_240_240 {
+// Report Message
+  enum Ihu_bsd_onoffsetType {
+    IHU_BSD_ONOFFSET_OFF = 0;
+    IHU_BSD_ONOFFSET_ON = 1;
+  }
+  enum Ihu_pdcswType {
+    IHU_PDCSW_DISABLE = 0;
+    IHU_PDCSW_ENABLE = 1;
+  }
+  // BSD盲区侦测功能设置开关  [] [0|1]
+  optional Ihu_bsd_onoffsetType ihu_bsd_onoffset = 1;
+  // 前超声波雷达禁止开关  [] [0|1]
+  optional Ihu_pdcswType ihu_pdcsw = 2;
+}
+
+message Apa_fr04_253_253 {
+// Control Message
+  enum BsdsetfdType {
+    BSDSETFD_OFF = 0;
+    BSDSETFD_ON = 1;
+  }
+  enum Apa_apaepbreqType {
+    APA_APAEPBREQ_NO_REQUEST = 0;
+    APA_APAEPBREQ_RELEASE_REQUEST = 1;
+    APA_APAEPBREQ_APPLY_REQUEST = 2;
+    APA_APAEPBREQ_RESERVE = 3;
+  }
+  enum Apa_apastopreqType {
+    APA_APASTOPREQ_NO_REQUEST = 0;
+    APA_APASTOPREQ_STOP_CONTROL_IS_REQUIRED = 1;
+  }
+  enum Apa_apamodType {
+    APA_APAMOD_APA_OFF = 0;
+    APA_APAMOD_APA_ON = 1;
+  }
+  enum Apa_apabrkmodType {
+    APA_APABRKMOD_OFF = 0;
+    APA_APABRKMOD_READY = 1;
+    APA_APABRKMOD_ASSIST = 2;
+    APA_APABRKMOD_FAILED = 3;
+  }
+  enum Rcw_warningreqType {
+    RCW_WARNINGREQ_NO_WARNING = 0;
+    RCW_WARNINGREQ_WARNING = 1;
+    RCW_WARNINGREQ_RESERVED1 = 2;
+    RCW_WARNINGREQ_RESERVED2 = 3;
+  }
+  enum Bsd_warningreqrightType {
+    BSD_WARNINGREQRIGHT_NO_WARNING = 0;
+    BSD_WARNINGREQRIGHT_WARNING_LEVEL_1 = 1;
+    BSD_WARNINGREQRIGHT_WARNING_LEVEL_2 = 2;
+    BSD_WARNINGREQRIGHT_RESERVED = 3;
+  }
+  enum Bsd_warningreqleftType {
+    BSD_WARNINGREQLEFT_NO_WARNING = 0;
+    BSD_WARNINGREQLEFT_WARNING_LEVEL_1 = 1;
+    BSD_WARNINGREQLEFT_WARNING_LEVEL_2 = 2;
+    BSD_WARNINGREQLEFT_RESERVED = 3;
+  }
+  enum Bsd_sysstsType {
+    BSD_SYSSTS_INITIALIZATION = 0;
+    BSD_SYSSTS_STANDBY = 1;
+    BSD_SYSSTS_ACTIVE = 2;
+    BSD_SYSSTS_TRAILER_MODE_ALL_BSD_FUNCTION_NOT_AVAILABLE_RESERVED = 3;
+    BSD_SYSSTS_SYSTEM_FAULT = 4;
+    BSD_SYSSTS_SYSTEM_BLINDNESS = 5;
+    BSD_SYSSTS_RESERVED = 6;
+  }
+  // [] [0|1]
+  optional BsdsetfdType bsdsetfd = 1;
+  // [] [0|3]
+  optional Apa_apaepbreqType apa_apaepbreq = 2;
+  // [] [0|2]
+  optional double apa_apatardecel = 3;
+  // [] [0|1]
+  optional Apa_apastopreqType apa_apastopreq = 4;
+  // [] [0|1]
+  optional Apa_apamodType apa_apamod = 5;
+  // [] [0|3]
+  optional Apa_apabrkmodType apa_apabrkmod = 6;
+  // [] [0|512]
+  optional double apa_apamaxspd = 7;
+  //   [] [0|3]
+  optional Rcw_warningreqType rcw_warningreq = 8;
+  //   [] [0|3]
+  optional Bsd_warningreqrightType bsd_warningreqright = 9;
+  //   [] [0|3]
+  optional Bsd_warningreqleftType bsd_warningreqleft = 10;
+  //   [] [0|15]
+  optional Bsd_sysstsType bsd_syssts = 11;
+  //   [] [0|15]
+  optional int32 apa_fr04_msgcounter = 12;
+  // byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6)  [] [0|255]
+  optional int32 apa_fr04_checksum = 13;
+}
+
+message Bdm_fr02_259_259 {
+// Report Message
+  enum Bdm_powermodeType {
+    BDM_POWERMODE_OFF = 0;
+    BDM_POWERMODE_ACC = 1;
+    BDM_POWERMODE_ON = 2;
+    BDM_POWERMODE_CRANK = 3;
+  }
+  // 低压电源模式  [] [0|3]
+  optional Bdm_powermodeType bdm_powermode = 1;
+}
+
+message Esc_fr04_266_266 {
+// Report Message
+  // [] [0|255]
+  optional int32 esc_fr04_checksum = 1;
+  // [] [0|15]
+  optional int32 esc_fr04_msgcounter = 2;
+  // [] [0|1]
+  optional bool frwhlbrkpressurev = 3;
+  // [Bar] [0|409.4]
+  optional double frwhlbrkpressure = 4;
+  // [] [0|1]
+  optional bool flwhlbrkpressurev = 5;
+  // [Bar] [0|409.4]
+  optional double flwhlbrkpressure = 6;
+}
+
+message Esc_fr05_26e_26e {
+// Report Message
+  //   [km/h] [0|511.9375]
+  optional double flwhlvelocity = 1;
+  //   [] [0|1]
+  optional WhlvelocityvalidType flwhlvelocityvalid = 2;
+  //   [km/h] [0|511.9375]
+  optional double frwhlvelocity = 3;
+  //   [] [0|1]
+  optional WhlvelocityvalidType frwhlvelocityvalid = 4;
+  //   [] [0|3]
+  optional WhldirType frwhldir = 5;
+  //   [] [0|3]
+  optional WhldirType flwhldir = 6;
+  //   [] [0|15]
+  optional int32 esc_fr05_msgcounter = 7;
+  // byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6)  [] [0|255]
+  optional int32 esc_fr05_checksum = 8;
+}
+
+message Apa_fr03_27b_27b {
+// Control Message
+  enum Apa_torqreqType {
+    APA_TORQREQ_NO_REQUEST = 0;
+    APA_TORQREQ_REQUEST = 1;
+  }
+  enum Apa_gearposreqvalidityType {
+    APA_GEARPOSREQVALIDITY_INVALID = 0;
+    APA_GEARPOSREQVALIDITY_VALID = 1;
+  }
+  enum Apa_gearposreqType {
+    APA_GEARPOSREQ_NO_REQUEST = 0;
+    APA_GEARPOSREQ_P = 1;
+    APA_GEARPOSREQ_R = 2;
+    APA_GEARPOSREQ_N = 3;
+    APA_GEARPOSREQ_D = 4;
+    APA_GEARPOSREQ_RESERVED = 5;
+  }
+  enum Apa_torqreqvalidityType {
+    APA_TORQREQVALIDITY_INVALID = 0;
+    APA_TORQREQVALIDITY_VALID = 1;
+  }
+  // 请求VCU目标扭矩值  [Nm] [-256|255.5]
+  optional double apa_torqreqvalue = 1;
+  // 请求VCU目标扭矩  [] [0|1]
+  optional Apa_torqreqType apa_torqreq = 2;
+  // 目标档位信号的有效性  [] [0|1]
+  optional Apa_gearposreqvalidityType apa_gearposreqvalidity = 3;
+  // 目标档位信号  [] [0|7]
+  optional Apa_gearposreqType apa_gearposreq = 4;
+  // 请求VCU目标扭矩状态  [] [0|1]
+  optional Apa_torqreqvalidityType apa_torqreqvalidity = 5;
+  //   [] [0|15]
+  optional int32 apa_fr03_msgcounter = 6;
+  // byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6)  [] [0|255]
+  optional int32 apa_fr03_checksum = 7;
+}
+
+message Esc_fr08_27e_27e {
+// Report Message
+  enum EpbstatusType {
+    EPBSTATUS_UNKNOWN = 0;
+    EPBSTATUS_RELEASED = 1;
+    EPBSTATUS_CLAMPED = 2;
+    EPBSTATUS_CLAMPING_IN_PROGRESS = 3;
+    EPBSTATUS_RELEASING_IN_PROGRESS = 4;
+    EPBSTATUS_DYNAMIC_BRAKING_VIA_EPB = 5;
+    EPBSTATUS_FULL_RELEASED = 6;
+  }
+  enum EpbavailableType {
+    EPBAVAILABLE_NOT_VALID = 0;
+    EPBAVAILABLE_EPB_NO_FAILURE = 1;
+    EPBAVAILABLE_EPB_INITIALIZATION_STATE = 2;
+    EPBAVAILABLE_EPB_DIAGNOSTIC = 3;
+    EPBAVAILABLE_EPB_TEMPORARILY_NOT_AVAILABLE = 4;
+    EPBAVAILABLE_EPB_PERMANENTLY_NOT_AVAILABLE = 5;
+  }
+  // EPB工作状态  [] [0|7]
+  optional EpbstatusType epbstatus = 1;
+  //   [] [0|7]
+  optional EpbavailableType epbavailable = 2;
+}
+
+enum WhlvelocityvalidType {
+  WHLVELOCITYVALID_INVALID = 0;
+  WHLVELOCITYVALID_VALID = 1;
+}
+enum WhldirType {
+  WHLDIR_UNKNOWN_OR_STANSTILL = 0;
+  WHLDIR_FORWARD_DIRECTION = 1;
+  WHLDIR_BACKWARD_DIRECTION = 2;
+  WHLDIR_ERROR_IDENTIFIER = 3;
+}
+
+message Esc_fr06_28e_28e {
+// Report Message
+  enum MastercylpressureinvalidType {
+    MASTERCYLPRESSUREINVALID_INVALID = 0;
+    MASTERCYLPRESSUREINVALID_VALID = 1;
+  }
+  //   [km/h] [0|511.9375]
+  optional double rlwhlvelocity = 1;
+  //   [] [0|1]
+  optional WhlvelocityvalidType rlwhlvelocityvalid = 2;
+  //   [km/h] [0|511.9375]
+  optional double rrwhlvelocity = 3;
+  //   [] [0|1]
+  optional WhlvelocityvalidType rrwhlvelocityvalid = 4;
+  //   [] [0|3]
+  optional WhldirType rlwhldir = 5;
+  //   [] [0|3]
+  optional WhldirType rrwhldir = 6;
+  // 主缸压力  [Bar] [0|179.4]
+  optional double mastercylpressure = 7;
+  //   [] [0|15]
+  optional int32 esc_fr06_msgcounter = 8;
+  // 主缸压力值无效  [] [0|1]
+  optional MastercylpressureinvalidType mastercylpressureinvalid = 9;
+  // byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6)  [] [0|255]
+  optional int32 esc_fr06_checksum = 10;
+}
+
+message Esc_fr07_291_291 {
+// Report Message
+  enum LataccsensorvaluevType {
+    LATACCSENSORVALUEV_INVALID = 0;
+    LATACCSENSORVALUEV_VALID = 1;
+  }
+  enum LongaccsensorvaluevType {
+    LONGACCSENSORVALUEV_INVALID = 0;
+    LONGACCSENSORVALUEV_VALID = 1;
+  }
+  enum VehicledynyawratevType {
+    VEHICLEDYNYAWRATEV_INVALID = 0;
+    VEHICLEDYNYAWRATEV_VALID = 1;
+  }
+  enum VehiclespdvalidType {
+    VEHICLESPDVALID_INVALID = 0;
+    VEHICLESPDVALID_VALID = 1;
+  }
+  //   [m/s^2] [-10.23|10.23]
+  optional double lataccsensorvalue = 1;
+  //   [] [0|1]
+  optional LataccsensorvaluevType lataccsensorvaluev = 2;
+  //   [m/s^2] [-10.23|10.23]
+  optional double longaccsensorvalue = 3;
+  //   [deg/sec] [-180|180]
+  optional double vehicledynyawrate = 4;
+  //   [] [0|1]
+  optional LongaccsensorvaluevType longaccsensorvaluev = 5;
+  // 车速  [km/h] [0|511.9375]
+  optional double vehiclespd = 6;
+  //   [] [0|1]
+  optional VehicledynyawratevType vehicledynyawratev = 7;
+  // 车速有效  [] [0|1]
+  optional VehiclespdvalidType vehiclespdvalid = 8;
+}
+
+message Vcu_fr0e_2b8_2b8 {
+// Report Message
+  enum Vcu_apa_regenallowreqType {
+    VCU_APA_REGENALLOWREQ_ALLOW = 0;
+    VCU_APA_REGENALLOWREQ_NOT_ALLOW = 1;
+  }
+  enum Vcu_apa_responseType {
+    VCU_APA_RESPONSE_STANDBY = 0;
+    VCU_APA_RESPONSE_READY = 1;
+    VCU_APA_RESPONSE_ACTIVE = 2;
+    VCU_APA_RESPONSE_FAILED = 3;
+    VCU_APA_RESPONSE_CONTROL_NOT_AVAILABLE = 4;
+  }
+  // 能量回收允许请求 [] [0|1]
+  optional Vcu_apa_regenallowreqType vcu_apa_regenallowreq = 1;
+  // VCU response status for APA during APA working  [] [0|7]
+  optional Vcu_apa_responseType vcu_apa_response = 2;
+  // VCU反馈VCU fail的原因  [] [0|15]
+  optional int32 vcu_apa_failcode = 3;
+  //   [] [0|15]
+  optional int32 vcu_fr0e_msgcounter = 4;
+  // byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6)  [] [0|255]
+  optional int32 vcu_fr0e_checksum = 5;
+}
+
+message Apa_fr02_2ba_2ba {
+// Control Message
+  enum Apa_infodisplayreqType {
+    APA_INFODISPLAYREQ_OFF = 0;
+    APA_INFODISPLAYREQ_PSC_SEARCH = 1;
+    APA_INFODISPLAYREQ_RESERVED2 = 2;
+    APA_INFODISPLAYREQ_PPSC_PS_OK_STOP_R = 3;
+    APA_INFODISPLAYREQ_PPSC_PS_OK_STOP_L = 4;
+    APA_INFODISPLAYREQ_CPSC_PS_OK_STOP_R = 5;
+    APA_INFODISPLAYREQ_CPSC_PS_OK_STOP_L = 6;
+    APA_INFODISPLAYREQ_PPPSC_PS_OK_STOP_L_R = 7;
+    APA_INFODISPLAYREQ_CCPSC_PS_OK_STOP_L_R = 8;
+    APA_INFODISPLAYREQ_PCPSC_PS_OK_STOP_L_R = 9;
+    APA_INFODISPLAYREQ_CPPSC_PS_OK_STOP_L_R = 10;
+    APA_INFODISPLAYREQ_RESERVED11 = 11;
+    APA_INFODISPLAYREQ_CPSC_PS_OK_R_GEAR_L = 12;
+    APA_INFODISPLAYREQ_CPSC_PS_OK_R_GEAR_R = 13;
+    APA_INFODISPLAYREQ_PPSC_PS_OK_R_GEAR_L = 14;
+    APA_INFODISPLAYREQ_PPSC_PS_OK_R_GEAR_R = 15;
+    APA_INFODISPLAYREQ_PPPSC_PS_OK_R_GEAR_R = 16;
+    APA_INFODISPLAYREQ_PCPSC_PS_OK_R_GEAR_R = 17;
+    APA_INFODISPLAYREQ_CPPSC_PS_OK_R_GEAR_R = 18;
+    APA_INFODISPLAYREQ_CCPSC_PS_OK_R_GEAR_R = 19;
+    APA_INFODISPLAYREQ_PPPSC_PS_OK_R_GEAR_L = 20;
+    APA_INFODISPLAYREQ_PCPSC_PS_OK_R_GEAR_L = 21;
+    APA_INFODISPLAYREQ_CPPSC_PS_OK_R_GEAR_L = 22;
+    APA_INFODISPLAYREQ_CCPSC_PS_OK_R_GEAR_L = 23;
+    APA_INFODISPLAYREQ_RESERVED24 = 24;
+    APA_INFODISPLAYREQ_RESERVED25 = 25;
+    APA_INFODISPLAYREQ_POC_OK_R = 26;
+    APA_INFODISPLAYREQ_ABORT_DOOROPEN = 27;
+    APA_INFODISPLAYREQ_ABORT_NO_SEATBELT = 28;
+    APA_INFODISPLAYREQ_ABORT_WRONGGEAR = 29;
+    APA_INFODISPLAYREQ_ABORT_SPEED_TOO_HIGH = 30;
+    APA_INFODISPLAYREQ_ABORT_TRAILOR_ATTACHED = 31;
+    APA_INFODISPLAYREQ_POC_PS_OK_LOOSENSKIDS = 32;
+    APA_INFODISPLAYREQ_HOLD_KEEPSKIDS = 33;
+    APA_INFODISPLAYREQ_PSC_PS_OK_LOOSENSKIDS = 34;
+    APA_INFODISPLAYREQ_GUIDANCE_INSERT_GEAR = 35;
+    APA_INFODISPLAYREQ_RESERVED36 = 36;
+    APA_INFODISPLAYREQ_GUIDENCE_WAIT_FOR_STEERINGCOMPLETE = 37;
+    APA_INFODISPLAYREQ_RESERVED38 = 38;
+    APA_INFODISPLAYREQ_PARKING_MANEUVER_COMPLETED = 39;
+    APA_INFODISPLAYREQ_ABORT_EPS_INTERVENTION = 40;
+    APA_INFODISPLAYREQ_ABORT_HAND_ON_DETECT = 41;
+    APA_INFODISPLAYREQ_ABORT_KEEPSKIDS_3MIN = 42;
+    APA_INFODISPLAYREQ_ABORT_DEPRESSTORQUE = 43;
+    APA_INFODISPLAYREQ_ABORT_APA_SWITCH_OFF = 44;
+    APA_INFODISPLAYREQ_ABORT__USER_DEACTIVATED = 45;
+    APA_INFODISPLAYREQ_ABORT_OTHER_REASONS46 = 46;
+    APA_INFODISPLAYREQ_FAILURE_SENSORS_BLINDED = 47;
+    APA_INFODISPLAYREQ_APA_INTERNAL_FAILURE = 48;
+    APA_INFODISPLAYREQ_APA_EXTERNAL_FAILURE = 49;
+    APA_INFODISPLAYREQ_SEARCHING_SLOW_DOWN = 50;
+    APA_INFODISPLAYREQ_ABORT_GUIDANCETIMEOUT = 51;
+    APA_INFODISPLAYREQ_ABORT_OFFTRACK = 52;
+    APA_INFODISPLAYREQ_ABORT_PS_TOO_SMALL = 53;
+    APA_INFODISPLAYREQ_ABORT_OTHER_REASONS54 = 54;
+    APA_INFODISPLAYREQ_POC_NO_FRONT_OBSTACLE = 55;
+    APA_INFODISPLAYREQ_HOLD_ON_DOOROPEN = 56;
+    APA_INFODISPLAYREQ_ABORT_DOOROPEN_3MIN = 57;
+    APA_INFODISPLAYREQ_ABORT_NO_SEATBELT_3MIN = 59;
+    APA_INFODISPLAYREQ_HOLD_NO_SEATBELT = 60;
+    APA_INFODISPLAYREQ_POC_R_GEAR_L = 62;
+    APA_INFODISPLAYREQ_POC_R_GEAR_R = 63;
+    APA_INFODISPLAYREQ_APA_OFF_OVERSPEED_TIMEROUT = 64;
+    APA_INFODISPLAYREQ_APA_OFF_SPEED_TOO_HIGH = 65;
+    APA_INFODISPLAYREQ_ABORT_MAX_NUMBER_OF_MANEOUVRES_REACHED = 66;
+    APA_INFODISPLAYREQ_ABORT_ESP__INTERVENTION = 67;
+    APA_INFODISPLAYREQ_RESERVED68 = 68;
+    APA_INFODISPLAYREQ_RESERVED69 = 69;
+    APA_INFODISPLAYREQ_POC_APA_SWITCH_OFF = 70;
+    APA_INFODISPLAYREQ_POC_ABORT_DOOROPEN = 71;
+    APA_INFODISPLAYREQ_POC_ABORT_TRAILOR_ATTACHED = 72;
+    APA_INFODISPLAYREQ_POC_ABORT_NO_SEATBELT = 73;
+    APA_INFODISPLAYREQ_ABORT_APA_ECU_FAIL = 74;
+    APA_INFODISPLAYREQ_ABORT_EPS_FAIL = 75;
+    APA_INFODISPLAYREQ_ABORT_ESP_FAIL = 76;
+    APA_INFODISPLAYREQ_ABORT_VCU_FAIL = 77;
+    APA_INFODISPLAYREQ_ABORT_SENSORS_FAIL = 78;
+    APA_INFODISPLAYREQ_RESERVED79 = 79;
+  }
+  enum Apa_epsanglereqType {
+    APA_EPSANGLEREQ_NO_REQUEST = 0;
+    APA_EPSANGLEREQ_REQUEST = 1;
+  }
+  enum Apa_epsanglereqvalidityType {
+    APA_EPSANGLEREQVALIDITY_INVALID = 0;
+    APA_EPSANGLEREQVALIDITY_VALID = 1;
+  }
+  enum Apa_turnlightreqType {
+    APA_TURNLIGHTREQ_NO_REQUEST = 0;
+    APA_TURNLIGHTREQ_LEFT_FLASH = 1;
+    APA_TURNLIGHTREQ_RIGHT_FLASH = 2;
+    APA_TURNLIGHTREQ_DOUBLE_FLASH = 3;
+  }
+  enum Apa_syssoundindicationType {
+    APA_SYSSOUNDINDICATION_NO_INDICATION = 0;
+    APA_SYSSOUNDINDICATION_FIND_THE_PARK_POSITION_OR_PARK_IS_FINISHED = 1;
+    APA_SYSSOUNDINDICATION_ASK_THE_DRIVER_TAKE_OFF = 2;
+    APA_SYSSOUNDINDICATION_SYSTEM_DISABLED_OR_FAULT = 3;
+    APA_SYSSOUNDINDICATION_RESERVED = 4;
+  }
+  enum Apa_worksts_chType {
+    APA_WORKSTS_CH_OFF = 0;
+    APA_WORKSTS_CH_DISABLED = 1;
+    APA_WORKSTS_CH_STANDBY = 2;
+    APA_WORKSTS_CH_ENABLE = 3;
+    APA_WORKSTS_CH_ACTIVE = 4;
+    APA_WORKSTS_CH_FINISHED = 5;
+    APA_WORKSTS_CH_FAILED = 6;
+    APA_WORKSTS_CH_SUSPEND = 7;
+  }
+  enum Apa_sound_locationType {
+    APA_SOUND_LOCATION_NO_WARNING = 0;
+    APA_SOUND_LOCATION_PASSENGER_FRONT = 1;
+    APA_SOUND_LOCATION_DRIVER_FRONT = 2;
+    APA_SOUND_LOCATION_DRIVER_FRONT_PASSENGER_FRONT = 3;
+    APA_SOUND_LOCATION_RIGHT_REAR = 4;
+    APA_SOUND_LOCATION_LEFT_REAR = 5;
+    APA_SOUND_LOCATION_RIGHT_REAR_LEFT_REAR = 6;
+    APA_SOUND_LOCATION_RESERVED = 7;
+  }
+  enum Pas_soundindicationType {
+    PAS_SOUNDINDICATION_TONE_0_NO_WARNING = 0;
+    PAS_SOUNDINDICATION_TONE_1_LONG_BEEP_1000HZ = 1;
+    PAS_SOUNDINDICATION_TONE_2_ON75MSOFF75MS = 2;
+    PAS_SOUNDINDICATION_TONE_3_ON75MSOFF150MS = 3;
+    PAS_SOUNDINDICATION_TONE_4_ON75MSOFF225MS = 4;
+    PAS_SOUNDINDICATION_TONE_5_ON75MSOFF300MS = 5;
+    PAS_SOUNDINDICATION_RESERVED = 6;
+  }
+  enum Apa_parkbarpercentType {
+    APA_PARKBARPERCENT_0 = 0;
+    APA_PARKBARPERCENT_10 = 1;
+    APA_PARKBARPERCENT_20 = 2;
+    APA_PARKBARPERCENT_30 = 3;
+    APA_PARKBARPERCENT_40 = 4;
+    APA_PARKBARPERCENT_50 = 5;
+    APA_PARKBARPERCENT_60 = 6;
+    APA_PARKBARPERCENT_70 = 7;
+    APA_PARKBARPERCENT_80 = 8;
+    APA_PARKBARPERCENT_90 = 9;
+    APA_PARKBARPERCENT_100 = 10;
+    APA_PARKBARPERCENT_RESERVED = 11;
+  }
+  //   [] [0|255]
+  optional Apa_infodisplayreqType apa_infodisplayreq = 1;
+  // EPS转向盘转向角目标角度  [°] [-720|720]
+  optional double apa_epsanglevaluereq = 2;
+  // 控制EPS转向盘转向角的状态  [] [0|1]
+  optional Apa_epsanglereqType apa_epsanglereq = 3;
+  // 控制EPS转向盘转向角的状态有效位  [] [0|1]
+  optional Apa_epsanglereqvalidityType apa_epsanglereqvalidity = 4;
+  // APA请求左/右转向闪灯  [] [0|3]
+  optional Apa_turnlightreqType apa_turnlightreq = 5;
+  // APA System Sound Indication  [] [0|7]
+  optional Apa_syssoundindicationType apa_syssoundindication = 6;
+  // 自动泊车工作状态  [] [0|7]
+  optional Apa_worksts_chType apa_worksts_ch = 7;
+  //   [] [0|15]
+  optional Apa_sound_locationType apa_sound_location = 8;
+  // 泊车辅助系统声音指示  [] [0|7]
+  optional Pas_soundindicationType pas_soundindication = 9;
+  //   [] [0|15]
+  optional int32 apa_fr02_msgcounter = 10;
+  // APA泊车进度条  [%] [0|100]
+  optional Apa_parkbarpercentType apa_parkbarpercent = 11;
+  // byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6)  [] [0|255]
+  optional int32 apa_fr02_checksum = 12;
+}
+
+message Bdm_fr01_339_339 {
+// Report Message
+  enum Bdm_backdoorajarType {
+    BDM_BACKDOORAJAR_FULLY_CLOSED = 0;
+    BDM_BACKDOORAJAR_NOT_CLOSED = 1;
+    BDM_BACKDOORAJAR_OPEN_TO_CUSTON_HEIGHT = 2;
+    BDM_BACKDOORAJAR_FULLY_OPEN = 3;
+    BDM_BACKDOORAJAR_CANNOT_CLOSE_AREA = 4;
+    BDM_BACKDOORAJAR_RESERVED5 = 5;
+    BDM_BACKDOORAJAR_RESERVED6 = 6;
+    BDM_BACKDOORAJAR_UNKNOW = 7;
+  }
+  enum Bdm_driverdoorajarType {
+    BDM_DRIVERDOORAJAR_CLOSED = 0;
+    BDM_DRIVERDOORAJAR_SECONDARY = 1;
+    BDM_DRIVERDOORAJAR_OPEN = 2;
+    BDM_DRIVERDOORAJAR_UNKNOW = 3;
+  }
+  enum Bdm_passdoorajarType {
+    BDM_PASSDOORAJAR_CLOSED = 0;
+    BDM_PASSDOORAJAR_SECONDARY = 1;
+    BDM_PASSDOORAJAR_OPEN = 2;
+    BDM_PASSDOORAJAR_UNKNOW = 3;
+  }
+  enum Bdm_reardriverdoorajarType {
+    BDM_REARDRIVERDOORAJAR_CLOSED = 0;
+    BDM_REARDRIVERDOORAJAR_SECONDARY = 1;
+    BDM_REARDRIVERDOORAJAR_OPEN = 2;
+    BDM_REARDRIVERDOORAJAR_UNKNOW = 3;
+  }
+  enum Bdm_rearpassdoorajarType {
+    BDM_REARPASSDOORAJAR_CLOSED = 0;
+    BDM_REARPASSDOORAJAR_SECONDARY = 1;
+    BDM_REARPASSDOORAJAR_OPEN = 2;
+    BDM_REARPASSDOORAJAR_UNKNOW = 3;
+  }
+  enum Bdm_turnlightswType {
+    BDM_TURNLIGHTSW_OFF = 0;
+    BDM_TURNLIGHTSW_LEFT = 1;
+    BDM_TURNLIGHTSW_RIGHT = 2;
+    BDM_TURNLIGHTSW_RESERVED = 3;
+  }
+  enum Bdm_frontwiperstType {
+    BDM_FRONTWIPERST_OFF = 0;
+    BDM_FRONTWIPERST_INTER = 1;
+    BDM_FRONTWIPERST_LOW = 2;
+    BDM_FRONTWIPERST_HIGH = 3;
+    BDM_FRONTWIPERST_AUTO = 4;
+    BDM_FRONTWIPERST_RESERVED1 = 5;
+    BDM_FRONTWIPERST_RESERVED2 = 6;
+    BDM_FRONTWIPERST_RESERVED3 = 7;
+  }
+  enum Bdm_wiperparkpositionType {
+    BDM_WIPERPARKPOSITION_NOT_PARK = 0;
+    BDM_WIPERPARKPOSITION_PARK = 1;
+  }
+  // 后尾门开闭状态 [] [0|7]
+  optional Bdm_backdoorajarType bdm_backdoorajar = 1;
+  // 主驾门开闭状态  [] [0|3]
+  optional Bdm_driverdoorajarType bdm_driverdoorajar = 2;
+  // 副驾门开闭状态  [] [0|3]
+  optional Bdm_passdoorajarType bdm_passdoorajar = 3;
+  // 后排主驾侧车门开闭状态  [] [0|3]
+  optional Bdm_reardriverdoorajarType bdm_reardriverdoorajar = 4;
+  // 后排副驾侧车门开闭状态  [] [0|3]
+  optional Bdm_rearpassdoorajarType bdm_rearpassdoorajar = 5;
+  // 转向灯开关  [] [0|3]
+  optional Bdm_turnlightswType bdm_turnlightsw = 6;
+  // 前雨刮工作状态  [] [0|7]
+  optional Bdm_frontwiperstType bdm_frontwiperst = 7;
+  // 雨刮回位开关状态  [] [0|1]
+  optional Bdm_wiperparkpositionType bdm_wiperparkposition = 8;
+}
+
+message Apa_fr01_35d_35d {
+// Control Message
+  enum Apa_pas_objectsts_flmType {
+    APA_PAS_OBJECTSTS_FLM_NO_OBJECT = 0;
+    APA_PAS_OBJECTSTS_FLM_OBJECT_IN_ZONE_1_0_30CM = 1;
+    APA_PAS_OBJECTSTS_FLM_OBJECT_IN_ZONE_2_31_60CM = 2;
+    APA_PAS_OBJECTSTS_FLM_OBJECT_IN_ZONE_3_61_90CM = 3;
+    APA_PAS_OBJECTSTS_FLM_OBJECT_IN_ZONE_4_91_120CM = 4;
+    APA_PAS_OBJECTSTS_FLM_RESERVED = 5;
+  }
+  enum Apa_pas_objectsts_flcType {
+    APA_PAS_OBJECTSTS_FLC_NO_OBJECT = 0;
+    APA_PAS_OBJECTSTS_FLC_OBJECT_IN_ZONE_1_0_30CM = 1;
+    APA_PAS_OBJECTSTS_FLC_OBJECT_IN_ZONE_2_31_60CM = 2;
+    APA_PAS_OBJECTSTS_FLC_RESERVED = 3;
+  }
+  enum Apa_pas_objectsts_frcType {
+    APA_PAS_OBJECTSTS_FRC_NO_OBJECT = 0;
+    APA_PAS_OBJECTSTS_FRC_OBJECT_IN_ZONE_1_0_30CM = 1;
+    APA_PAS_OBJECTSTS_FRC_OBJECT_IN_ZONE_2_31_60CM = 2;
+    APA_PAS_OBJECTSTS_FRC_RESERVED = 3;
+  }
+  enum Apa_pas_objectsts_frmType {
+    APA_PAS_OBJECTSTS_FRM_NO_OBJECT = 0;
+    APA_PAS_OBJECTSTS_FRM_OBJECT_IN_ZONE_1_0_30CM = 1;
+    APA_PAS_OBJECTSTS_FRM_OBJECT_IN_ZONE_2_31_60CM = 2;
+    APA_PAS_OBJECTSTS_FRM_OBJECT_IN_ZONE_3_61_90CM = 3;
+    APA_PAS_OBJECTSTS_FRM_OBJECT_IN_ZONE_4_91_120CM = 4;
+    APA_PAS_OBJECTSTS_FRM_RESERVED = 5;
+  }
+  enum Apa_pas_objectsts_rlmType {
+    APA_PAS_OBJECTSTS_RLM_NO_OBJECT = 0;
+    APA_PAS_OBJECTSTS_RLM_OBJECT_IN_ZONE_1_0_30CM = 1;
+    APA_PAS_OBJECTSTS_RLM_OBJECT_IN_ZONE_2_31_60CM = 2;
+    APA_PAS_OBJECTSTS_RLM_OBJECT_IN_ZONE_3_61_90CM = 3;
+    APA_PAS_OBJECTSTS_RLM_OBJECT_IN_ZONE_4_91_120CM = 4;
+    APA_PAS_OBJECTSTS_RLM_OBJECT_IN_ZONE_5_121_150CM = 5;
+    APA_PAS_OBJECTSTS_RLM_RESERVED = 6;
+  }
+  enum Apa_pas_objectsts_rlcType {
+    APA_PAS_OBJECTSTS_RLC_NO_OBJECT = 0;
+    APA_PAS_OBJECTSTS_RLC_OBJECT_IN_ZONE_1_0_30CM = 1;
+    APA_PAS_OBJECTSTS_RLC_OBJECT_IN_ZONE_2_31_60CM = 2;
+    APA_PAS_OBJECTSTS_RLC_RESERVED = 3;
+  }
+  enum Apa_pas_objectsts_rrcType {
+    APA_PAS_OBJECTSTS_RRC_NO_OBJECT = 0;
+    APA_PAS_OBJECTSTS_RRC_OBJECT_IN_ZONE_1_0_30CM = 1;
+    APA_PAS_OBJECTSTS_RRC_OBJECT_IN_ZONE_2_31_60CM = 2;
+    APA_PAS_OBJECTSTS_RRC_RESERVED = 3;
+  }
+  enum Apa_pas_objectsts_rrmType {
+    APA_PAS_OBJECTSTS_RRM_NO_OBJECT = 0;
+    APA_PAS_OBJECTSTS_RRM_OBJECT_IN_ZONE_1_0_30CM = 1;
+    APA_PAS_OBJECTSTS_RRM_OBJECT_IN_ZONE_2_31_60CM = 2;
+    APA_PAS_OBJECTSTS_RRM_OBJECT_IN_ZONE_3_61_90CM = 3;
+    APA_PAS_OBJECTSTS_RRM_OBJECT_IN_ZONE_4_91_120CM = 4;
+    APA_PAS_OBJECTSTS_RRM_OBJECT_IN_ZONE_5_121_150CM = 5;
+    APA_PAS_OBJECTSTS_RRM_RESERVED = 6;
+  }
+  enum Apa_pas_objectsts_srlType {
+    APA_PAS_OBJECTSTS_SRL_NO_OBJECT = 0;
+    APA_PAS_OBJECTSTS_SRL_OBJECT_IN_ZONE_1_0_30CM = 1;
+    APA_PAS_OBJECTSTS_SRL_OBJECT_IN_ZONE_2_31_60CM = 2;
+    APA_PAS_OBJECTSTS_SRL_RESERVED = 3;
+  }
+  enum Apa_pas_objectsts_sfrType {
+    APA_PAS_OBJECTSTS_SFR_NO_OBJECT = 0;
+    APA_PAS_OBJECTSTS_SFR_OBJECT_IN_ZONE_1_0_30CM = 1;
+    APA_PAS_OBJECTSTS_SFR_OBJECT_IN_ZONE_2_31_60CM = 2;
+    APA_PAS_OBJECTSTS_SFR_RESERVED = 3;
+  }
+  enum Apa_pas_objectsts_sflType {
+    APA_PAS_OBJECTSTS_SFL_NO_OBJECT = 0;
+    APA_PAS_OBJECTSTS_SFL_OBJECT_IN_ZONE_1_0_30CM = 1;
+    APA_PAS_OBJECTSTS_SFL_OBJECT_IN_ZONE_2_31_60CM = 2;
+    APA_PAS_OBJECTSTS_SFL_RESERVED = 3;
+  }
+  enum Apa_rpas_workstsType {
+    APA_RPAS_WORKSTS_DISABLED = 0;
+    APA_RPAS_WORKSTS_STANDBY = 1;
+    APA_RPAS_WORKSTS_ACTIVE = 2;
+    APA_RPAS_WORKSTS_FAILED = 3;
+  }
+  enum Apa_fpas_workstsType {
+    APA_FPAS_WORKSTS_DISABLED = 0;
+    APA_FPAS_WORKSTS_STANDBY = 1;
+    APA_FPAS_WORKSTS_ACTIVE = 2;
+    APA_FPAS_WORKSTS_FAILED = 3;
+  }
+  enum Apa_pas_objectsts_srrType {
+    APA_PAS_OBJECTSTS_SRR_NO_OBJECT = 0;
+    APA_PAS_OBJECTSTS_SRR_OBJECT_IN_ZONE_1_0_30CM = 1;
+    APA_PAS_OBJECTSTS_SRR_OBJECT_IN_ZONE_2_31_60CM = 2;
+    APA_PAS_OBJECTSTS_SRR_RESERVED = 3;
+  }
+  enum Apa_rpas_sensorfaultstsrlmType {
+    APA_RPAS_SENSORFAULTSTSRLM_SENSOR_NORMAL = 0;
+    APA_RPAS_SENSORFAULTSTSRLM_SENSOR_FAULT = 1;
+  }
+  enum Apa_rpas_sensorfaultstsrlcType {
+    APA_RPAS_SENSORFAULTSTSRLC_SENSOR_NORMAL = 0;
+    APA_RPAS_SENSORFAULTSTSRLC_SENSOR_FAULT = 1;
+  }
+  enum Apa_fpas_sensorfaultstsfrcType {
+    APA_FPAS_SENSORFAULTSTSFRC_SENSOR_NORMAL = 0;
+    APA_FPAS_SENSORFAULTSTSFRC_SENSOR_FAULT = 1;
+  }
+  enum Apa_fpas_sensorfaultstsfrmType {
+    APA_FPAS_SENSORFAULTSTSFRM_SENSOR_NORMAL = 0;
+    APA_FPAS_SENSORFAULTSTSFRM_SENSOR_FAULT = 1;
+  }
+  enum Apa_fpas_sensorfaultstsflmType {
+    APA_FPAS_SENSORFAULTSTSFLM_SENSOR_NORMAL = 0;
+    APA_FPAS_SENSORFAULTSTSFLM_SENSOR_FAULT = 1;
+  }
+  enum Apa_fpas_sensorfaultstsflcType {
+    APA_FPAS_SENSORFAULTSTSFLC_SENSOR_NORMAL = 0;
+    APA_FPAS_SENSORFAULTSTSFLC_SENSOR_FAULT = 1;
+  }
+  enum Apa_rpas_sensorfaultstssrrType {
+    APA_RPAS_SENSORFAULTSTSSRR_SENSOR_NORMAL = 0;
+    APA_RPAS_SENSORFAULTSTSSRR_SENSOR_FAULT = 1;
+  }
+  enum Apa_rpas_sensorfaultstssrlType {
+    APA_RPAS_SENSORFAULTSTSSRL_SENSOR_NORMAL = 0;
+    APA_RPAS_SENSORFAULTSTSSRL_SENSOR_FAULT = 1;
+  }
+  enum Apa_fpas_sensorfaultstssfrType {
+    APA_FPAS_SENSORFAULTSTSSFR_SENSOR_NORMAL = 0;
+    APA_FPAS_SENSORFAULTSTSSFR_SENSOR_FAULT = 1;
+  }
+  enum Apa_fpas_sensorfaultstssflType {
+    APA_FPAS_SENSORFAULTSTSSFL_SENSOR_NORMAL = 0;
+    APA_FPAS_SENSORFAULTSTSSFL_SENSOR_FAULT = 1;
+  }
+  enum Apa_rpas_sensorfaultstsrrcType {
+    APA_RPAS_SENSORFAULTSTSRRC_SENSOR_NORMAL = 0;
+    APA_RPAS_SENSORFAULTSTSRRC_SENSOR_FAULT = 1;
+  }
+  enum Apa_rpas_sensorfaultstsrrmType {
+    APA_RPAS_SENSORFAULTSTSRRM_SENSOR_NORMAL = 0;
+    APA_RPAS_SENSORFAULTSTSRRM_SENSOR_FAULT = 1;
+  }
+  // 前左中超声波传感器障碍物距离  [] [0|15]
+  optional Apa_pas_objectsts_flmType apa_pas_objectsts_flm = 1;
+  // 前左侧超声波传感器障碍物距离  [] [0|15]
+  optional Apa_pas_objectsts_flcType apa_pas_objectsts_flc = 2;
+  // 前后侧超声波传感器障碍物距离  [] [0|15]
+  optional Apa_pas_objectsts_frcType apa_pas_objectsts_frc = 3;
+  // 前右中超声波传感器障碍物距离  [] [0|15]
+  optional Apa_pas_objectsts_frmType apa_pas_objectsts_frm = 4;
+  // 后左中超声波传感器障碍物距离  [] [0|15]
+  optional Apa_pas_objectsts_rlmType apa_pas_objectsts_rlm = 5;
+  // 后左侧超声波传感器障碍物距离  [] [0|15]
+  optional Apa_pas_objectsts_rlcType apa_pas_objectsts_rlc = 6;
+  // 后右侧超声波传感器障碍物距离  [] [0|15]
+  optional Apa_pas_objectsts_rrcType apa_pas_objectsts_rrc = 7;
+  // 后右中超声波传感器障碍物距离  [] [0|15]
+  optional Apa_pas_objectsts_rrmType apa_pas_objectsts_rrm = 8;
+  // 边后左超声波传感器障碍物距离  [] [0|7]
+  optional Apa_pas_objectsts_srlType apa_pas_objectsts_srl = 9;
+  // 边前右超声波传感器障碍物距离  [] [0|7]
+  optional Apa_pas_objectsts_sfrType apa_pas_objectsts_sfr = 10;
+  // 边前左超声波传感器障碍物距离  [] [0|7]
+  optional Apa_pas_objectsts_sflType apa_pas_objectsts_sfl = 11;
+  // 后超声波工作状态  [] [0|7]
+  optional Apa_rpas_workstsType apa_rpas_worksts = 12;
+  // 前超声波工作状态  [] [0|7]
+  optional Apa_fpas_workstsType apa_fpas_worksts = 13;
+  // 边后右超声波传感器障碍物距离  [] [0|7]
+  optional Apa_pas_objectsts_srrType apa_pas_objectsts_srr = 14;
+  // 后左中超声波传感器故障  [] [0|1]
+  optional Apa_rpas_sensorfaultstsrlmType apa_rpas_sensorfaultstsrlm = 15;
+  // 后左侧超声波传感器故障  [] [0|1]
+  optional Apa_rpas_sensorfaultstsrlcType apa_rpas_sensorfaultstsrlc = 16;
+  // 前后侧超声波传感器故障  [] [0|1]
+  optional Apa_fpas_sensorfaultstsfrcType apa_fpas_sensorfaultstsfrc = 17;
+  // 前右中超声波传感器故障  [] [0|1]
+  optional Apa_fpas_sensorfaultstsfrmType apa_fpas_sensorfaultstsfrm = 18;
+  // 前左中超声波传感器故障  [] [0|1]
+  optional Apa_fpas_sensorfaultstsflmType apa_fpas_sensorfaultstsflm = 19;
+  // 前左侧超声波传感器故障  [] [0|1]
+  optional Apa_fpas_sensorfaultstsflcType apa_fpas_sensorfaultstsflc = 20;
+  // 边后右超声波传感器故障  [] [0|1]
+  optional Apa_rpas_sensorfaultstssrrType apa_rpas_sensorfaultstssrr = 21;
+  // 边后左超声波传感器故障  [] [0|1]
+  optional Apa_rpas_sensorfaultstssrlType apa_rpas_sensorfaultstssrl = 22;
+  // 边前右超声波传感器故障  [] [0|1]
+  optional Apa_fpas_sensorfaultstssfrType apa_fpas_sensorfaultstssfr = 23;
+  // 边前左超声波传感器故障  [] [0|1]
+  optional Apa_fpas_sensorfaultstssflType apa_fpas_sensorfaultstssfl = 24;
+  // 后右侧超声波传感器故障  [] [0|1]
+  optional Apa_rpas_sensorfaultstsrrcType apa_rpas_sensorfaultstsrrc = 25;
+  // 后右中超声波传感器故障  [] [0|1]
+  optional Apa_rpas_sensorfaultstsrrmType apa_rpas_sensorfaultstsrrm = 26;
+}
+
+message Ihu_fr04_380_380 {
+// Report Message
+  enum Ihu_avm_workstateType {
+    IHU_AVM_WORKSTATE_OFF = 0;
+    IHU_AVM_WORKSTATE_ON = 1;
+    IHU_AVM_WORKSTATE_RESEVED2 = 2;
+    IHU_AVM_WORKSTATE_RESEVED3 = 3;
+  }
+  enum Ihu_avm_videooutputfailType {
+    IHU_AVM_VIDEOOUTPUTFAIL_NO_FAIL = 0;
+    IHU_AVM_VIDEOOUTPUTFAIL_FAIL = 1;
+  }
+  // AVM工作状态  [] [0|3]
+  optional Ihu_avm_workstateType ihu_avm_workstate = 1;
+  // AVM视频输出故障  [] [0|1]
+  optional Ihu_avm_videooutputfailType ihu_avm_videooutputfail = 2;
+}
+
+message Clm_fr02_39e_39e {
+// Report Message
+  // 室外温度值  [℃] [-50|75]
+  optional double clm_outsidetemp = 1;
+}
+
+message Ihu_fr02_3f5_3f5 {
+// Report Message
+  enum Ihu_apaswType {
+    IHU_APASW_NOT_PRESS = 0;
+    IHU_APASW_PRESS = 1;
+  }
+  // APA开关  [] [0|1]
+  optional Ihu_apaswType ihu_apasw = 1;
+}
+
+message Plg_fr01_408_408 {
+// Report Message
+  enum Plg_reardoorstatusType {
+    PLG_REARDOORSTATUS_CLOSED = 0;
+    PLG_REARDOORSTATUS_MOVING = 1;
+    PLG_REARDOORSTATUS_OPENED = 2;
+    PLG_REARDOORSTATUS_PAUSED = 3;
+    PLG_REARDOORSTATUS_INVALID = 4;
+  }
+  // 尾门状态  [] [0|3]
+  optional Plg_reardoorstatusType plg_reardoorstatus = 1;
+}
+
+message Vcu_fr06_42b_42b {
+// Report Message
+  // 加速踏板行程值,国标要求  [%] [0|100]
+  optional int32 vcu6_gaspedalposition = 1;
+}
+
+message Vcu_fr04_4d4_4d4 {
+// Report Message
+  enum Vcu4_readylightstsType {
+    VCU4_READYLIGHTSTS_LAMP_OFF = 0;
+    VCU4_READYLIGHTSTS_LAMP_ON = 1;
+  }
+  // 运动准备就绪指示灯  [] [0|1]
+  optional Vcu4_readylightstsType vcu4_readylightsts = 1;
+}
+
+message Icu_fr02_525_525 {
+// Report Message
+  // 仪表显示总计里程  [km] [0|1677721.4]
+  optional double icu_odometer = 1;
+}
+
+message Tbox_fr01_530_530 {
+// Report Message
+  enum CalendarmonthType {
+    CALENDARMONTH_UNKNOWN = 0;
+    CALENDARMONTH_JANUARY = 1;
+    CALENDARMONTH_FEBRUARY = 2;
+    CALENDARMONTH_MARCH = 3;
+    CALENDARMONTH_APRIL = 4;
+    CALENDARMONTH_MAY = 5;
+    CALENDARMONTH_JUNE = 6;
+    CALENDARMONTH_JULY = 7;
+    CALENDARMONTH_AUGUST = 8;
+    CALENDARMONTH_SEPTEMBER = 9;
+    CALENDARMONTH_OCTOBER = 10;
+    CALENDARMONTH_NOVEMBER = 11;
+    CALENDARMONTH_DECEMBER = 12;
+  }
+  enum TimedspfmtType {
+    TIMEDSPFMT_24_HOUR_MODE_DEFAULT_24_HOUR_MODE = 0;
+    TIMEDSPFMT_12_HOUR_MODE_NOT_USED = 1;
+  }
+  //   [year] [2000|2255]
+  optional int32 calendaryear = 1;
+  //   [] [0|15]
+  optional CalendarmonthType calendarmonth = 2;
+  //   [days] [0|31]
+  optional int32 calendarday = 3;
+  //   [] [0|23]
+  optional int32 hourofday = 4;
+  //   [] [0|59]
+  optional int32 minuteofhour = 5;
+  //   [] [0|59]
+  optional int32 secsofminute = 6;
+  //   [] [0|1]
+  optional TimedspfmtType timedspfmt = 7;
+}
+
+message Bms_fr15_55e_55e {
+// Report Message
+  // 低压蓄电池电压值  [V] [0|25]
+  optional double bms12vbatteryvoltage = 1;
+}
+
+message Diag_physreq_apa_7c0 {
+// Report Message
+  //   [] [0|0]
+  optional int32 diagnosticreqapa = 1;
+}
+
+message Diag_physresp_apa_7d0 {
+// Control Message
+  //   [] [0|0]
+  optional int32 diagnosticrespapa = 1;
+}
+
+message Diag_funcreq_7df_7df {
+// Report Message
+  //   [] [0|0]
+  optional int32 diagnosticfuncaddrreq = 1;
+}
+
+message Mcu_fr01_0aa_aa {
+// Report Message
+  // [rpm] [-16000|16000]
+  optional double mcu1_motorspeed = 1;
+  // 实际输出扭矩  [Nm] [-1024|1024]
+  optional double mcu1_controllertorque = 2;
+  // 检测控制器工作信号  [] [0|15]
+  optional int32 mcu1_alivecounter = 3;
+}
+
+message Eps_fr02_0e1_e1 {
+// Report Message
+  enum Eps_inhibitcodeType {
+    EPS_INHIBITCODE_NORMAL = 0;
+    EPS_INHIBITCODE_OVER_SPEED = 1;
+    EPS_INHIBITCODE_DRIVER_INTERFERENCE = 2;
+    EPS_INHIBITCODE_ABNORMAL_CAN_COMMUNICATION = 3;
+    EPS_INHIBITCODE_EXCESS_ANGLE_DEVIATION = 4;
+    EPS_INHIBITCODE_RESERVED1 = 5;
+    EPS_INHIBITCODE_RESERVED2 = 6;
+    EPS_INHIBITCODE_RESERVED3 = 7;
+  }
+  enum Eps_availstsType {
+    EPS_AVAILSTS_INHIBIT = 0;
+    EPS_AVAILSTS_STANDBY = 1;
+    EPS_AVAILSTS_READY = 2;
+    EPS_AVAILSTS_ACTIVE = 3;
+    EPS_AVAILSTS_ABORT_RESERVED = 4;
+    EPS_AVAILSTS_RESERVED1 = 5;
+    EPS_AVAILSTS_RESERVED2 = 6;
+    EPS_AVAILSTS_RESERVED3 = 7;
+  }
+  enum Eps_failstsType {
+    EPS_FAILSTS_NO_FAILURE = 0;
+    EPS_FAILSTS_FAILURE = 1;
+  }
+  enum Eps_interferdectType {
+    EPS_INTERFERDECT_FALSE = 0;
+    EPS_INTERFERDECT_TRUE = 1;
+  }
+  enum Eps_interferdectvalidityType {
+    EPS_INTERFERDECTVALIDITY_INVALID = 0;
+    EPS_INTERFERDECTVALIDITY_VALID = 1;
+  }
+  enum EpstottorqvalidType {
+    EPSTOTTORQVALID_INVALID = 0;
+    EPSTOTTORQVALID_VALID = 1;
+  }
+  // The reason that EPS can't response APA's request  [] [0|7]
+  optional Eps_inhibitcodeType eps_inhibitcode = 1;
+  // Electrical Power Steering Available Status for APA or IFV  [] [0|7]
+  optional Eps_availstsType eps_availsts = 2;
+  // Electrical Power Steering Total Torque Delivered positive means steering left, negative means steering right  [Nm] [-120|120]
+  optional double epstottorq = 3;
+  // Electrical steering fail status  [] [0|1]
+  optional Eps_failstsType eps_failsts = 4;
+  // 驾驶员干预信号用于APA  [] [0|1]
+  optional Eps_interferdectType eps_interferdect = 5;
+  // 驾驶员干预信号有效性  [] [0|1]
+  optional Eps_interferdectvalidityType eps_interferdectvalidity = 6;
+  // Electrical Power Steering Total Torque Delivered Validity  [] [0|1]
+  optional EpstottorqvalidType epstottorqvalid = 7;
+  // Counter [] [0|15]
+  optional int32 eps_fr02_msgcounter = 8;
+  // byte(0) XOR byte(1) XOR byte(2) XOR byte(3) XOR byte(4) XOR byte(5) XOR byte(6)  [] [0|255]
+  optional int32 eps_fr02_checksum = 9;
+}
+
+message Esc_fr01_0e5_e5 {
+// Report Message
+  enum Esc_decctrlenaType {
+    ESC_DECCTRLENA_OFF = 0;
+    ESC_DECCTRLENA_ACTIVATION = 1;
+  }
+  enum Esc_apastandstillType {
+    ESC_APASTANDSTILL_NOT_STANDSTILL = 0;
+    ESC_APASTANDSTILL_STANDSTILL = 1;
+  }
+  enum Esc_apastsType {
+    ESC_APASTS_OFF = 0;
+    ESC_APASTS_READY = 1;
+    ESC_APASTS_SPEED_CONTROL = 2;
+    ESC_APASTS_STOP_CONTROL = 3;
+    ESC_APASTS_STANDSTILL = 4;
+    ESC_APASTS_ESC_FAIL = 5;
+    ESC_APASTS_DESCRIPTION_FOR_THE_VALUE_0X6 = 6;
+    ESC_APASTS_DESCRIPTION_FOR_THE_VALUE_0X7 = 7;
+  }
+  enum EscfailType {
+    ESCFAIL_FALSE = 0;
+    ESCFAIL_TRUE = 1;
+  }
+  enum EbdfailType {
+    EBDFAIL_FALSE = 0;
+    EBDFAIL_TRUE = 1;
+  }
+  enum AbsfailType {
+    ABSFAIL_FALSE = 0;
+    ABSFAIL_TRUE = 1;
+  }
+  enum TcsfailType {
+    TCSFAIL_FALSE = 0;
+    TCSFAIL_TRUE = 1;
+  }
+  // [] [0|1]
+  optional Esc_decctrlenaType esc_decctrlena = 1;
+  // Stop confirmation signal during APA operation [] [0|1]
+  optional Esc_apastandstillType esc_apastandstill = 2;
+  // ESC control state for APA [] [0|7]
+  optional Esc_apastsType esc_apasts = 3;
+  //   [] [0|1]
+  optional EscfailType escfail = 4;
+  //   [] [0|1]
+  optional EbdfailType ebdfail = 5;
+  //   [] [0|1]
+  optional AbsfailType absfail = 6;
+  //   [] [0|1]
+  optional TcsfailType tcsfail = 7;
+}
+
+message TL {
+  optional Ehb_fr01_1c6_1c6 ehb_fr01_1c6_1c6 = 1; // report message
+  optional Ehb_fr02_1c8_1c8 ehb_fr02_1c8_1c8 = 2; // report message
+  optional Eps_fr03_1e1_1e1 eps_fr03_1e1_1e1 = 3; // report message
+  optional Esc_fr02_1e5_1e5 esc_fr02_1e5_1e5 = 4; // report message
+  optional Esc_fr03_205_205 esc_fr03_205_205 = 5; // report message
+  optional Egsm_fr01_213_213 egsm_fr01_213_213 = 6; // report message
+  optional Vcu_fr05_223_223 vcu_fr05_223_223 = 7; // report message
+  optional Acu_fr01_233_233 acu_fr01_233_233 = 8; // report message
+  optional Ihu_fr03_240_240 ihu_fr03_240_240 = 9; // report message
+  optional Apa_fr04_253_253 apa_fr04_253_253 = 10; // control message
+  optional Bdm_fr02_259_259 bdm_fr02_259_259 = 11; // report message
+  optional Esc_fr04_266_266 esc_fr04_266_266 = 12; // report message
+  optional Esc_fr05_26e_26e esc_fr05_26e_26e = 13; // report message
+  optional Apa_fr03_27b_27b apa_fr03_27b_27b = 14; // control message
+  optional Esc_fr08_27e_27e esc_fr08_27e_27e = 15; // report message
+  optional Esc_fr06_28e_28e esc_fr06_28e_28e = 16; // report message
+  optional Esc_fr07_291_291 esc_fr07_291_291 = 17; // report message
+  optional Vcu_fr0e_2b8_2b8 vcu_fr0e_2b8_2b8 = 18; // report message
+  optional Apa_fr02_2ba_2ba apa_fr02_2ba_2ba = 19; // control message
+  optional Bdm_fr01_339_339 bdm_fr01_339_339 = 20; // report message
+  optional Apa_fr01_35d_35d apa_fr01_35d_35d = 21; // control message
+  optional Ihu_fr04_380_380 ihu_fr04_380_380 = 22; // report message
+  optional Clm_fr02_39e_39e clm_fr02_39e_39e = 23; // report message
+  optional Ihu_fr02_3f5_3f5 ihu_fr02_3f5_3f5 = 24; // report message
+  optional Plg_fr01_408_408 plg_fr01_408_408 = 25; // report message
+  optional Vcu_fr06_42b_42b vcu_fr06_42b_42b = 26; // report message
+  optional Vcu_fr04_4d4_4d4 vcu_fr04_4d4_4d4 = 27; // report message
+  optional Icu_fr02_525_525 icu_fr02_525_525 = 28; // report message
+  optional Tbox_fr01_530_530 tbox_fr01_530_530 = 29; // report message
+  optional Bms_fr15_55e_55e bms_fr15_55e_55e = 30; // report message
+  optional Diag_physreq_apa_7c0 diag_physreq_apa_7c0 = 31; // report message
+  optional Diag_physresp_apa_7d0 diag_physresp_apa_7d0 = 32; // control message
+  optional Diag_funcreq_7df_7df diag_funcreq_7df_7df = 33; // report message
+  optional Mcu_fr01_0aa_aa mcu_fr01_0aa_aa = 34; // report message
+  optional Eps_fr02_0e1_e1 eps_fr02_0e1_e1 = 35; // report message
+  optional Esc_fr01_0e5_e5 esc_fr01_0e5_e5 = 36; // report message
+}

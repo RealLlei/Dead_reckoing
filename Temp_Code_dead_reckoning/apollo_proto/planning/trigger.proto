@@ -1,0 +1,88 @@
+syntax = "proto2";
+
+package apollo.planning;
+
+message FaultInfo {
+    // id = fault_id * 100 + fault_obj
+    optional uint32 type = 1 [default = 0];
+    optional string msg = 2;
+}
+
+message EhpFault {
+    repeated FaultInfo fault_info = 1;
+}
+
+message PlanningFault {
+    // map info
+    repeated FaultInfo fault_info = 2;
+}
+
+message EventInfo {
+    enum TriggerType {
+        NO_EVENT = 0;
+        AEB_EVENT = 2001;
+        // Driver emergency braking
+        DRIVER_EMERGENCY_BRAKING = 2002;
+        // Driver emergency steering
+        DRIVER_EMERGENCY_STEERING = 2003;
+        // NNP finally requests to take over and downgrade
+        ODD_DOWNDRAGE = 2004;
+        // The number of parking handles exceeds the limit
+        PARKING_NUM_EXCEED = 2005;
+        // Multiple parking takeover
+        MUTI_PARKING_TAKEOVER = 2006;
+        // Parking ability class failed to take over
+        PARKING_CAPABILITY_FAILURE_TAKEOVER = 2007;
+        // Parking function failure request takeover
+        PARKING_FUCTION_FAILURE_TAKEOVER = 2008;
+        // AVP finally requests to take over and downgrade
+        AVP_TAKEOVER_REQUEST_AND_DEMOTION = 2009;
+        // NNP function failure request takeover
+        NNP_FUCTION_FAULT = 2010;
+        // N-pilot function failure request takeover
+        TAKEOVER_REMIND = 2011;
+        // Algorithm running active request collection
+        ALGORITHM_TRIGGER_EVENT = 2012;
+        // 
+        CLOUD_POSSIBLE_COLLISION_EVENT = 2013;
+        // NNP function driver takes over actively
+        NNP_DRIVER_ACTIVE_TAKEOVER = 2014;
+        // Control deviation is too large, request to take over
+        EXCESSIVE_DEVIATION_TAKEOVER = 2015;
+        PARKING_COLLISION_EVENT = 2016;
+        FCW_EVENT = 2017;
+        QUICKLY_ACC = 2018;
+        // Parking Unintended Error which got from control or fm
+        PARKING_UNINTENDED_ERROR = 2020;
+        // Parking pause over time
+        PARKING_PAUSE_OVER_TIME = 2021;
+        // Parking takeover request with collision risk
+        PARKING_TAKEOVER_REQUEST_WITH_COLLISION_RISK = 2022;
+        CONTROL_FAULT_TAKEOVER = 2023;
+        NNP_COLLISION_EVENT = 2024;
+        LOCAL_POSSIBLE_COLLISION_EVENT = 2025;
+        ADS_ACTIVE = 2026;
+        ADS_COLLISION_EVENT = 2027;
+    }
+    optional TriggerType type = 1 [default = NO_EVENT];
+    optional string msg = 2;
+}
+
+message EventTrigger {
+    repeated EventInfo event_info = 1;
+}
+
+message WarningInhibition {
+    repeated string irreversible_inhibition_clusters = 1;
+    repeated string reversible_inhibition_clusters = 2;
+    repeated int32 irreversible_inhibition_events = 3;
+    repeated int32 reversible_inhibition_events = 4;
+}
+
+message WarningInhibitionMap {
+    map<string, WarningInhibition> warning_fault_map = 1;
+}
+
+message PlanningErrorCodeMap {
+    map<int32, int32> planning_error_code_map = 1;
+}
