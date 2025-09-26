@@ -46,27 +46,13 @@ namespace Magna {
 namespace dead_reckoning {
 
 void DeadReckoningCore::Init() {
-	/* 加载配置文件
-    AINFO << "Dead_reckoning vio init, starting ...";
-    ACHECK(common::GetProtoFromFile(FLAGS_dead_reckoning_conf_file,
-                                  &dead_reckoning_conf_))
-      << "Unable to load dead reckoning conf file: " +
-             FLAGS_dead_reckoning_conf_file;
-    AINFO << "Conf file: " << FLAGS_dead_reckoning_conf_file << " is loaded.";
-    }
-    neta_forward_coef_ = dead_reckoning_conf_.neta_forward_coef();
-    neta_backward_coef_ = dead_reckoning_conf_.neta_backward_coef();
-    rear_wheel_rot_arm_ = dead_reckoning_conf_.rear_wheel_rot_arm();
-
-
-    */
 
 	//使用结构体赋值配置参数，取代从配置文件proto读取
 	config_.use_imu = true;          // 是否使用IMU数据（示例值：true）
 	config_.wheel_radius = 0.35;        // 轮子半径（示例值：0.35米）
-    config_.neta_forward_coef = 1.02;    // 前进时轮速校正系数（示例值）  
-    config_.neta_backward_coef = 1.05;   // 后退时轮速校正系数（示例值）  
-    config_.rear_wheel_rot_arm = 1.5;    // 后轮旋转臂长（示例值：1.5米）  
+    config_.neta_forward_coef = 19.9;    // 前进时轮速校正系数（示例值）  
+    config_.neta_backward_coef = 20.62;   // 后退时轮速校正系数（示例值）  
+    config_.rear_wheel_rot_arm = 1.6;    // 后轮旋转臂长（示例值：1.5米）  
 	config_.gain_yaw_count = 0.0;      // 偏航角计数器增益（示例值）
 	config_.gain_omg_z_count = 0.0;    // 角速度z轴计数器增益（示例值）
 
@@ -152,83 +138,33 @@ void DeadReckoningCore::ResetState() {
   q_.setIdentity();//将车辆的姿态重置为初始状态（无旋转），确保后续姿态推算从 “零旋转” 开始。
   yaw_counter_ = 0.0;//将航向角强制设置为 0.0。
 }
-/*
+
 void DeadReckoningCore::RunOnce(
-    const std::shared_ptr<const Magna::soc::Chassis>& chassis,
-    const std::shared_ptr<Magna::localization::Localization>& localization) {
+    const std::shared_ptr<const ChassisData>& chassis,  // 输入改为本地结构体
+    const std::shared_ptr<LocalizationOutput>& localization) {
   // add chassis info when  simulating
   chassis_received_ = chassis;
   chassis_is_update_ =
-      ((chassis_received_->header().publish_stamp() - last_msg_time_) > 1.0e-3);
-  AINFO << "chassis_is_update_Info: " << FIXED << SETPRECISION(4)
-        << "current_time: " << chassis_received_->header().publish_stamp()
+      ((chassis_received_->timestamp - last_msg_time_) > 1.0e-3);
+  AINFO << "current_time: " << chassis_received_->timestamp
         << "last_time: " << last_msg_time_
         << "chassis_is_update_falg: " << chassis_is_update_;
-  ADEBUG << "onchassis wheel_counter" << chassis->has_wheel_counter();
-  ADEBUG << "RunOnce wheel_counter" << chassis->has_wheel_counter();
+ 
   if (!StateEstimateEkf()) {
     return;
   }
   PublishLocalization(localization);
 
   if (chassis_is_update_) {
-    last_msg_time_ = chassis_received_->header().publish_stamp();
+    last_msg_time_ = chassis_received_->timestamp;
   }
 }
-*/
-void DeadReckoningCore::RunOnce(const ChassisInput& input, LocalizationOutput& output){
-    // 1. 计算时间间隔dt  
-    const double dt = (last_timestamp_ == 0.0) ? 0.01 : (input.timestamp - last_timestamp_);
-    last_timestamp_ = input.timestamp;
 
-    // 2. 校验关键数据有效性  
-    if (!input.imu.has_yaw_rate || !input.imu.has_acc || !input.wheel.is_valid) {
-        return;  // 数据无效时跳过处理  
-    }
-    // 3. 提取IMU数据  
-    const double yaw_rate = input.imu.yaw_rate;
-    const double acc_x = input.imu.acc.x;
-    const double acc_y = input.imu.acc.y;
 
-    // 4. 提取轮速数据并修正方向  
-    double fl_speed = input.wheel.fl_speed;
-    double fr_speed = input.wheel.fr_speed;
-    double rl_speed = input.wheel.rl_speed;
-    double rr_speed = input.wheel.rr_speed;
-
-    const int move_dir = (input.wheel.rl_direction == WheelDirection::FORWARD) ? 1 : -1;
-    if (move_dir == -1) {  // 后退时修正轮速符号  
-        fl_speed *= -1;
-        fr_speed *= -1;
-        rl_speed *= -1;
-        rr_speed *= -1;
-    }
-	//调用EKF状态估计算法
-    if (dt > 0) {
-        StateEstimateEkf(dt, input);  // 传入时间间隔和自定义底盘数据 
-    }
-    // 6. 填充输出结果  
-    output.timestamp = input.timestamp;
-    output.pos.x = pos_(0);
-    output.pos.y = pos_(1);
-    output.heading = yaw_counter_;
-    output.speed = (fl_speed + fr_speed + rl_speed + rr_speed) / 4.0;  // 简单平均车速
-}
-
-bool DeadReckoningCore::StateEstimateEkf(double dt, const ChassisInput& input) {  // EKF状态估计算法,输入为时间差以及底盘数据
-    // 1. 校验数据有效性（依赖自定义结构体的标志位）  
-    if (!input.imu.has_yaw_rate) {
-        printf("警告：无有效偏航率数据，跳过状态估计\n");
-        return false;
-    }
-    if (!input.wheel.is_valid) {
-        printf("警告：无有效轮速数据，跳过状态估计\n");
-        return false;
-    }
-
-//以下是源代码
-    double dt = (chassis_received_->header().publish_stamp() - last_msg_time_);  // 计算与上一时刻的时间差
-    AINFO << "StateEstimateEkf entried: " << " dt: " << dt << " chassis_is_update_: " << chassis_is_update_;  // 输出进入EKF的日志及时间差、更新标志
+bool DeadReckoningCore::StateEstimateEkf() {  
+    double dt = chassis_received_->timestamp - last_msg_time_;
+    AINFO << "dt: " << dt << " update_flag: " << chassis_is_update_;
+/*
     if (!chassis_is_update_) {  // 若底盘数据未更新
         imu_data_.angular_speed.setZero();  // IMU角速度归零
         imu_data_.linear_acceleration = { 0.0, 0.0, CON_g0 };  // IMU线加速度设为重力
@@ -236,43 +172,34 @@ bool DeadReckoningCore::StateEstimateEkf(double dt, const ChassisInput& input) {
         wheel_speed_is_valid_ = false;  // 轮速数据无效
         return false;  // 返回失败
     }
-    else {  // 底盘数据已更新
-        AINFO << "chassis_has_yaw_rate: " << FIXED << SETPRECISION(4) << chassis_received_->has_yaw_rate();  // 输出底盘是否有横摆角速度
-        if (chassis_received_->has_yaw_rate()) {  // 若底盘有横摆角速度
-            imu_data_.timestamp = chassis_received_->header().publish_stamp();  // 更新IMU时间戳为底盘时间
+ */
+  //else {
+        AINFO << "chassis_has_yaw_rate: " << chassis_received_->has_yaw_rate;  // 输出底盘是否有横摆角速度
+        if (chassis_received_->has_yaw_rate) {  // 若底盘有横摆角速度
+            imu_data_.timestamp = chassis_received_->timestamp;  // 更新IMU时间戳为底盘时间
             imu_data_.angular_speed(0) = 0.0;  // IMU角速度x设为0
             imu_data_.angular_speed(1) = 0.0;  // IMU角速度y设为0
-            imu_data_.angular_speed(2) = chassis_received_->yaw_rate();  // IMU角速度z设为底盘横摆角速度
-            imu_data_.linear_acceleration(0) = chassis_received_->imu_acc().y();  // IMU线加速度x设为底盘IMU的y向加速度
-            imu_data_.linear_acceleration(1) = -1.0 * chassis_received_->imu_acc().x();  // IMU线加速度y设为底盘IMU的x向加速度的负值
+            imu_data_.angular_speed(2) = chassis_received_->yaw_rate;  // IMU角速度z设为底盘横摆角速度
+
+            imu_data_.linear_acceleration(0) = chassis_received_->imu_acc.y();  // IMU线加速度x设为底盘IMU的y向加速度
+            imu_data_.linear_acceleration(1) = -1.0 * chassis_received_->imu_acc.x();  // IMU线加速度y设为底盘IMU的x向加速度的负值
             imu_data_.linear_acceleration(2) = CON_g0;  // IMU线加速度z设为重力加速度
-            AINFO << "imu_data_.angular_speed: " << FIXED << SETPRECISION(6) 
-                  << imu_data_.angular_speed(0) << "; " << imu_data_.angular_speed(1) 
-                  << "; " << imu_data_.angular_speed(2);  // 输出IMU角速度
-            AINFO << "imu_data_.linear_acceleration: " << FIXED << SETPRECISION(6)
-                  << imu_data_.linear_acceleration(0) << "; " 
-                  << imu_data_.linear_acceleration(1) << "; " 
-                  << imu_data_.linear_acceleration(2);  // 输出IMU线加速度
         }
         else {  // 底盘无横摆角速度
-            ADEBUG << "Waiting imu data...";  // 调试日志：等待IMU数据
+            ADEBUG << "No yaw rate data";  // 调试日志：等待IMU数据
             return false;  // 返回失败
         }
-        if (chassis_received_->has_wheel_speed()) {  // 若底盘有轮速数据
-            wheel_speed_.timestamp = chassis_received_->header().publish_stamp();  // 轮速时间戳设为底盘时间
-            auto wheel_speed = chassis_received_->wheel_speed();  // 获取轮速数据
-            wheel_speed_.fl_wheel_speed_isvalid = wheel_speed.is_wheel_spd_fl_valid();  // 左前轮速有效性
-            wheel_speed_.fr_wheel_speed_isvalid = wheel_speed.is_wheel_spd_fr_valid();  // 右前轮速有效性
-            wheel_speed_.rl_wheel_speed_isvalid = wheel_speed.is_wheel_spd_rl_valid();  // 左后轮速有效性
-            wheel_speed_.rr_wheel_speed_isvalid = wheel_speed.is_wheel_spd_rr_valid();  // 右后轮速有效性
-            wheel_speed_.fl_wheel_speed = wheel_speed.wheel_spd_fl();  // 左前轮速值
-            wheel_speed_.fr_wheel_speed = wheel_speed.wheel_spd_fr();  // 右前轮速值
-            wheel_speed_.rl_wheel_speed = wheel_speed.wheel_spd_rl();  // 左后轮速值
-            wheel_speed_.rr_wheel_speed = wheel_speed.wheel_spd_rr();  // 右后轮速值
-            if ((wheel_speed.wheel_direction_rl() == soc::WheelSpeed::BACKWARD) && 
-                (wheel_speed.wheel_direction_rr() != soc::WheelSpeed::FORWARD) || 
-                (wheel_speed.wheel_direction_rl() != soc::WheelSpeed::FORWARD) && 
-                (wheel_speed.wheel_direction_rr() == soc::WheelSpeed::BACKWARD)) 
+        if (chassis_received_->has_wheel_speed) {  // 若底盘有轮速数据            
+            const auto& wheel_speed = chassis_received_->wheel_speed;  // 获取轮速数据
+            wheel_speed_.fl_wheel_speed = wheel_speed.fl_speed;  // 左前轮速值
+            wheel_speed_.fr_wheel_speed = wheel_speed.fr_speed;  // 右前轮速值
+            wheel_speed_.rl_wheel_speed = wheel_speed.rl_speed;  // 左后轮速值
+            wheel_speed_.rr_wheel_speed = wheel_speed.rr_speed;  // 右后轮速值
+
+            if ((wheel_speed.rl_dir == soc::WheelSpeed::BACKWARD) &&
+                (wheel_speed.rr_dir != soc::WheelSpeed::FORWARD) ||
+                (wheel_speed.rl_dir != soc::WheelSpeed::FORWARD) &&
+                (wheel_speed.rr_dir == soc::WheelSpeed::BACKWARD))
             {  // 后轮方向判断为倒车
                 move_direction_ = -1;  // 运动方向为-1（倒车）
                 wheel_speed_.fl_wheel_speed = -1.0 * wheel_speed_.fl_wheel_speed;  // 左前轮速取负
@@ -280,10 +207,10 @@ bool DeadReckoningCore::StateEstimateEkf(double dt, const ChassisInput& input) {
                 wheel_speed_.rl_wheel_speed = -1.0 * wheel_speed_.rl_wheel_speed;  // 左后轮速取负
                 wheel_speed_.rr_wheel_speed = -1.0 * wheel_speed_.rr_wheel_speed;  // 右后轮速取负
             }
-            else if ((wheel_speed.wheel_direction_rl() == soc::WheelSpeed::FORWARD) && 
-                     (wheel_speed.wheel_direction_rr() != soc::WheelSpeed::BACKWARD) || 
-                     (wheel_speed.wheel_direction_rl() != soc::WheelSpeed::BACKWARD) && 
-                     (wheel_speed.wheel_direction_rr() == soc::WheelSpeed::FORWARD)) 
+            else if ((wheel_speed.rl_dir == soc::WheelSpeed::FORWARD) &&
+                     (wheel_speed.rr_dir != soc::WheelSpeed::BACKWARD) ||
+                     (wheel_speed.rl_dir != soc::WheelSpeed::BACKWARD) &&
+                     (wheel_speed.rr_dir == soc::WheelSpeed::FORWARD))
             {  // 后轮方向判断为前进
                 move_direction_ = 1;  // 运动方向为1（前进）
             }
@@ -298,10 +225,12 @@ bool DeadReckoningCore::StateEstimateEkf(double dt, const ChassisInput& input) {
             ADEBUG << "Waiting wheel speed data...";  // 调试日志：等待轮速数据
             return false;  // 返回失败
         }
-        ADEBUG << "StateEstimateEkf wheel_counter" << chassis_received_->has_wheel_counter();  // 调试日志：EKF中底盘是否有轮计数器数据
-        if (chassis_received_->has_wheel_counter()) {  // 若底盘有轮计数器数据
-            wheel_counter_.timestamp = chassis_received_->header().publish_stamp();  // 轮计数器时间戳设为底盘时间
-            auto wheel_counter = chassis_received_->wheel_counter();  // 获取轮计数器数据
+
+
+        ADEBUG << "StateEstimateEkf wheel_counter" << chassis_received_->has_wheel_counter;  // 调试日志：EKF中底盘是否有轮计数器数据
+        if (chassis_received_->has_wheel_counter) {  // 若底盘有轮计数器数据
+            wheel_counter_.timestamp = chassis_received_->timestamp;  // 轮计数器时间戳设为底盘时间
+            auto wheel_counter = chassis_received_->wheel_counter;  // 获取轮计数器数据
             double forward_counter_coef = 1.0 / neta_forward_coef_;  // 前向计数器系数（1/配置的前向系数）
             double backward_counter_coef = 1.0 / neta_backward_coef_;  // 后向计数器系数（1/配置的后向系数）
 
@@ -362,27 +291,35 @@ bool DeadReckoningCore::StateEstimateEkf(double dt, const ChassisInput& input) {
             if (chassis_received_->has_steering_torque_nm()) { steer_.steer_torque = chassis_received_->steering_torque_nm() * MAX_STEER_ANGLE; }  // 若有转向扭矩，计算转向扭矩（扭矩*最大转向角）
             last_wheel_counter_ = wheel_counter_;  // 更新上一时刻轮计数器数据
         }
-    }
+    //}
+
     Eigen::Quaterniond q_yaw_l{ cos(0.5 * yaw_l_), 0.0, 0.0, sin(0.5 * yaw_l_) };  // 偏航角对应的四元数（绕z轴旋转yaw_l_）
     if (!is_sensor_ready_) {  // 若传感器未就绪
         if (wheel_speed_is_valid_ == true) { is_sensor_ready_ = true; }  // 轮速有效则标记传感器就绪
-        else { return false; }  // 否则返回失败
+        else { 
+            return false;
+        }  // 否则返回失败
     }
     if (wheel_counter_is_valid_) {  // 若轮计数器数据有效
         Eigen::VectorXd wheel_counter_speed(4);  // 四轮计数器速度向量
-        wheel_counter_speed << wheel_counter_speed_.fl_wheel_speed, wheel_counter_speed_.fr_wheel_speed, wheel_counter_speed_.rl_wheel_speed, wheel_counter_speed_.rr_wheel_speed;  // 赋值四轮速度
-        is_car_standstill_ = wheel_counter_speed.norm() < FLAGS_default_standstill_value;  // 车辆静止判断（速度向量模长<阈值）
+        wheel_counter_speed << wheel_counter_speed_.fl_wheel_speed, 
+                                wheel_counter_speed_.fr_wheel_speed, 
+                                wheel_counter_speed_.rl_wheel_speed, 
+                                wheel_counter_speed_.rr_wheel_speed;  // 赋值四轮速度
+
+        is_car_standstill_ = wheel_counter_speed.norm() < config_.default_standstill_value;  // 车辆静止判断（速度向量模长<阈值）
         Eigen::VectorXd wheel_counter_dif(2);  // 轮速差值向量
         wheel_counter_dif << wheel_counter_speed_.fl_wheel_speed - wheel_counter_speed_.fr_wheel_speed, wheel_counter_speed_.rl_wheel_speed - wheel_counter_speed_.rr_wheel_speed;  // 前后轮速差
-        is_car_go_straight_ = fabs(wheel_counter_speed_.rr_wheel_speed) > 10 && wheel_counter_speed.norm() < FLAGS_default_standstill_value;  // 直行判断（右后轮速绝对值>10且速度模长<阈值）
+        is_car_go_straight_ = fabs(wheel_counter_speed_.rr_wheel_speed) > 10 && wheel_counter_speed.norm() < config_.default_standstill_value;  // 直行判断（右后轮速绝对值>10且速度模长<阈值）
     }
     ADEBUG << "is_car_go_straight_ " << is_car_go_straight_;  // 调试日志：是否直行
+
     if (!is_local_init_) {  // 若局部状态未初始化
         LocalInitialize();  // 初始化局部状态
         q_.setIdentity();  // 姿态四元数设为单位矩阵
     }
     else {  // 局部状态已初始化
-        if (FLAGS_enable_auto_angle_rate_bias) {  // 若启用自动角速度偏置估计
+        if (config_.enable_auto_angle_rate_bias) {  // 若启用自动角速度偏置估计
             if (is_car_standstill_) {  // 车辆静止
                 car_standstill_counter_ += 1.0;  // 静止计数器加1
                 car_standstill_omg_sum_ += imu_data_.angular_speed;  // 累加IMU角速度
@@ -420,7 +357,9 @@ bool DeadReckoningCore::StateEstimateEkf(double dt, const ChassisInput& input) {
         det_q.vec() = sin(0.5 * theta) * det_ang.normalized();  // 四元数向量分量（正弦半角*单位向量）
         q_ = q_ * det_q;  // 更新姿态四元数（当前姿态*变化量）
         ADEBUG << "env imu init finished!";  // 调试日志：IMU初始化完成
+
         LocalPredict(dt);  // 局部位置预测
+
         if (wheel_speed_is_valid_) {  // 轮速有效
             ADEBUG << "call local_car_speed_correct";  // 调试日志：调用车速校正
             LocalCarSpeedCorrect();  // 校正车速
