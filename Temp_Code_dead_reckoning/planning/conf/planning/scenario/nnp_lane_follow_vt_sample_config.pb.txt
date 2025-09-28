@@ -1,0 +1,149 @@
+scenario_type: NNP_LANE_FOLLOW
+stage_type: NNP_LANE_FOLLOW_DEFAULT_STAGE
+
+nnp_lane_follow_config: {
+  enable_linear_path_resolution: true
+  path_resolution: 0.5
+  
+  path_resolution_segment_config: {
+    veh_speed_segment: 11.11
+    veh_speed_segment: 16.6
+    veh_speed_segment: 25.0
+    veh_speed_segment: 30.0
+
+    path_resolution_segment: 0.5
+    path_resolution_segment: 0.65
+    path_resolution_segment: 0.9
+    path_resolution_segment: 1.0
+  }
+}
+
+stage_config: {
+  stage_type: NNP_LANE_FOLLOW_DEFAULT_STAGE
+  enabled: true
+  task_type: LANE_CHANGE_DECIDER
+  task_type: OBSTACLES_DECIDER
+  task_type: OBSTACLE_GAME_DECIDER
+  task_type: PATH_REUSE_DECIDER
+  task_type: PATH_LANE_BORROW_DECIDER
+  task_type: PATH_BOUNDS_DECIDER
+  task_type: PIECEWISE_JERK_PATH_OPTIMIZER
+  task_type: PATH_ASSESSMENT_DECIDER
+  task_type: PATH_DECIDER
+  task_type: RULE_BASED_STOP_DECIDER
+  task_type: ST_BOUNDS_DECIDER
+  task_type: SPEED_BOUNDS_PRIORI_DECIDER
+  task_type: SPEED_DATA_OPTIMIZER
+  task_type: SPEED_DECIDER
+
+  task_config: {
+    task_type: LANE_CHANGE_DECIDER
+    lane_change_decider_config {
+      enable_lane_change_urgency_check: true
+    }
+  }
+  task_config: {
+    task_type: OBSTACLES_DECIDER
+    obstacles_decider_config {
+    }
+  }
+  task_config: {
+    task_type: OBSTACLE_GAME_DECIDER
+    obstacle_game_decider_config {
+    }
+  }
+  task_config: {
+    task_type: PATH_REUSE_DECIDER
+    path_reuse_decider_config {
+      reuse_path: false
+    }
+  }
+  task_config: {
+    task_type: AVOID_ALONGSIDE_DECIDER
+    avoid_alongside_decider_config {
+    }
+  }
+  task_config: {
+    task_type: PATH_LANE_BORROW_DECIDER
+    path_lane_borrow_decider_config {
+    }
+  }
+  task_config: {
+    task_type: PATH_BOUNDS_DECIDER
+  }
+  task_config: {
+    task_type: PIECEWISE_JERK_PATH_OPTIMIZER
+  }
+  task_config: {
+    task_type: PATH_ASSESSMENT_DECIDER
+  }
+  task_config: {
+    task_type: PATH_DECIDER
+  }
+  task_config: {
+    task_type: ST_BOUNDS_DECIDER
+  }
+  task_config: {
+    task_type: SPEED_BOUNDS_PRIORI_DECIDER
+    speed_bounds_decider_config {
+      max_centric_acceleration_limit: 1.2
+      over_speed_ratio: 0.1
+      max_over_speed: 2.778
+      cruise_speed_stable_cnt: 3
+    }
+  }
+  task_config: {
+    task_type: SPEED_BOUNDS_FINAL_DECIDER
+  }
+  task_config: {
+    task_type: SPEED_HEURISTIC_OPTIMIZER
+  }
+  task_config: {
+    task_type: SPEED_DECIDER
+  }
+  task_config: {
+    task_type: PIECEWISE_JERK_SPEED_OPTIMIZER
+  }
+  task_config: {
+    task_type: RULE_BASED_STOP_DECIDER
+  }
+  task_config: {
+    task_type: SPEED_DATA_OPTIMIZER
+    speed_data_optimizer_config {
+      speed_scenario_manager_config: {
+        speed_scenario_config: {
+          scenario_type: LANE_KEEP_SCENARIO
+          accel_limit_calibration_info: {
+            speed: 16.66
+            accel: 1.1
+          }
+          accel_limit_calibration_info: {
+            speed: 22.22
+            accel: 1.1
+          }
+          accel_limit_calibration_info: {
+            speed: 27.77
+            accel: 1.1
+          }
+          decel_limit_calibration_info: {
+            speed: 5.0
+            decel: -5.0
+          }
+          decel_limit_calibration_info: {
+            speed: 20.0
+            decel: -3.5
+          }
+        }
+        speed_scenario_config: {
+          scenario_type: LANE_CHANGE_SCENARIO
+        }
+        speed_scenario_config: {
+          scenario_type: LANE_MERGE_SCENARIO
+        }
+        speed_scenario_config: {
+          scenario_type: LANE_CONTINUE_SCENARIO
+        }
+      }
+    }
+  }
+}

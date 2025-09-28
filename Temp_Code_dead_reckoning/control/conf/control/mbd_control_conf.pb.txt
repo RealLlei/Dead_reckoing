@@ -1,0 +1,575 @@
+max_damper_acc:   1.0
+max_long_vel_val: 45.0
+max_pitch_comp_acc: 1.0
+max_steer_angle: 475.0
+max_time_err: 2.0
+min_long_vel_val: -10.0
+ctrl_req_mode: ADAS_AUTO
+latpre_times:  0.2
+coef_friction: 0.084214
+coef_velocity_square: 0.000899
+cal_ctrldec_estop_type:  1
+cal_ctrldec_gearn_ax_value: 0.25
+cal_ctrldec_gearp_min_steerngle: 0.021
+cal_ctrldec_gearswitch_min_vel: 0.08
+max_lati_pos_offset: 1.5
+cal_latictrl_integral_clean_min_vel: 0.2
+cal_longictrl_pitch_comp_en: 0
+cal_longictrl_velctrl_accdampen: 0
+cal_longictrl_pitch_err_install: 0.0
+cal_longictrl_pitch_filter_fc: 0.5
+
+cal_latictrl_offsetctrl_p: 0.7
+cal_latictrl_offsetctrl_i: 0.02
+cal_latictrl_offsetCtrl_i_intitialvalue: 0.0
+cal_latictrl_offsetctrl_i_limit_ratio: 0.4
+cal_latictrl_Offsetctrl_out_max: 0.8
+cal_latictrl_offsetctrl_outputlimit: 0.1
+cal_latictrl_offset_base_min_vel: 0.5
+cal_latictrl_offset_tors_comp_kv: -0.0061
+cal_latictrl_offset_tors_comp_lr: 1.495
+cal_latictrl_offset_tors_comp_min_vel: 1.0
+
+cal_latictrl_yawctrl_p: 1.8
+cal_latictrl_yawctrl_i: 0.0
+cal_latictrl_yawctrl_err_max: 0.1
+cal_latictrl_yawctrl_i_intitialValue:  0.0
+cal_latictrl_yawCtrl_i_limit_ratio: 0.4
+cal_latictrl_yawctrl_lead_mid_fp: 1.0
+cal_latictrl_yawctrl_lead_mid_fz: 1.0
+cal_latictrl_yawctrl_out_max: 0.3491
+cal_latictrl_yawctrl_outputlimit: 0.5
+cal_latictrl_yawctrl_curvff_filter_fp: 3.0
+
+cal_latictrl_ratectrl_p: 0.36
+cal_latictrl_ratectrl_i: 0.02
+cal_latictrl_ratectrl_errmax: 0.1
+cal_latictrl_ratectrl_i_initialvalue: 0.0
+cal_latictrl_ratectrl_i_limit_ratio: 0.2
+cal_latictrl_ratectrl_out_max: 1.0
+cal_latictrl_ratectrl_outputlimit: 1.0
+cal_latictrl_ratectrl_front_filter_fp: 0.9
+cal_latictrl_ratectrl_kenimatic_kr: 0.0035
+cal_latictrl_ratectrl_kenimatic_translate_l: 1.0
+cal_latictrl_ratectrl_kenimatic_translate_r: 1.0
+cal_latictrl_ratectrl_kenimatic_vel_min: 0.1
+cal_latictrl_ratectrl_kenimatic_wheel_base: 2.96
+cal_latictrl_ratectrl_lead_mid_fp: 1.6
+cal_latictrl_ratectrl_lead_mid_Fz: 1.6
+cal_latictrl_ratectrl_max_acc_limit: 3.0
+cal_latiCtrl_steerctrl_lowpass_fp: 1.5
+
+cal_latictrl_steer_offset_deg: 0.0
+cal_latictrl_steer_offset_max_deg: 5.0
+cal_latiCtrl_steerctrl_switch_1dtable_or_2dtable: 1
+cal_latiCtrl_steerctrl_switch_forward_or_both: 1
+cal_latiCtrl_steerCtrl_switch_realSteer_or_cmdsteer: 1
+trajcalc_vel_curvgain_switch: 0
+trajcalc_latpre_times_switch: 0
+
+
+cal_longictrl_posctrl_err_fp: 3.0
+cal_longictrl_posctrl_p: 0.25
+cal_longictrl_posctrl_i:  0.0
+cal_longictrl_posctrl_max_err:  3.0
+cal_longictrl_posctrl_i_clear_thred: 0.01
+cal_longictrl_posctrl_i_initialvalue: 0
+cal_longictrl_posctrl_initialvalue: 0.0
+cal_longictrl_posctrl_limit_ratio: 0.2
+cal_longictrl_posctrl_outlimit: 1.0
+
+cal_longictrl_velctrl_p: 1.05
+cal_longictrl_velctrl_i: 0.04
+cal_longictrl_velctrl_err_max: 3.0                              
+cal_longictrl_velctrl_i_clear_thred: 0.05
+cal_longictrl_velctrl_i_initialvalue: 0.0                                   
+cal_longictrl_velctrl_i_limit_ratio: 0.2
+cal_longictrl_velctrl_pi_outlimit: 3.0
+cal_longictrl_velctrl_lead_fp: 1.0                                    
+cal_longictrl_velctrl_lead_fz: 1.0
+cal_longictrl_velctrl_accff_fp: 5.0
+cal_longictrl_velctrl_accff_fz: 10.0
+cal_longictrl_velctrl_diff_fp: 1.0
+cal_longictrl_velctrl_outfilter_fp: 15.0                                  
+
+cal_longictrl_thrustctrl_accfdbk_fp:  2.0
+cal_longictrl_thrustctrl_thr_front_filter_fp: 0.35
+cal_longictrl_thrustctrl_brk_front_filter_fp: 0.9
+
+cal_longictrl_thrustctrl_brk_p: 0.1
+cal_longictrl_thrustctrl_brk_i: 0.1
+cal_longictrl_thrustctrl_brk_err_max: 0.8
+cal_longictrl_thrustctrl_brk_i_clear_thred: 0.1
+cal_longictrl_thrustctrl_brk_i_init: 0.0
+cal_longictrl_thrustctrl_brk_i_limit_ratio:  0.5
+cal_longictrl_thrustctrl_brk_pi_maxout: 0.3
+cal_longictrl_thrustctrl_brk_slopeup:12.0
+cal_longictrl_thrustctrl_brakemax_base: 3
+cal_longictrl_thrustctrl_brakeout_limit: 1.0
+
+cal_longictrl_thrustctrl_thr_p: 0.1
+cal_longictrl_thrustctrl_thr_i: 0.0
+cal_longictrl_thrustctrl_thr_err_max: 0.8
+cal_longictrl_thrustctrl_thr_i_clear_thred:0.1
+cal_longictrl_thrustctrl_thr_i_init: 0.0
+cal_longictrl_thrustctrl_thr_i_limit_ratio:0.5
+cal_longictrl_thrustctrl_thr_pi_maxout: 0.3
+cal_longictrl_thrustctrl_thr_slopedown: -12.0
+cal_longictrl_thrustctrl_thr_slopeup: 2.0
+cal_longictrl_thrustctrl_throtmax_base: 3.0 
+cal_longictrl_thrustctrl_throttleout_limit: 1.0
+
+test_mode: 0
+latctrl_testmode: 3
+apisteercmd_switch: 1
+apisteercmd_const: 0
+apisteercmd_sin_a: 0.2
+apisteercmd_sin_b: 0
+apisteercmd_sin_phi: 0
+apisteercmd_sin_w: 0.5
+
+lonctrl_testmode: 3
+apivelff_switch: 0
+apivelff_const: 0
+apivelff_sin_a: 10.0
+apivelff_sin_b: 0
+apivelff_sin_phi: 0
+apivelff_sin_w: 1.57
+
+apiacccmd_switch: 0
+apiacccmd_const: 0
+apiacccmd_sin_a: 1.0
+apiacccmd_sin_b: 0
+apiacccmd_sin_phi: 0
+apiacccmd_sin_w: 1.57
+apianalogcmd_switch: 0
+apianalogcmd_const: 0
+apianalogcmd_sin_a: 0.3
+apianalogcmd_sin_b: 0
+apianalogcmd_sin_phi: 0
+apianalogcmd_sin_w: 1.57
+
+posedata_headertime_err: 1.0
+vehicle_standstill: 1
+brake_pedal_applied: 0
+latictrl_steer_limit_switch: true
+use_without_utm_info_localization: 1
+sysmode_driving_mode: 1
+sysmode_request_mode: 9
+
+vehicle_param_TL {
+  nnp_max_acceleration: 1.5
+  nnp_max_deceleration: -5
+  avp_max_acceleration: 3
+  avp_max_deceleration: -3
+}
+
+lonpre_times_table {
+  BP1: 0.0
+  BP1: 1.0
+  BP1: 3.0
+  BP1: 5.0
+  BP1: 10.0
+  BP1: 15.0
+
+  Table: 0.15
+  Table: 0.15
+  Table: 0.5
+  Table: 0.5
+  Table: 0.5
+  Table: 0.5
+}
+
+posctrldyngain_table {
+  BP1: 0.0
+  BP1: 0.5
+  BP1: 1.0
+  BP1: 3.0
+  BP1: 5.0
+  BP1: 10.0
+  BP1: 15.0
+  BP1: 20.0
+
+  Table: 0.6
+  Table: 0.6
+  Table: 0.7 
+  Table: 0.9
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0
+}
+
+trajcalc_latpre_times_table{
+  BP1: 0.0
+  BP1: 2.0
+  BP1: 4.0
+  BP1: 6.0
+  BP1: 8.0
+  BP1: 10.0
+
+  Table: 0.2
+  Table: 0.2
+  Table: 0.2
+  Table: 0.2
+  Table: 0.2
+  Table: 0.2
+}
+
+
+trajcalc_vel_curvgain_table{
+  BP1: 0.0
+  BP1: 2.0
+  BP1: 4.0
+  BP1: 6.0
+  BP1: 8.0
+  BP1: 10.0
+
+  Table: 0.01
+  Table: 0.01
+  Table: 0.01
+  Table: 0.01
+  Table: 0.01
+  Table: 0.01
+}
+
+steer_vel2torque_table {
+  BP1: 0.0
+  BP1: 2.7778
+  BP1: 8.3333
+  BP1: 13.889
+  BP1: 19.4444
+  BP1: 25.0
+
+  Table: 5.8533
+  Table: 6.0167 
+  Table: 7.4416
+  Table: 15.3583298
+  Table: 24.7
+  Table: 35.783329
+}
+
+steerctrl_i_table {
+  BP1: 0.0 
+  BP1: 5.56
+  BP1: 11.11
+  BP1: 16.67
+  BP1: 22.22
+  BP1: 27.78
+  BP1: 33.33
+
+  Table: 0.0
+  Table: 0.0
+  Table: 0.0 
+  Table: 0.0
+  Table: 0.0
+  Table: 0.0
+  Table: 0.0
+}
+
+steerctrl_p_table {
+  BP1: 0.0 
+  BP1: 5.56
+  BP1: 11.11
+  BP1: 16.67
+  BP1: 22.22
+  BP1: 27.78
+  BP1: 33.33
+
+  Table: 0.15
+  Table: 0.15
+  Table: 0.15 
+  Table: 0.15
+  Table: 0.15
+  Table: 0.05
+  Table: 0.05
+
+}
+
+offsetctrl_dyngain_table{
+    BP1: 1.0
+    BP1: 3.0
+    BP1: 5.0
+    BP1: 10.0
+    BP1: 15.0
+
+    Table: 0.3
+    Table: 0.6
+    Table: 0.8
+    Table: 0.9
+    Table: 1.0
+}
+
+yawctrl_dyngain_table{
+    BP1: 0.0
+    BP1: 1.0
+    BP1: 3.0
+    BP1: 5.0
+    BP1: 10.0
+    BP1: 15.0
+
+    Table: 0.6
+    Table: 0.6
+    Table: 0.55
+    Table: 0.5
+    Table: 0.4
+    Table: 0.35
+}
+
+latictrl_yawctrl_err_max_table{
+    BP1: 0.0
+    BP1: 5.0
+    BP1: 10.0
+    BP1: 15.0
+    BP1: 20.0
+    BP1: 30.0
+    BP1: 40.0
+
+    Table: 0.1
+    Table: 0.1
+    Table: 0.05236
+    Table: 0.0349
+    Table: 0.02618
+    Table: 0.01745
+    Table: 0.01745
+}
+
+cal_latictrl_ratectrl_kenimatic_krdyn_table{
+  BP1: 5.0
+  BP1: 10.0
+  
+  Table: 0.0
+  Table: 1.0
+}
+
+torsrate_dyn_gain_table {
+  BP1: 0.0
+  BP1: 3.0
+  BP1: 5.0
+  BP1: 10.0
+  BP1: 15.0
+  BP1: 20.0
+  BP1: 25.0
+  BP1: 30.0
+  BP1: 35.0
+  BP1: 40.0
+
+  Table: 0.667
+  Table: 0.667
+  Table: 0.667
+  Table: 0.509
+  Table: 0.397
+  Table: 0.165
+  Table: 0.135
+  Table: 0.13
+  Table: 0.13
+  Table: 0.10
+}
+
+steer_akerman_table {
+  BP1: 0
+  BP1: 47.0
+  BP1: 94.0
+  BP1: 141.0
+  BP1: 188.0
+  BP1: 235.0
+  BP1: 282.0
+  BP1: 329.0
+  BP1: 376.0
+  BP1: 423.0
+  BP1: 475.0
+ 
+  Table: 0.0
+  Table: 0.0989
+  Table: 0.1979
+  Table: 0.2968
+  Table: 0.3968
+  Table: 0.4947
+  Table: 0.5937
+  Table: 0.6926
+  Table: 0.7916
+  Table: 0.8905
+  Table: 1.0
+}
+
+steer_ratio_ratectrl_table {
+  BP1: 0
+  BP1: 3.61
+  BP1: 7.22
+  BP1: 9.758
+  BP1: 13.3
+  BP1: 17.57
+  BP1: 20.06
+  BP1: 22.59
+  BP1: 26.52
+  BP1: 30.06
+
+  Table: 0.0
+  Table: 60.0
+  Table: 120.0
+  Table: 160.0
+  Table: 220.0
+  Table: 280.0
+  Table: 320.0
+  Table: 360.0
+  Table: 420.0
+  Table: 480.0
+}
+
+steer_rate_max_table {
+  BP1: 0
+  BP1: 0.1
+  BP1: 0.2
+  BP1: 0.5
+  BP1: 1.0
+  BP1: 3.0
+  BP1: 5.0
+  BP1: 10.0
+  BP1: 15.0
+  BP1: 20.0
+  BP1: 25.0
+  BP1: 30.0
+
+  Table: 412.0
+  Table: 412.0
+  Table: 337.0
+  Table: 337.0
+  Table: 337.0
+  Table: 225.0
+  Table: 225.0
+  Table: 50.0
+  Table: 40.0
+  Table: 25.0
+  Table: 20.0
+  Table: 15.0
+}
+
+steer_max_output_table {
+  BP1: 0.0
+  BP1: 3.0
+  BP1: 5.0
+  BP1: 10.0
+  BP1: 15.0
+  BP1: 20.0
+  BP1: 25.0
+  BP1: 30.0
+  BP1: 35.0
+  BP1: 40.0
+
+  Table: 475.0
+  Table: 475.0
+  Table: 475.0
+  Table: 200.0
+  Table: 60.0
+  Table: 40.0
+  Table: 30.0
+  Table: 20.0
+  Table: 10.0
+  Table: 10.0
+}
+
+posctrlout_limit_table{
+
+
+  Table: 0.5
+  Table: 0.5
+  Table: 0.8
+  Table: 0.8
+  Table: 0.8
+}
+
+velctrldyngain_table {
+  BP1: 0.0
+  BP1: 0.5
+  BP1: 1.0
+  BP1: 3.0
+  BP1: 5.0
+  BP1: 10.0
+  BP1: 15.0
+  BP1: 20.0
+
+  Table: 0.7
+  Table: 0.7
+  Table: 0.7
+  Table: 0.75
+  Table: 0.85
+  Table: 0.90
+  Table: 1.0
+  Table: 1.0
+}
+
+thrctrlbrkdyngain_table {
+  BP1: 0.0
+  BP1: 0.5
+  BP1: 1.0
+  BP1: 3.0
+  BP1: 5.0
+  BP1: 10.0
+  BP1: 15.0
+  BP1: 20.0
+
+  Table: 0.5
+  Table: 0.5
+  Table: 0.7
+  Table: 0.9
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0
+}
+
+thrctrlthrotdyngain_table {
+  BP1: 0.0
+  BP1: 0.5
+  BP1: 1.0
+  BP1: 3.0
+  BP1: 5.0
+  BP1: 10.0
+  BP1: 15.0
+  BP1: 20.0
+  Table: 0.0
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0
+}
+
+throttlegain_table {
+
+
+  Table: 1.35
+  Table: 1.0 
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0
+}
+
+brakegain_table{
+ 
+
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0 
+  Table: 1.0
+  Table: 1.0
+  Table: 1.0
+}
+
+brakeslope_table{
+  
+  
+  Table: 1.0
+  Table: 1.82
+  Table: 1.82
+  Table: 5.46
+  Table: 9.11
+  Table: 12.75
+}

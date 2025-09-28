@@ -1,0 +1,177 @@
+%YAML:1.0
+
+recvInstances:
+    - name: chassis
+      type: chassis_proxy
+      id: 1
+    - name: nnp_localization
+      type: location_proxy
+      id: 1
+    - name: hpp_localization
+      type: location_proxy
+      id: 2
+    - name: nnp_fusion_lane
+      type: lanes_proxy
+      id: 11
+    - name: TL_lane
+      type: lanes_proxy
+      id: 12
+    - name: hpp_lane
+      type: lanes_proxy
+      id: 2
+    - name: hpp_freespace
+      type: freespace_proxy
+      id: 2
+    - name: nnp_obj_fusion
+      type: obj_fusion_proxy
+      id: 1
+    - name: hpp_obj_fusion
+      type: obj_fusion_proxy
+      id: 11
+    - name: map_msg
+      type: map_msg_proxy
+      id: 1
+    - name: parking_lot
+      type: parking_lot_proxy
+      id: 1
+    - name: mcu_to_ego
+      type: mcu_to_ego_proxy
+      id: 1
+    - name: aeb_to_ego
+      type: aeb_to_ego_proxy
+      id: 1
+    - name: mbd_debug
+      type: mcu_debug_proxy
+      id: 1
+    - name: adas_record
+      type: mcu_adas_record_proxy
+      id: 1
+    - name: tsr
+      type: perception_info_proxy
+      id: 1
+    - name: nns_location
+      type: hmi_avp_location_proxy
+      id: 1
+    - name: nns_route
+      type: nns_route_info_proxy
+      id: 1
+    - name: mcu_adas_state
+      type: mcu_adas_state_proxy
+      id: 1
+    - name: traffic_light
+      type: obj_camera_proxy
+      id: 3
+    - name: npp_debug_msg_30
+      type: debug_protobuf_proxy
+      id: 30
+    - name: npp_debug_msg_31
+      type: debug_protobuf_proxy
+      id: 31
+    - name: npp_debug_msg_32
+      type: debug_protobuf_proxy
+      id: 32
+
+sendInstances:
+    - name: ego_trajectory
+      type: ego_trajectory_skeleton
+      id: 1
+    - name: ego_planning_dec_nnp
+      type: ego_planningdec_skeleton
+      id: 1
+    - name: ego_planning_dec_avp
+      type: ego_planningdec_skeleton
+      id: 2
+    - name: ego_to_mcu
+      type: ego_to_mcu_skeleton
+      id: 1
+    - name: warning_info
+      type: ego_hmi_skeleton
+      id: 1
+    - name: planning_debug
+      type: planning_debug_skeleton
+      id: 9202
+      
+fm:
+    commTimeout:
+        faultId: 8400
+        objId: 18
+
+log:
+    name: H102
+    description: planning
+    file: /opt/usr/log/hz_log
+    mode: 0
+    level: 2
+
+# trigger二选一即可
+trigger:
+    - name: avp_main
+      type: PERIOD
+      period: 100
+      auxSources:
+          - name: chassis
+          - name: hpp_localization
+          - name: hpp_freespace
+          - name: hpp_obj_fusion
+          - name: parking_lot
+          - name: mcu_to_ego
+          - name: aeb_to_ego
+          - name: mbd_debug
+          - name: adas_record
+          - name: hpp_lane    
+          - name: nns_route
+          - name: nns_location
+          - name: mcu_adas_state       
+          
+    - name: nnp_main
+      type: EVENT
+      mainSources: 
+          - name: nnp_obj_fusion
+            timeout: 200
+      auxSources:
+          - name: chassis
+          - name: nnp_localization
+          - name: nnp_fusion_lane
+          - name: TL_lane
+          - name: mcu_to_ego
+          - name: aeb_to_ego
+          - name: mbd_debug
+          - name: tsr
+          - name: adas_record
+          - name: mcu_adas_state 
+          - name: traffic_light 
+          - name: npp_debug_msg_30
+          - name: npp_debug_msg_31
+          - name: npp_debug_msg_32
+
+    - name: ehr
+      type: EVENT
+      mainSources: 
+          - name: map_msg
+            timeout: 200
+
+    - name: self_sim
+      type: PERIOD
+      period: 100
+      auxSources:
+          - name: mcu_to_ego
+          - name: chassis
+
+    - name: cfg_monitor
+      type: PERIOD
+      period: 500
+threadPool:
+    threadNum: 0
+
+profiler:
+    name: plan
+    enable: true
+    latency:
+        enable: true
+        show: 
+          - link_name: link1
+            trigger_name: ehr
+            from_msg: map_msg
+          # - link_name: link2
+          #   trigger_name: main
+          #   from_msg: hpp_lane

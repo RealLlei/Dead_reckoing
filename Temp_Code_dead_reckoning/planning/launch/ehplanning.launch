@@ -1,0 +1,13 @@
+<cyber>
+    <module>
+        <name>ehp</name>
+        <dag_conf>dag/ehp.dag</dag_conf>
+        <process_name>control</process_name>
+        <sched_name>control_sched</sched_name>
+    </module>
+    <module>
+        <name>planning</name>
+        <dag_conf>dag/planning.dag</dag_conf>
+        <process_name>europa</process_name>
+    </module>
+</cyber>

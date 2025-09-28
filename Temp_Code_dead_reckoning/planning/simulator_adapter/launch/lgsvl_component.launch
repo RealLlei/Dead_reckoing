@@ -1,0 +1,7 @@
+<cyber>
+    <module>
+        <name>lgsvl_component</name>
+        <dag_conf>dag/lgsvl_component.dag</dag_conf>
+        <process_name>lgsvl_component</process_name>
+    </module>
+</cyber>

@@ -1,0 +1,234 @@
+speed_cost_config: {
+  speed_cost_type: COLLISION_COST
+    collision_cost_config: {
+    use_collision_risk: true
+  }
+}
+speed_cost_config: {
+  speed_cost_type: OBSTACLE_SAFE_DISTANCE_COST
+  obstacle_safe_distance_cost_config {
+    obstacle_cost_time_coef: 1.0
+    obstacle_cost_time_coef: 1.0
+    obstacle_cost_time_coef: 0.95
+    obstacle_cost_time_coef: 0.9
+    obstacle_cost_time_coef: 0.85
+    obstacle_cost_time_coef: 0.8
+    obstacle_cost_time_coef: 0.75
+    obstacle_cost_time_coef: 0.7
+    obstacle_distance_cost_coef: 1e8
+  }
+}
+speed_cost_config: {
+  speed_cost_type: OBSTACLE_EXPECTED_DISTANCE_COST
+  obstacle_expected_distance_cost_config: {
+    base_less_expected_distance_cost_coef: {
+      a: 2.5e7
+      b: 2
+      c: 5.5
+      d: 0.1
+    }
+    extra_less_expected_distance_cost_coef: {
+      follow_time: 1.0
+      a: 1e10
+      b: 2
+      c: 9.7
+      d: 0.25
+    }
+    extra_less_expected_distance_cost_coef: {
+      follow_time: 1.25
+      a: 1e10
+      b: 2
+      c: 9.7
+      d: 0.5
+    }
+    extra_less_expected_distance_cost_coef: {
+      follow_time: 1.5
+      a: 1e10
+      b: 2
+      c: 9.7
+      d: 0.75
+    }
+    extra_less_expected_distance_cost_coef: {
+      follow_time: 1.75
+      a: 1e10
+      b: 2
+      c: 9.7
+      d: 1.0
+    }
+    extra_less_expected_distance_cost_coef: {
+      follow_time: 2.0
+      a: 1e10
+      b: 2
+      c: 9.7
+      d: 1.25
+    }
+    less_expected_distance_cost_coef_calibration_table: {
+      calibration_info: {
+        speed: 0.0
+        coef: 1.0
+      }
+      calibration_info: {
+        speed: 5.0
+        coef: 1.0
+      }
+      calibration_info: {
+        speed: 10.0
+        coef: 0.1
+      }
+      calibration_info: {
+        speed: 20.0
+        coef: 0.01
+      }
+    }
+    greater_expected_distance_cost_coef_calibration_table: {
+      calibration_info: {
+        speed: 0.0
+        coef: 2.5e6
+      }
+      calibration_info: {
+        speed: 40.0
+        coef: 2.5e6
+      }
+    }
+    obstacle_cost_time_coef: 1.0
+    obstacle_cost_time_coef: 1.0
+    obstacle_cost_time_coef: 0.95
+    obstacle_cost_time_coef: 0.9
+    obstacle_cost_time_coef: 0.85
+    obstacle_cost_time_coef: 0.8
+    obstacle_cost_time_coef: 0.75
+    obstacle_cost_time_coef: 0.7
+  }
+}
+speed_cost_config: {
+  speed_cost_type: ACCEL_COST
+  accel_cost_config: {
+    comfort_accel_calibration_table: {
+      calibration_info: {
+        speed: 0.0
+        max_accel: 1.0
+        min_accel: -0.3
+      }
+      calibration_info: {
+        speed: 16.7
+        max_accel: 0.8
+        min_accel: -0.8
+      }
+      calibration_info: {
+        speed: 22.0
+        max_accel: 0.65
+        min_accel: -0.8
+      }
+      calibration_info: {
+        speed: 27.0
+        max_accel: 0.55
+        min_accel: -0.8
+      }
+    }
+  }
+}
+speed_cost_config: {
+  speed_cost_type: JERK_COST
+  jerk_cost_config: {
+    comfort_jerk_calibration_table: {
+      calibration_info: {
+        speed: 0.0
+        max_jerk: 0.6
+        min_jerk: -0.6
+      }
+      calibration_info: {
+        speed: 2.0
+        max_jerk: 0.8
+        min_jerk: -0.8
+      }
+      calibration_info: {
+        speed: 50.0
+        max_jerk: 0.8
+        min_jerk: -0.8
+      }
+    }
+    min_sensitive_jerk: -4.0
+  }
+}
+speed_cost_config: {
+  speed_cost_type: LOW_SPEED_COST
+  low_speed_cost_config: {
+  }
+}
+speed_cost_config: {
+  speed_cost_type: OVER_SPEED_COST
+  over_speed_cost_config: {
+    over_critical_speed_limit_cost_coef: 1e6;
+    over_curvature_speed_limit_cost_coef: 1e10;
+  }
+}
+speed_cost_config: {
+  speed_cost_type: STOP_DISTANCE_COST
+  stop_distance_cost_config: {
+    comfort_accel_calibration_table: {
+      calibration_info: {
+        speed: 0.0
+        max_accel: 1.0
+        min_accel: -0.3
+      }
+      calibration_info: {
+        speed: 16.7
+        max_accel: 0.8
+        min_accel: -0.8
+      }
+      calibration_info: {
+        speed: 22.0
+        max_accel: 0.65
+        min_accel: -1.0
+      }
+      calibration_info: {
+        speed: 27.0
+        max_accel: 0.55
+        min_accel: -1.0
+      }
+    }
+    stop_accel_cost_coef: 1.5e7
+    stop_low_speed_threshold: 1.5
+    stop_low_speed_time_threshold: 1.0
+    stop_low_speed_time_cost_coef:1e8
+    stop_low_acc_threshold:-0.3
+    stop_low_acc_time_cost_coef:1e8
+  }
+}
+speed_cost_config: {
+  speed_cost_type: NUDGE_COST
+  nudge_cost_config: {
+    hexagon_cost_sigmoid_factor: 1e6
+  }
+}
+speed_cost_config: {
+  speed_cost_type: LATERAL_DISTANCE_COST
+  lateral_distance_cost_config: {
+    obstacle_cost_time_coef: 1.0
+    obstacle_cost_time_coef: 1.0
+    obstacle_cost_time_coef: 0.95
+    obstacle_cost_time_coef: 0.9
+    obstacle_cost_time_coef: 0.85
+    obstacle_cost_time_coef: 0.8
+    obstacle_cost_time_coef: 0.75
+    obstacle_cost_time_coef: 0.7
+  }
+}
+speed_cost_config: {
+  speed_cost_type: CURVE_PRIORITY_COST
+  curve_priority_cost_config: {
+  }
+}
+speed_cost_config: {
+  speed_cost_type: YIELD_COST
+  yield_cost_config: {
+    obstacle_cost_time_coef: 1.0
+    obstacle_cost_time_coef: 1.0
+    obstacle_cost_time_coef: 0.95
+    obstacle_cost_time_coef: 0.9
+    obstacle_cost_time_coef: 0.85
+    obstacle_cost_time_coef: 0.8
+    obstacle_cost_time_coef: 0.75
+    obstacle_cost_time_coef: 0.7
+  }
+}

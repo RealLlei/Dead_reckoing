@@ -1,0 +1,53 @@
+%YAML:1.0
+
+recvInstances:
+    - name: chassis
+      type: proto_proxy
+      topic: /soc/chassis
+      domainId: 0
+    - name: mcu_to_ego
+      type: proto_proxy
+      topic: /soc/mcu2ego
+      domainId: 0
+
+sendInstances:
+    - name: ego_trajectory
+      type: proto_skeleton
+      topic: /planning/ego_trajectory
+      domainId: 0
+    - name: routing
+      type: proto_skeleton
+      topic: /planning/routing
+      domainId: 0
+    - name: prediction
+      type: proto_skeleton
+      topic: /planning/prediction
+      domainId: 0
+    - name: soc_to_mcu_pnc
+      type: proto_skeleton
+      topic: /planning/soc_to_mcu_pnc
+      domainId: 0
+    - name: control_data
+      type: proto_skeleton
+      topic: /planning/control_data
+      domainId: 0
+
+
+log:
+    mode: 3 #{0, 1, 2, 3, 4, 5, 6}, 0: 不打屏 1: 控制台打屏， 2: 记录日志，3：控制台+日志
+    file: ~
+    name: planning
+    description: planning
+    level: 4 #{0，1，2，3，4，5, 6}， 0：trace, 1：debug, 2：info, 3：warn, 4：error, 5：fatal, 6：off
+    adf:
+      level: 2
+
+# trigger二选一即可
+trigger:
+    - name: self_sim
+      type: PERIOD
+      period: 100
+      auxSources:
+          - name: mcu_to_ego
+          - name: chassis
+

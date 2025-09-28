@@ -1,0 +1,11 @@
+syntax = "proto2";
+package TL.control;
+
+import "proto/common/header.proto";
+
+message InputDebug {
+  optional TL.common.Header localization_header = 1;
+  optional TL.common.Header canbus_header = 2;
+  optional TL.common.Header trajectory_header = 3;
+  optional TL.common.Header latest_replan_trajectory_header = 4;
+}

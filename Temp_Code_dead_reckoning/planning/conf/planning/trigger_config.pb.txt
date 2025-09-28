@@ -1,0 +1,46 @@
+nnp_config {
+  collision_config {
+    collision_acc: -6.0
+    collision_speed: 1.0
+  }
+  emerger_brake_config {
+    emerger_brake_acc: -4.0
+    emerger_brake_speed: 10.0
+  }
+  emerger_steer_config {
+    emerger_steer_rate: 180.0
+    emerger_steer_speed: 30.0
+  }
+  emerger_steer_config {
+    emerger_steer_rate: 80.0
+    emerger_steer_speed: 60.0
+  }
+  emerger_steer_config {
+    emerger_steer_rate: 60.0
+    emerger_steer_speed: 80.0
+  }
+  emerger_steer_config {
+    emerger_steer_rate: 40.0
+    emerger_steer_speed: 100.0
+  }
+  lat_ctrl_err: 0.5
+  lon_ctrl_err: 10.0
+  rapid_acc_config {
+    rapid_acc: 2.9
+    rapid_speed: 80.0
+  }
+  rapid_acc_config {
+    rapid_acc: 2.5
+    rapid_speed: 100.0
+  }
+  rapid_acc_config {
+    rapid_acc: 1.6
+    rapid_speed: 150
+  }
+}
+
+avp_config {
+  num_parking_lots: 10
+  take_over_parking: 3
+  rapid_acc: 1.6
+}

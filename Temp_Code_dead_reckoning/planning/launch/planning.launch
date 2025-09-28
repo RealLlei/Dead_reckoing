@@ -1,0 +1,7 @@
+<cyber>
+    <module>
+        <name>planning</name>
+        <dag_conf>dag/planning.dag</dag_conf>
+        <process_name>europa</process_name>
+    </module>
+</cyber>

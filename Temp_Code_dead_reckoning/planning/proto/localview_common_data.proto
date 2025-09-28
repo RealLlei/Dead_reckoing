@@ -1,0 +1,21 @@
+syntax = "proto2";
+
+package TL.planning;
+
+message DataUpdate {
+  optional bool is_adc_lane_virtual = 1 [default = false];
+  optional bool is_virtual_map2nolane_bl = 2 [default = false];
+  optional double adc_fusion_percep_heading_err = 3 [default = 0.0];
+  optional double adc_target_obs_flupos_heading = 4 [default = 0.0];
+  optional bool is_obs_not_in_lanemarker = 5 [default = false];
+  optional bool is_cruise_check = 6 [default = true];
+  optional bool is_nnp_drive_auto = 7 [default = false];
+  optional bool is_pilot_drive_auto = 8 [default = false];
+  optional bool is_vehicle_active = 9 [default = false];
+  optional bool is_nnp_npilot = 10 [default = false];
+  optional uint32 missile_mode_state = 11 [default = 0];
+}
+message DataStatic {
+  optional bool tmp_1 = 1 [default = false];
+}
+

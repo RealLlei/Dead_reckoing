@@ -1,0 +1,73 @@
+audio_lane_change {
+  enable_cancel_audio_lane_change_by_turn_signal_switch: true
+  freezing_audio_request_time: 2.0
+}
+
+turn_signal_switch_lane_change {
+  enable_cancel_turn_signal_switch_lane_change_by_audio: true
+  check_turn_signal_switch_time: 0.1
+  freezing_time_cancel_lane_change: 2.0
+  check_overtime_before_lane_change: 10.0
+  lower_speed_display: 15
+  upper_speed_display: 130
+}
+
+efficiency_lane_change {
+  min_front_safe_distance: 50.0
+  forbid_lane_change_distance: 20.0
+  min_back_safe_distance: 1.0
+  min_back_safe_distance_dynamic_obstacle: 10.0
+  lane_change_limit_distance: 1.0
+  continuous_ref_line_info_counter: 10
+  sensitivity_cost_diff: 0.03
+  lane_change_return_cnt: 5
+  lane_change_return_cost_diff: 0.1
+  ego_limit_speed_diff: 4.0
+  obstacle_speed_coefficient: 3.5
+  ego_speed_coefficient: 3.0
+  lowest_ego_speed_lane_change: 4.5
+  speed_diff_in_right_lane_change {
+    ego_limit_speed: 25.0
+    ego_limit_speed: 27.78
+    ego_limit_speed: 30.56
+
+    speed_diff: 2.78
+    speed_diff: 3.33
+    speed_diff: 4.0
+  }
+}
+
+limit_lane_change {
+  sensitivity_cost_diff: 0.01
+}
+
+ref_line_info_decider_common {
+  min_check_distance_solid_lane: 50.0
+  max_lane_change_time: 4.0
+  obstacle_speed_error: 0.83
+  forbid_lane_change_distance_to_destination: 100.0
+  lat_distance_buffer: 0.90
+}
+
+check_interval: 5.0
+lane_change_freezing_time: 10.0
+lane_change_min_freezing_time: 2.5
+min_distance_to_route_end_point: 500.0
+cancel_lane_change_freezing_time: 15.0
+confirm_lane_change_time: 8.0
+no_confirm_lane_change_freezing_time: 3.0
+send_lane_change_start_time: 0.5
+delay_close_turn_signal_time: 3.0
+check_overtime_before_lane_change: 20.0
+freezing_time_after_navigation_lane_change: 10.0
+along_navigation_lane_change_freezing_time: 7.0
+ttlc: 2.6
+forbid_lane_change_time_after_manual: 2.0
+estimate_time_in_future_vehicle_pose: 1.5
+
+navigator_lane_change_config {
+  one_lane_change_distance: 1000.0
+  two_lane_change_distance: 1500.0
+  three_lane_change_distance: 2000.0
+  more_lane_change_distance: 2200.0
+}

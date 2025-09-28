@@ -1,0 +1,77 @@
+%YAML: 1.0
+#该配置提供给用户对关注的故障列表进程注册，用于回调通知
+#支持原始故障/组合故障/自定义组合故障的注册
+#支持聚类的注册，聚类定义参考系统部定义的文档
+
+#app名称
+appName: planning
+
+#聚类故障
+cluster: [
+    platform,               # 城市NCP NNP PILOT ACC LDW LKA FCTA LCA RCTA DOW RCW IHBC         循迹倒车 APA RPA 记忆泊车 智能召唤
+    dr,                     # 城市NCP NNP PILOT ACC LDW LKA FCTA LCA RCTA DOW RCW IHBC
+    local-location,         # 城市NCP NNP PILOT ACC LDW LKA FCTA LCA RCTA DOW RCW IHBC
+    global-location,        # 城市NCP NNP
+    fusion-map,             # 城市NCP NNP PILOT     LDW LKA
+    local-map,              # 城市NCP NNP PILOT     LDW LKA
+    fusion-obj,             #                                                                                           循迹倒车 APA RPA 记忆泊车 智能召唤
+    fusion-parkinglot,      #                                                                                           循迹倒车 APA RPA 记忆泊车 智能召唤
+    uss-obstacle,           #                                                                                           循迹倒车 APA RPA 记忆泊车 智能召唤
+    freespace,              #                                                                                           循迹倒车 APA RPA 记忆泊车 智能召唤
+    hpp-location,           #                                                                                           循迹倒车 APA RPA 记忆泊车 智能召唤
+    slam,                   #                                                                                           循迹倒车 APA RPA 记忆泊车 智能召唤
+    imu,
+    chassis,
+    flm,
+    flc,
+    frc,
+    frm,
+    rlm,
+    rlc,
+    rrc,
+    rrm,
+    sfr,
+    sfl,
+    srr,
+    srl,
+    front-fisheye-camera,
+    left-fisheye-camera,
+    right-fisheye-camera,
+    rear-fisheye-camera
+]
+
+# 原始故障
+fault:
+    6030: 1           # 城市NCP NNP PILOT
+    6040: 1           # 城市NCP NNP PILOT ACC
+    6040: 4           # 城市NCP NNP PILOT ACC
+    6040: 19          # 城市NCP NNP DCLC抑制               LCA RCTA DOW RCW
+    6040: 22          # 城市NCP NNP DCLC抑制               LCA RCTA DOW
+    6040: 25          # 城市NCP NNP DCLC抑制               LCA RCTA DOW
+    6050: 1           #                                                                                  记忆泊车
+    6070: 1           # 城市NCP
+    3102: 0           # 城市NCP NNP PILOT ACC LDW LKA FCTA LCA RCTA DOW RCW IHBC 哨兵模式 循迹倒车 APA RPA 记忆泊车 智能召唤
+    3102: 3           # 城市NCP NNP PILOT ACC LDW LKA                                        循迹倒车 APA RPA 记忆泊车 智能召唤
+    3102: 5-8         # 城市NCP NNP PILOT ACC LDW LKA FCTA LCA RCTA DOW RCW IHBC         循迹倒车 APA RPA 记忆泊车 智能召唤
+    3102: 10-11       # 城市NCP NNP PILOT ACC LDW LKA FCTA LCA RCTA DOW RCW IHBC 哨兵模式 循迹倒车 APA RPA 记忆泊车 智能召唤
+    3102: 13
+    3102: 16-17
+    3102: 19-21       # 城市NCP NNP PILOT ACC LDW LKA               DOW                  循迹倒车 APA RPA 记忆泊车 智能召唤
+    3102: 23
+    3102: 25-27
+    3102: 29-32
+    3102: 37
+    3020: 1           # 城市NCP NNP PILOT ACC LDW LKA                            哨兵模式 循迹倒车 APA RPA 记忆泊车 智能召唤
+    3400: 1           # 城市NCP NNP PILOT ACC LDW LKA FCTA LCA RCTA DOW RCW IHBC 哨兵模式                 记忆泊车 智能召唤
+    3410: 1           # 城市NCP NNP PILOT ACC LDW LKA FCTA LCA RCTA DOW RCW IHBC 哨兵模式 循迹倒车 APA RPA 记忆泊车 智能召唤
+    3430: 1           # 城市NCP NNP PILOT ACC LDW LKA                                    循迹倒车 APA RPA 记忆泊车 智能召唤
+    3440: 1           # 城市NCP NNP PILOT ACC LDW LKA               DOW
+    3460: 1           # 城市NCP NNP PILOT ACC LDW LKA                   RCW IHBC 哨兵模式 循迹倒车 APA RPA 记忆泊车 智能召唤
+    3480: 1           # 城市NCP NNP PILOT ACC LDW LKA FCTA LCA RCTA DOW RCW IHBC 哨兵模式 循迹倒车 APA RPA 记忆泊车 智能召唤
+    3500: 1           # 城市NCP NNP PILOT ACC LDW LKA                                    循迹倒车 APA RPA 记忆泊车 智能召唤
+    3510: 1           # 城市NCP NNP PILOT ACC LDW LKA FCTA LCA RCTA DOW RCW IHBC 哨兵模式 循迹倒车 APA RPA 记忆泊车 智能召唤
+    3530: 1           # 城市NCP NNP PILOT ACC LDW LKA               DOW
+    3560: 1           # 城市NCP NNP PILOT ACC LDW LKA                           哨兵模式 循迹倒车 APA RPA 记忆泊车 智能召唤
+    3060: 1-14        # 城市NCP NNP PILOT ACC LDW LKA FCTA LCA RCTA DOW RCW IHBC 哨兵模式 循迹倒车 APA RPA 记忆泊车 智能召唤
+    3060: 17-20
+    3060: 25-29       # 城市NCP NNP PILOT ACC LDW LKA FCTA LCA RCTA DOW RCW IHBC 哨兵模式 循迹倒车 APA RPA 记忆泊车 智能召唤

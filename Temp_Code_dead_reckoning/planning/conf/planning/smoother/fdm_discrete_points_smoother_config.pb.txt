@@ -1,0 +1,727 @@
+longitudinal_boundary_bound: 1.0
+max_lateral_boundary_bound: 0.25
+min_lateral_boundary_bound: 0.1
+lateral_buffer: 0.2
+
+reference_line_different_check_step: 10.0
+smoothed_reference_line_max_diff: 5.0
+
+centerline_conf {
+  ncp_center_line_conf {
+    enable_centerline_process: true
+    enable_poor_centerline_process: true
+    enable_lane_type_centerline_process: true
+    enable_solid_line_centerline_process: true
+    enable_curb_centerline_process: false
+    enable_normal_turn_line_is_solid: false
+    enable_normal_turn_poor_center_line_process: false
+    curb_shift_buffer: 0.2
+    normal_center_point_to_lane_safe_buffer: 1.0
+    curved_center_point_to_lane_safe_buffer: 1.1
+    correct_center_point_protect_buffer: 0.35
+    # normal
+    normal_solid_line_expect_shift_max_buffer: 0.5
+    normal_solid_line_safe_check_buffer: 0.75
+    normal_solid_line_min_avoid_buffer: 0.65
+    normal_dotted_line_min_avoid_buffer: 0.15
+    # curved
+    curved_solid_line_expect_shift_max_buffer: 0.5
+    curved_solid_line_safe_check_buffer: 0.75
+    curved_solid_line_min_avoid_buffer: 0.65
+    curved_dotted_line_min_avoid_buffer: 0.1
+    # normal turn
+    normal_turn_solid_line_expect_shift_max_buffer: 0.5
+    normal_turn_solid_line_safe_check_buffer: 0.75
+    normal_turn_solid_line_min_avoid_buffer: 0.75
+    normal_turn_dotted_line_min_avoid_buffer: 0.0
+  }
+  nnp_center_line_conf {
+    enable_centerline_process: true
+    enable_poor_centerline_process: true
+    enable_lane_type_centerline_process: true
+    enable_solid_line_centerline_process: true
+    enable_curb_centerline_process: false
+    enable_normal_turn_line_is_solid: false
+    enable_normal_turn_poor_center_line_process: true
+    curb_shift_buffer: 0.2
+    normal_center_point_to_lane_safe_buffer: 1.0
+    curved_center_point_to_lane_safe_buffer: 1.1
+    correct_center_point_protect_buffer: 0.35
+    # normal
+    normal_solid_line_expect_shift_max_buffer: 0.4
+    normal_solid_line_safe_check_buffer: 0.5
+    normal_solid_line_min_avoid_buffer: 0.55
+    normal_dotted_line_min_avoid_buffer: 0.45
+    # curved
+    curved_solid_line_expect_shift_max_buffer: 0.45
+    curved_solid_line_safe_check_buffer: 0.55
+    curved_solid_line_min_avoid_buffer: 0.6
+    curved_dotted_line_min_avoid_buffer: 0.15
+    # normal turn
+    normal_turn_solid_line_expect_shift_max_buffer: 0.45
+    normal_turn_solid_line_safe_check_buffer: 0.55
+    normal_turn_solid_line_min_avoid_buffer: 0.6
+    normal_turn_dotted_line_min_avoid_buffer: 0.15
+  }
+  avp_center_line_conf {
+    enable_centerline_process: false
+    enable_poor_centerline_process: false
+    enable_lane_type_centerline_process: false
+    enable_solid_line_centerline_process: false
+    enable_curb_centerline_process: false
+    enable_normal_turn_line_is_solid: false
+    enable_normal_turn_poor_center_line_process: true
+    curb_shift_buffer: 0.2
+    normal_center_point_to_lane_safe_buffer: 1.0
+    curved_center_point_to_lane_safe_buffer: 1.1
+    correct_center_point_protect_buffer: 0.35
+    # normal
+    normal_solid_line_expect_shift_max_buffer: 0.5
+    normal_solid_line_safe_check_buffer: 0.6
+    normal_solid_line_min_avoid_buffer: 0.55
+    normal_dotted_line_min_avoid_buffer: 0.45
+    # curved
+    curved_solid_line_expect_shift_max_buffer: 0.5
+    curved_solid_line_safe_check_buffer: 0.6
+    curved_solid_line_min_avoid_buffer: 0.65
+    curved_dotted_line_min_avoid_buffer: 0.1
+    # normal turn
+    normal_turn_solid_line_expect_shift_max_buffer: 0.5
+    normal_turn_solid_line_safe_check_buffer: 0.6
+    normal_turn_solid_line_min_avoid_buffer: 0.65
+    normal_turn_dotted_line_min_avoid_buffer: 0.1
+  }
+  perception_center_line_conf {
+    enable_centerline_process: false
+    enable_poor_centerline_process: true
+    enable_lane_type_centerline_process: true
+    enable_solid_line_centerline_process: true
+    enable_curb_centerline_process: false
+    enable_normal_turn_line_is_solid: false
+    enable_normal_turn_poor_center_line_process: true
+    curb_shift_buffer: 0.2
+    normal_center_point_to_lane_safe_buffer: 1.0
+    curved_center_point_to_lane_safe_buffer: 1.1
+    correct_center_point_protect_buffer: 0.35
+    # normal
+    normal_solid_line_expect_shift_max_buffer: 0.5
+    normal_solid_line_safe_check_buffer: 0.6
+    normal_solid_line_min_avoid_buffer: 0.55
+    normal_dotted_line_min_avoid_buffer: 0.45
+    # curved
+    curved_solid_line_expect_shift_max_buffer: 0.5
+    curved_solid_line_safe_check_buffer: 0.6
+    curved_solid_line_min_avoid_buffer: 0.65
+    curved_dotted_line_min_avoid_buffer: 0.1
+    # normal turn
+    normal_turn_solid_line_expect_shift_max_buffer: 0.5
+    normal_turn_solid_line_safe_check_buffer: 0.6
+    normal_turn_solid_line_min_avoid_buffer: 0.65
+    normal_turn_dotted_line_min_avoid_buffer: 0.1
+  }
+}
+
+boundary_conf {
+  ref_point_bound_type: LANE_WIDTH
+  enable_s_segment: false
+  enable_l_segment: false
+
+  # Road info boundary process
+  # ncp road line bound info conf
+  ncp_road_line_bound_conf {
+    enable_solid_line_s_forward_extend: true
+    enable_solid_line_s_backward_extend: true
+    solid_line_forward_extend_length: 8.0
+    solid_line_backward_extend_length: 8.0
+    enable_normal_turn_forward_extend: true
+    enable_normal_turn_backward_extend: true
+    normal_turn_forward_extend_length: 20.0
+    normal_turn_backward_extend_length: 20.0
+
+    normal_virtual_line_forward_extend_length: 20.0
+    normal_virtual_line_backward_extend_length: 8.0
+    turn_virtual_line_forward_extend_length: 8.0
+    turn_virtual_line_backward_extend_length: 8.0
+    virtual_line_extend_split_num: 4
+    destination_segment_distance: 0.5
+
+    normal_s_boundary: 0.35
+    normal_l_boundary: 0.2
+    normal_min_l_boundary: 0.15
+    curved_min_l_boundary: 0.08
+    normal_turn_min_l_boundary: 0.1
+    normal_turn_opposite_min_l_boundary: 0.25
+    normal_max_l_boundary: 8.0
+    curved_max_l_boundary: 8.0
+    normal_turn_opposite_max_l_boundary: 8.0
+    normal_turn_max_l_boundary: 8.0
+    solid_normal_line_buffer: 0.55
+    dotted_normal_line_buffer: 0.35
+    solid_curved_line_buffer: 0.75
+    dotted_curved_line_buffer: 0.2
+    virtual_normal_line_buffer: -0.5
+    virtual_curved_line_buffer: -1.0
+    normal_turn_solid_line_buffer: 0.75
+    normal_turn_dotted_line_buffer: 0.75
+    normal_turn_virtual_line_buffer: 0.75
+
+    enable_destination_end_limit : false
+    destination_end_l_boundary: 0.0
+    destination_end_s_boundary: 0.0
+
+    first_end_l_boundary: 0.0
+    first_end_s_boundary: 0.0
+    second_end_l_boundary: 0.05
+    second_end_s_boundary: 0.05
+
+    backward_start_point_s_boundary: 0.0
+    backward_start_point_l_boundary: 0.0
+    backward_end_point_s_boundary: 0.0
+    backward_end_point_l_boundary: 0.0
+  }
+
+  # nnp road line bound info conf
+  nnp_road_line_bound_conf {
+    enable_solid_line_s_forward_extend: true
+    enable_solid_line_s_backward_extend: false
+    solid_line_forward_extend_length: 6.0
+    solid_line_backward_extend_length: 6.0
+    enable_normal_turn_forward_extend: false
+    enable_normal_turn_backward_extend: false
+    normal_turn_forward_extend_length: 20.0
+    normal_turn_backward_extend_length: 20.0
+
+    normal_virtual_line_forward_extend_length: 30.0
+    normal_virtual_line_backward_extend_length: 30.0
+    turn_virtual_line_forward_extend_length: 20.0
+    turn_virtual_line_backward_extend_length: 20.0
+    virtual_line_extend_split_num: 4
+    destination_segment_distance: 0.5
+
+    normal_s_boundary: 0.35
+    normal_l_boundary: 0.2
+    normal_min_l_boundary: 0.20
+    curved_min_l_boundary: 0.1
+    normal_turn_min_l_boundary: 0.1
+    normal_turn_opposite_min_l_boundary: 0.25
+    normal_max_l_boundary: 8.0
+    curved_max_l_boundary: 8.0
+    normal_turn_opposite_max_l_boundary: 8.0
+    solid_normal_line_buffer: 0.45
+    dotted_normal_line_buffer: 0.35
+    solid_curved_line_buffer: 0.75
+    dotted_curved_line_buffer: 0.2
+    virtual_normal_line_buffer: -1.5
+    virtual_curved_line_buffer: -1.5
+    normal_turn_solid_line_buffer: 0.75
+    normal_turn_dotted_line_buffer: 0.2
+    normal_turn_virtual_line_buffer: -1.5
+
+    enable_destination_end_limit : false
+    destination_end_l_boundary: 0.0
+    destination_end_s_boundary: 0.0
+    
+    first_end_l_boundary: 0.0
+    first_end_s_boundary: 0.0
+    second_end_l_boundary: 0.2
+    second_end_s_boundary: 0.12
+
+    backward_start_point_s_boundary: 0.12
+    backward_start_point_l_boundary: 0.12
+    backward_end_point_s_boundary: 0.15
+    backward_end_point_l_boundary: 0.2
+  }
+
+  # avp road line bound info conf
+  avp_road_line_bound_conf {
+    enable_solid_line_s_forward_extend: true
+    enable_solid_line_s_backward_extend: false
+    solid_line_forward_extend_length: 6.0
+    solid_line_backward_extend_length: 6.0
+    enable_normal_turn_forward_extend: false
+    enable_normal_turn_backward_extend: false
+    normal_turn_forward_extend_length: 20.0
+    normal_turn_backward_extend_length: 20.0
+
+    normal_virtual_line_forward_extend_length: 30.0
+    normal_virtual_line_backward_extend_length: 30.0
+    turn_virtual_line_forward_extend_length: 20.0
+    turn_virtual_line_backward_extend_length: 20.0
+    virtual_line_extend_split_num: 4
+    destination_segment_distance: 0.5
+
+    normal_s_boundary: 0.01
+    normal_l_boundary: 0.2
+    normal_min_l_boundary: 0.12
+    curved_min_l_boundary: 0.12
+    normal_turn_min_l_boundary: 0.12
+    normal_turn_opposite_min_l_boundary: 0.25
+    normal_max_l_boundary: 0.12
+    curved_max_l_boundary: 0.12
+    normal_turn_opposite_max_l_boundary: 8.0
+    solid_normal_line_buffer: 0.35
+    dotted_normal_line_buffer: 0.25
+    solid_curved_line_buffer: 0.35
+    dotted_curved_line_buffer: 0.25
+    virtual_normal_line_buffer: 0.25
+    virtual_curved_line_buffer: 0.25
+    normal_turn_solid_line_buffer: 0.35
+    normal_turn_dotted_line_buffer: 0.25
+    normal_turn_virtual_line_buffer: 0.25
+
+    enable_destination_end_limit : false
+    destination_end_l_boundary: 0.0
+    destination_end_s_boundary: 0.0
+    
+    first_end_l_boundary: 0.0
+    first_end_s_boundary: 0.0
+    second_end_l_boundary: 0.05
+    second_end_s_boundary: 0.05
+
+    backward_start_point_s_boundary: 0.0
+    backward_start_point_l_boundary: 0.0
+    backward_end_point_s_boundary: 0.0
+    backward_end_point_l_boundary: 0.0
+  }
+
+  # ntp road line bound info conf
+  ntp_road_line_bound_conf {
+    enable_solid_line_s_forward_extend: true
+    enable_solid_line_s_backward_extend: false
+    solid_line_forward_extend_length: 6.0
+    solid_line_backward_extend_length: 6.0
+    enable_normal_turn_forward_extend: false
+    enable_normal_turn_backward_extend: false
+    normal_turn_forward_extend_length: 20.0
+    normal_turn_backward_extend_length: 20.0
+
+    normal_virtual_line_forward_extend_length: 30.0
+    normal_virtual_line_backward_extend_length: 30.0
+    turn_virtual_line_forward_extend_length: 20.0
+    turn_virtual_line_backward_extend_length: 20.0
+    virtual_line_extend_split_num: 4
+    destination_segment_distance: 0.25
+
+    normal_s_boundary: 0.1
+    normal_l_boundary: 0.2
+    normal_min_l_boundary: 0.06
+    curved_min_l_boundary: 0.12
+    normal_turn_min_l_boundary: 0.12
+    normal_turn_opposite_min_l_boundary: 0.25
+    normal_max_l_boundary: 0.12
+    curved_max_l_boundary: 0.12
+    normal_turn_opposite_max_l_boundary: 8.0
+    solid_normal_line_buffer: 1.0
+    dotted_normal_line_buffer: 0.25
+    solid_curved_line_buffer: 0.35
+    dotted_curved_line_buffer: 0.25
+    virtual_normal_line_buffer: 0.25
+    virtual_curved_line_buffer: 0.25
+    normal_turn_solid_line_buffer: 0.35
+    normal_turn_dotted_line_buffer: 0.25
+    normal_turn_virtual_line_buffer: 0.25
+
+    enable_destination_end_limit : true
+    destination_end_l_boundary: 0.12
+    destination_end_s_boundary: 0.1
+    
+    first_end_l_boundary: 0.0
+    first_end_s_boundary: 0.0
+    second_end_l_boundary: 0.05
+    second_end_s_boundary: 0.05
+
+    backward_start_point_s_boundary: 0.0
+    backward_start_point_l_boundary: 0.0
+    backward_end_point_s_boundary: 0.0
+    backward_end_point_l_boundary: 0.0
+  }
+
+  # perception road line bound info conf
+  perception_road_line_bound_conf {
+    enable_solid_line_s_forward_extend: true
+    enable_solid_line_s_backward_extend: false
+    solid_line_forward_extend_length: 6.0
+    solid_line_backward_extend_length: 6.0
+    enable_normal_turn_forward_extend: false
+    enable_normal_turn_backward_extend: false
+    normal_turn_forward_extend_length: 20.0
+    normal_turn_backward_extend_length: 20.0
+
+    normal_virtual_line_forward_extend_length: 30.0
+    normal_virtual_line_backward_extend_length: 30.0
+    turn_virtual_line_forward_extend_length: 20.0
+    turn_virtual_line_backward_extend_length: 20.0
+    virtual_line_extend_split_num: 4
+    destination_segment_distance: 0.5
+
+    normal_s_boundary: 0.1
+    normal_l_boundary: 0.2
+    normal_min_l_boundary: 0.01
+    curved_min_l_boundary: 0.01
+    normal_turn_min_l_boundary: 0.01
+    normal_turn_opposite_min_l_boundary: 0.01
+    normal_max_l_boundary: 0.02
+    curved_max_l_boundary: 0.02
+    normal_turn_opposite_max_l_boundary: 8.0
+    solid_normal_line_buffer: 0.35
+    dotted_normal_line_buffer: 0.25
+    solid_curved_line_buffer: 0.35
+    dotted_curved_line_buffer: 0.25
+    virtual_normal_line_buffer: 0.25
+    virtual_curved_line_buffer: 0.25
+    normal_turn_solid_line_buffer: 0.35
+    normal_turn_dotted_line_buffer: 0.25
+    normal_turn_virtual_line_buffer: 0.25
+
+    enable_destination_end_limit : false
+    destination_end_l_boundary: 0.0
+    destination_end_s_boundary: 0.0
+
+    first_end_l_boundary: 0.0
+    first_end_s_boundary: 0.0
+    second_end_l_boundary: 0.05
+    second_end_s_boundary: 0.05
+    
+    backward_start_point_s_boundary: 0.0
+    backward_start_point_l_boundary: 0.0
+    backward_end_point_s_boundary: 0.0
+    backward_end_point_l_boundary: 0.0
+  }
+
+  # speed & lane width segment for cost function
+  boundary_segment_conf {
+    # adc speed segment
+    speed_segment: 2.22
+    speed_segment: 3.60
+    speed_segment: 4.72
+    speed_segment: 5.55
+    speed_segment: 8.88
+    speed_segment: 11.11
+    speed_segment: 16.67
+    
+    s_boundary_speed_segment: 0.30
+    s_boundary_speed_segment: 0.25
+    s_boundary_speed_segment: 0.20
+    s_boundary_speed_segment: 0.20
+    s_boundary_speed_segment: 0.18
+    s_boundary_speed_segment: 0.15
+    s_boundary_speed_segment: 0.12
+    
+    l_boundary_speed_segment: 0.20
+    l_boundary_speed_segment: 0.20
+    l_boundary_speed_segment: 0.20
+    l_boundary_speed_segment: 0.20
+    l_boundary_speed_segment: 0.18
+    l_boundary_speed_segment: 0.15
+    l_boundary_speed_segment: 0.12
+  }
+}
+
+stitch_conf {
+  # normal stitch info conf
+  normal_stitch_info_conf{
+    enable_forward_stitch: true
+    stitch_look_forward_min_extend_distance: 20.0
+    stitch_reference_line_different_check_step: 10.0
+    stitch_smoothed_reference_line_max_diff: 1.5
+    stitch_point_projection_diff: 1.5
+
+    forward_stitch_overlap_distance: 70.0
+    forward_stitch_anchor_start_point_ratio: 0.4
+    forward_stitch_anchor_end_point_ratio: 0.5
+    backward_stitch_overlap_distance: 10.0
+    backward_stitch_anchor_start_point_ratio: 0.6
+    backward_stitch_anchor_end_point_ratio: 0.75
+
+    stitch_anchor_point_lat_lower_bound: 0.12
+    stitch_anchor_point_lat_upper_bound: 0.12
+    stitch_anchor_point_lon_lower_bound: 0.15
+    stitch_anchor_point_lon_upper_bound: 0.15
+
+    stitch_safe_point_number: 5
+    speed_stitch_safe_boundary_ratio: 2.0
+    road_stitch_safe_boundary_ratio: 1.0
+    stitch_interval_protect_ratio: 0.333333
+    stitch_add_point_lat_bound: 1.5
+    stitch_add_point_lon_bound: 0.8
+  }
+
+  # ntp stitch info conf
+  ntp_stitch_info_conf{
+    enable_forward_stitch: true
+    stitch_look_forward_min_extend_distance: 20.0
+    stitch_reference_line_different_check_step: 10.0
+    stitch_smoothed_reference_line_max_diff: 3.0
+    stitch_point_projection_diff: 3.0
+
+    forward_stitch_overlap_distance: 70.0
+    forward_stitch_anchor_start_point_ratio: 0.4
+    forward_stitch_anchor_end_point_ratio: 0.5
+    backward_stitch_overlap_distance: 10.0
+    backward_stitch_anchor_start_point_ratio: 0.6
+    backward_stitch_anchor_end_point_ratio: 0.75
+
+    stitch_anchor_point_lat_lower_bound: 0.12
+    stitch_anchor_point_lat_upper_bound: 0.12
+    stitch_anchor_point_lon_lower_bound: 0.1
+    stitch_anchor_point_lon_upper_bound: 0.1
+
+    stitch_safe_point_number: 5
+    speed_stitch_safe_boundary_ratio: 2.0
+    road_stitch_safe_boundary_ratio: 1.0
+    stitch_interval_protect_ratio: 0.333333
+    stitch_add_point_lat_bound: 1.5
+    stitch_add_point_lon_bound: 0.2
+  }
+}
+
+interval_conf {
+  enable_segment_interval: false
+  perception_constraint_interval: 1.0
+  avp_constraint_interval: 0.2
+  tba_constraint_interval: 0.2
+  stitch_constraint_interval: 0.6
+  normal_constraint_interval: 1.0
+
+  constraint_interval_segment_conf {
+    speed_segment: 2.22
+    speed_segment: 3.60
+    speed_segment: 5.55
+    speed_segment: 8.88
+    speed_segment: 11.11
+    speed_segment: 13.89
+    speed_segment: 16.67
+    speed_segment: 19.44
+    speed_segment: 22.22
+    speed_segment: 25.00
+    speed_segment: 36.00
+
+    constraint_interval_speed_segment: 0.6
+    constraint_interval_speed_segment: 0.6
+    constraint_interval_speed_segment: 0.6
+    constraint_interval_speed_segment: 0.6
+    constraint_interval_speed_segment: 0.6
+    constraint_interval_speed_segment: 0.6
+    constraint_interval_speed_segment: 0.6
+    constraint_interval_speed_segment: 0.6
+    constraint_interval_speed_segment: 0.6
+    constraint_interval_speed_segment: 0.6
+    constraint_interval_speed_segment: 0.6
+  }
+}
+
+discrete_points {
+  smoothing_method: OSQP_FINITE_DIFFERENCE_SMOOTHING
+  osqp_finite_difference_smoothing {
+    osqp_regular_smooth {
+      osqp_config_usual {
+        # Settings of osqp
+        verbose: false
+        eps_abs: 1e-2
+        eps_rel: 1e-2
+        eps_prim_inf: 5e-4
+        eps_dual_inf: 5e-4
+        scaled_termination: false
+        adaptive_rho: true
+        adaptive_rho_interval: 15
+        polish: false
+        polish_refine_iter: 5
+        max_iter: 500
+        alpha: 1.6
+        time_limit: 0
+
+        # Weights in optimization cost function
+        first_order_1st: 0.0
+        first_order_2nd: 0.0
+        first_order_4th: 0.0
+        second_order_2nd: 1e6
+        second_order_4th: 0.0
+        third_order_1st: 1e5
+        third_order_2nd: 0.0
+        fourth_order_2nd: 1e4
+        lat_deviation: 1e0
+        lon_deviation: 0.0
+        euler_deviation: 1e0
+        ct_weight: 0.0
+        curvature: 0.1
+        s_first_boundary: 0.0
+        s_end_boundary: 0.0
+        l_first_boundary: 0.0
+        l_end_boundary: 0.0
+        s_boundary: 0.15
+        l_boundary: 0.15
+        sqp_pen_max_iter: 5
+        sqp_sub_max_iter: 10
+        sqp_ftol: 1e-3
+      }
+
+      osqp_config_ntp {
+        # Settings of osqp
+        verbose: false
+        eps_abs: 5e-4
+        eps_rel: 5e-4
+        eps_prim_inf: 5e-4
+        eps_dual_inf: 5e-4
+        scaled_termination: false
+        adaptive_rho: true
+        adaptive_rho_interval: 15
+        polish: false
+        polish_refine_iter: 5
+        max_iter: 500
+        alpha: 1.6
+        time_limit: 0
+
+        # Weights in optimization cost function
+        first_order_1st: 0.0
+        first_order_2nd: 0.0
+        first_order_4th: 0.0
+        second_order_2nd: 1e5
+        second_order_4th: 0.0
+        third_order_1st: 1e6
+        third_order_2nd: 0.0
+        fourth_order_2nd: 1e4
+        lat_deviation: 0.5
+        lon_deviation: 0.0
+        euler_deviation: 0.5
+        ct_weight: 0.0
+        curvature: 0.1
+        s_first_boundary: 0.0
+        s_end_boundary: 0.0
+        l_first_boundary: 0.0
+        l_end_boundary: 0.0
+        s_boundary: 0.15
+        l_boundary: 0.15
+        sqp_pen_max_iter: 5
+        sqp_sub_max_iter: 10
+        sqp_ftol: 1e-3
+      }
+    }
+
+    osqp_stitch_smooth {
+      osqp_config_usual {
+        # Settings of osqp
+        verbose: false
+        eps_abs: 1e-2
+        eps_rel: 1e-2
+        eps_prim_inf: 5e-4
+        eps_dual_inf: 5e-4
+        scaled_termination: false
+        adaptive_rho: true
+        adaptive_rho_interval: 15
+        polish: false
+        polish_refine_iter: 5
+        max_iter: 500
+        alpha: 1.6
+        time_limit: 0
+
+        # Weights in optimization cost function
+        first_order_1st: 0.0
+        first_order_2nd: 0.0
+        first_order_4th: 0.0
+        second_order_2nd: 1e6
+        second_order_4th: 0.0
+        third_order_1st: 1e5
+        third_order_2nd: 0.0
+        fourth_order_2nd: 1e4
+        lat_deviation: 1e0
+        lon_deviation: 0.0
+        euler_deviation: 1e0
+        ct_weight: 0.0
+        curvature: 0.1
+        s_first_boundary: 0.0
+        s_end_boundary: 0.0
+        l_first_boundary: 0.0
+        l_end_boundary: 0.0
+        s_boundary: 0.15
+        l_boundary: 0.15
+        sqp_pen_max_iter: 5
+        sqp_sub_max_iter: 10
+        sqp_ftol: 1e-3
+      }
+
+      osqp_config_ntp {
+        # Settings of osqp
+        verbose: false
+        eps_abs: 5e-4
+        eps_rel: 5e-4
+        eps_prim_inf: 5e-4
+        eps_dual_inf: 5e-4
+        scaled_termination: false
+        adaptive_rho: true
+        adaptive_rho_interval: 15
+        polish: false
+        polish_refine_iter: 5
+        max_iter: 500
+        alpha: 1.6
+        time_limit: 0
+
+        # Weights in optimization cost function
+        first_order_1st: 0.0
+        first_order_2nd: 0.0
+        first_order_4th: 0.0
+        second_order_2nd: 4e5
+        second_order_4th: 0.0
+        third_order_1st: 1e6
+        third_order_2nd: 0.0
+        fourth_order_2nd: 1e4
+        lat_deviation: 0.5
+        lon_deviation: 0.0
+        euler_deviation: 0.0
+        ct_weight: 0.0
+        curvature: 0.1
+        s_first_boundary: 0.0
+        s_end_boundary: 0.0
+        l_first_boundary: 0.0
+        l_end_boundary: 0.0
+        s_boundary: 0.15
+        l_boundary: 0.15
+        sqp_pen_max_iter: 5
+        sqp_sub_max_iter: 10
+        sqp_ftol: 1e-3
+      }
+    } 
+  }
+}
+
+curvature_conf {
+  enable_curvature_smoother: true
+  curvature_smoother_threshold: 0.2
+  max_curvature: 0.21
+  l_bound: 0.333
+  ddl_bound: 0.5
+  dddl_bound: 5e-2
+  curvature_osqp_weight {
+    l_weight: 50
+    dl_weight: 10
+    ddl_weight: 100
+    dddl_weight: 8e4
+    ddl_offset_weight: 100
+    weight_end_state: 1000
+  }
+  curvature_osqp_settings {
+    verbose: false
+    eps_abs: 1e-1
+    eps_rel: 1e-1
+    eps_prim_inf: 5e-4
+    eps_dual_inf: 5e-4
+    scaled_termination: true
+    adaptive_rho: true
+    adaptive_rho_interval: 25
+    polish: false
+    polish_refine_iter: 5
+    max_iter: 3000
+    alpha: 1.6
+    time_limit: 0
+  }
+}
+
+reference_line_safe_length_calibration_table: {
+  speed: 0.0
+  speed: 10.0
+  speed: 20.0
+  speed: 30.0
+  decel: -0.5
+  decel: -1.0
+  decel: -2.0
+  decel: -3.0
+}

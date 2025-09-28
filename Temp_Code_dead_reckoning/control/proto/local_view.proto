@@ -1,0 +1,17 @@
+syntax = "proto2";
+
+package TL.control;
+
+import "proto/soc/chassis.proto";
+import "proto/common/header.proto";
+import "control/proto/pad_msg.proto";
+import "proto/localization/localization.proto";
+import "proto/planning/planning.proto";
+
+message LocalView {
+  optional TL.common.Header header = 1;
+  optional TL.soc.Chassis chassis = 2;
+  optional TL.planning.ADCTrajectory trajectory = 3;
+  optional TL.localization.Localization localization = 4;
+  optional PadMessage pad_msg = 5;
+}

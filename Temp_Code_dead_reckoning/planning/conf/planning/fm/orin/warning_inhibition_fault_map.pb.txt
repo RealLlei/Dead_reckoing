@@ -1,0 +1,156 @@
+warning_fault_map: [
+  {key: "lca", value: {
+    reversible_inhibition_clusters: "platform"
+    reversible_inhibition_clusters: "dr"
+    reversible_inhibition_clusters: "local-location"
+
+    reversible_inhibition_events: 604019
+    reversible_inhibition_events: 604022
+    reversible_inhibition_events: 604025
+    reversible_inhibition_events: 604028
+    reversible_inhibition_events: 310200
+    reversible_inhibition_events: 310205
+    reversible_inhibition_events: 310206
+    reversible_inhibition_events: 310207
+    reversible_inhibition_events: 310208
+    reversible_inhibition_events: 310210
+    reversible_inhibition_events: 310217
+    reversible_inhibition_events: 340001
+    reversible_inhibition_events: 341001
+    reversible_inhibition_events: 348001
+    reversible_inhibition_events: 351001
+    reversible_inhibition_events: 306003
+    reversible_inhibition_events: 306008
+    reversible_inhibition_events: 306029}
+  },
+
+  {key: "dow", value: {
+    reversible_inhibition_clusters: "platform"
+    reversible_inhibition_clusters: "dr"
+    reversible_inhibition_clusters: "local-location"
+
+    reversible_inhibition_events: 604019
+    reversible_inhibition_events: 604022
+    reversible_inhibition_events: 604025
+    reversible_inhibition_events: 310200
+    reversible_inhibition_events: 310205
+    reversible_inhibition_events: 310206
+    reversible_inhibition_events: 310207
+    reversible_inhibition_events: 310208
+    reversible_inhibition_events: 310210
+    reversible_inhibition_events: 340001
+    reversible_inhibition_events: 341001
+    reversible_inhibition_events: 344001
+    reversible_inhibition_events: 348001
+    reversible_inhibition_events: 351001
+    reversible_inhibition_events: 353001
+    reversible_inhibition_events: 306003
+    reversible_inhibition_events: 306008
+    reversible_inhibition_events: 306029}
+  },
+
+  {key: "rcw", value: {
+    reversible_inhibition_clusters: "platform"
+    reversible_inhibition_clusters: "dr"
+    reversible_inhibition_clusters: "local-location"
+
+    reversible_inhibition_events: 604019
+    reversible_inhibition_events: 310200
+    reversible_inhibition_events: 310205
+    reversible_inhibition_events: 310206
+    reversible_inhibition_events: 310207
+    reversible_inhibition_events: 310208
+    reversible_inhibition_events: 310210
+    reversible_inhibition_events: 310217
+    reversible_inhibition_events: 340001
+    reversible_inhibition_events: 341001
+    reversible_inhibition_events: 346001
+    reversible_inhibition_events: 348001
+    reversible_inhibition_events: 351001
+    reversible_inhibition_events: 306003
+    reversible_inhibition_events: 306008
+    reversible_inhibition_events: 306029}
+  },
+
+ {key: "fcta", value: {
+    reversible_inhibition_clusters: "platform"
+    reversible_inhibition_clusters: "dr"
+    reversible_inhibition_clusters: "local-location"
+
+    reversible_inhibition_events: 310200
+    reversible_inhibition_events: 310205
+    reversible_inhibition_events: 310206
+    reversible_inhibition_events: 310207
+    reversible_inhibition_events: 310208
+    reversible_inhibition_events: 310210
+    reversible_inhibition_events: 340001
+    reversible_inhibition_events: 341001
+    reversible_inhibition_events: 348001
+    reversible_inhibition_events: 351001
+    reversible_inhibition_events: 306003
+    reversible_inhibition_events: 306008
+    reversible_inhibition_events: 306009
+    reversible_inhibition_events: 306029}
+  },
+
+  {key: "rcta", value: {
+    reversible_inhibition_clusters: "platform"
+    reversible_inhibition_clusters: "dr"
+    reversible_inhibition_clusters: "local-location"
+
+
+    reversible_inhibition_events: 604019
+    reversible_inhibition_events: 604022
+    reversible_inhibition_events: 604025
+    reversible_inhibition_events: 310200
+    reversible_inhibition_events: 310205
+    reversible_inhibition_events: 310206
+    reversible_inhibition_events: 310207
+    reversible_inhibition_events: 310208
+    reversible_inhibition_events: 310210
+    reversible_inhibition_events: 340001
+    reversible_inhibition_events: 341001
+    reversible_inhibition_events: 348001
+    reversible_inhibition_events: 351001
+    reversible_inhibition_events: 306003
+    reversible_inhibition_events: 306008
+    reversible_inhibition_events: 306029}
+  },
+
+  {key: "lat", value: {
+    reversible_inhibition_clusters: "dr-S1"
+    reversible_inhibition_clusters: "local-location-S1"
+    reversible_inhibition_clusters: "fusion-map-S1"
+    reversible_inhibition_clusters: "local-map-S1"
+
+    reversible_inhibition_events: 601001
+    reversible_inhibition_events: 601002
+    reversible_inhibition_events: 601003
+    reversible_inhibition_events: 601004
+    reversible_inhibition_events: 601005
+    reversible_inhibition_events: 603001
+    reversible_inhibition_events: 603002
+    reversible_inhibition_events: 603007
+    reversible_inhibition_events: 604001
+    reversible_inhibition_events: 604004
+    reversible_inhibition_events: 604007
+    reversible_inhibition_events: 604010
+    reversible_inhibition_events: 604013
+    reversible_inhibition_events: 604028}
+  },
+
+  {key: "lon", value: {
+    reversible_inhibition_clusters: "dr-S1"
+    reversible_inhibition_clusters: "local-location-S1"
+
+    reversible_inhibition_events: 601001
+    reversible_inhibition_events: 601002
+    reversible_inhibition_events: 601003
+    reversible_inhibition_events: 601004
+    reversible_inhibition_events: 601005
+    reversible_inhibition_events: 604001
+    reversible_inhibition_events: 604004
+    reversible_inhibition_events: 604007
+    reversible_inhibition_events: 604028}
+  }
+]

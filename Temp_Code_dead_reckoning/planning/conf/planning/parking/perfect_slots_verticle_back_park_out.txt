@@ -1,0 +1,42 @@
+count:1
+opt_parking_seq:0
+is_valid:true
+parking_lots{
+     parking_seq:0
+     type:VERTICAL
+     status:0
+     sensor_type:0
+     is_private_ps:false
+     pts_vrf{
+          position:BOTTOM_LEFT
+          quality:1
+          point{
+               x: 1.24041488
+               y: 3.5
+          }
+     }
+     pts_vrf{
+          position:BOTTOM_RIGHT
+          quality:1
+          point{
+               x: -1.2404148
+               y: 3.5
+          }
+     }
+          pts_vrf{
+          position:TOP_RIGHT
+          quality:1
+          point{
+               x: -1.2404148
+               y: -1.8
+          }
+     }
+         pts_vrf{
+          position:TOP_LEFT
+          quality:1
+          point{
+               x: 1.2404148
+               y: -1.8
+          }
+     }
+}

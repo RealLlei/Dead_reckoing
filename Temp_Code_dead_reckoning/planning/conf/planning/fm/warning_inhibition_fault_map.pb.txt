@@ -1,0 +1,194 @@
+warning_fault_map: [
+  {key: "lca", value: {
+    irreversible_inhibition_clusters: "platform-S8"
+    irreversible_inhibition_clusters: "platform-S7"
+    irreversible_inhibition_clusters: "platform-S6"
+    irreversible_inhibition_clusters: "platform-S5"
+    irreversible_inhibition_clusters: "multi-sensor-fusion-S2"
+    irreversible_inhibition_clusters: "rrr-obj-S2"
+    irreversible_inhibition_clusters: "rlr-obj-S2"
+
+    reversible_inhibition_clusters: "platform-S4"
+    reversible_inhibition_clusters: "platform-S3"
+    reversible_inhibition_clusters: "multi-sensor-fusion-S1"
+    reversible_inhibition_clusters: "rrr-obj-S1"
+    reversible_inhibition_clusters: "rlr-obj-S1"
+
+    reversible_inhibition_events: 910101
+    reversible_inhibition_events: 910205
+    reversible_inhibition_events: 910206
+    reversible_inhibition_events: 910207
+    reversible_inhibition_events: 910208
+    reversible_inhibition_events: 910210
+    reversible_inhibition_events: 910217
+    reversible_inhibition_events: 910301
+    reversible_inhibition_events: 910302
+    reversible_inhibition_events: 910309
+    reversible_inhibition_events: 910312
+    reversible_inhibition_events: 940101
+    reversible_inhibition_events: 940201
+    reversible_inhibition_events: 940301
+    reversible_inhibition_events: 950104
+    reversible_inhibition_events: 950114
+    reversible_inhibition_events: 951201
+    reversible_inhibition_events: 800501
+    reversible_inhibition_events: 800505
+    reversible_inhibition_events: 800433}
+  },
+
+  {key: "dow", value: {
+    irreversible_inhibition_clusters: "platform-S8"
+    irreversible_inhibition_clusters: "platform-S7"
+    irreversible_inhibition_clusters: "platform-S6"
+    irreversible_inhibition_clusters: "platform-S5"
+    irreversible_inhibition_clusters: "multi-sensor-fusion-S2"
+    irreversible_inhibition_clusters: "frr-obj-S2"
+    irreversible_inhibition_clusters: "flr-obj-S2"
+    irreversible_inhibition_clusters: "rrr-obj-S2"
+    irreversible_inhibition_clusters: "rlr-obj-S2"
+  
+    reversible_inhibition_clusters: "platform-S4"
+    reversible_inhibition_clusters: "platform-S3"
+    reversible_inhibition_clusters: "multi-sensor-fusion-S1"
+    reversible_inhibition_clusters: "frr-obj-S1"
+    reversible_inhibition_clusters: "flr-obj-S1"
+    reversible_inhibition_clusters: "rrr-obj-S1"
+    reversible_inhibition_clusters: "rlr-obj-S1"
+
+    reversible_inhibition_events: 910101
+    reversible_inhibition_events: 910205
+    reversible_inhibition_events: 910206
+    reversible_inhibition_events: 910207
+    reversible_inhibition_events: 910208
+    reversible_inhibition_events: 910210
+    reversible_inhibition_events: 910234
+    reversible_inhibition_events: 910235
+    reversible_inhibition_events: 910301
+    reversible_inhibition_events: 910302
+    reversible_inhibition_events: 910305
+    reversible_inhibition_events: 910309
+    reversible_inhibition_events: 910312
+    reversible_inhibition_events: 910314
+    reversible_inhibition_events: 940101
+    reversible_inhibition_events: 940201
+    reversible_inhibition_events: 940301
+    reversible_inhibition_events: 950104
+    reversible_inhibition_events: 950114
+    reversible_inhibition_events: 951201
+    reversible_inhibition_events: 800503
+    reversible_inhibition_events: 800505
+    reversible_inhibition_events: 800433}
+  },
+
+  {key: "rcw", value: {
+    irreversible_inhibition_clusters: "platform-S8"
+    irreversible_inhibition_clusters: "platform-S7"
+    irreversible_inhibition_clusters: "platform-S6"
+    irreversible_inhibition_clusters: "platform-S5"
+    irreversible_inhibition_clusters: "multi-sensor-fusion-S2"
+    irreversible_inhibition_clusters: "rrr-obj-S2"
+    irreversible_inhibition_clusters: "rlr-obj-S2"
+  
+    reversible_inhibition_clusters: "platform-S4"
+    reversible_inhibition_clusters: "platform-S3"
+    reversible_inhibition_clusters: "multi-sensor-fusion-S1"
+    reversible_inhibition_clusters: "rrr-obj-S1"
+    reversible_inhibition_clusters: "rlr-obj-S1"
+
+    reversible_inhibition_events: 910101
+    reversible_inhibition_events: 910205
+    reversible_inhibition_events: 910206
+    reversible_inhibition_events: 910207
+    reversible_inhibition_events: 910208
+    reversible_inhibition_events: 910210
+    reversible_inhibition_events: 910301
+    reversible_inhibition_events: 910302
+    reversible_inhibition_events: 910307
+    reversible_inhibition_events: 910309
+    reversible_inhibition_events: 910312
+    reversible_inhibition_events: 940101
+    reversible_inhibition_events: 940201
+    reversible_inhibition_events: 940301
+    reversible_inhibition_events: 950104
+    reversible_inhibition_events: 950114
+    reversible_inhibition_events: 951201
+    reversible_inhibition_events: 800504
+    reversible_inhibition_events: 800505
+    reversible_inhibition_events: 800433}
+  },
+
+ {key: "fcta", value: {
+    irreversible_inhibition_clusters: "platform-S8"
+    irreversible_inhibition_clusters: "platform-S7"
+    irreversible_inhibition_clusters: "platform-S6"
+    irreversible_inhibition_clusters: "platform-S5"
+    irreversible_inhibition_clusters: "multi-sensor-fusion-S2"
+    irreversible_inhibition_clusters: "llidar-obj-S2"
+    irreversible_inhibition_clusters: "rlidar-obj-S2"
+    irreversible_inhibition_clusters: "frr-obj-S2"
+    irreversible_inhibition_clusters: "flr-obj-S2"
+  
+    reversible_inhibition_clusters: "platform-S4"
+    reversible_inhibition_clusters: "platform-S3"
+    reversible_inhibition_clusters: "multi-sensor-fusion-S1"
+    reversible_inhibition_clusters: "llidar-obj-S1"
+    reversible_inhibition_clusters: "rlidar-obj-S1"
+    reversible_inhibition_clusters: "frr-obj-S1"
+    reversible_inhibition_clusters: "flr-obj-S1"
+
+    reversible_inhibition_events: 910101
+    reversible_inhibition_events: 910205
+    reversible_inhibition_events: 910206
+    reversible_inhibition_events: 910207
+    reversible_inhibition_events: 910208
+    reversible_inhibition_events: 910210
+    reversible_inhibition_events: 910301
+    reversible_inhibition_events: 910302
+    reversible_inhibition_events: 910309
+    reversible_inhibition_events: 910312
+    reversible_inhibition_events: 940101
+    reversible_inhibition_events: 940201
+    reversible_inhibition_events: 940301
+    reversible_inhibition_events: 950104
+    reversible_inhibition_events: 950114
+    reversible_inhibition_events: 950303
+    reversible_inhibition_events: 951201
+    reversible_inhibition_events: 800505
+    reversible_inhibition_events: 800433}
+  },
+
+  {key: "rcta", value: {
+    irreversible_inhibition_clusters: "platform-S8"
+    irreversible_inhibition_clusters: "platform-S7"
+    irreversible_inhibition_clusters: "platform-S6"
+    irreversible_inhibition_clusters: "platform-S5"
+    irreversible_inhibition_clusters: "multi-sensor-fusion-S2"
+    irreversible_inhibition_clusters: "rrr-obj-S2"
+    irreversible_inhibition_clusters: "rlr-obj-S2"
+  
+    reversible_inhibition_clusters: "platform-S4"
+    reversible_inhibition_clusters: "platform-S3"
+    reversible_inhibition_clusters: "multi-sensor-fusion-S1"
+    reversible_inhibition_clusters: "rrr-obj-S1"
+    reversible_inhibition_clusters: "rlr-obj-S1"
+
+    reversible_inhibition_events: 910101
+    reversible_inhibition_events: 910205
+    reversible_inhibition_events: 910206
+    reversible_inhibition_events: 910207
+    reversible_inhibition_events: 910208
+    reversible_inhibition_events: 910210
+    reversible_inhibition_events: 910301
+    reversible_inhibition_events: 910302
+    reversible_inhibition_events: 910309
+    reversible_inhibition_events: 910312
+    reversible_inhibition_events: 940101
+    reversible_inhibition_events: 940201
+    reversible_inhibition_events: 940301
+    reversible_inhibition_events: 950104
+    reversible_inhibition_events: 950114
+    reversible_inhibition_events: 951201
+    reversible_inhibition_events: 800505
+    reversible_inhibition_events: 800433}
+  }
+]

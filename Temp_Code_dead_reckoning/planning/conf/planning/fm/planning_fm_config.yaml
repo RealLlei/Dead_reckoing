@@ -1,0 +1,122 @@
+%YAML: 1.0
+#该配置提供给用户对关注的故障列表进程注册，用于回调通知
+#支持原始故障/组合故障/自定义组合故障的注册
+#支持聚类的注册，聚类定义参考系统部定义的文档
+
+#app名称
+appName: planning
+
+#聚类故障
+cluster: [
+    platform,               # Pilot(S3-S8)  FCTA(S3-S8) LCA(S3-S8)  RCTA(S3-S8) DOW(S3-S8)  RCW(S3-S8)  APA
+    7v-fusion,              # Pilot(S1-S2)
+    multi-sensor-fusion,    # Pilot(S1-S2)  FCTA(S1-S2) LCA(S1-S2)  RCTA(S1-S2) DOW(S1-S2)  RCW(S1-S2)
+    fv-lane,                # Pilot(S1-S2)
+    fv-roadmark,            # Pilot(S1-S2)
+    llidar-obj,             #               FCTA(S1-S2)
+    rlidar-obj,             #               FCTA(S1-S2)
+    frr-obj,                #               FCTA(S1-S2)                         DOW(S1-S2)
+    flr-obj,                #               FCTA(S1-S2)                         DOW(S1-S2)
+    rrr-obj,                #                           LCA(S1-S2)  RCTA(S1-S2) DOW(S1-S2)  RCW(S1-S2)
+    rlr-obj,                #                           LCA(S1-S2)  RCTA(S1-S2) DOW(S1-S2)  RCW(S1-S2)
+    fusion-obj,             #                                                                           APA
+    fusion-parkinglot,      #                                                                           APA
+    uss-obstacle,           #                                                                           APA
+    fusion-parkinglot,      #                                                                           APA
+    avm-freespace,          #                                                                           APA
+    hpp-location,           #                                                                           APA
+    fl-pdc-uss,             #                                                                           APA
+    fml-pdc-uss,            #                                                                           APA
+    fmr-pdc-uss,            #                                                                           APA
+    fr-pdc-uss,             #                                                                           APA
+    rl-pdc-uss,             #                                                                           APA
+    rml-pdc-uss,            #                                                                           APA
+    rmr-pdc-uss,            #                                                                           APA
+    rr-pdc-uss,             #                                                                           APA
+    fls-apa-uss,            #                                                                           APA
+    frs-apa-uss,            #                                                                           APA
+    rls-apa-uss,            #                                                                           APA
+    rrs-apa-uss             #                                                                           APA
+]
+
+#自定义组合
+# customCombination:
+#     - id: 30000
+#       fault:
+#           10030: 2
+#       combination:
+#           10014-6: 0
+#
+#     - id: 40000
+#       fault:
+#           10040: 0
+
+# 类型<3>对手件通讯故障
+fault:
+    8004: 27        #                                   APA LAPA
+    8004: 33        #       FCTA    LCA RCTA    DOW RCW APA LAPA
+    8005: 1         # Pilot         LCA
+    8005: 2         # Pilot                             APA LAPA
+    8005: 3         # Pilot                     DOW     APA LAPA
+    8005: 4         # Pilot                         RCW APA LAPA
+    8005: 5         # Pilot FCTA    LCA RCTA    DOW RCW APA LAPA
+    8005: 6         # Pilot                             APA LAPA
+    8005: 7         # Pilot
+    8005: 8         # Pilot                             APA LAPA
+    9101: 1         #       FCTA    LCA RCTA    DOW RCW APA LAPA
+    9101: 2         # Pilot                             APA LAPA
+    9101: 3         #                                       LAPA
+    9102: 3         # Pilot                             APA LAPA
+    9102: 5-8       # Pilot FCTA    LCA RCTA    DOW RCW APA LAPA
+    9102: 10        # Pilot FCTA    LCA RCTA    DOW RCW APA LAPA
+    9102: 11        # Pilot                             APA LAPA
+    9102: 13        #                                       LAPA
+    9102: 15-16     # Pilot                             APA LAPA
+    9102: 17        # Pilot         LCA                 APA LAPA
+    9102: 18-19     # Pilot                             APA LAPA
+    9102: 20        #                                   APA LAPA
+    9102: 21        # Pilot
+    9102: 22-24     # Pilot                             APA LAPA
+    9102: 25-32     #                                       LAPA
+    9102: 33        # Pilot
+    9102: 34-35     # Pilot                     DOW
+    9102: 36        #                                       LAPA
+    9102: 37-38     # Pilot                             APA LAPA
+    9102: 41        # Pilot                                 LAPA
+    9102: 55        # Pilot
+    9103: 1         # Pilot FCTA    LCA RCTA    DOW RCW     LAPA
+    9103: 2         # Pilot FCTA    LCA RCTA    DOW RCW APA LAPA
+    9103: 3         #                                       LAPA
+    9103: 4         # Pilot                             APA LAPA
+    9103: 5         # Pilot                     DOW
+    9103: 7         # Pilot                         RCW APA LAPA
+    9103: 9         # Pilot FCTA    LCA RCTA    DOW RCW APA LAPA
+    9103: 11        # Pilot                             APA LAPA
+    9103: 12        # Pilot FCTA    LCA RCTA    DOW RCW APA LAPA
+    9103: 14        # Pilot                     DOW
+    9103: 15-16     #                                       LAPA
+    9103: 17        # Pilot                             APA LAPA
+    9401: 1         # Pilot FCTA    LCA RCTA    DOW RCW APA LAPA
+    9402: 1         # Pilot FCTA    LCA RCTA    DOW RCW APA LAPA
+    9403: 1         # Pilot FCTA    LCA RCTA    DOW RCW APA LAPA
+    9501: 1-2       # Pilot                             APA LAPA
+    9501: 4         # Pilot FCTA    LCA RCTA    DOW RCW APA LAPA
+    9501: 10-12     # Pilot                             APA LAPA
+    9501: 13        # Pilot
+    9501: 14        # Pilot FCTA    LCA RCTA    DOW RCW APA LAPA
+    9502: 3         # Pilot
+    9503: 3         #       FCTA                            LAPA
+    9503: 4-7       #                                       LAPA
+    9504: 2         # Pilot                             APA LAPA
+    9510: 1-4       # Pilot                             APA LAPA
+    9510: 7-8       #                                   APA LAPA
+    9510: 11-15     # Pilot                             APA LAPA
+    9512: 1         # Pilot FCTA    LCA RCTA    DOW RCW APA LAPA
+# SUM                       19      20  18      23  20
+
+#组合
+# combination:
+#     60002-4: 0
+#     60007: 0
+#     30000: 0
+#     40000: 0

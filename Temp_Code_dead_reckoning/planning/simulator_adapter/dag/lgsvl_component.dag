@@ -1,0 +1,11 @@
+module_config {
+    module_library : "lib/liblgsvl_component.so"
+    timer_components {
+        class_name : "LgsvlComponent"
+        config {
+            name: "lgsvl_component"
+            flag_file_path:  "conf/lgsvl_component.conf"
+            interval: 10
+      }
+   }
+}

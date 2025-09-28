@@ -1,0 +1,18 @@
+metric_lat_lon {
+  lat_jerk_threshold: 2.6
+  lon_jerk_threshold: 3.65
+}
+
+metric_filter {
+  filter_cutoff_freq: 1.0
+  filter_ts: 0.1
+}
+
+ntp_metric_lat_lon {
+  ntp_lat_jerk_threshold: 2.6
+  ntp_lon_jerk_threshold: 4.0
+  traj_acc_threshold: -2.0 
+  moving_spd: 0.05 
+  modchg_moving_spd: 0.1 
+  crtl_moving_spd: 0.05 
+}

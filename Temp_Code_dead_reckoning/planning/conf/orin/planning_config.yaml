@@ -1,0 +1,157 @@
+%YAML:1.0
+
+recvInstances:
+    - name: chassis
+      type: proto_proxy
+      topic: /soc/chassis
+      domainId: 0
+    - name: nnp_localization
+      type: proto_proxy
+      topic: /localization/location
+      domainId: 0
+    - name: hpp_localization
+      type: proto_proxy
+      topic: /perception/parking/slam_location
+      domainId: 0
+    - name: nnp_fusion_lane
+      type: proto_proxy
+      topic: /perception/fsd/transportelement_1
+      domainId: 0
+    - name: nnp_local_map
+      type: proto_proxy
+      topic: /localization/local_map
+      domainId: 0
+    - name: hpp_freespace
+      type: proto_proxy
+      topic: /perception/parking/freespace_2
+      domainId: 0
+    - name: nnp_fusion_freespace
+      type: proto_proxy
+      topic: /perception/fsd/freespace_1
+      domainId: 0
+    - name: nnp_obj_fusion
+      type: proto_proxy
+      topic: /perception/fsd/obj_fusion_1
+      domainId: 0
+    - name: hpp_obj_fusion
+      type: proto_proxy
+      topic: /perception/parking/obj_fusion_2
+      domainId: 0
+    - name: parking_lot
+      type: proto_proxy
+      topic: /perception/parking/parkinglot_2
+      domainId: 0
+    - name: mcu_to_ego
+      type: proto_proxy
+      topic: /soc/mcu2ego
+      domainId: 0
+    - name: map_fusion
+      type: proto_proxy
+      topic: /localization/fusionmap
+      domainId: 0
+    - name: mcu_to_soc_pnc
+      type: proto_proxy
+      topic: /soc/mcu_to_soc_pnc
+      domainId: 0
+    - name: ncp_tlr_msg
+      type: proto_proxy
+      topic: /perception/fsd/environment/tlr_msg
+      domainId: 0
+    # - name: tsr
+    #   type: proto_proxy
+    #   topic: tsr
+    #   domainId: 0
+
+sendInstances:
+    - name: ego_trajectory
+      type: proto_skeleton
+      topic: /planning/ego_trajectory
+      domainId: 0
+    - name: routing
+      type: proto_skeleton
+      topic: /planning/routing
+      domainId: 0
+    - name: prediction
+      type: proto_skeleton
+      topic: /planning/prediction
+      domainId: 0
+    - name: control_data
+      type: proto_skeleton
+      topic: /planning/control_data
+      domainId: 0
+    - name: fct_in
+      type: proto_skeleton
+      topic: /planning/fct_in
+      domainId: 0
+
+
+log:
+    mode: 2 #{0, 1, 2, 3, 4, 5, 6}, 0: 不打屏 1: 控制台打屏， 2: 记录日志，3：控制台+日志
+    file: /opt/usr/log/soc_log
+    name: planning
+    description: planning
+    level: 4 #{0，1，2，3，4，5, 6}， 0：trace, 1：debug, 2：info, 3：warn, 4：error, 5：fatal, 6：off
+    adf:
+      level: 2
+
+# trigger二选一即可
+trigger:
+    - name: avp_main
+      type: PERIOD
+      period: 100
+      auxSources:
+          - name: chassis
+          - name: hpp_localization
+          - name: hpp_freespace
+          - name: hpp_obj_fusion
+          - name: parking_lot
+          - name: mcu_to_ego
+          - name: mcu_to_soc_pnc
+          # - name: mbd_debug
+          # - name: adas_record
+
+    - name: nnp_main
+      type: EVENT
+      # period: 100
+      mainSources:
+        - name: nnp_obj_fusion
+          timeout: 350
+      auxSources:
+          - name: chassis
+          - name: nnp_localization
+          - name: nnp_fusion_lane
+          - name: mcu_to_ego
+          - name: map_fusion
+          - name: nnp_fusion_freespace
+          - name: mcu_to_soc_pnc
+          - name: ncp_tlr_msg
+          - name: nnp_local_map
+          # - name: mbd_debug
+          # - name: tsr
+          # - name: adas_record
+
+    # - name: ehr
+    #   type: EVENT
+    #   mainSources:
+    #       - name: map_msg
+    #         timeout: 200
+
+    # - name: self_sim
+    #   type: PERIOD
+    #   period: 100
+    #   auxSources:
+    #       - name: mcu_to_ego
+    #       - name: chassis
+
+# profiler:
+#     name: plan
+#     enable: true
+#     latency:
+#         enable: true
+#         show:
+#           - link_name: link1
+#             trigger_name: ehr
+#             from_msg: map_msg
+#           # - link_name: link2
+#           #   trigger_name: main
+#           #   from_msg: hpp_lane

@@ -1,0 +1,1575 @@
+header {
+  frame_id: "space_parkingLot"
+}
+count: 13
+locSeq: 0
+opt_parking_seq: 14
+parking_lots {
+  parking_seq: 6
+  type: VERTICAL
+  status: FREE
+  sensor_type: CAMERA
+  is_private_ps: false
+  pts_vrf {
+    point {
+      x: -2.719724178314209
+      y: -11.80558967590332
+    }
+    position: TOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -2.7053382396698
+      y: -14.76633358001709
+    }
+    position: TOP_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -8.005260467529297
+      y: -14.792105674743652
+    }
+    position: BOTTOM_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -8.019646644592285
+      y: -11.83133316040039
+    }
+    position: BOTTOM_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -7.3218841552734375
+      y: -11.827946662902832
+    }
+    position: STOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -7.307494163513184
+      y: -14.78870964050293
+    }
+    position: STOP_RIGHT
+    quality: LOW
+  }
+  time_creation: 1660043435.907262
+}
+parking_lots {
+  parking_seq: 8
+  type: VERTICAL
+  status: FREE
+  sensor_type: CAMERA
+  is_private_ps: false
+  pts_vrf {
+    point {
+      x: -2.959937572479248
+      y: -9.454124450683594
+    }
+    position: TOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -2.8524551391601562
+      y: -12.305547714233398
+    }
+    position: TOP_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -8.148681640625
+      y: -12.505186080932617
+    }
+    position: BOTTOM_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -8.256166458129883
+      y: -9.65375804901123
+    }
+    position: BOTTOM_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -7.637884140014648
+      y: -9.630448341369629
+    }
+    position: STOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -7.530402183532715
+      y: -12.481884002685547
+    }
+    position: STOP_RIGHT
+    quality: LOW
+  }
+  time_creation: 1660043435.907262
+}
+parking_lots {
+  parking_seq: 10
+  type: VERTICAL
+  status: FREE
+  sensor_type: CAMERA
+  is_private_ps: false
+  pts_vrf {
+    point {
+      x: -3.001875638961792
+      y: -5.096837043762207
+    }
+    position: TOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -2.970125913619995
+      y: -7.590536117553711
+    }
+    position: TOP_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -8.269697189331055
+      y: -7.658012390136719
+    }
+    position: BOTTOM_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -8.301448822021484
+      y: -5.164312362670898
+    }
+    position: BOTTOM_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -7.605031967163086
+      y: -5.155445575714111
+    }
+    position: STOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -7.573281288146973
+      y: -7.649145603179932
+    }
+    position: STOP_RIGHT
+    quality: LOW
+  }
+  time_creation: 1660043435.907262
+}
+parking_lots {
+  parking_seq: 12
+  type: VERTICAL
+  status: FREE
+  sensor_type: CAMERA
+  is_private_ps: false
+  pts_vrf {
+    point {
+      x: -2.846885919570923
+      y: -2.7266016006469727
+    }
+    position: TOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -2.9895336627960205
+      y: -5.233606815338135
+    }
+    position: TOP_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -8.280974388122559
+      y: -4.932524681091309
+    }
+    position: BOTTOM_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -8.138326644897461
+      y: -2.4255192279815674
+    }
+    position: BOTTOM_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -7.462543487548828
+      y: -2.4639711380004883
+    }
+    position: STOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -7.605191230773926
+      y: -4.970976829528809
+    }
+    position: STOP_RIGHT
+    quality: LOW
+  }
+  time_creation: 1660043435.907262
+}
+parking_lots {
+  parking_seq: 14
+  type: VERTICAL
+  status: FREE
+  sensor_type: CAMERA
+  is_private_ps: false
+  pts_vrf {
+    point {
+      x: -3.0120432376861572
+      y: -0.30239298939704895
+    }
+    position: TOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -3.252420425415039
+      y: -2.9595277309417725
+    }
+    position: TOP_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -8.530865669250488
+      y: -2.4820141792297363
+    }
+    position: BOTTOM_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -8.290488243103027
+      y: 0.17512047290802002
+    }
+    position: BOTTOM_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -7.625767707824707
+      y: 0.024135231971740723
+    }
+    position: STOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -7.84984016418457
+      y: -2.4527719020843506
+    }
+    position: STOP_RIGHT
+    quality: LOW
+  }
+  time_creation: 1660043435.907262
+}
+parking_lots {
+  parking_seq: 17
+  type: VERTICAL
+  status: FREE
+  sensor_type: CAMERA
+  is_private_ps: false
+  pts_vrf {
+    point {
+      x: -3.0864410400390625
+      y: 3.751016616821289
+    }
+    position: TOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -3.0009424686431885
+      y: 1.2085521221160889
+    }
+    position: TOP_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -8.297948837280273
+      y: 1.0304228067398071
+    }
+    position: BOTTOM_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -8.38344669342041
+      y: 3.572887420654297
+    }
+    position: BOTTOM_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -7.799844741821289
+      y: 3.592513084411621
+    }
+    position: STOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: -7.714345932006836
+      y: 1.0500482320785522
+    }
+    position: STOP_RIGHT
+    quality: LOW
+  }
+  time_creation: 1660043435.907262
+}
+parking_lots {
+  parking_seq: 7
+  type: VERTICAL
+  status: FREE
+  sensor_type: CAMERA
+  is_private_ps: false
+  pts_vrf {
+    point {
+      x: 3.2567567825317383
+      y: -11.46851634979248
+    }
+    position: TOP_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 3.438312292098999
+      y: -13.971841812133789
+    }
+    position: TOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 8.724421501159668
+      y: -13.588459014892578
+    }
+    position: BOTTOM_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 8.542860984802246
+      y: -11.085128784179688
+    }
+    position: BOTTOM_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 7.34992790222168
+      y: -13.68814754486084
+    }
+    position: STOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 7.168369293212891
+      y: -11.184815406799316
+    }
+    position: STOP_RIGHT
+    quality: LOW
+  }
+  time_creation: 1660043435.907262
+}
+parking_lots {
+  parking_seq: 9
+  type: VERTICAL
+  status: FREE
+  sensor_type: CAMERA
+  is_private_ps: false
+  pts_vrf {
+    point {
+      x: 3.2319142818450928
+      y: -9.028726577758789
+    }
+    position: TOP_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 3.273282289505005
+      y: -11.480433464050293
+    }
+    position: TOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 8.57252311706543
+      y: -11.391016960144043
+    }
+    position: BOTTOM_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 8.531147003173828
+      y: -8.939311981201172
+    }
+    position: BOTTOM_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 7.311511039733887
+      y: -11.412300109863281
+    }
+    position: STOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 7.270142555236816
+      y: -8.96058464050293
+    }
+    position: STOP_RIGHT
+    quality: LOW
+  }
+  time_creation: 1660043435.907262
+}
+parking_lots {
+  parking_seq: 11
+  type: VERTICAL
+  status: FREE
+  sensor_type: CAMERA
+  is_private_ps: false
+  pts_vrf {
+    point {
+      x: 3.1035919189453125
+      y: -4.972667217254639
+    }
+    position: TOP_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 3.246182680130005
+      y: -7.517651081085205
+    }
+    position: TOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 8.53787899017334
+      y: -7.221164703369141
+    }
+    position: BOTTOM_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 8.395291328430176
+      y: -4.676181793212891
+    }
+    position: BOTTOM_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 7.48573112487793
+      y: -7.280115127563477
+    }
+    position: STOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 7.3431396484375
+      y: -4.735132217407227
+    }
+    position: STOP_RIGHT
+    quality: LOW
+  }
+  time_creation: 1660043435.907262
+}
+parking_lots {
+  parking_seq: 13
+  type: VERTICAL
+  status: FREE
+  sensor_type: CAMERA
+  is_private_ps: false
+  pts_vrf {
+    point {
+      x: 3.0295989513397217
+      y: -2.5413942337036133
+    }
+    position: TOP_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 3.074223756790161
+      y: -4.8437957763671875
+    }
+    position: TOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 8.373226165771484
+      y: -4.741089820861816
+    }
+    position: BOTTOM_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 8.32860279083252
+      y: -2.4386863708496094
+    }
+    position: BOTTOM_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 7.097745418548584
+      y: -4.765810966491699
+    }
+    position: STOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 7.05311918258667
+      y: -2.4634084701538086
+    }
+    position: STOP_RIGHT
+    quality: LOW
+  }
+  time_creation: 1660043435.907262
+}
+parking_lots {
+  parking_seq: 15
+  type: VERTICAL
+  status: FREE
+  sensor_type: CAMERA
+  is_private_ps: false
+  pts_vrf {
+    point {
+      x: 2.987440586090088
+      y: -0.10438141971826553
+    }
+    position: TOP_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 3.638362169265747
+      y: -2.8670215606689453
+    }
+    position: TOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 8.797102928161621
+      y: -1.651540756225586
+    }
+    position: BOTTOM_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 8.146181106567383
+      y: 1.111099362373352
+    }
+    position: BOTTOM_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 7.461546421051025
+      y: -1.9662187099456787
+    }
+    position: STOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 6.810624122619629
+      y: 0.7964214086532593
+    }
+    position: STOP_RIGHT
+    quality: LOW
+  }
+  time_creation: 1660043435.907262
+}
+parking_lots {
+  parking_seq: 16
+  type: VERTICAL
+  status: FREE
+  sensor_type: CAMERA
+  is_private_ps: false
+  pts_vrf {
+    point {
+      x: 2.8988685607910156
+      y: 3.6567366123199463
+    }
+    position: TOP_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 2.925565242767334
+      y: 1.242617130279541
+    }
+    position: TOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 8.225241661071777
+      y: 1.301223635673523
+    }
+    position: BOTTOM_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 8.1985445022583
+      y: 3.7153429985046387
+    }
+    position: BOTTOM_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 6.991119384765625
+      y: 1.2875760793685913
+    }
+    position: STOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 6.964423179626465
+      y: 3.701695442199707
+    }
+    position: STOP_RIGHT
+    quality: LOW
+  }
+  time_creation: 1660043435.907262
+}
+parking_lots {
+  parking_seq: 18
+  type: VERTICAL
+  status: UNKOWN
+  sensor_type: CAMERA
+  is_private_ps: false
+  pts_vrf {
+    point {
+      x: 2.85477352142334
+      y: 6.171474456787109
+    }
+    position: TOP_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 2.8988685607910156
+      y: 3.6567366123199463
+    }
+    position: TOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 8.198054313659668
+      y: 3.7496554851531982
+    }
+    position: BOTTOM_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 8.153959274291992
+      y: 6.264393329620361
+    }
+    position: BOTTOM_RIGHT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 7.089622974395752
+      y: 3.7302193641662598
+    }
+    position: STOP_LEFT
+    quality: LOW
+  }
+  pts_vrf {
+    point {
+      x: 7.045527935028076
+      y: 6.244957447052002
+    }
+    position: STOP_RIGHT
+    quality: LOW
+  }
+  time_creation: 1660043435.907262
+}
+path_point_size: 105
+traced_path {
+  x: 19.47662353515625
+  y: 0.6737569570541382
+  z: 2.802596928649634e-45
+  yaw: 0.030950870364904404
+  accumulate_s: 0.0
+  gear: 11
+}
+traced_path {
+  x: 19.297264099121094
+  y: 0.6690093278884888
+  z: 2.802596928649634e-45
+  yaw: 0.031782764941453934
+  accumulate_s: 0.1794222597047084
+  gear: 11
+}
+traced_path {
+  x: 19.11794662475586
+  y: 0.6630754470825195
+  z: 2.802596928649634e-45
+  yaw: 0.030844958499073982
+  accumulate_s: 0.358837887658758
+  gear: 11
+}
+traced_path {
+  x: 18.938608169555664
+  y: 0.6577346920967102
+  z: 2.802596928649634e-45
+  yaw: 0.029800347983837128
+  accumulate_s: 0.5382558499072768
+  gear: 11
+}
+traced_path {
+  x: 18.759248733520508
+  y: 0.6529870629310608
+  z: 2.802596928649634e-45
+  yaw: 0.0292186476290226
+  accumulate_s: 0.7176781096119852
+  gear: 11
+}
+traced_path {
+  x: 18.579931259155273
+  y: 0.6470531821250916
+  z: 2.802596928649634e-45
+  yaw: 0.027343079447746277
+  accumulate_s: 0.8970937375660348
+  gear: 11
+}
+traced_path {
+  x: 18.400571823120117
+  y: 0.6423055529594421
+  z: 2.802596928649634e-45
+  yaw: 0.026635048910975456
+  accumulate_s: 1.0765159972707432
+  gear: 11
+}
+traced_path {
+  x: 18.22121238708496
+  y: 0.6375579237937927
+  z: 2.802596928649634e-45
+  yaw: 0.02584266848862171
+  accumulate_s: 1.2559382569754516
+  gear: 11
+}
+traced_path {
+  x: 18.04184341430664
+  y: 0.6334036588668823
+  z: 2.802596928649634e-45
+  yaw: 0.025361202657222748
+  accumulate_s: 1.43535533061292
+  gear: 11
+}
+traced_path {
+  x: 17.862462997436523
+  y: 0.6298428177833557
+  z: 2.802596928649634e-45
+  yaw: 0.024847522377967834
+  accumulate_s: 1.6147710867374008
+  gear: 11
+}
+traced_path {
+  x: 17.683103561401367
+  y: 0.6250951886177063
+  z: 2.802596928649634e-45
+  yaw: 0.02406948246061802
+  accumulate_s: 1.7941933464421091
+  gear: 11
+}
+traced_path {
+  x: 17.503734588623047
+  y: 0.6209409236907959
+  z: 2.802596928649634e-45
+  yaw: 0.024014009162783623
+  accumulate_s: 1.9736104200795777
+  gear: 11
+}
+traced_path {
+  x: 17.32437515258789
+  y: 0.6161932945251465
+  z: 2.802596928649634e-45
+  yaw: 0.023729410022497177
+  accumulate_s: 2.1530326797842863
+  gear: 11
+}
+traced_path {
+  x: 17.145015716552734
+  y: 0.6114456653594971
+  z: 2.802596928649634e-45
+  yaw: 0.023388538509607315
+  accumulate_s: 2.332454939488995
+  gear: 11
+}
+traced_path {
+  x: 16.965635299682617
+  y: 0.6078848242759705
+  z: 2.802596928649634e-45
+  yaw: 0.023441331461071968
+  accumulate_s: 2.5118706956134758
+  gear: 11
+}
+traced_path {
+  x: 16.78627586364746
+  y: 0.603137195110321
+  z: 2.802596928649634e-45
+  yaw: 0.023498661816120148
+  accumulate_s: 2.6912929553181844
+  gear: 11
+}
+traced_path {
+  x: 16.606916427612305
+  y: 0.5983895659446716
+  z: 2.802596928649634e-45
+  yaw: 0.023485735058784485
+  accumulate_s: 2.870715215022893
+  gear: 11
+}
+traced_path {
+  x: 16.427536010742188
+  y: 0.594828724861145
+  z: 2.802596928649634e-45
+  yaw: 0.023452570661902428
+  accumulate_s: 3.050130971147374
+  gear: 11
+}
+traced_path {
+  x: 16.24815559387207
+  y: 0.5912678837776184
+  z: 2.802596928649634e-45
+  yaw: 0.02395150065422058
+  accumulate_s: 3.2295467272718548
+  gear: 11
+}
+traced_path {
+  x: 16.068763732910156
+  y: 0.5883004665374756
+  z: 2.802596928649634e-45
+  yaw: 0.02465767040848732
+  accumulate_s: 3.4089631293772804
+  gear: 11
+}
+traced_path {
+  x: 15.889384269714355
+  y: 0.584739625453949
+  z: 2.802596928649634e-45
+  yaw: 0.02501603402197361
+  accumulate_s: 3.5883779320152898
+  gear: 11
+}
+traced_path {
+  x: 15.7100248336792
+  y: 0.5799919962882996
+  z: 2.802596928649634e-45
+  yaw: 0.02536359615623951
+  accumulate_s: 3.7678001917199984
+  gear: 11
+}
+traced_path {
+  x: 15.485803604125977
+  y: 0.5752442479133606
+  z: 2.802596928649634e-45
+  yaw: 0.02647000551223755
+  accumulate_s: 3.9920716809846635
+  gear: 11
+}
+traced_path {
+  x: 15.30644416809082
+  y: 0.5704966187477112
+  z: 2.802596928649634e-45
+  yaw: 0.026960590854287148
+  accumulate_s: 4.171493940689372
+  gear: 11
+}
+traced_path {
+  x: 15.127084732055664
+  y: 0.5657489895820618
+  z: 2.802596928649634e-45
+  yaw: 0.027000388130545616
+  accumulate_s: 4.35091620039408
+  gear: 11
+}
+traced_path {
+  x: 14.947725296020508
+  y: 0.5610013604164124
+  z: 2.802596928649634e-45
+  yaw: 0.028211267665028572
+  accumulate_s: 4.530338460098788
+  gear: 11
+}
+traced_path {
+  x: 14.768365859985352
+  y: 0.5562537312507629
+  z: 2.802596928649634e-45
+  yaw: 0.028835099190473557
+  accumulate_s: 4.709760719803496
+  gear: 11
+}
+traced_path {
+  x: 14.589006423950195
+  y: 0.5515061020851135
+  z: 2.802596928649634e-45
+  yaw: 0.02965385839343071
+  accumulate_s: 4.889182979508204
+  gear: 11
+}
+traced_path {
+  x: 14.409646987915039
+  y: 0.5467584729194641
+  z: 2.802596928649634e-45
+  yaw: 0.030211355537176132
+  accumulate_s: 5.068605239212912
+  gear: 11
+}
+traced_path {
+  x: 14.230287551879883
+  y: 0.5420108437538147
+  z: 2.802596928649634e-45
+  yaw: 0.031153172254562378
+  accumulate_s: 5.2480274989176205
+  gear: 11
+}
+traced_path {
+  x: 14.050928115844727
+  y: 0.5372632145881653
+  z: 2.802596928649634e-45
+  yaw: 0.031107865273952484
+  accumulate_s: 5.427449758622329
+  gear: 11
+}
+traced_path {
+  x: 13.826728820800781
+  y: 0.5313286781311035
+  z: 2.802596928649634e-45
+  yaw: 0.03155702352523804
+  accumulate_s: 5.651727583253214
+  gear: 11
+}
+traced_path {
+  x: 13.647411346435547
+  y: 0.5253947973251343
+  z: 2.802596928649634e-45
+  yaw: 0.03256554156541824
+  accumulate_s: 5.831143211207263
+  gear: 11
+}
+traced_path {
+  x: 13.468072891235352
+  y: 0.520054042339325
+  z: 2.802596928649634e-45
+  yaw: 0.03281854838132858
+  accumulate_s: 6.010561173455782
+  gear: 11
+}
+traced_path {
+  x: 13.266304016113281
+  y: 0.5144163966178894
+  z: 2.802596928649634e-45
+  yaw: 0.03382085636258125
+  accumulate_s: 6.212408794242617
+  gear: 11
+}
+traced_path {
+  x: 13.064577102661133
+  y: 0.507592499256134
+  z: 2.802596928649634e-45
+  yaw: 0.03463616594672203
+  accumulate_s: 6.41425109205488
+  gear: 11
+}
+traced_path {
+  x: 12.885217666625977
+  y: 0.5028448700904846
+  z: 2.802596928649634e-45
+  yaw: 0.035460349172353745
+  accumulate_s: 6.5936733517595885
+  gear: 11
+}
+traced_path {
+  x: 12.705879211425781
+  y: 0.4975040853023529
+  z: 2.802596928649634e-45
+  yaw: 0.03623189777135849
+  accumulate_s: 6.773091314895239
+  gear: 11
+}
+traced_path {
+  x: 12.504152297973633
+  y: 0.49068015813827515
+  z: 2.802596928649634e-45
+  yaw: 0.035836562514305115
+  accumulate_s: 6.974933613715063
+  gear: 11
+}
+traced_path {
+  x: 12.302425384521484
+  y: 0.4838562309741974
+  z: 2.802596928649634e-45
+  yaw: 0.03552231565117836
+  accumulate_s: 7.176775912534887
+  gear: 11
+}
+traced_path {
+  x: 12.100677490234375
+  y: 0.47762542963027954
+  z: 2.802596928649634e-45
+  yaw: 0.035965438932180405
+  accumulate_s: 7.378620000223058
+  gear: 11
+}
+traced_path {
+  x: 11.89899730682373
+  y: 0.4696154296398163
+  z: 2.802596928649634e-45
+  yaw: 0.03604673221707344
+  accumulate_s: 7.580459184923151
+  gear: 11
+}
+traced_path {
+  x: 11.719679832458496
+  y: 0.46368154883384705
+  z: 2.802596928649634e-45
+  yaw: 0.03582044690847397
+  accumulate_s: 7.7598748128772
+  gear: 11
+}
+traced_path {
+  x: 11.495590209960938
+  y: 0.45478153228759766
+  z: 2.802596928649634e-45
+  yaw: 0.03569290414452553
+  accumulate_s: 7.984141103713834
+  gear: 11
+}
+traced_path {
+  x: 11.293910026550293
+  y: 0.4467715322971344
+  z: 2.802596928649634e-45
+  yaw: 0.03615765646100044
+  accumulate_s: 8.185980288413928
+  gear: 11
+}
+traced_path {
+  x: 11.092162132263184
+  y: 0.44054073095321655
+  z: 2.802596928649634e-45
+  yaw: 0.03719376027584076
+  accumulate_s: 8.387824376102099
+  gear: 11
+}
+traced_path {
+  x: 10.91286563873291
+  y: 0.434013694524765
+  z: 2.802596928649634e-45
+  yaw: 0.0376649834215641
+  accumulate_s: 8.567239634084217
+  gear: 11
+}
+traced_path {
+  x: 10.711211204528809
+  y: 0.42541074752807617
+  z: 2.802596928649634e-45
+  yaw: 0.03818050026893616
+  accumulate_s: 8.76907749359329
+  gear: 11
+}
+traced_path {
+  x: 10.531961441040039
+  y: 0.41769763827323914
+  z: 2.802596928649634e-45
+  yaw: 0.03844942897558212
+  accumulate_s: 8.94849312770904
+  gear: 11
+}
+traced_path {
+  x: 10.352664947509766
+  y: 0.4111706018447876
+  z: 2.802596928649634e-45
+  yaw: 0.039112333208322525
+  accumulate_s: 9.127908385691159
+  gear: 11
+}
+traced_path {
+  x: 10.173466682434082
+  y: 0.4022716283798218
+  z: 2.802596928649634e-45
+  yaw: 0.03898801654577255
+  accumulate_s: 9.307327475909744
+  gear: 11
+}
+traced_path {
+  x: 9.994242668151855
+  y: 0.39396557211875916
+  z: 2.802596928649634e-45
+  yaw: 0.03862747922539711
+  accumulate_s: 9.486743857174242
+  gear: 11
+}
+traced_path {
+  x: 9.815018653869629
+  y: 0.3856595456600189
+  z: 2.802596928649634e-45
+  yaw: 0.038580186665058136
+  accumulate_s: 9.666160237059048
+  gear: 11
+}
+traced_path {
+  x: 9.613317489624023
+  y: 0.3782426714897156
+  z: 2.802596928649634e-45
+  yaw: 0.038732875138521194
+  accumulate_s: 9.867997720397724
+  gear: 11
+}
+traced_path {
+  x: 9.433979034423828
+  y: 0.37290191650390625
+  z: 2.802596928649634e-45
+  yaw: 0.039188407361507416
+  accumulate_s: 10.047415682646243
+  gear: 11
+}
+traced_path {
+  x: 9.23225212097168
+  y: 0.3660779893398285
+  z: 2.802596928649634e-45
+  yaw: 0.040589526295661926
+  accumulate_s: 10.249257981466068
+  gear: 11
+}
+traced_path {
+  x: 9.052955627441406
+  y: 0.35955092310905457
+  z: 2.802596928649634e-45
+  yaw: 0.04124819487333298
+  accumulate_s: 10.428673240532381
+  gear: 11
+}
+traced_path {
+  x: 8.851249694824219
+  y: 0.3521338403224945
+  z: 2.802596928649634e-45
+  yaw: 0.042128585278987885
+  accumulate_s: 10.630515496688103
+  gear: 11
+}
+traced_path {
+  x: 8.671953201293945
+  y: 0.34560680389404297
+  z: 2.802596928649634e-45
+  yaw: 0.042525190860033035
+  accumulate_s: 10.809930754670221
+  gear: 11
+}
+traced_path {
+  x: 8.470226287841797
+  y: 0.3387828767299652
+  z: 2.802596928649634e-45
+  yaw: 0.042820464819669724
+  accumulate_s: 11.011773053490046
+  gear: 11
+}
+traced_path {
+  x: 8.246183395385742
+  y: 0.32869675755500793
+  z: 2.802596928649634e-45
+  yaw: 0.043089598417282104
+  accumulate_s: 11.236042863005475
+  gear: 11
+}
+traced_path {
+  x: 8.066959381103516
+  y: 0.3203907012939453
+  z: 2.802596928649634e-45
+  yaw: 0.04261781647801399
+  accumulate_s: 11.415459244269972
+  gear: 11
+}
+traced_path {
+  x: 7.887735366821289
+  y: 0.3120846450328827
+  z: 2.802596928649634e-45
+  yaw: 0.04317326843738556
+  accumulate_s: 11.594875625534469
+  gear: 11
+}
+traced_path {
+  x: 7.6637444496154785
+  y: 0.300812691450119
+  z: 2.802596928649634e-45
+  yaw: 0.04336479678750038
+  accumulate_s: 11.819149984140779
+  gear: 11
+}
+traced_path {
+  x: 7.484519958496094
+  y: 0.2925066351890564
+  z: 2.802596928649634e-45
+  yaw: 0.04354685917496681
+  accumulate_s: 11.998566841731181
+  gear: 11
+}
+traced_path {
+  x: 7.305295467376709
+  y: 0.2842005789279938
+  z: 2.802596928649634e-45
+  yaw: 0.04377147927880287
+  accumulate_s: 12.177983699321583
+  gear: 11
+}
+traced_path {
+  x: 7.12601900100708
+  y: 0.27708038687705994
+  z: 2.802596928649634e-45
+  yaw: 0.04426814615726471
+  accumulate_s: 12.357401503702372
+  gear: 11
+}
+traced_path {
+  x: 6.946747779846191
+  y: 0.2699604034423828
+  z: 2.802596928649634e-45
+  yaw: 0.04487275332212448
+  accumulate_s: 12.53681405872745
+  gear: 11
+}
+traced_path {
+  x: 6.767575740814209
+  y: 0.2604684829711914
+  z: 2.802596928649634e-45
+  yaw: 0.04444556683301926
+  accumulate_s: 12.716237346304926
+  gear: 11
+}
+traced_path {
+  x: 6.5883049964904785
+  y: 0.25334852933883667
+  z: 2.802596928649634e-45
+  yaw: 0.04484594613313675
+  accumulate_s: 12.895649423685773
+  gear: 11
+}
+traced_path {
+  x: 6.409054756164551
+  y: 0.24563543498516083
+  z: 2.802596928649634e-45
+  yaw: 0.04504731297492981
+  accumulate_s: 13.075065533557243
+  gear: 11
+}
+traced_path {
+  x: 6.22988224029541
+  y: 0.23614351451396942
+  z: 2.802596928649634e-45
+  yaw: 0.04529198259115219
+  accumulate_s: 13.254489297304158
+  gear: 11
+}
+traced_path {
+  x: 6.050683975219727
+  y: 0.2272445410490036
+  z: 2.802596928649634e-45
+  yaw: 0.04543208330869675
+  accumulate_s: 13.433908387522743
+  gear: 11
+}
+traced_path {
+  x: 5.871511459350586
+  y: 0.2177526205778122
+  z: 2.802596928649634e-45
+  yaw: 0.045421894639730453
+  accumulate_s: 13.613332151269658
+  gear: 11
+}
+traced_path {
+  x: 5.692287445068359
+  y: 0.20944659411907196
+  z: 2.802596928649634e-45
+  yaw: 0.04589533060789108
+  accumulate_s: 13.792748531154464
+  gear: 11
+}
+traced_path {
+  x: 5.513063430786133
+  y: 0.20114056766033173
+  z: 2.802596928649634e-45
+  yaw: 0.04631611332297325
+  accumulate_s: 13.97216491103927
+  gear: 11
+}
+traced_path {
+  x: 5.333839416503906
+  y: 0.1928345412015915
+  z: 2.802596928649634e-45
+  yaw: 0.0465574711561203
+  accumulate_s: 14.151581290924076
+  gear: 11
+}
+traced_path {
+  x: 5.132231712341309
+  y: 0.18304555118083954
+  z: 2.802596928649634e-45
+  yaw: 0.04709121584892273
+  accumulate_s: 14.353426505639066
+  gear: 11
+}
+traced_path {
+  x: 4.93060302734375
+  y: 0.1738496869802475
+  z: 2.802596928649634e-45
+  yaw: 0.04770272225141525
+  accumulate_s: 14.555264783803146
+  gear: 11
+}
+traced_path {
+  x: 4.751404762268066
+  y: 0.16495071351528168
+  z: 2.802596928649634e-45
+  yaw: 0.047986943274736404
+  accumulate_s: 14.734683874021732
+  gear: 11
+}
+traced_path {
+  x: 4.572206497192383
+  y: 0.15605174005031586
+  z: 2.802596928649634e-45
+  yaw: 0.04809750244021416
+  accumulate_s: 14.914102964240318
+  gear: 11
+}
+traced_path {
+  x: 4.393033981323242
+  y: 0.14655981957912445
+  z: 2.802596928649634e-45
+  yaw: 0.047364845871925354
+  accumulate_s: 15.093526727987232
+  gear: 11
+}
+traced_path {
+  x: 4.213809490203857
+  y: 0.13825377821922302
+  z: 2.802596928649634e-45
+  yaw: 0.04684897139668465
+  accumulate_s: 15.27294358488779
+  gear: 11
+}
+traced_path {
+  x: 4.034611225128174
+  y: 0.1293548047542572
+  z: 2.802596928649634e-45
+  yaw: 0.046021923422813416
+  accumulate_s: 15.452362675106375
+  gear: 11
+}
+traced_path {
+  x: 3.855339765548706
+  y: 0.12223484367132187
+  z: 2.802596928649634e-45
+  yaw: 0.045523907989263535
+  accumulate_s: 15.63177546747519
+  gear: 11
+}
+traced_path {
+  x: 3.6536848545074463
+  y: 0.11363190412521362
+  z: 2.802596928649634e-45
+  yaw: 0.04493481293320656
+  accumulate_s: 15.833613803070518
+  gear: 11
+}
+traced_path {
+  x: 3.4520037174224854
+  y: 0.10562189668416977
+  z: 2.802596928649634e-45
+  yaw: 0.0443601980805397
+  accumulate_s: 16.03545394098934
+  gear: 11
+}
+traced_path {
+  x: 3.2727792263031006
+  y: 0.09731584042310715
+  z: 2.802596928649634e-45
+  yaw: 0.04373554885387421
+  accumulate_s: 16.21487079857974
+  gear: 11
+}
+traced_path {
+  x: 3.0711450576782227
+  y: 0.0881197601556778
+  z: 2.802596928649634e-45
+  yaw: 0.042793285101652145
+  accumulate_s: 16.41671456452095
+  gear: 11
+}
+traced_path {
+  x: 2.8918943405151367
+  y: 0.08040663599967957
+  z: 2.802596928649634e-45
+  yaw: 0.04206353798508644
+  accumulate_s: 16.596131152069947
+  gear: 11
+}
+traced_path {
+  x: 2.7126433849334717
+  y: 0.07269351184368134
+  z: 2.802596928649634e-45
+  yaw: 0.040902029722929
+  accumulate_s: 16.775547977817105
+  gear: 11
+}
+traced_path {
+  x: 2.533371686935425
+  y: 0.06557352840900421
+  z: 2.802596928649634e-45
+  yaw: 0.039216894656419754
+  accumulate_s: 16.95496100930371
+  gear: 11
+}
+traced_path {
+  x: 2.354052782058716
+  y: 0.059639621526002884
+  z: 2.802596928649634e-45
+  yaw: 0.03738105669617653
+  accumulate_s: 17.134378067849095
+  gear: 11
+}
+traced_path {
+  x: 2.1747753620147705
+  y: 0.052519429475069046
+  z: 2.802596928649634e-45
+  yaw: 0.03462846577167511
+  accumulate_s: 17.313796825152938
+  gear: 11
+}
+traced_path {
+  x: 1.9954358339309692
+  y: 0.047178659588098526
+  z: 2.802596928649634e-45
+  yaw: 0.032397765666246414
+  accumulate_s: 17.49321586025319
+  gear: 11
+}
+traced_path {
+  x: 1.8161174058914185
+  y: 0.0412447489798069
+  z: 2.802596928649634e-45
+  yaw: 0.029743453487753868
+  accumulate_s: 17.67263244234549
+  gear: 11
+}
+traced_path {
+  x: 1.6367989778518677
+  y: 0.03531084209680557
+  z: 2.802596928649634e-45
+  yaw: 0.02734888531267643
+  accumulate_s: 17.85204902431458
+  gear: 11
+}
+traced_path {
+  x: 1.457438588142395
+  y: 0.03056321293115616
+  z: 2.802596928649634e-45
+  yaw: 0.025405174121260643
+  accumulate_s: 18.031472237359683
+  gear: 11
+}
+traced_path {
+  x: 1.2780781984329224
+  y: 0.02581559121608734
+  z: 2.802596928649634e-45
+  yaw: 0.02329327166080475
+  accumulate_s: 18.21089545020764
+  gear: 11
+}
+traced_path {
+  x: 1.0987073183059692
+  y: 0.021661387756466866
+  z: 2.802596928649634e-45
+  yaw: 0.021511850878596306
+  accumulate_s: 18.390314429259195
+  gear: 11
+}
+traced_path {
+  x: 0.9193259477615356
+  y: 0.01810060255229473
+  z: 2.802596928649634e-45
+  yaw: 0.020390182733535767
+  accumulate_s: 18.569731137761135
+  gear: 11
+}
+traced_path {
+  x: 0.7399657964706421
+  y: 0.013352980837225914
+  z: 2.802596928649634e-45
+  yaw: 0.018288008868694305
+  accumulate_s: 18.74915411227399
+  gear: 11
+}
+traced_path {
+  x: 0.5381540656089783
+  y: 0.010088939219713211
+  z: 2.802596928649634e-45
+  yaw: 0.017089905217289925
+  accumulate_s: 18.95099223721837
+  gear: 11
+}
+traced_path {
+  x: 0.35876238346099854
+  y: 0.007121571805328131
+  z: 2.802596928649634e-45
+  yaw: 0.01668683812022209
+  accumulate_s: 19.130408459710242
+  gear: 11
+}
+traced_path {
+  x: 0.17937071621418
+  y: 0.00415420439094305
+  z: 2.802596928649634e-45
+  yaw: 0.017749613150954247
+  accumulate_s: 19.309824667302994
+  gear: 11
+}

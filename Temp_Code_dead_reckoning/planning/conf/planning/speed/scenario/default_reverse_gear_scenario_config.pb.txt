@@ -1,0 +1,106 @@
+scenario_type: REVERSE_GEAR_SCENARIO
+speed_stage_config: {
+  stage_type: REVERSE_GEAR_STAGE
+  speed_evaluator_config: {
+    evaluator_type: REVERSE_GEAR_EVALUATOR
+    speed_cost_config: {
+      speed_cost_type: COLLISION_COST
+      collision_cost_config: {
+      }
+    }
+    speed_cost_config: {
+      speed_cost_type: OBSTACLE_SAFE_DISTANCE_COST
+      obstacle_safe_distance_cost_config {
+        obstacle_distance_cost_coef: 1e7
+      }
+    }
+    speed_cost_config: {
+      speed_cost_type: ACCEL_COST
+      accel_cost_config: {
+        max_comfort_cost: 100
+        comfort_accel_calibration_table: {
+          calibration_info: {
+            speed: 0.0
+            max_accel: 0.5
+            min_accel: -0.3
+          }
+          calibration_info: {
+            speed: 1.0
+            max_accel: 0.5
+            min_accel: -0.3
+          }
+          calibration_info: {
+            speed: 10.0
+            max_accel: 0.1
+            min_accel: -1.0
+          }
+        }
+      }
+    }
+    speed_cost_config: {
+      speed_cost_type: LOW_SPEED_COST
+    }
+    speed_cost_config: {
+      speed_cost_type: OVER_SPEED_COST
+    }
+    speed_cost_config: {
+      speed_cost_type: STOP_DISTANCE_COST
+      stop_distance_cost_config: {
+        comfort_accel_calibration_table: {
+          calibration_info: {
+            speed: 0.0
+            max_accel: 1.0
+            min_accel: -0.3
+          }
+          calibration_info: {
+            speed: 7.0
+            max_accel: 0.55
+            min_accel: -0.8
+          }
+          calibration_info: {
+            speed: 50.0
+            max_accel: 0.55
+            min_accel: -1.0
+          }
+        }
+      }
+    }
+    speed_cost_config: {
+      speed_cost_type: CURVE_PRIORITY_COST
+    }
+    lane_keep_evaluator_config: {
+    }
+  }
+  reverse_gear_stage_config: {
+  }
+}
+
+reverse_gear_scenario_config: {
+}
+
+adc_start_distance_threshold_after_stop: 0.5
+
+accel_limit_calibration_info: {
+  speed: 0.0
+  accel: 0.5
+}
+accel_limit_calibration_info: {
+  speed: 33.33
+  accel: 0.5
+}
+decel_limit_calibration_info: {
+  speed: 0.0
+  decel: -0.5
+}
+decel_limit_calibration_info: {
+  speed: 33.33
+  decel: -0.5
+}
+jerk_limit_calibration_info: {
+  speed: 5.0
+  jerk: 4.95
+}
+jerk_limit_calibration_info: {
+  speed: 20.0
+  jerk: 2.5
+}

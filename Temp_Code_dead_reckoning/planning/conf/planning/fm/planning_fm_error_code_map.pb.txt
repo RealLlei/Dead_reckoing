@@ -1,0 +1,124 @@
+planning_error_code_map: [
+  {key: 0       , value: 0      },  # ErrorCode::OK                                              :FaultInfo::NO_FAULT
+  {key: 2000    , value: 0      },  # ErrorCode::CANBUS_ERROR                                    :FaultInfo::NO_FAULT
+  {key: 2100    , value: 0      },  # ErrorCode::CAN_CLIENT_ERROR_BASE                           :FaultInfo::NO_FAULT
+  {key: 2101    , value: 0      },  # ErrorCode::CAN_CLIENT_ERROR_OPEN_DEVICE_FAILED             :FaultInfo::NO_FAULT
+  {key: 2102    , value: 0      },  # ErrorCode::CAN_CLIENT_ERROR_FRAME_NUM                      :FaultInfo::NO_FAULT
+  {key: 2103    , value: 0      },  # ErrorCode::CAN_CLIENT_ERROR_SEND_FAILED                    :FaultInfo::NO_FAULT
+  {key: 2104    , value: 0      },  # ErrorCode::CAN_CLIENT_ERROR_RECV_FAILED                    :FaultInfo::NO_FAULT
+  {key: 10101000, value: 1210103},  # ErrorCode::INPUT_CHASSIS_RECIEVED_ERROR                    :FaultInfo::CHASSIS_TIMEOUT
+  {key: 10102000, value: 1210203},  # ErrorCode::INPUT_CHASSIS_DATA_ERROR                        :FaultInfo::CHASSIS_DATA_ERROR
+  {key: 10201000, value: 1210101},  # ErrorCode::INPUT_LOCALIZATION_RECIEVED_NNP_ERRO            :FaultInfo::NNP_FUSION_LOCATION_TIMEOUT
+  {key: 10202000, value: 1210201},  # ErrorCode::INPUT_LOCALIZATION_DATA_NNP_ERROR               :FaultInfo::NNP_FUSION_LOCATION_DATA_ERROR
+  {key: 10203000, value: 1210102},  # ErrorCode::INPUT_LOCALIZATION_RECIEVED_AVP_ERRO            :FaultInfo::PARKING_FUSION_LOCATION_TIMEOUT
+  {key: 10204000, value: 1210202},  # ErrorCode::INPUT_LOCALIZATION_DATA_AVP_ERROR               :FaultInfo::PARKING_FUSION_LOCATION_DATA_ERROR
+  {key: 10301000, value: 1210106},  # ErrorCode::INPUT_LANE_RECIEVED_NNP_ERROR                   :FaultInfo::NNP_LANE_LINE_TIMEOUT
+  {key: 10302000, value: 1210206},  # ErrorCode::INPUT_LANE_DATA_NNP_ERROR                       :FaultInfo::NNP_LANE_LINE_DATA_ERROR
+  {key: 10303000, value: 1210107},  # ErrorCode::INPUT_LANE_RECIEVED_AVP_ERROR                   :FaultInfo::PARKING_LANE_LINE_TIMEOUT
+  {key: 10304000, value: 1210207},  # ErrorCode::INPUT_LANE_DATA_AVP_ERROR                       :FaultInfo::PARKING_LANE_LINE_DATA_ERROR
+  {key: 10401000, value: 1210104},  # ErrorCode::INPUT_OBSTACLE_RECIEVED_NNP_ERROR               :FaultInfo::NNP_FUSION_PERCEPTION_TIMEOUT
+  {key: 10402000, value: 1210204},  # ErrorCode::INPUT_OBSTACLE_DATA_NNP_ERROR                   :FaultInfo::NNP_FUSION_PERCEPTION_DATA_ERROR
+  {key: 10403000, value: 1210105},  # ErrorCode::INPUT_OBSTACLE_RECIEVED_AVP_ERROR               :FaultInfo::PARKING_FUSION_PERCEPTION_TIMEOUT
+  {key: 10404000, value: 1210205},  # ErrorCode::INPUT_OBSTACLE_DATA_AVP_ERROR                   :FaultInfo::PARKING_FUSION_PERCEPTION_DATA_ERROR
+  {key: 10501000, value: 1210109},  # ErrorCode::INPUT_PARKINGLOT_RECIEVED_ERROR                 :FaultInfo::PARKING_PERCEPTION_TIMEOUT
+  {key: 10502000, value: 1210209},  # ErrorCode::INPUT_PARKINGLOT_DATA_ERROR                     :FaultInfo::PARKING_PERCEPTION_DATA_ERROR
+  {key: 10601000, value: 1210110},  # ErrorCode::INPUT_FREESPACE_RECIEVED_NNP_ERROR              :FaultInfo::NNP_FREESPACE_TIMEOUT
+  {key: 10602000, value: 1210210},  # ErrorCode::INPUT_FREESPACE_DATA_NNP_ERROR                  :FaultInfo::NNP_FREESPACE_DATA_ERROR
+  {key: 10603000, value: 1210111},  # ErrorCode::INPUT_FREESPACE_RECIEVED_AVP_ERROR              :FaultInfo::PARKING_FREESPACE_TIMEOUT
+  {key: 10604000, value: 1210211},  # ErrorCode::INPUT_FREESPACE_DATA_AVP_ERROR                  :FaultInfo::PARKING_FREESPACE_DATA_ERROR
+  {key: 10701000, value: 1210115},  # ErrorCode::INPUT_FCT_RECIEVED_ERROR                        :FaultInfo::FCT_TIMEOUT
+  {key: 10702000, value: 1210215},  # ErrorCode::INPUT_FCT_DATA_ERROR                            :FaultInfo::FCT_DATA_ERROR
+  {key: 10801000, value: 1210108},  # ErrorCode::INPUT_MAP_RECIEVED_ERROR                        :FaultInfo::MAP_INPUT_DATA_TIMEOUT
+  {key: 10802000, value: 1210208},  # ErrorCode::INPUT_MAP_DATA_ERROR                            :FaultInfo::MAP_INPUT_DATA_ERROR
+  {key: 10901000, value: 1210112},  # ErrorCode::INPUT_TRAFFICSIGN_RECIEVED_NNP_ERROR            :FaultInfo::NNP_TRAFFIC_SIGNS_DATA_TIMEOUT
+  {key: 10902000, value: 1210212},  # ErrorCode::INPUT_TRAFFICSIGN_DATA_NNP_ERROR                :FaultInfo::NNP_TRAFFIC_SIGNS_DATA_ERROR
+  {key: 10903000, value: 1210113},  # ErrorCode::INPUT_TRAFFICSIGN_RECIEVED_AVP_ERROR            :FaultInfo::PARKING_TRAFFIC_SIGNS_TIMEOUT
+  {key: 10904000, value: 1210213},  # ErrorCode::INPUT_TRAFFICSIGN_DATA_AVP_ERROR                :FaultInfo::PARKING_TRAFFIC_SIGNS_DATA_ERROR
+  {key: 20000100, value: 0      },  # ErrorCode::LOCALVIEW_INVALID_INPUT_ERROR                   :FaultInfo::NO_FAULT
+  {key: 20100100, value: 1210701},  # ErrorCode::LOCALVIEW_MAP_HD_ERROR                          :FaultInfo::LOCALVIEW_MAP_HD_ERROR
+  {key: 20100300, value: 1210702},  # ErrorCode::LOCALVIEW_MAP_LANEHDFUSION_ERROR                :FaultInfo::LOCALVIEW_MAP_LANEHDFUSION_ERROR
+  {key: 20100200, value: 1210703},  # ErrorCode::LOCALVIEW_MAP_LANE_ERROR                        :FaultInfo::LOCALVIEW_MAP_LANE_ERROR
+  {key: 20100400, value: 1210704},  # ErrorCode::LOCALVIEW_MAP_PARK_ERROR                        :FaultInfo::LOCALVIEW_MAP_PARK_ERROR
+  {key: 20100500, value: 1210704},  # ErrorCode::LOCALVIEW_MAP_SLAM_ERROR                        :FaultInfo::LOCALVIEW_MAP_PARK_ERROR
+  {key: 20100600, value: 1210704},  # ErrorCode::LOCALVIEW_MAP_SD_ERROR                          :FaultInfo::LOCALVIEW_MAP_PARK_ERROR
+  {key: 20100700, value: 1210704},  # ErrorCode::LOCALVIEW_MAP_PARKHD_ERROR                      :FaultInfo::LOCALVIEW_MAP_PARK_ERROR
+  {key: 20200100, value: 1210705},  # ErrorCode::LOCALVIEW_ROUTING_ERROR                         :FaultInfo::LOCALVIEW_ROUTING_ERROR
+  {key: 20200200, value: 1210705},  # ErrorCode::LOCALVIEW_ROUTING_REQUEST_ERROR                 :FaultInfo::LOCALVIEW_ROUTING_ERROR
+  {key: 20200300, value: 1210705},  # ErrorCode::LOCALVIEW_ROUTING_RESPONSE_ERROR                :FaultInfo::LOCALVIEW_ROUTING_ERROR
+  {key: 20200400, value: 1210705},  # ErrorCode::LOCALVIEW_ROUTING_NOTREADY_ERROR                :FaultInfo::LOCALVIEW_ROUTING_ERROR
+  {key: 20200500, value: 1210705},  # ErrorCode::LOCALVIEW_ROUTING_EHPLINK_ERROR                 :FaultInfo::LOCALVIEW_ROUTING_ERROR
+  {key: 20300100, value: 1210706},  # ErrorCode::LOCALVIEW_EHR_DATALOSS_ERROR                    :FaultInfo::LOCALVIEW_EHR_ERROR
+  {key: 20300200, value: 1210706},  # ErrorCode::LOCALVIEW_EHR_DATAANALY_ERROR                   :FaultInfo::LOCALVIEW_EHR_ERROR
+  {key: 20400100, value: 0      },  # ErrorCode::LOCALVIEW_FSM_INITIAL_ERROR                     :FaultInfo::NO_FAULT
+  {key: 20400200, value: 1210707},  # ErrorCode::LOCALVIEW_FSM_PERCEPTION_ERROR                  :FaultInfo::LOCALVIEW_FSM_ERROR
+  {key: 20400300, value: 1210707},  # ErrorCode::LOCALVIEW_FSM_HDMAP_ERROR                       :FaultInfo::LOCALVIEW_FSM_ERROR
+  {key: 20400400, value: 1210707},  # ErrorCode::LOCALVIEW_FSM_APA_ERROR                         :FaultInfo::LOCALVIEW_FSM_ERROR
+  {key: 20400500, value: 1210707},  # ErrorCode::LOCALVIEW_FSM_HISTORYTRACE_ERROR                :FaultInfo::LOCALVIEW_FSM_ERROR
+  {key: 20400600, value: 1210707},  # ErrorCode::LOCALVIEW_FSM_HDMAPAVP_ERROR                    :FaultInfo::LOCALVIEW_FSM_ERROR
+  {key: 20400700, value: 1210707},  # ErrorCode::LOCALVIEW_FSM_CONSTRUCT_ERROR                   :FaultInfo::LOCALVIEW_FSM_ERROR
+  {key: 20400800, value: 1210707},  # ErrorCode::LOCALVIEW_FSM_PERCEPTIONFUSED_ERROR             :FaultInfo::LOCALVIEW_FSM_ERROR
+  {key: 30100000, value: 1210801},  # ErrorCode::CORE_ONLANE_INIT_ERROR                          :FaultInfo::CORE_ONLANE_PLANNING_ERROR
+  {key: 30100001, value: 1210801},  # ErrorCode::CORE_ONLANE_VEHICLESTATECHECK_ERROR             :FaultInfo::CORE_ONLANE_PLANNING_ERROR
+  {key: 30100002, value: 1210801},  # ErrorCode::CORE_ONLANE_NOHDMAP_ERROR                       :FaultInfo::CORE_ONLANE_PLANNING_ERROR
+  {key: 30100003, value: 1210801},  # ErrorCode::CORE_ONLANE_REFLINEUPDATE_ERROR                 :FaultInfo::CORE_ONLANE_PLANNING_ERROR
+  {key: 30101000, value: 0      },  # ErrorCode::CORE_FRAME_PREDICTIONOBSTACLES_ERROR            :FaultInfo::NO_FAULT
+  {key: 30102000, value: 1210802},  # ErrorCode::CORE_FRAME_INITNULLPTR_ERROR                    :FaultInfo::CORE_FRAME_ERROR
+  {key: 30103000, value: 1210802},  # ErrorCode::CORE_FRAME_REFLINESEGEMNT_ERROR                 :FaultInfo::CORE_FRAME_ERROR
+  {key: 30104000, value: 1210802},  # ErrorCode::CORE_FRAME_SEGMENTSHRINK_ERROR                  :FaultInfo::CORE_FRAME_ERROR
+  {key: 30105000, value: 1210802},  # ErrorCode::CORE_FRAME_INITFRAME_ERROR                      :FaultInfo::CORE_FRAME_ERROR
+  {key: 30106000, value: 1210802},  # ErrorCode::CORE_FRAME_FREFERENCEDECIDER_ERROR              :FaultInfo::CORE_FRAME_ERROR
+  {key: 30107000, value: 1210802},  # ErrorCode::CORE_FRAME_FREFERENCEPROVIDER_ERROR             :FaultInfo::CORE_FRAME_ERROR
+  {key: 30108000, value: 0      },  # ErrorCode::CORE_FRAME_INITFRAME_COLLISION_ERROR            :FaultInfo::NO_FAULT
+  {key: 30201000, value: 1210803},  # ErrorCode::CORE_PLANNING_SOLVEFAIL_ERROR                   :FaultInfo::CORE_PLANNING_SOLVEFAIL_ERROR
+  {key: 30202000, value: 1210804},  # ErrorCode::CORE_PLANNING_SCENARIOCREATE_ERROR              :FaultInfo::CORE_PLANNING_SCENARIOCREATE_ERROR
+  {key: 30203000, value: 1210805},  # ErrorCode::CORE_PLANNING_STAGECREATE_ERROR                 :FaultInfo::CORE_PLANNING_STAGECREATE_ERROR
+  {key: 30204000, value: 1210806},  # ErrorCode::CORE_PLANNING_LANEFOLLOWSTAGE_ERROR             :FaultInfo::CORE_PLANNING_LANEFOLLOWSTAGE_ERROR
+  {key: 30205000, value: 1210807},  # ErrorCode::CORE_PLANNING_PARKINGCRUISINGSTAGE_ERROR        :FaultInfo::CORE_PLANNING_PARKINGCRUISINGSTAGE_ERROR
+  {key: 30206000, value: 1210808},  # ErrorCode::CORE_PLANNING_PARKINGPARKINGSTAGE_ERROR         :FaultInfo::CORE_PLANNING_PARKINGPARKINGSTAGE_ERROR
+  {key: 30301000, value: 1210809},  # ErrorCode::CORE_TRAFFICRULE_REROUTING_ERROR                :FaultInfo::CORE_TRAFFICRULE_ERROR
+  {key: 30302000, value: 1210809},  # ErrorCode::CORE_TRAFFICRULE_REFERENCELINEEND_ERROR         :FaultInfo::CORE_TRAFFICRULE_ERROR
+  {key: 30303000, value: 1210809},  # ErrorCode::CORE_TRAFFICRULE_ODD_ERROR                      :FaultInfo::CORE_TRAFFICRULE_ERROR
+  {key: 30401000, value: 1210810},  # ErrorCode::CORE_SAFETYGUARD_CONFIGINIT_ERROR               :FaultInfo::CORE_SAFETYGUARD_ERROR
+  {key: 30402000, value: 1210810},  # ErrorCode::CORE_SAFETYGUARD_CREATEINIT_ERROR               :FaultInfo::CORE_SAFETYGUARD_ERROR
+  {key: 40100000, value: 1210501},  # ErrorCode::PREDICTION_INPUT_ERROR                          :FaultInfo::PLANNING_PREDICTION_MODULE_ERROR
+  {key: 40200000, value: 1210501},  # ErrorCode::PREDICTION_CONTAINER_ERROR                      :FaultInfo::PLANNING_PREDICTION_MODULE_ERROR
+  {key: 40300000, value: 1210501},  # ErrorCode::PREDICTION_EVALUATOR_ERROR                      :FaultInfo::PLANNING_PREDICTION_MODULE_ERROR
+  {key: 40400000, value: 1210501},  # ErrorCode::PREDICTION_PREDICTOR_ERROR                      :FaultInfo::PLANNING_PREDICTION_MODULE_ERROR
+  {key: 50100100, value: 1210901},  # ErrorCode::PLANNER_CRUISING_LANECHANGE_ERROR               :FaultInfo::DECIDER_MODULE_ERROR
+  {key: 50100200, value: 1210901},  # ErrorCode::PLANNER_CRUISING_PATHREUSE_ERROR                :FaultInfo::DECIDER_MODULE_ERROR
+  {key: 50100300, value: 1210901},  # ErrorCode::PLANNER_CRUISING_PATHLANEBORROW_ERROR           :FaultInfo::DECIDER_MODULE_ERROR
+  {key: 50100400, value: 1210901},  # ErrorCode::PLANNER_CRUISING_PATHBOUNDS_ERROR               :FaultInfo::DECIDER_MODULE_ERROR
+  {key: 50100500, value: 1210504},  # ErrorCode::PLANNER_CRUISING_PATHOPTIMIZER_ERROR            :FaultInfo::PLANNING_PATH_MODULE_ERROR
+  {key: 50100600, value: 1210504},  # ErrorCode::PLANNER_CRUISING_PATHASSESSMENT_ERROR           :FaultInfo::PLANNING_PATH_MODULE_ERROR
+  {key: 50100700, value: 1210504},  # ErrorCode::PLANNER_CRUISING_PATHDECIDER_ERROR              :FaultInfo::PLANNING_PATH_MODULE_ERROR
+  {key: 50100800, value: 1210504},  # ErrorCode::PLANNER_CRUISING_PATHREFERENCE_ERROR            :FaultInfo::PLANNING_PATH_MODULE_ERROR
+  {key: 50105000, value: 1210505},  # ErrorCode::PLANNER_CRUISING_RULEBASEDSTOP_ERROR            :FaultInfo::PLANNING_SPEED_MODULE_ERROR
+  {key: 50105100, value: 1210505},  # ErrorCode::PLANNER_CRUISING_STBOUNDS_ERROR                 :FaultInfo::PLANNING_SPEED_MODULE_ERROR
+  {key: 50105200, value: 1210505},  # ErrorCode::PLANNER_CRUISING_SPEEDBOUNDSPRIORI_ERROR        :FaultInfo::PLANNING_SPEED_MODULE_ERROR
+  {key: 50105300, value: 1210505},  # ErrorCode::PLANNER_CRUISING_SPEEDHEURISTICOPTIMIZER_ERROR  :FaultInfo::PLANNING_SPEED_MODULE_ERROR
+  {key: 50105400, value: 1210505},  # ErrorCode::PLANNER_CRUISING_SPEEDDECIDER_ERROR             :FaultInfo::PLANNING_SPEED_MODULE_ERROR
+  {key: 50105500, value: 1210505},  # ErrorCode::PLANNER_CRUISING_SPEEDBOUNDSFINAL_ERROR         :FaultInfo::PLANNING_SPEED_MODULE_ERROR
+  {key: 50105600, value: 1210505},  # ErrorCode::PLANNER_CRUISING_SPEEDOPTIMIZER_ERROR           :FaultInfo::PLANNING_SPEED_MODULE_ERROR
+  {key: 50105700, value: 1210505},  # ErrorCode::PLANNER_CRUISING_VTSAMPLEOPTIMIZER_ERROR        :FaultInfo::PLANNING_SPEED_MODULE_ERROR
+  {key: 50105800, value: 1210505},  # ErrorCode::PLANNER_CRUISING_RSSDECIDER_ERROR               :FaultInfo::PLANNING_SPEED_MODULE_ERROR
+  {key: 50200100, value: 1211001},  # ErrorCode::PLANNER_PARKING_ROIDECIDER_ERROR                :FaultInfo::PARKING_PATH_MODULE_ERROR
+  {key: 50200200, value: 1211001},  # ErrorCode::PLANNER_PARKING_PATHPROVIDER_ERROR              :FaultInfo::PARKING_PATH_MODULE_ERROR
+  {key: 50200300, value: 1211001},  # ErrorCode::PLANNER_PARKING_PATHSMOOTHER_ERROR              :FaultInfo::PARKING_PATH_MODULE_ERROR
+  {key: 50200400, value: 1211001},  # ErrorCode::PLANNER_PARKING_PATHPARTITION_ERROR             :FaultInfo::PARKING_PATH_MODULE_ERROR
+  {key: 50200500, value: 1211002},  # ErrorCode::PLANNER_PARKING_SPEED_OPTIMIZER_ERROR           :FaultInfo::PARKING_SPEED_MODULE_ERROR
+  {key: 50200600, value: 1211001},  # ErrorCode::PLANNER_PARKING_STRAIGHTPATH_ERROR              :FaultInfo::PARKING_PATH_MODULE_ERROR
+  {key: 50200700, value: 1211001},  # ErrorCode::PLANNER_PARKING_PATHGENERATOR_ERROR             :FaultInfo::PARKING_PATH_MODULE_ERROR
+  {key: 50300100, value: 0      },  # ErrorCode::PLANNER_PARKING_AUTOTUNING_ERROR                :FaultInfo::NO_FAULT
+  {key: 60100000, value: 0      },  # ErrorCode::CONTROL_ERROR                                   :FaultInfo::NO_FAULT
+  {key: 60200000, value: 0      },  # ErrorCode::CONTROL_INIT_ERROR                              :FaultInfo::NO_FAULT
+  {key: 60300000, value: 0      },  # ErrorCode::CONTROL_COMPUTE_ERROR                           :FaultInfo::NO_FAULT
+  {key: 60400000, value: 0      },  # ErrorCode::CONTROL_ESTOP_ERROR                             :FaultInfo::NO_FAULT
+  {key: 60500000, value: 0      },  # ErrorCode::CONTROL_PERFECTCTRL_ERROR                       :FaultInfo::NO_FAULT
+  {key: 70100100, value: 0      },  # ErrorCode::OTHERS_HTTP_LOGIC_ERROR                         :FaultInfo::NO_FAULT
+  {key: 70100200, value: 0      },  # ErrorCode::OTHERS_HTTP_RUNTIME_ERROR                       :FaultInfo::NO_FAULT
+  {key: 70200100, value: 0      },  # ErrorCode::OTHERS_DRIVER_GNSS_ERROR                        :FaultInfo::NO_FAULT
+  {key: 70200200, value: 0      },  # ErrorCode::OTHERS_DRIVER_VELODYNE_ERROR                    :FaultInfo::NO_FAULT
+  {key: 70300100, value: 0      },  # ErrorCode::OTHERS_RELATIVEMAP_SELF_ERROR                   :FaultInfo::NO_FAULT
+  {key: 70300200, value: 0      },  # ErrorCode::OTHERS_RELATIVEMAP_NOTREADY_ERROR               :FaultInfo::NO_FAULT
+  {key: 70400000, value: 0      }   # ErrorCode::OTHERS_STORRYTELLING_ERROR                      :FaultInfo::NO_FAULT
+]

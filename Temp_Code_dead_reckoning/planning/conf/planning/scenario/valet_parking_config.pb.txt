@@ -1,0 +1,264 @@
+scenario_type: VALET_PARKING
+valet_parking_config: {
+  forward_cruise_max_speed: 4.0
+  forward_perfer_cruise_speed: 4.0
+  backward_perfer_cruise_speed: 0.7
+  path_bounds_decider_resolution: 0.2
+  finish_distance_to_end_buffer: 4.5
+  backward_cruise_max_speed: 0.7
+  wait_obstacle_stop_range: 5.0
+  wait_obstacle_stop_time: 3.0
+  finish_distance_to_end_buffer_tba: 2.0
+  finish_distance_to_end_buffer_tba_fast: 0.5
+  prefinish_distance_to_end_buffer: 7.0
+  cruise_to_parking_max_speed: 0.5
+  enable_open_space_in_cruising: true
+  open_space_latch_counter: 20
+  open_space_target_update_dist_threshold: 10.0
+}
+
+stage_type: VALET_PARKING_CRUISE
+stage_type: VALET_PARKING_PARKING
+
+stage_config: {
+  stage_type: VALET_PARKING_CRUISE
+  enabled: true
+  task_type: GUIDE_LINE_BOUNDS_DECIDER
+  task_type: OBSTACLE_FILTER_DECIDER
+  task_type: ASTAR_PATH_DECIDER
+  task_type: PRECISE_PATH_BOUNDS_DECIDER
+  task_type: GUIDE_LINE_PATH_OPTIMIZER
+  task_type: PATH_DECIDER
+  task_type: RULE_BASED_STOP_DECIDER
+  task_type: ST_BOUNDS_DECIDER
+  task_type: SPEED_BOUNDS_PRIORI_DECIDER
+  task_type: SPEED_DATA_OPTIMIZER
+  task_type: SPEED_DECIDER
+  task_type: OPEN_SPACE_ROI_DECIDER
+  task_type: OPEN_SPACE_PATH_PROVIDER
+  task_type: OPEN_SPACE_PATH_PARTITION
+  task_type: OPEN_SPACE_SPEED_OPTIMIZER  
+
+  task_config: {
+    task_type: OBSTACLE_FILTER_DECIDER
+    obstacle_filter_decider_config {
+    }
+  }
+
+  task_config: {
+    task_type: ASTAR_PATH_DECIDER
+    astar_path_decider_config {
+    }
+  }
+  task_config: {
+    task_type: GUIDE_LINE_BOUNDS_DECIDER
+    guide_line_bounds_decider_config {
+    }
+  }
+
+  task_config: {
+    task_type: PRECISE_PATH_BOUNDS_DECIDER
+    precise_path_bounds_decider_config {
+    }
+  }
+
+  task_config: {
+    task_type: PATH_LANE_BORROW_DECIDER
+    path_lane_borrow_decider_config {
+    }
+  }
+  task_config: {
+    task_type: PATH_BOUNDS_DECIDER
+    path_bounds_decider_config {
+      path_end_distance_from_reference_end: 0
+      shrink_distance: 4.0
+      min_shrink_bound: 0.1
+      shrink_end_distance: 2.5
+    }
+  }
+  task_config: {
+    task_type: PIECEWISE_JERK_PATH_OPTIMIZER
+    piecewise_jerk_path_optimizer_config {
+    #TBA_Path_osqp
+      default_path_weight_config {
+        l_weight: 20.0
+        dl_weight: 5.0
+        ddl_weight: 1.0
+        dddl_weight: 20.0
+      }
+      min_speed_for_curvature: 0.1
+      a_matrix_config {
+        enable_curvature_process: true
+        enable_curvature_derivative_process: false
+        max_curvature: 0.25
+        max_curvature_derivative: 0.5
+      }
+    }
+  }
+  task_config: {
+    task_type: PATH_ASSESSMENT_DECIDER
+  }
+  task_config: {
+    task_type: PATH_DECIDER
+  }
+  task_config: {
+    task_type: ST_BOUNDS_DECIDER
+  }
+
+  task_config: {
+    task_type: SPEED_BOUNDS_PRIORI_DECIDER
+    speed_bounds_decider_config {
+      lowest_speed: 0.30
+      curvature_preview_distance: 2.0
+      static_obs_nudge_speed_ratio: 1.0
+      freespace_speed_limit_1st_distance: 0.3
+      freespace_speed_limit_1st_speed: 0.3
+      freespace_speed_limit_2nd_distance: 0.6
+      freespace_speed_limit_2nd_speed: 0.5
+      slow_down_preview_distance_s: 6.0
+      ntp_speed_bump_speed_limit: 2.8
+      slow_down_preview_kappa: 0.16
+      slow_down_preview_distance_unit: 1.0
+      ntp_reverse_vehicle_heading_diff_threshold: 0.8
+    }
+  }
+
+  task_config: {
+    task_type: SPEED_DATA_OPTIMIZER
+    speed_data_optimizer_config: {
+      speed_cache_config: {
+        delta_curvature_speed_limit_threshold: 0.1
+        stop_prefinish_distance_threshold: -1.0
+        stop_distance_backward_coef: 1.0
+        curvature_speed_limit_smooth_l_threshold: 0.0
+        dece_when_exceed_pedestrian_speed_limit: -3.0 
+        jerk_when_exceed_pedestrian_speed_limit: -2.0
+      }
+      speed_scenario_manager_config: {
+        speed_scenario_config: {
+          scenario_type: LANE_KEEP_SCENARIO
+          adc_start_distance_threshold_after_stop: 2.0
+          accel_limit_calibration_info: {
+            speed: 0.0
+            accel: 0.8
+          }
+          accel_limit_calibration_info: {
+            speed: 33.33
+            accel: 0.8
+          }
+          decel_limit_calibration_info: {
+            speed: 0.0
+            decel: -4.0
+          }
+          decel_limit_calibration_info: {
+            speed: 33.33
+            decel: -4.0
+          }
+          speed_stage_config: {
+            stage_type: LANE_KEEP_STAGE
+            speed_evaluator_config: {
+              evaluator_type: LANE_KEEP_EVALUATOR
+              speed_cost_config: {
+                speed_cost_type: COLLISION_COST
+                collision_cost_config: {
+                  use_collision_risk: false
+                }
+              }
+              speed_cost_config: {
+                speed_cost_type: STOP_DISTANCE_COST
+                stop_distance_cost_config: {
+                  unreasonable_speed_cost: 0.0
+                }
+              }
+            }
+          }
+        }
+        speed_scenario_config: {
+          scenario_type: LANE_CHANGE_SCENARIO
+        }
+        speed_scenario_config: {
+          scenario_type: LANE_CHANGE_SCENARIO
+        }
+        speed_scenario_config: {
+          scenario_type: LANE_MERGE_SCENARIO
+        }
+        speed_scenario_config: {
+          scenario_type: LANE_CONTINUE_SCENARIO
+        }
+        speed_scenario_config: {
+          scenario_type: REVERSE_GEAR_SCENARIO
+        }
+      }
+      forward_speed_data_generator_config: {
+        generator_type: FORWARD_VT_SAMPLE_GENERATOR
+        forward_vt_sample_generator_config: {
+          speed_curve_config: {
+            max_total_time: 7.0
+          }
+          forward_vt_sampler_config {
+            vt_sampler_type: FORWARD_VT_SAMPLER
+            forward_vt_sampler_config: {
+              min_accel: -4.0
+              max_accel: 0.8
+              min_jerk: -3.95
+              max_jerk: 2.0
+            }
+          }
+        }
+      }
+    }
+  }
+  task_config: {
+    task_type: SPEED_DECIDER
+  }
+  task_config: {
+    task_type: RULE_BASED_STOP_DECIDER
+    rule_based_stop_decider_config {
+      stop_distance_from_path_end : 1.0
+    }
+  }
+  task_config: {
+    task_type: GUIDE_LINE_PATH_OPTIMIZER
+  }
+  task_config: {
+    task_type: OPEN_SPACE_ROI_DECIDER
+  }
+  task_config: {
+    task_type: OPEN_SPACE_PATH_PROVIDER
+  }
+  task_config: {
+    task_type: OPEN_SPACE_PATH_PARTITION
+  }
+  task_config: {
+    task_type: OPEN_SPACE_SPEED_OPTIMIZER
+  }  
+}
+
+stage_config: {
+  stage_type: VALET_PARKING_PARKING
+  enabled: true
+  task_type: OPEN_SPACE_STRAIGHT_PATH
+  task_type: OPEN_SPACE_ROI_DECIDER
+  task_type: OPEN_SPACE_PATH_PROVIDER
+  task_type: OPEN_SPACE_PATH_PARTITION
+  task_type: OPEN_SPACE_SPEED_OPTIMIZER
+  task_config: {
+    task_type: OPEN_SPACE_ROI_DECIDER
+    open_space_roi_decider_config {
+      roi_type: PARKING
+      perception_obstacle_buffer: 0.2
+    }
+  }
+  task_config: {
+    task_type: OPEN_SPACE_STRAIGHT_PATH
+  }
+  task_config: {
+    task_type: OPEN_SPACE_PATH_PROVIDER
+  }
+  task_config: {
+    task_type: OPEN_SPACE_PATH_PARTITION
+  }
+  task_config: {
+    task_type: OPEN_SPACE_SPEED_OPTIMIZER
+  }
+}

@@ -1,0 +1,96 @@
+/******************************************************************************
+ * Copyright 2019 The Apollo Authors. All Rights Reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *****************************************************************************/
+
+/**
+ * @file
+ **/
+
+#include "planning/common/path_boundary.h"
+#include "common/file/log.h"
+#include "common/math/math_utils.h"
+
+namespace TL {
+namespace planning {
+
+PathBoundary::PathBoundary(const double start_s, const double delta_s,
+                           std::vector<std::pair<double, double>> path_boundary)
+    : start_s_(start_s),
+      delta_s_(delta_s),
+      boundary_(std::move(path_boundary)) {}
+
+double PathBoundary::start_s() const {
+  return start_s_;
+}
+
+double PathBoundary::delta_s() const {
+  return delta_s_;
+}
+
+void PathBoundary::set_boundary(
+    const std::vector<std::pair<double, double>>& boundary) {
+  boundary_ = boundary;
+}
+
+const std::vector<std::pair<double, double>>& PathBoundary::boundary() const {
+  return boundary_;
+}
+
+void PathBoundary::set_label(const std::string& label) {
+  label_ = label;
+}
+
+const std::string& PathBoundary::label() const {
+  return label_;
+}
+
+void PathBoundary::set_blocking_obstacle_id(const std::string& obs_id) {
+  blocking_obstacle_id_ = obs_id;
+}
+
+const std::string& PathBoundary::blocking_obstacle_id() const {
+  return blocking_obstacle_id_;
+}
+
+size_t PathBoundary::GetNearestPathBoundIndex(const double s) const {
+  std::vector<double> path_boundary_s;
+  constexpr static double KAccumulatedSProtectError = 1e-2;
+  path_boundary_s.reserve(boundary_.size());
+  for (size_t i = 0; i < boundary_.size(); ++i) {
+    path_boundary_s.emplace_back(static_cast<double>(i) * delta_s_ + start_s_);
+  }
+  if (s < path_boundary_s.front() + KAccumulatedSProtectError) {
+    AWARN << "The requested s: " << s << " < Path Init Point.";
+    return 0;
+  }
+  if (s > path_boundary_s.back() - KAccumulatedSProtectError) {
+    AWARN << "The requested s: " << s
+          << " > Path Boundary length: " << path_boundary_s.back();
+    return path_boundary_s.size() - 1;
+  }
+  auto it_lower =
+      std::lower_bound(path_boundary_s.begin(), path_boundary_s.end(), s);
+  return std::min(
+      static_cast<int>(std::distance(path_boundary_s.begin(), it_lower)),
+      static_cast<int>(path_boundary_s.size() - 1));
+}
+
+const std::pair<double, double>& PathBoundary::GetPathBoundAtS(double s) const {
+  return boundary_.at(
+      common::math::Clamp(static_cast<int>((s - start_s_) / delta_s_), 0,
+                          static_cast<int>(boundary_.size()) - 1));
+}
+}  // namespace planning
+}  // namespace TL

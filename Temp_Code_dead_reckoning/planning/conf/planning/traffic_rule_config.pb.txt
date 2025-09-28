@@ -1,0 +1,117 @@
+config: {
+  rule_id: BACKSIDE_VEHICLE
+  enabled: false
+  backside_vehicle {
+    backside_lane_width: 4.0
+  }
+}
+
+config: {
+  rule_id: CROSSWALK
+  enabled: true
+  crosswalk {
+    stop_distance: 1.0
+    max_stop_deceleration: 4.0
+    min_pass_s_distance: 1.0
+    expand_s_distance: 0.2
+    check_front_safe_distance: 6.0
+    front_safe_time: 1.5
+    stop_strict_l_distance: 1.5
+    stop_loose_l_distance: 4.0
+    stop_timeout: 5.0
+    min_ego_speed: 1.8
+  }
+}
+
+config: {
+  rule_id: DESTINATION
+  enabled: true
+  destination {
+    stop_distance: 0.1
+  }
+}
+
+config: {
+  rule_id: KEEP_CLEAR
+  enabled: false
+  keep_clear {
+    enable_keep_clear_zone: true
+    enable_junction: true
+    min_pass_s_distance: 2.0
+    align_with_traffic_sign_tolerance: 4.5
+  }
+}
+
+config: {
+  rule_id: REFERENCE_LINE_END
+  enabled: true
+  reference_line_end {
+    stop_distance: 0.5
+    min_reference_line_remain_length: 50.0
+  }
+}
+
+config: {
+  rule_id: REROUTING
+  enabled: true
+  rerouting {
+    prepare_rerouting_time: 2.0
+    cooldown_time: 3.0
+  }
+}
+
+config: {
+  rule_id: STOP_SIGN
+  enabled: true
+  stop_sign: {
+    stop_distance: 1.0
+  }
+}
+
+config: {
+  rule_id: TRAFFIC_LIGHT
+  enabled: true
+  traffic_light {
+    stop_distance: 1.0
+    max_stop_deceleration: 4.0
+    green_light_speed: 13.89
+    red_light_speed: 11.11
+    yellow_light_speed: 12.50
+  }
+}
+
+config: {
+  rule_id: YIELD_SIGN
+  enabled: true
+  yield_sign: {
+    stop_distance: 1.0
+    start_watch_distance: 2.0
+  }
+}
+
+config: {
+  rule_id: PNC_JUNCTION
+  enabled: true
+  pnc_junction: {
+    pnc_junction_speed_limit: 11.11
+    pnc_junction_left_turn_speed_limit: 5.55
+    pnc_junction_right_turn_speed_limit: 5.55
+  }
+}
+
+config: {
+  rule_id: ODD
+  enabled: true
+  odd: {
+    stop_distance: 0.5
+  }
+}
+
+config: {
+  rule_id: MAP_SPLIT
+  enabled: false
+  map_split: {
+    map_split_speed_limit: 22.222
+    start_distance: 50.0
+  }
+}

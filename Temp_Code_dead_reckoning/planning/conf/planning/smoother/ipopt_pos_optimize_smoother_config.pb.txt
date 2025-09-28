@@ -1,0 +1,12 @@
+max_iter_num: 100
+print_level: 0
+max_cpu_time: 10.0
+tol: 1e-4
+acceptable_tol: 1e-2
+interpolation_s: 0.2
+min_point_num: 8
+bias_weight: 0.5
+kappa_weight: 10.0
+dkappa_weight: 20.0
+lat_moving_buffer: 0.15
+steer_angle_buffer: 0.349

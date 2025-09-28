@@ -1,0 +1,56 @@
+discrete_points {
+  smoothing_method: OSQP_FINITE_DIFFERENCE_SMOOTHING
+  osqp_finite_difference_smoothing {
+    osqp_config_usual {
+      # Settings of osqp
+      verbose: false
+      eps_abs: 1e-5
+      eps_rel: 1e-4
+      eps_prim_inf: 1e-6
+      eps_dual_inf: 1e-6
+      scaled_termination: false
+      adaptive_rho: true
+      polish: true
+      polish_refine_iter: 5
+      max_iter: 2000
+      alpha: 1.6
+      time_limit: 0
+
+      # Weights in optimization cost function
+      first_order_1st: 0.0
+      first_order_2nd: 0.0
+      first_order_4th: 0.0
+      second_order_2nd: 1e6
+      second_order_4th: 0.0
+      third_order_1st: 5e4
+      third_order_2nd: 0.0
+      fourth_order_2nd: 1e3
+      lat_deviation: 2e3
+      lon_deviation: 0.0
+      euler_deviation: 1e1
+      ct_weight: 0.0
+      curvature: 0.0
+      sqp_pen_max_iter: 5
+      sqp_sub_max_iter: 10
+      sqp_ftol: 1e-3
+
+      # discrete points boundary process list
+      s_first_boundary: 0.0
+      l_first_boundary: 0.0
+      s_end_boundary: 0.0
+      l_end_boundary: 0.0
+      s_second_boundary: 5.0e-4
+      l_second_boundary: 5.0e-4
+      s_second_end_boundary: 5.0e-4
+      l_second_end_boundary: 5.0e-4
+      s_third_boundary: 5e-3
+      l_third_boundary: 5e-3
+      s_boundary: 0.5
+      l_boundary: 0.1
+      front_extend_point_s_boundary: 5.0e-1
+      front_extend_point_l_boundary: 5.0e-1
+      back_extend_point_s_boundary: 5.0e-1
+      back_extend_point_l_boundary: 5.0e-1
+    }
+  }
+}

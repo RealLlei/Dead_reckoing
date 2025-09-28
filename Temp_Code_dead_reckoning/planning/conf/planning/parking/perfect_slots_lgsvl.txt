@@ -1,0 +1,51 @@
+
+count:1
+opt_parking_seq:0
+is_valid:true
+parking_lots{
+     parking_seq:0
+     type:VERTICAL
+     status:0
+     sensor_type:0
+     is_private_ps:false
+     pts_vrf{
+          position:TOP_LEFT
+          quality:1
+          point{
+                #x: 2
+                #y: 2
+                x: 596550.4195831299
+                y: 4137661.5286724092
+        }
+     }
+     pts_vrf{
+          position:TOP_RIGHT
+          quality:1
+          point{
+                #x: 2
+                #y: 4.5
+                 x: 596551.0094802857
+                 y: 4137658.880381775
+        }
+     }
+     pts_vrf{
+          position:BOTTOM_LEFT
+          quality:1
+          point{
+                #x: 7.8
+                #y: 2
+                 x: 596546.293347168
+                 y: 4137660.2919914247
+        }
+     }
+     pts_vrf{
+          position:BOTTOM_RIGHT
+          quality:1
+          point{
+                #x: 7.8
+                #y: 4.5
+                 x: 596547.0820739747
+                 y: 4137657.498002243
+         }
+     }
+}

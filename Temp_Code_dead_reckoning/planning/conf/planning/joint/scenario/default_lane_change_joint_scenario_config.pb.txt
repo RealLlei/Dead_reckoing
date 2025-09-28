@@ -1,0 +1,47 @@
+joint_scenario_type: LANE_CHANGE_JOINT_SCENARIO
+
+joint_stage_config: {
+  joint_stage_type: LANE_CHANGE_ONGOING_JOINT_STAGE
+  next_joint_stage_type: LANE_CHANGE_PREFINISH_JOINT_STAGE
+  lane_change_ongoing_joint_stage_config: {
+  }
+}
+
+joint_stage_config: {
+  joint_stage_type: LANE_CHANGE_PREFINISH_JOINT_STAGE
+  lane_change_prefinish_joint_stage_config: {
+  }
+}
+
+lane_change_joint_scenario_config: {
+}
+
+
+accel_limit_calibration_info: {
+  speed: 16.66
+  accel: 2.5
+}
+accel_limit_calibration_info: {
+  speed: 22.22
+  accel: 2.0
+}
+accel_limit_calibration_info: {
+  speed: 27.77
+  accel: 1.5
+}
+decel_limit_calibration_info: {
+  speed: 5.0
+  decel: -5.0
+}
+decel_limit_calibration_info: {
+  speed: 20.0
+  decel: -3.5
+}
+jerk_limit_calibration_info: {
+  speed: 5.0
+  jerk: 4.95
+}
+jerk_limit_calibration_info: {
+  speed: 20.0
+  jerk: 2.5
+}

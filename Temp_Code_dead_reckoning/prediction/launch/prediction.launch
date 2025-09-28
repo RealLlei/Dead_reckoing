@@ -1,0 +1,7 @@
+<cyber>
+    <module>
+        <name>prediction</name>
+        <dag_conf>dag/prediction_navi.dag</dag_conf>
+        <process_name>prediction</process_name>
+    </module>
+</cyber>

@@ -1,0 +1,46 @@
+cmake_minimum_required(VERSION 3.12.1)
+
+project(lgsvl)
+set(CMAKE_CXX_FLAGS "-w -fPIC -std=c++17 ${CMAKE_CXX_FLAGS}")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -rdynamic -pthread")
+enable_language(ASM)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR}/../release/cyber)
+
+link_directories(${CMAKE_INSTALL_PREFIX}/lib)
+
+add_library(${PROJECT_NAME} SHARED lgsvl.cc)
+set_target_properties(lgsvl PROPERTIES LINKER_LANGUAGE CXX)
+# add_library(
+#   ${PROJECT_NAME} SHARED
+#   lgsvl.cc)
+
+target_link_libraries(
+  ${PROJECT_NAME}
+  europa_common
+  globalproto
+  ${GLOG_LIBRARIES}
+  ${GFLAGS_LIBRARIES}
+  ${ABSL_LIBRARIES}
+  ${PROTOBUF_LIBRARIES})
+
+install(
+  TARGETS ${PROJECT_NAME}
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  RUNTIME DESTINATION bin
+  INCLUDES
+  DESTINATION .)
+
+if(MIDDLEWARE MATCHES CYBER)
+  add_library(${PROJECT_NAME}_component SHARED lgsvl_component.cc)
+  target_link_libraries(${PROJECT_NAME}_component ${PROJECT_NAME} fastrtps cyberrt)
+  install(
+    TARGETS ${PROJECT_NAME}_component
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+    RUNTIME DESTINATION bin
+    INCLUDES
+    DESTINATION .)
+  install(DIRECTORY conf dag launch DESTINATION .)
+endif(MIDDLEWARE MATCHES CYBER)

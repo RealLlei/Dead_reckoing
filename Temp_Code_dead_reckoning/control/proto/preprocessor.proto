@@ -1,0 +1,18 @@
+syntax = "proto2";
+
+package TL.control;
+
+import "proto/common/header.proto";
+import "proto/common/drive_state.proto";
+import "control/proto/input_debug.proto";
+import "control/proto/local_view.proto";
+
+message Preprocessor {
+  optional TL.common.Header header = 1;
+  optional LocalView local_view = 2;
+  optional TL.common.EngageAdvice engage_advice = 4;
+  optional InputDebug input_debug = 5;
+  optional bool received_pad_msg = 6 [default = false];
+  optional bool estop = 7 [default = false];
+  optional string estop_reason = 8;
+}
