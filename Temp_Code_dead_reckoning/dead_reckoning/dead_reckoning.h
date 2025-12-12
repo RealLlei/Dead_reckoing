@@ -8,15 +8,12 @@
 #include <memory>
 #include <string>
 
-#include "adsf/node/node_base.h"
 #include "common/file/file.h"
 #include "common/time/clock.h"
 #include "common/util/util.h"
-#include "core/core.h"
 #include "dead_reckoning/src/dead_reckoning_core.h"
 #include "dead_reckoning/src/dead_reckoning_gflags.h"
 
-#include "proto/fsm/function_manager.pb.h"
 #include "proto/localization/localization.pb.h"
 
 using apollo::soc::Chassis;

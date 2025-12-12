@@ -2,7 +2,7 @@
 
 //  Copyright (c) TL Technologies Co., Ltd. 2019-2021. All rights reserved.
 
-#include "dead_reckoning/common/util.h"
+#include "util.h"
 
 namespace apollo {
 namespace dead_reckoning {

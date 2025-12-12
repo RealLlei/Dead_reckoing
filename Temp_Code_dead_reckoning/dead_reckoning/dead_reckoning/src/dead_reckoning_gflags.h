@@ -1,0 +1,3 @@
+// Compatibility wrapper for includes using dead_reckoning/src/...
+#pragma once
+#include "../src/dead_reckoning_gflags.h"

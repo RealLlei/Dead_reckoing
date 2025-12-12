@@ -1,0 +1,4 @@
+/home/ray/Dead_reckoing/Temp_Code_dead_reckoning/dead_reckoning/build_dir/CMakeFiles/europa_dead_reckoning_objects.dir
+/home/ray/Dead_reckoing/Temp_Code_dead_reckoning/dead_reckoning/build_dir/CMakeFiles/simple_run.dir
+/home/ray/Dead_reckoing/Temp_Code_dead_reckoning/dead_reckoning/build_dir/CMakeFiles/edit_cache.dir
+/home/ray/Dead_reckoing/Temp_Code_dead_reckoning/dead_reckoning/build_dir/CMakeFiles/rebuild_cache.dir

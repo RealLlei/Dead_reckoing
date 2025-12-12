@@ -1,3 +1,17 @@
+// Minimal gflags/constants placeholders used by the cleaned core
+#pragma once
+
+namespace Magna {
+namespace dead_reckoning {
+// nothing here; keep for include compatibility
+}
+}
+
+// commonly used constants
+// Avoid redefining DEG_2_RAD if already defined in other headers
+#ifndef DEG_2_RAD
+#define DEG_2_RAD 0.017453292519943295
+#endif
 /*
  * @LastEditors: Liu Bei
  */
@@ -19,16 +33,21 @@
 
 #pragma once
 
-#include "gflags/gflags.h"
+// gflags is not available in this trimmed build; provide extern declarations
+// that match the simple DEFINE_* expansions in compat.h
+extern bool FLAGS_enable_publish_chassis;
+extern const char* FLAGS_dead_reckoning_conf_file;
+extern double FLAGS_yaw_rate_senesor_offset;
+extern bool FLAGS_enable_auto_angle_rate_bias;
+// The core header may define constexpr defaults; only declare externs if not already defined.
+#ifndef FLAGS_auto_angle_rate_bias_time
+extern double FLAGS_auto_angle_rate_bias_time;
+#endif
+#ifndef FLAGS_default_angle_rate_bias_value
+extern double FLAGS_default_angle_rate_bias_value;
+#endif
+extern double FLAGS_default_standstill_value;
 
-DECLARE_bool(enable_publish_chassis);
-DECLARE_string(dead_reckoning_conf_file);
-DECLARE_double(yaw_rate_senesor_offset);
-DECLARE_bool(enable_auto_angle_rate_bias);
-DECLARE_double(auto_angle_rate_bias_time);
-DECLARE_double(default_angle_rate_bias_value);
-DECLARE_double(default_standstill_value);
-
-DECLARE_double(dr_start_point_x);
-DECLARE_double(dr_start_point_y);
-DECLARE_double(dr_start_point_heading);
+extern double FLAGS_dr_start_point_x;
+extern double FLAGS_dr_start_point_y;
+extern double FLAGS_dr_start_point_heading;

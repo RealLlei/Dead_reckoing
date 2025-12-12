@@ -17,7 +17,8 @@
  * limitations under the License.
  *****************************************************************************/
 
-#include "dead_reckoning/src/dead_reckoning_gflags.h"
+#include "compat.h"
+#include "dead_reckoning_gflags.h"
 
 DEFINE_double(yaw_rate_senesor_offset, 0.086, "yaw rate sensor offset");
 

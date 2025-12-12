@@ -1,3 +1,23 @@
+// Minimal structs.h to satisfy local compilation (replaces Apollo header)
+#pragma once
+
+#include <Eigen/Dense>
+
+// provide minimal apollo::dead_reckoning namespace compatibility
+namespace apollo {
+namespace dead_reckoning {
+// forward-declare KalmanFilterCorrector to satisfy cross-namespace aliases
+class KalmanFilterCorrector;
+// placeholder types or constants can be added here if needed by other files
+}  // namespace dead_reckoning
+}  // namespace apollo
+
+// Expose KalmanFilterCorrector into Magna namespace to satisfy includes
+namespace Magna {
+namespace dead_reckoning {
+using apollo::dead_reckoning::KalmanFilterCorrector;
+}  // namespace dead_reckoning
+}  // namespace Magna
 /******************************************************************************
  * Copyright 2017 The Apollo Authors. All Rights Reserved.
  *

@@ -15,7 +15,7 @@
  *****************************************************************************/
 
 // #include "auto_lock.h"
-#include "dead_reckoning/common/kalmanfilter.h"
+#include "kalmanfilter.h"
 #include <algorithm>
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
